@@ -1,0 +1,3813 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>돈의 지도 — Money Behind Taste</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+
+
+:root {
+  --paper: #ffffff;
+  --paper-2: #f5f5f5;
+  --paper-3: #fafafa;
+  --ink: #131210;
+  --ink-2: #2a2824;
+  --ink-mute: #6b6760;
+  --rule: #e5e5e5;
+  --rule-soft: #eeeeee;
+  --accent: #b5321a;
+  --accent-2: #1d3d2f;
+  --gold: #a6803a;
+
+  --serif-en: 'Playfair Display', 'Gowun Batang', serif;
+  --serif-kr: 'Gowun Batang', 'Nanum Myeongjo', serif;
+  --sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --max: 1280px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body { background: var(--paper); color: var(--ink); }
+
+body {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+/* paper grain */
+body::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(120,90,60,.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(60,50,40,.04) 0%, transparent 40%);
+  mix-blend-mode: multiply;
+}
+
+/* ── TOP NAV ── */
+.topbar {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(19,18,16,0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.topbar .brand-mark { border-color: rgba(255,255,255,0.7); color: #fff; }
+.topbar .brand-text { color: #fff; }
+.topbar .brand-text em { color: rgba(255,255,255,0.45); }
+.topbar .nav-tab { color: rgba(255,255,255,0.5); }
+.topbar .nav-tab:hover { color: #fff; }
+.topbar .nav-tab.active { background: #fff; color: #131210; }
+.topbar .nav-issue { color: rgba(255,255,255,0.35); }
+.topbar-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  gap: 16px;
+  position: relative;
+}
+.topbar-inner .nav-tabs {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  cursor: pointer;
+}
+.brand-mark {
+  width: 30px; height: 30px;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+}
+.brand-text {
+  font-family: var(--serif-kr);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -.01em;
+}
+.brand-text em {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--ink-mute);
+  margin-left: 6px;
+  font-size: 12px;
+  letter-spacing: .05em;
+}
+.nav-tabs {
+  display: flex;
+  gap: 4px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+}
+.nav-tab {
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: var(--ink-mute);
+  transition: all .2s;
+  display: flex; align-items: center; gap: 6px;
+}
+.nav-tab:hover { color: var(--ink); }
+.nav-tab.active {
+  background: var(--ink);
+  color: var(--paper-3);
+}
+.nav-issue {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: .08em;
+}
+@media (max-width: 720px) {
+  .nav-issue { display: none; }
+  .nav-tabs { gap: 0; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab { padding: 5px 10px; font-size: 11px; white-space: nowrap; flex-shrink: 0; }
+  .topbar-inner { flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px 16px; }
+  .topbar-inner .nav-tabs { position: static; left: auto; transform: none; width: 100%; display: flex; }
+  .brand-text em { display: none; }
+}
+
+/* ── LAYOUT ── */
+.view { max-width: var(--max); margin: 0 auto; padding: 0 20px 80px; }
+.view-narrow { max-width: 780px; }
+
+/* ── COVER ── */
+.cover {
+  position: relative;
+  border-bottom: 1px solid var(--ink);
+  padding: 56px 0 44px;
+}
+.cover-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+.cover-meta .issue { color: var(--accent); font-weight: 600; }
+.cover-title {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+  font-weight: 300;
+  font-size: clamp(38px, 7vw, 88px);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  margin-bottom: 36px;
+}
+.cover-title .em {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: -.04em;
+}
+.cover-title .sm {
+  display: block;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(18px, 3vw, 28px);
+  color: var(--ink-mute);
+  margin-top: 16px;
+  letter-spacing: 0;
+}
+.cover-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+@media (max-width: 720px) {
+  .cover-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+.cover-lede {
+  font-family: var(--serif-kr);
+  font-size: clamp(17px, 2.2vw, 22px);
+  line-height: 1.5;
+  color: var(--ink-2);
+  font-weight: 400;
+  max-width: 62ch;
+}
+.cover-lede b { font-weight: 700; color: var(--ink); }
+.cover-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-left: 24px;
+  border-left: 1px solid var(--rule);
+}
+@media (max-width: 720px) {
+  .cover-stats { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); padding-top: 20px; }
+}
+.cover-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.cover-stat-num {
+  font-family: var(--serif-en);
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.cover-stat-lbl {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-mute);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+/* ── SECTION HEADER ── */
+.sh {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 40px 0 20px;
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sh-left {
+  display: flex; align-items: baseline; gap: 14px;
+}
+.sh-num {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+.sh-title {
+  font-family: var(--serif-kr);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+.sh-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+}
+
+/* ── INDUSTRY INDEX (cover list) ── */
+.industry-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0;
+}
+.ind-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 48px 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  transition: background .15s;
+}
+.ind-row:hover { background: var(--paper-2); }
+.ind-row-num {
+  font-family: var(--serif-en);
+  font-size: 18px;
+  color: var(--ink-mute);
+  font-weight: 400;
+  font-style: italic;
+}
+.ind-row-name {
+  font-family: var(--serif-kr);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+.ind-row-name small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-mute);
+  font-weight: 400;
+  margin-top: 2px;
+  letter-spacing: 0;
+}
+.ind-row-rev {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+}
+.ind-row-rev small { display: block; color: var(--ink-mute); font-size: 10px; margin-top: 2px; }
+.ind-row-arrow {
+  font-family: var(--serif-en);
+  font-size: 18px;
+  color: var(--ink-mute);
+}
+.ind-row:hover .ind-row-arrow { color: var(--accent); transform: translateX(4px); transition: transform .2s; }
+@media (max-width: 540px) {
+  .ind-row { grid-template-columns: 32px 1fr auto; gap: 12px; padding: 14px 2px; }
+  .ind-row-arrow { display: none; }
+  .ind-row-name { font-size: 18px; }
+  .ind-row-rev { font-size: 12px; }
+}
+
+/* ── FEATURED CARDS ── */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.feat-card {
+  background: var(--paper-3);
+  border: 1px solid var(--rule);
+  padding: 24px;
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 240px;
+}
+.feat-card:hover { border-color: var(--ink); transform: translateY(-2px); }
+.feat-card.large { grid-column: span 6; min-height: 320px; }
+.feat-card.med { grid-column: span 6; }
+.feat-card.sm { grid-column: span 4; }
+.feat-card.half { grid-column: span 6; }
+@media (max-width: 900px) {
+  .feat-card.large, .feat-card.med, .feat-card.sm, .feat-card.half { grid-column: span 12; }
+}
+.feat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.feat-label::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+}
+.feat-title {
+  font-family: var(--serif-kr);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+  margin-bottom: 12px;
+}
+.feat-card.large .feat-title { font-size: 34px; }
+.feat-body {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  flex: 1;
+}
+.feat-stat {
+  font-family: var(--serif-en);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.03em;
+}
+.feat-card.large .feat-stat { font-size: 88px; }
+.feat-stat-sub {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-mute);
+  margin-top: 8px;
+}
+.feat-foot {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  display: flex; justify-content: space-between;
+}
+
+/* ── INDUSTRY DASHBOARD ── */
+.ind-hero {
+  padding: 40px 0 32px;
+  border-bottom: 1px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+}
+@media (max-width: 800px) {
+  .ind-hero { grid-template-columns: 1fr; gap: 24px; }
+}
+.ind-hero-back {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: inline-flex;
+  gap: 6px;
+}
+.ind-hero-back:hover { color: var(--accent); }
+.ind-hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.ind-hero-title {
+  font-family: var(--serif-kr);
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -.01em;
+  margin-bottom: 16px;
+}
+.ind-hero-sub {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--ink-mute);
+}
+.ind-hero-lede {
+  font-family: var(--serif-kr);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 48ch;
+}
+.ind-hero-lede .pull {
+  display: block;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 28px;
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 20px 0 12px;
+  padding-left: 14px;
+  border-left: 2px solid var(--accent);
+}
+
+/* KPI strip */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin: 24px 0 32px;
+}
+.kpi-cell {
+  padding: 20px 16px;
+  border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.kpi-cell:last-child { border-right: 0; }
+.kpi-cell-lbl {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+}
+.kpi-cell-val {
+  font-family: var(--serif-en);
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+}
+.kpi-cell-sub {
+  font-size: 11px;
+  color: var(--ink-mute);
+  font-family: var(--mono);
+}
+@media (max-width: 720px) {
+  .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+  .kpi-cell { border-bottom: 1px solid var(--rule); }
+  .kpi-cell:nth-child(2) { border-right: 0; }
+  .kpi-cell:nth-last-child(-n+2) { border-bottom: 0; }
+  .kpi-cell-val { font-size: 24px; }
+}
+
+/* ── STORY BLOCKS ── */
+.story {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 800px) {
+  .story { grid-template-columns: 1fr; gap: 24px; }
+}
+.story-left .eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.story-title {
+  font-family: var(--serif-kr);
+  font-size: clamp(24px, 3.5vw, 40px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  margin-bottom: 20px;
+}
+.story-body {
+  font-family: var(--serif-kr);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-2);
+  max-width: 46ch;
+}
+.story-body p + p { margin-top: 1em; text-indent: 1.5em; }
+.story-chart {
+  background: var(--paper-3);
+  border: 1px solid var(--rule);
+  padding: 20px;
+  min-height: 340px;
+  position: relative;
+}
+.story-chart-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.story-chart-sub {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-mute);
+  margin-bottom: 16px;
+}
+
+/* ── COMPANY TABLE / CARDS ── */
+.co-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.co-card {
+  background: var(--paper-3);
+  padding: 20px;
+  cursor: pointer;
+  transition: background .15s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 160px;
+  border: 1.5px solid var(--rule);
+  border-radius: 2px;
+}
+.co-card:hover { background: var(--paper-2); border-color: var(--rule-soft); }
+.co-card.listed {
+  border-color: var(--ind-color, #131210);
+  border-width: 1.5px;
+}
+.co-card-listed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--ind-color, #131210);
+  border: 1px solid var(--ind-color, #131210);
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-top: 2px;
+  width: fit-content;
+}
+.sub-ind-header {
+  grid-column: 1 / -1;
+  padding: 14px 0 6px;
+  border-bottom: 2px solid var(--ind-color, #131210);
+  margin-bottom: 4px;
+}
+.sub-ind-header h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--ind-color, #131210);
+  text-transform: uppercase;
+}
+.sub-ind-header span {
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin-left: 8px;
+}
+.co-card-rank {
+  position: absolute; top: 16px; right: 16px;
+  font-family: var(--serif-en); font-style: italic;
+  font-size: 14px; color: var(--ink-mute);
+}
+.co-card-name {
+  font-family: var(--serif-kr);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  max-width: calc(100% - 40px);
+}
+.co-card-sub {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: .02em;
+}
+.co-card-rev {
+  font-family: var(--serif-en);
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1;
+  margin-top: auto;
+}
+.co-card-rev-lbl {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.co-card-meta {
+  display: flex; gap: 12px; margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+}
+.co-card-meta .margin { color: var(--accent-2); font-weight: 500; }
+.co-card-meta .margin.neg { color: var(--accent); }
+.co-card-bar {
+  height: 3px;
+  background: var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+.co-card-bar::after {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--ind-color, var(--ink));
+  width: var(--bar-w, 50%);
+}
+
+/* ── COMPANY DETAIL ── */
+.co-hero {
+  padding: 40px 0 32px;
+  border-bottom: 1px solid var(--ink);
+}
+.co-hero-meta {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.co-hero-meta .crumb { display: flex; gap: 10px; }
+.co-hero-meta .crumb span { cursor: pointer; }
+.co-hero-meta .crumb span:hover { color: var(--accent); }
+.co-hero-meta .crumb em { font-style: normal; color: var(--ink-mute); opacity: .4; }
+.co-hero-title {
+  font-family: var(--serif-kr);
+  font-size: clamp(44px, 8vw, 96px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -.01em;
+  margin-bottom: 12px;
+}
+.co-hero-ind {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--ink-mute);
+  margin-bottom: 32px;
+}
+.co-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+}
+.panel {
+  background: var(--paper-3);
+  border: 1px solid var(--rule);
+  padding: 24px;
+}
+.panel-chart {
+  grid-column: span 8;
+  min-height: 380px;
+}
+.panel-stat {
+  grid-column: span 4;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.panel-rank { grid-column: span 12; min-height: 360px; }
+.panel-summary { grid-column: span 12; }
+@media (max-width: 900px) {
+  .panel-chart, .panel-stat, .panel-rank, .panel-summary { grid-column: span 12; }
+}
+.panel-title {
+  font-family: var(--serif-kr);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -.01em;
+}
+.panel-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.big-stat { display: flex; flex-direction: column; gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+.big-stat:last-child { border-bottom: 0; }
+.big-stat-val {
+  font-family: var(--serif-en);
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.big-stat-val.neg { color: var(--accent); }
+.big-stat-val.pos { color: var(--accent-2); }
+.big-stat-lbl {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ink-mute); letter-spacing: .1em; text-transform: uppercase;
+}
+
+/* insight summary */
+.insight {
+  padding: 32px;
+  background: var(--ink);
+  color: var(--paper-3);
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 800px) { .insight { grid-template-columns: 1fr; gap: 16px; padding: 24px; } }
+.insight-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #a6803a;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.insight-text {
+  font-family: var(--serif-kr);
+  font-size: clamp(20px, 2.5vw, 26px);
+  line-height: 1.45;
+  font-weight: 400;
+}
+.insight-text b { color: var(--gold); font-weight: 700; }
+
+/* ── POSITIONING MAP ── */
+.map-wrap {
+  background: var(--paper-3);
+  border: 1px solid var(--rule);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+#positioning-map { width: 100%; height: 640px; }
+@media (max-width: 720px) { #positioning-map { height: 500px; } }
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-mute);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all .15s;
+}
+.legend-item:hover { background: var(--paper-2); color: var(--ink); }
+.legend-item.off { opacity: .3; }
+.legend-swatch { width: 10px; height: 10px; border-radius: 50%; }
+
+.map-controls {
+  display: flex; flex-wrap: wrap; gap: 20px;
+  padding-bottom: 16px; margin-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.map-ctrl-group { display: flex; flex-direction: column; gap: 6px; }
+.map-ctrl-lbl { font-family: var(--mono); font-size: 10px; color: var(--ink-mute); letter-spacing: .1em; text-transform: uppercase; }
+.map-ctrl-select {
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 6px 10px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  cursor: pointer;
+}
+
+/* D3 map styles */
+.map-dot { cursor: pointer; transition: stroke-width .15s; }
+.map-dot:hover { stroke-width: 2; }
+.map-dot.dim { opacity: .15; }
+.map-axis { font-family: var(--mono); font-size: 10px; fill: var(--ink-mute); }
+.map-axis line { stroke: var(--rule); }
+.map-axis path { stroke: var(--rule); }
+.map-axis-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  fill: var(--ink-mute);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.map-quadrant-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 13px;
+  fill: var(--ink-mute);
+  opacity: .7;
+}
+
+.map-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--ink);
+  color: var(--paper-3);
+  padding: 10px 14px;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 220px;
+  transform: translate(-50%, -110%);
+  opacity: 0;
+  transition: opacity .1s;
+  z-index: 100;
+  border-radius: 2px;
+}
+.map-tooltip.on { opacity: 1; }
+.map-tooltip b { font-family: var(--serif-kr); font-size: 14px; display: block; margin-bottom: 4px; }
+.map-tooltip .tt-row { display: flex; justify-content: space-between; gap: 14px; font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.7); }
+
+/* Mini positioning map grid */
+.mini-map-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.mini-map-card {
+  background: var(--paper-3);
+  border: 1px solid var(--rule);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mini-map-svg {
+  width: 100%;
+  height: 640px;
+}
+@media (max-width: 720px) { .mini-map-svg { height: 500px; } }
+.mini-map-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+.mini-map-title {
+  font-family: var(--serif-kr);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.mini-map-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: .06em;
+  margin-top: 3px;
+}
+.mini-map-total {
+  font-family: var(--serif-en);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+.mini-map-svg {
+  width: 100%;
+  height: 220px;
+}
+.mini-map-svg {
+  width: 100%;
+  height: 640px;
+}
+@media (max-width: 720px) { .mini-map-svg { height: 500px; } }
+.mini-map-foot {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: .06em;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+  text-transform: uppercase;
+}
+
+/* story mode full-bleed */
+.storymode {
+  min-height: 100vh;
+  padding: 0;
+}
+.story-slide {
+  min-height: 100vh;
+  padding: 80px 24px 120px;
+  border-bottom: 1px solid var(--rule);
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+.story-slide .slide-n {
+  position: absolute; top: 32px; left: 24px;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-mute); letter-spacing: .12em;
+}
+.story-slide .slide-kicker {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--accent); letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 16px;
+  max-width: var(--max); margin-left: auto; margin-right: auto; width: 100%;
+}
+.story-slide .slide-h {
+  font-family: var(--serif-kr);
+  font-size: clamp(32px, 5.5vw, 60px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  margin-bottom: 24px;
+  max-width: 18ch;
+  margin-left: auto; margin-right: auto; width: 100%;
+}
+.story-slide .slide-h em {
+  font-family: var(--serif-kr);
+  font-style: italic;
+  font-weight: 700;
+  color: inherit;
+}
+.story-slide .slide-body {
+  font-family: var(--serif-kr);
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.7;
+  color: var(--ink-2);
+  max-width: 52ch;
+  margin-left: auto; margin-right: auto; width: 100%;
+}
+.story-slide .slide-number {
+  font-family: var(--serif-en);
+  font-size: clamp(96px, 20vw, 240px);
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -.04em;
+  max-width: var(--max);
+  margin: 24px auto 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.story-slide .slide-number .tiny {
+  display: block;
+  font-family: var(--mono); font-size: 13px;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-top: 0;
+  font-style: normal;
+  line-height: 1.4;
+}
+
+/* Footer */
+.footer {
+  max-width: var(--max); margin: 0 auto; padding: 40px 20px;
+  border-top: 1px solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-title { font-family: var(--serif-en); font-style: italic; font-size: 16px; color: var(--ink); text-transform: none; letter-spacing: 0; }
+
+/* search */
+.search-wrap { position: relative; max-width: 460px; margin-left: auto; margin-right: auto; width: 100%; margin-bottom: 20px; }
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  border: 1px solid var(--rule);
+  background: var(--paper-3);
+  font-family: var(--sans);
+  font-size: 14px;
+  outline: none;
+  border-radius: 2px;
+}
+.search-input:focus { border-color: var(--ink); }
+.search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-family: var(--serif-en); font-style: italic; color: var(--ink-mute);
+}
+
+/* tweak panel */
+.tweaks-panel {
+  position: fixed; bottom: 20px; right: 20px; z-index: 80;
+  background: var(--ink); color: var(--paper-3);
+  padding: 20px; width: 280px;
+  font-family: var(--sans); font-size: 12px;
+  border-radius: 4px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.3);
+}
+.tweaks-panel h4 { font-family: var(--serif-en); font-style: italic; font-size: 16px; margin-bottom: 14px; font-weight: 500; color: var(--gold); }
+.tweaks-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid rgba(255,255,255,.08); }
+.tweaks-row:first-of-type { border-top: 0; }
+.tweaks-row label { color: rgba(255,255,255,.6); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.tweaks-row select, .tweaks-row input[type="color"] { background: #2a2824; border: 0; color: var(--paper-3); padding: 4px 8px; font-family: var(--mono); font-size: 11px; }
+
+/* utility */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: .08em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+}
+.chip.filled { background: var(--ink); color: var(--paper-3); border-color: var(--ink); }
+.chip .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+/* ── INDUSTRY CARD GRID (v2-style) ── */
+.ind-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2px;
+  margin-bottom: 48px;
+}
+.ind-card {
+  background: var(--paper-3, #faf8f4);
+  padding: 32px 28px 24px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+  transition: background .2s, box-shadow .2s, transform .2s;
+}
+.ind-card:hover {
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(0,0,0,.10);
+  transform: translateY(-3px);
+}
+.ind-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--card-clr, var(--accent));
+}
+.ind-card-hd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.ind-card-num {
+  font-family: var(--serif-kr, serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  opacity: .75;
+}
+.ind-card-name {
+  font-family: var(--serif-kr, serif);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.ind-card-wow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 0 12px;
+}
+.ind-card-stat {
+  font-family: var(--serif-kr, serif);
+  font-size: clamp(36px, 4.5vw, 52px);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+  letter-spacing: -.02em;
+}
+.ind-card-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--ink-mute);
+  margin-bottom: 5px;
+}
+.ind-card-cmp {
+  font-family: var(--serif-kr, serif);
+  font-size: 12px;
+  color: var(--ink-mute);
+  font-style: italic;
+  line-height: 1.5;
+}
+/* TOP3 bars */
+.top3 { display: flex; flex-direction: column; gap: 6px; padding: 12px 0 8px; border-top: 1px solid var(--rule); }
+.top3-r { display: flex; align-items: center; gap: 7px; font-size: 11px; }
+.top3-nm { width: 68px; flex-shrink: 0; color: var(--ink-mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.top3-tr { flex: 1; height: 4px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+.top3-fl { height: 100%; border-radius: 2px; }
+.top3-vl { width: 40px; text-align: right; font-size: 10px; font-weight: 600; flex-shrink: 0; }
+/* Card footer */
+.ind-card-ft {
+  display: flex; align-items: center; gap: 5px;
+  padding-top: 10px; border-top: 1px solid var(--rule);
+  font-size: 11.5px; margin-top: 8px;
+}
+.ind-card-ft-val { font-weight: 700; font-size: 13px; }
+.ind-card-ft-lbl { color: var(--ink-mute); }
+.ind-card-ft-sep { color: var(--rule); margin: 0 2px; }
+/* View toggle */
+.view-toggle-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0;
+  margin-bottom: 16px;
+}
+.vt-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 7px 14px;
+  font-size: 11.5px; font-family: var(--sans); font-weight: 500;
+  border: 1px solid var(--rule);
+  background: var(--paper-3); color: var(--ink-mute);
+  cursor: pointer; transition: all .15s; letter-spacing: .03em;
+}
+.vt-btn:first-child { border-radius: 2px 0 0 2px; }
+.vt-btn:last-child  { border-radius: 0 2px 2px 0; border-left: none; }
+.vt-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.29.0/babel.min.js"></script>
+<script>
+fetch('data.json').then(function(r){return r.json();}).then(function(d){window.TASTE_DATA=d;document.dispatchEvent(new Event('tasteDataReady'));}).catch(function(e){console.error('data.json load failed',e);});
+</script>
+<script>
+fetch('stock.json').then(function(r){return r.json();}).then(function(d){window.TASTE_STOCK=d;}).catch(function(e){console.error('stock.json load failed',e);});
+</script>
+<script>(function(){
+const COLORS = {
+  '식품·외식·음료': '#C04A1A',
+  '패션':           '#1C1C1C',
+  '뷰티':           '#B5395A',
+  '라이프스타일·리빙': '#4A7C59',
+  '콘텐츠·엔터':    '#4A2D6B',
+  '미디어·언론':    '#6B3A1A',
+  '출판·단행본':    '#1A3D6B',
+  '교육':           '#2563A8',
+  '유통·커머스':    '#1A6B5A',
+  '레저·여행':      '#1A5A8A',
+  '테크·플랫폼·IT': '#2B4FA8',
+  '모빌리티':       '#374151',
+};
+const ICONS = {
+  '식품·외식·음료':'🍽','패션':'👗','뷰티':'💄',
+  '라이프스타일·리빙':'🪴','콘텐츠·엔터':'🎬','미디어·언론':'📡',
+  '출판·단행본':'📖','교육':'📚','유통·커머스':'🛒',
+  '레저·여행':'✈️','테크·플랫폼·IT':'💻','모빌리티':'🚗',
+};
+const WOWS = {
+  '식품·외식·음료': { stat: '24.7%', label: '성심당 영업이익률', compare: '스타벅스(6.2%)의 4배' },
+  '패션':           { stat: '29.6%', label: '젠틀몬스터 모기업 이익률', compare: '루이비통 코리아(22.3%)를 넘는다' },
+  '뷰티':           { stat: '102%', label: '실리콘투 매출 성장률', compare: 'K뷰티 수출의 숨은 주인공' },
+  '라이프스타일·리빙': { stat: '22.3%', label: '코웨이 영업이익률', compare: '구독 모델이 가전을 바꾼다' },
+  '콘텐츠·엔터':    { stat: '71.3%', label: '네오플 영업이익률', compare: '매출의 3분의 2가 이익으로 남는다' },
+  '미디어·언론':    { stat: '18.4%', label: 'SBS 영업이익률', compare: '레거시 미디어의 반전' },
+  '출판·단행본':    { stat: '−122억', label: '교보문고 영업이익', compare: '매출 1조, 그래도 돈을 못 번다' },
+  '교육':           { stat: '41.1%', label: '메가스터디교육 영업이익률', compare: '학원이 IT를 이긴다' },
+  '유통·커머스':    { stat: '0.16%', label: '이마트 영업이익률', compare: '29조를 팔아 470억 남긴다' },
+  '레저·여행':      { stat: '22.7%', label: '여기어때 영업이익률', compare: '대한항공(11.8%)의 2배' },
+  '테크·플랫폼·IT': { stat: '68.5%', label: '두나무(업비트) 영업이익률', compare: '직원 629명이 1.2조를 남긴다' },
+  '모빌리티':       { stat: '12.3%', label: '현대차 영업이익률', compare: '전기차 전환의 수익성' },
+};
+const DESC = {
+  '식품·외식·음료':'커피·음료·주류·외식·식품·제과',
+  '패션':'의류·아웃도어·슈즈·아이웨어',
+  '뷰티':'화장품·뷰티·헤어',
+  '라이프스타일·리빙':'가구·리빙·생활용품·스포츠·가전',
+  '콘텐츠·엔터':'게임·엔터테인먼트·음악·웹툰·MCN',
+  '미디어·언론':'방송·신문·OTT·영화관',
+  '출판·단행본':'출판사·서점·만화·웹소설',
+  '교육':'학원·에듀테크·온라인교육·교육출판',
+  '유통·커머스':'마트·이커머스·편의점·홈쇼핑',
+  '레저·여행':'여행·호텔·항공·레저·스포츠',
+  '테크·플랫폼·IT':'IT서비스·플랫폼·핀테크·광고',
+  '모빌리티':'자동차·공유모빌리티·전기차',
+};
+window.TASTE_COLORS = COLORS;
+window.TASTE_ICONS = ICONS;
+window.TASTE_WOWS = WOWS;
+window.TASTE_DESC = DESC;
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+
+</head>
+<body>
+<div id="app"></div>
+
+<script type="text/babel">// Shared helpers
+const fmtKRW = (억) => {
+  if (억 == null || isNaN(억)) return '—';
+  if (Math.abs(억) >= 10000) return (억/10000).toFixed(1).replace(/\.0$/, '') + '조';
+  if (Math.abs(억) >= 1000) return Math.round(억).toLocaleString() + '억';
+  return Math.round(억).toLocaleString() + '억';
+};
+// Revenue log-scale tick generator: produces clean, non-overlapping tick values
+// lo/hi in 억. Uses 1×, 3× per decade for ≤10조 range; adds 5× per decade for >10조.
+const makeRevTickValues = (lo, hi) => {
+  const result = [];
+  const logLo = Math.floor(Math.log10(Math.max(1, lo)));
+  const logHi = Math.ceil(Math.log10(Math.max(1, hi)));
+  const useStep5 = hi > 100000; // add 5x ticks only when range extends past 10조
+  for (let e = logLo; e <= logHi; e++) {
+    const mults = useStep5 ? [1, 3, 5] : [1, 3];
+    mults.forEach(m => {
+      const v = m * Math.pow(10, e);
+      if (v >= lo * 0.85 && v <= hi * 1.15) result.push(v);
+    });
+  }
+  return [...new Set(result)].sort((a, b) => a - b);
+};
+const fmtPct = (n, sign=false) => {
+  if (n == null || isNaN(n)) return '—';
+  const v = n.toFixed(1).replace(/\.0$/, '');
+  return (sign && n>0?'+':'') + v + '%';
+};
+const fmtNum = (n) => (n==null||isNaN(n)) ? '—' : Math.round(n).toLocaleString();
+
+const calcMargin = (company, year='2024') => {
+  const r = company.revenue?.[year];
+  const p = company.profit?.[year];
+  if (!r || p == null) return null;
+  return (p / r) * 100;
+};
+const calcGrowth = (company, from='2023', to='2024') => {
+  const a = company.revenue?.[from];
+  const b = company.revenue?.[to];
+  if (!a || !b) return null;
+  return ((b - a) / a) * 100;
+};
+
+// industry insight narratives — editorial style
+const IND_NARRATIVE = {
+  '카페': {
+    tagline: 'Coffee & Culture',
+    lede: '한국인은 매일 커피를 마신다. 그 한 잔이 쌓여 조 단위가 된다.',
+    pull: '컴포즈커피는 스타벅스보다 7배 더 남긴다.',
+    story1: { title: '누가 더 남기는가', body: '매출은 스타벅스가 압도적이다. 2024년 3조1천억. 하지만 이익률로 보면 풍경이 달라진다. 컴포즈커피 44.5%, 메가커피 21.7%, 스타벅스 6.2%. 대형 플래그십보다 저가 프랜차이즈가 돈을 남긴다.' },
+    story2: { title: '시장은 더 커지지 않을지 모른다', body: '2022→2024 카페 산업 합산 매출은 완만하게 성장했다. 하지만 상위 브랜드 간 격차는 더 벌어졌다. 브랜드가 많아질수록 이익률은 더 중요해진다.' },
+  },
+  '콘텐츠·미디어': {
+    tagline: 'Content Economy',
+    lede: '게임 한 편이 방송국 열 개를 합친 이익을 낸다.',
+    pull: '네오플은 매출의 71.3%를 이익으로 남긴다.',
+    story1: { title: '이익률이 다르다', body: '네오플은 던전앤파이터 하나로 71.3%의 영업이익률을 찍는다. 제조업의 10배, 유통업의 100배다. 콘텐츠는 복제 비용이 0에 수렴하는 몇 안 되는 산업이다.' },
+    story2: { title: 'IP가 회사를 먹여살린다', body: '엔씨, 넷마블, 크래프톤은 모두 하나의 대표 IP에 매출이 집중되어 있다. 신작이 흥하면 회사가 산다. 실패하면 반대다.' },
+  },
+  '패션': {
+    tagline: 'Fashion & Identity',
+    lede: '옷은 신분이고, 신분은 이익률이다.',
+    pull: '젠틀몬스터 모기업은 루이비통 코리아보다 더 남긴다.',
+    story1: { title: '럭셔리의 이익률', body: '아이아이컴바인드(젠틀몬스터)는 29.6%의 영업이익률을 낸다. 루이비통 코리아(22.3%)보다 높다. K브랜드가 수입 럭셔리를 이겼다.' },
+    story2: { title: '규모와 이익의 역비례', body: '대형 의류 브랜드는 매출은 크지만 이익률은 한 자릿수다. 작은 하이엔드 브랜드가 더 많이 남긴다. 프리미엄 포지션은 숫자로 확인된다.' },
+  },
+  '외식·식품': {
+    tagline: 'Food & Craft',
+    lede: '대전의 빵집이 글로벌 카페 체인보다 더 남긴다.',
+    pull: '성심당(로쏘) 24.7% vs 스타벅스 6.2%.',
+    story1: { title: '지역 브랜드의 힘', body: '로쏘(성심당)는 24.7% 이익률로 외식업의 상식을 깬다. 스타벅스(6.2%)의 4배다. 규모보다 밀도, 확장보다 집중이 돈을 남긴다.' },
+    story2: { title: '프랜차이즈 vs 단일 매장', body: '매장을 늘리면 매출은 는다. 그러나 관리 비용도 는다. 한 곳만 파는 브랜드가 때로 더 오래, 더 많이 남긴다.' },
+  },
+  '화장품·뷰티': {
+    tagline: 'Beauty & Export',
+    lede: 'K뷰티의 주인공은 대기업이 아니다.',
+    pull: '실리콘투 매출 성장률 102%.',
+    story1: { title: '수출이 답이다', body: '실리콘투는 K뷰티 해외 유통으로 1년만에 2배 성장했다. 올리브영은 국내 최대 유통망을 완성했다. 브랜드보다 채널이 돈을 번다.' },
+    story2: { title: 'ODM의 조용한 승리', body: '코스맥스, 한국콜마는 브랜드 없이 제조만 한다. 그런데도 글로벌 K뷰티 붐의 진짜 수혜자다. 보이지 않는 곳에서 돈이 흐른다.' },
+  },
+  '출판·교육': {
+    tagline: 'Knowledge Economy',
+    lede: '책을 판다고 돈이 되진 않는다.',
+    pull: '교보문고 매출 1조, 영업이익 −122억.',
+    story1: { title: '매출과 이익의 괴리', body: '교보문고는 매년 1조원어치 책을 판다. 그러나 이익은 적자다. 책이라는 상품의 마진은 이미 낮다. 서점은 도서 이상의 것을 팔아야 산다.' },
+    story2: { title: '에듀테크의 역설', body: '교원, 웅진 같은 학습지 대기업은 여전히 견조하다. 오프라인 학원과 온라인 플랫폼 사이, 돈은 아직 오프라인 쪽에 있다.' },
+  },
+  '유통·리테일': {
+    tagline: 'Retail & Margin',
+    lede: '많이 팔고 적게 남기는 구조.',
+    pull: '이마트 매출 29조, 영업이익률 0.16%.',
+    story1: { title: '규모의 한계', body: '이마트는 한 해 29조를 판다. 영업이익은 470억. 이익률 0.16%. 쿠팡, 네이버, 배민에 협공당한 대형마트의 현실이다.' },
+    story2: { title: '이커머스의 손익분기', body: '쿠팡은 수년간 적자를 감수하고 규모를 키웠다. 이제 흑자다. 하지만 여전히 대부분의 이커머스는 돈을 못 번다.' },
+  },
+  '여행·레저': {
+    tagline: 'Travel & Leisure',
+    lede: '플랫폼이 항공사보다 남긴다.',
+    pull: '여기어때 이익률 22.7% — 대한항공의 2배.',
+    story1: { title: '중개의 마진', body: '여기어때는 22.7%의 이익률을 낸다. 대한항공(11.8%)의 2배. 비행기를 사지 않고도 여행산업에서 가장 많이 남기는 방법은 중개다.' },
+    story2: { title: '리오프닝의 편차', body: '코로나 이후 여행 수요는 돌아왔다. 그러나 회복 속도는 브랜드마다 다르다. 디지털이 빠른 곳이 먼저 돌아왔다.' },
+  },
+  'IT·광고': {
+    tagline: 'Digital & Ads',
+    lede: '디지털은 한 번 만들고 계속 판다.',
+    pull: '두나무 직원 629명이 1.2조를 남긴다.',
+    story1: { title: '1인당 이익의 극단', body: '두나무는 629명의 직원으로 1.2조 영업이익을 낸다. 1인당 이익 19억. 이런 숫자는 플랫폼과 핀테크 외에는 존재하지 않는다.' },
+    story2: { title: '네이버·카카오의 다른 길', body: '네이버는 검색·커머스로, 카카오는 메시징·콘텐츠로 갔다. 같은 플랫폼 기업이라도 이익 구조는 다르다.' },
+  },
+  '건설·제조': {
+    tagline: 'Industry & Health',
+    lede: 'AI 메모리가 한국 제조업을 다시 세웠다.',
+    pull: 'SK하이닉스 매출 성장률 102%.',
+    story1: { title: '사이클의 귀환', body: 'SK하이닉스는 2023년 7.7조 적자에서 2024년 23.5조 흑자로 전환했다. HBM이라는 한 단어가 회사의 1년을 뒤집었다.' },
+    story2: { title: '제조업의 이익률', body: '전통 제조업의 영업이익률은 한 자릿수가 보통이다. 그러나 반도체는 사이클이 돌면 30%를 넘는다. 장치산업의 운명이다.' },
+  },
+  '럭셔리': {
+    tagline: 'Luxury & Exclusivity',
+    lede: '55명이 1.8조를 판다.',
+    pull: '샤넬 코리아 직원당 매출 335억.',
+    story1: { title: '희소성의 경제학', body: '샤넬 코리아는 직원 55명으로 1.8조 매출을 만든다. 1인당 335억. 브랜드 자체가 이미 인건비 수십 배의 가치다.' },
+    story2: { title: '한국은 럭셔리의 핵심 시장', body: '한국은 인구 대비 명품 소비가 세계 최상위권이다. 본사 입장에서 한국법인은 실험실이자 매출원이다.' },
+  },
+};
+
+Object.assign(window, { fmtKRW, fmtPct, fmtNum, calcMargin, calcGrowth, IND_NARRATIVE });
+</script>
+<script type="text/babel">// Top navigation
+const { useState, useEffect, useRef, useMemo } = React;
+
+function Topbar({ view, setView }) {
+  const tabs = [
+    { key: 'home', label: '메인' },
+    { key: 'map', label: '비즈니스 분포도' },
+    { key: 'localmap', label: '로컬 비즈니스 맵' },
+    { key: 'story', label: '스토리' },
+  ];
+  return (
+    <nav className="topbar">
+      <div className="topbar-inner">
+        <div className="brand" onClick={() => setView({ name: 'home' })}>
+          <div className="brand-mark">$</div>
+          <div className="brand-text"><em style={{fontStyle:"italic",fontFamily:"var(--serif-en)",fontWeight:500,fontSize:13,letterSpacing:".05em",color:"#ffffff",marginLeft:0}}>Money Behind Taste</em></div>
+        </div>
+        <div className="nav-tabs">
+          {tabs.map(t => (
+            <button key={t.key}
+              className={'nav-tab ' + (view.name === t.key ? 'active' : '')}
+              onClick={() => setView({ name: t.key })}>
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+window.Topbar = Topbar;
+</script>
+<script type="text/babel">// Home / Cover view — editorial magazine opener
+function HomeView({ data, colors, wows, desc, setView }) {
+  const [viewMode, setViewMode] = React.useState('card');
+
+  const industries = useMemo(() =>
+    Object.keys(data).sort((a,b) => data[b].total2024 - data[a].total2024),
+    [data]
+  );
+  const totalRev = useMemo(() => industries.reduce((s,k) => s + data[k].total2024, 0), [industries, data]);
+  const totalCos = useMemo(() => industries.reduce((s,k) => s + data[k].count, 0), [industries, data]);
+
+  const featured = [
+    { ind: '카페', kicker: 'MARGIN', title: '스타벅스보다 컴포즈커피가 7배 더 남긴다', body: '저가 프랜차이즈가 이익률 44.5%를 내는 동안, 플래그십 체인은 6.2%에 머문다.', stat: '44.5%', statSub: '컴포즈커피 영업이익률', size: 'large' },
+    { ind: '콘텐츠·미디어', kicker: 'MOAT', title: '매출의 71%가 그대로 이익이 되는 회사', body: 'IP 하나가 회사를 먹여 살린다. 복제비용 제로의 경제학.', stat: '71.3%', statSub: '네오플 영업이익률', size: 'med' },
+    { ind: '유통·리테일', kicker: 'SCALE', title: '29조를 팔고 470억 남기는 대형마트', body: '이익률 0.16%. 규모의 시대는 저물었다.', stat: '0.16%', statSub: '이마트 영업이익률', size: 'sm' },
+    { ind: '럭셔리', kicker: 'LUXURY', title: '직원 55명이 1.8조를 판다', body: '1인당 매출 335억. 희소성이 인건비를 압도한다.', stat: '335억', statSub: '샤넬 코리아 1인당 매출', size: 'sm' },
+    { ind: '화장품·뷰티', kicker: 'EXPORT', title: 'K뷰티의 주인공은 브랜드가 아니다', body: '실리콘투 매출 1년에 2배. 채널이 돈을 번다.', stat: '+102%', statSub: '실리콘투 매출 성장', size: 'sm' },
+  ];
+
+  // Card grid renderer
+  const renderCards = () => (
+    <div className="ind-grid">
+      {industries.map((k, i) => {
+        const d = data[k];
+        const color = colors[k] || '#555';
+        const wow = wows[k] || {};
+        const top3 = [...d.companies]
+          .filter(c => c.revenue?.['2024'] > 0)
+          .sort((a,b) => (b.revenue['2024']||0) - (a.revenue['2024']||0))
+          .slice(0, 3);
+        const maxRev = top3[0]?.revenue['2024'] || 1;
+        return (
+          <div key={k} className="ind-card" style={{'--card-clr': color}}
+            onClick={() => setView({ name: 'industry', key: k })}>
+            <div className="ind-card-hd">
+              <span className="ind-card-num" style={{color}}>{String(i+1).padStart(2,'0')}</span>
+              <span className="ind-card-name">{k}</span>
+            </div>
+            <div className="ind-card-wow">
+              <div className="ind-card-stat" style={{color}}>{fmtKRW(d.total2024)}</div>
+              <div className="ind-card-lbl">{d.count}개 기업</div>
+
+            </div>
+            <div className="top3">
+              {top3.map((c, ci) => {
+                const pct = Math.round((c.revenue['2024'] / maxRev) * 100);
+                const nm = c.name.length > 7 ? c.name.slice(0,6)+'…' : c.name;
+                return (
+                  <div key={ci} className="top3-r">
+                    <span className="top3-nm" title={c.name}>{nm}</span>
+                    <div className="top3-tr"><div className="top3-fl" style={{width: pct+'%', background: color}}></div></div>
+                    <span className="top3-vl">{fmtKRW(c.revenue['2024'])}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  // List renderer (magazine TOC style — from the screenshot)
+  const renderList = () => (
+    <div className="industry-index">
+      {industries.map((k, i) => {
+        const d = data[k];
+        const avgMargin = d.companies.reduce((s,c) => {
+          const m = calcMargin(c);
+          return s + (m != null ? m : 0);
+        }, 0) / (d.companies.filter(c => calcMargin(c) != null).length || 1);
+        return (
+          <div key={k} className="ind-row" onClick={() => setView({ name: 'industry', key: k })}>
+            <span className="ind-row-num">{String(i+1).padStart(2,'0')}</span>
+            <div>
+              <div className="ind-row-name">
+                {k}
+                <small>{desc[k]} · {d.count}개사</small>
+              </div>
+            </div>
+            <div className="ind-row-rev">
+              {fmtKRW(d.total2024)}
+              <small>평균 이익률 {avgMargin.toFixed(1)}%</small>
+            </div>
+            <span className="ind-row-arrow">→</span>
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  return (
+    <div className="view">
+
+      {/* ── I. 메인 타이틀 ── */}
+      <header className="cover">
+        <div className="cover-meta">
+          <span className="issue">VOL. 01 · 2026</span>
+          <span>DART 공시 기반 · 5개년 데이터</span>
+        </div>
+        <h1 className="cover-title">
+          취향 뒤에 흐르는 <span className="em">돈</span>
+          <span className="sm">Money Behind Taste — 소비산업이 보여주는 대한민국의 취향</span>
+        </h1>
+        <div className="cover-grid">
+          <p className="cover-lede">
+            당신이 매일 마시는 커피, 입는 옷, 보는 콘텐츠 뒤에는 숫자가 있다. 매출 1조를 올리고도 손실을 보는 회사가 있고, 매출의 절반 이상을 이익으로 남기는 회사도 있다. <b>숫자는 개인의 취향을 넘어 한 사회의 취향을 말해준다.</b>
+          </p>
+          <div className="cover-stats">
+            <div className="cover-stat">
+              <span className="cover-stat-num">{(totalRev/10000).toFixed(0)}</span>
+              <span className="cover-stat-lbl">조원 · 2025E 총매출</span>
+            </div>
+            <div className="cover-stat">
+              <span className="cover-stat-num">{totalCos}</span>
+              <span className="cover-stat-lbl">분석 기업 수</span>
+            </div>
+            <div className="cover-stat">
+              <span className="cover-stat-num">{industries.length}</span>
+              <span className="cover-stat-lbl">취향 산업</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* ── II. 10대 취향산업 ── */}
+      <section>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">II.</span>
+            <h2 className="sh-title">10대 취향산업</h2>
+          </div>
+          <span className="sh-sub">TABLE OF CONTENTS · 2025E 매출 기준</span>
+        </div>
+        <div className="view-toggle-row">
+          <button className={'vt-btn' + (viewMode==='card' ? ' active' : '')} onClick={() => setViewMode('card')}>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <rect x="0" y="0" width="5.5" height="5.5" rx="1" fill="currentColor"/>
+              <rect x="7.5" y="0" width="5.5" height="5.5" rx="1" fill="currentColor"/>
+              <rect x="0" y="7.5" width="5.5" height="5.5" rx="1" fill="currentColor"/>
+              <rect x="7.5" y="7.5" width="5.5" height="5.5" rx="1" fill="currentColor"/>
+            </svg>
+            카드형
+          </button>
+          <button className={'vt-btn' + (viewMode==='list' ? ' active' : '')} onClick={() => setViewMode('list')}>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <rect x="0" y="1" width="13" height="2" rx="1" fill="currentColor"/>
+              <rect x="0" y="5.5" width="13" height="2" rx="1" fill="currentColor"/>
+              <rect x="0" y="10" width="13" height="2" rx="1" fill="currentColor"/>
+            </svg>
+            리스트형
+          </button>
+        </div>
+        {viewMode === 'card' ? renderCards() : renderList()}
+      </section>
+
+      {/* ── III. 이번 호의 발견 ── */}
+      <section>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">III.</span>
+            <h2 className="sh-title">이번 호의 발견</h2>
+          </div>
+          <span className="sh-sub">Highlights</span>
+        </div>
+        <div className="featured-grid">
+          {featured.map((f, i) => (
+            <article key={i}
+              className={'feat-card ' + f.size}
+              style={{ borderTopColor: colors[f.ind], borderTopWidth: '3px',
+                cursor: 'default', pointerEvents: 'none', transform: 'none' }}>
+              <div>
+                <div className="feat-label">{f.kicker} · {f.ind}</div>
+                <h3 className="feat-title">{f.title}</h3>
+                <p className="feat-body">{f.body}</p>
+              </div>
+              <div>
+                <div className="feat-stat" style={{ color: colors[f.ind] }}>{f.stat}</div>
+                <div className="feat-stat-sub">{f.statSub}</div>
+                <div className="feat-foot">
+                  <span style={{ color: 'var(--ink-mute)', fontSize: 11 }}>준비중</span>
+                  <span>No.{String(i+1).padStart(2,'0')}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* ── IV. 브랜드 비즈니스 분포도 ── */}
+      <section>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">IV.</span>
+            <h2 className="sh-title">브랜드 비즈니스 분포도</h2>
+          </div>
+          <span className="sh-sub">Interactive · 매출 × 이익률</span>
+        </div>
+        <article className="feat-card large"
+          style={{ gridColumn: '1 / -1', background: 'var(--ink)', color: 'var(--paper-3)', cursor:'pointer' }}
+          onClick={() => setView({ name: 'map' })}>
+          <div>
+            <div className="feat-label" style={{ color: 'var(--gold)' }}>● FEATURE · 시각화</div>
+            <h3 className="feat-title" style={{ color: 'var(--paper-3)', fontSize:'clamp(26px,4vw,44px)' }}>
+              433개 기업을 하나의 차트에 놓으면 무엇이 보일까
+            </h3>
+            <p className="feat-body" style={{ color: 'rgba(255,255,255,.7)' }}>
+              가로축은 매출 규모, 세로축은 영업이익률. 산업별로 점이 흩어지는 패턴이 곧 산업의 DNA다.
+              4개 사분면에서 <b style={{color:'var(--gold)'}}>'소규모·고마진'</b> 영역에 모이는 기업들이 있다. 그들이 시장을 바꾼다.
+            </p>
+          </div>
+          <div className="feat-foot" style={{ borderColor: 'rgba(255,255,255,.2)', color:'rgba(255,255,255,.5)' }}>
+            <span style={{ color:'var(--gold)' }}>Enter the map →</span>
+            <span>INTERACTIVE</span>
+          </div>
+        </article>
+      </section>
+
+      {/* ── V. 5분 산업 스토리 ── */}
+      <section>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">V.</span>
+            <h2 className="sh-title">5분 산업 스토리</h2>
+          </div>
+          <span className="sh-sub">Scroll Story</span>
+        </div>
+        <article className="feat-card"
+          style={{ gridColumn: '1 / -1', cursor:'pointer', borderLeft:'3px solid var(--accent)' }}
+          onClick={() => setView({ name: 'story' })}>
+          <div className="feat-label">NARRATIVE · 입문</div>
+          <h3 className="feat-title">숫자가 서툴러도 괜찮다. 5개의 발견으로 한국 소비산업을 이해한다.</h3>
+          <p className="feat-body">
+            매출이 크면 잘 나가는 회사일까. 영업이익률이 높으면 좋은 회사일까.
+            같은 산업 안에서도 왜 누군가는 남기고 누군가는 손해를 보는가.
+            구조를 보면 답이 나온다.
+          </p>
+          <div className="feat-foot">
+            <span>Start reading →</span>
+            <span>5 CHAPTERS · 5 MIN</span>
+          </div>
+        </article>
+      </section>
+
+    </div>
+  );
+}
+
+window.HomeView = HomeView;
+</script>
+<script type="text/babel">// Industry dashboard view
+function IndustryView({ ikey, data, colors, wows, desc, setView }) {
+  const d = data[ikey];
+  const color = colors[ikey];
+  const narrative = IND_NARRATIVE[ikey] || { tagline: '', lede: '', pull: '', story1: {}, story2: {} };
+  const wow = wows[ikey] || {};
+
+  const chartRevRef = useRef(null);
+  const chartTrendRef = useRef(null);
+  const chartScatterRef = useRef(null);
+  const chartSalaryRef = useRef(null);
+  const treemapRef = useRef(null);
+
+  // Sort: 상장 우선 → 24년 매출 내림차순 (데이터에 이미 정렬되어 있으므로 그대로 사용)
+  const sorted = useMemo(() => {
+    const hasSubInd = d.companies.some(c => c.subIndustry);
+    if (hasSubInd) {
+      // 하위산업 순서: 음료 > 외식 > 식품 (데이터에서 이미 정렬됨)
+      return [...d.companies];
+    }
+    return [...d.companies].sort((a,b) => {
+      const la = a.listed ? 0 : 1, lb = b.listed ? 0 : 1;
+      if (la !== lb) return la - lb;
+      return (b.revenue['2024']||0) - (a.revenue['2024']||0);
+    });
+  }, [d]);
+  const max24 = Math.max(...sorted.map(c => c.revenue['2024']||0), 1);
+
+  // totals
+  const total21 = d.companies.reduce((s,c) => s + (c.revenue['2021']||0), 0);
+  const total22 = d.companies.reduce((s,c) => s + (c.revenue['2022']||0), 0);
+  const total23 = d.companies.reduce((s,c) => s + (c.revenue['2023']||0), 0);
+  const total24 = d.total2024;
+  const total25 = d.companies.reduce((s,c) => s + (c.revenue['2025']||0), 0);
+  const growth23 = total22 ? ((total23 - total22) / total22) * 100 : 0;
+  const growth24 = total23 ? ((total24 - total23) / total23) * 100 : 0;
+
+  // avg margin
+  const withMargin = d.companies.map(c => calcMargin(c)).filter(m => m != null);
+  const avgMargin = withMargin.reduce((s,m) => s+m, 0) / (withMargin.length || 1);
+
+  // top margin company
+  const topMarginCo = [...d.companies]
+    .filter(c => calcMargin(c) != null && c.revenue['2024'] >= 500)
+    .sort((a,b) => calcMargin(b) - calcMargin(a))[0];
+
+  useEffect(() => {
+    const charts = [];
+
+    // 1) Revenue trend line (3yr total)
+    if (chartRevRef.current) {
+      const ctx = chartRevRef.current.getContext('2d');
+      charts.push(new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['2021','2022','2023','2024','2025E'],
+          datasets: [{
+            label: '산업 합산 매출',
+            data: [total21||null, total22, total23, total24, total25||null],
+            borderColor: color,
+            backgroundColor: color + '22',
+            fill: true,
+            tension: 0.35,
+            pointRadius: 6,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: color,
+            pointBorderWidth: 2,
+            borderWidth: 2.5,
+          }]
+        },
+        options: commonChartOpts('억원')
+      }));
+    }
+
+    // 2) Top 10 companies bar (horizontal)
+    if (chartTrendRef.current) {
+      const top10 = sorted.slice(0, 10);
+      const ctx = chartTrendRef.current.getContext('2d');
+      charts.push(new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: top10.map(c => c.name),
+          datasets: [{
+            label: '2024 매출',
+            data: top10.map(c => c.revenue['2024']),
+            backgroundColor: top10.map((c,i) => i===0 ? color : color + '88'),
+            borderRadius: 2,
+            barThickness: 14,
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => '  ' + fmtKRW(ctx.raw) } } },
+          scales: {
+            x: { grid: { color: '#e4dfd1', drawBorder: false }, ticks: { font: { family: "'JetBrains Mono'", size: 10 }, color: '#6b6760', callback: v => fmtKRW(v) } },
+            y: { grid: { display: false }, ticks: { font: { family: "'Noto Sans KR'", size: 11, weight: '500' }, color: '#131210' } }
+          }
+        }
+      }));
+    }
+
+    // 3) Scatter: revenue × margin
+    if (chartScatterRef.current) {
+      const points = d.companies
+        .map(c => ({ x: c.revenue['2024'], y: calcMargin(c), name: c.name }))
+        .filter(p => p.x > 0 && p.y != null && p.y > -50 && p.y < 100);
+      const ctx = chartScatterRef.current.getContext('2d');
+      charts.push(new Chart(ctx, {
+        type: 'scatter',
+        data: {
+          datasets: [{
+            label: ikey,
+            data: points,
+            backgroundColor: color + 'aa',
+            borderColor: color,
+            pointRadius: 6, pointHoverRadius: 9,
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#131210',
+              titleFont: { family: "'Noto Sans KR'", weight: '700' },
+              bodyFont: { family: "'JetBrains Mono'", size: 11 },
+              callbacks: {
+                title: ctx => ctx[0].raw.name,
+                label: ctx => [`매출 ${fmtKRW(ctx.raw.x)}`, `이익률 ${ctx.raw.y.toFixed(1)}%`]
+              }
+            }
+          },
+          scales: {
+            x: { type: 'logarithmic', grid: { color: '#e4dfd1' }, ticks: { font: { family: "'JetBrains Mono'", size: 10 }, color: '#6b6760', callback: v => fmtKRW(v) }, title: { display: true, text: '매출 (로그)', font: { family: "'JetBrains Mono'", size: 10 } } },
+            y: { grid: { color: '#e4dfd1' }, ticks: { font: { family: "'JetBrains Mono'", size: 10 }, color: '#6b6760', callback: v => v + '%' }, title: { display: true, text: '영업이익률 (%)', font: { family: "'JetBrains Mono'", size: 10 } } }
+          }
+        }
+      }));
+    }
+
+    // 4) Treemap - revenue size map
+    if (treemapRef.current && typeof d3 !== 'undefined') {
+      const el = treemapRef.current;
+      el.innerHTML = '';
+      const W = el.clientWidth || 700;
+      const H = 340;
+      const treeData = {
+        name: 'root',
+        children: sorted.map(c => ({ name: c.name, value: Math.max(c.revenue['2024'] || 0, 1) }))
+      };
+      const root = d3.hierarchy(treeData).sum(d => d.value).sort((a,b) => b.value - a.value);
+      d3.treemap().size([W, H]).padding(2).round(true)(root);
+      const svgNS = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(svgNS, 'svg');
+      svg.setAttribute('width', W); svg.setAttribute('height', H);
+      svg.style.display = 'block'; svg.style.borderRadius = '8px';
+      const hexToRgb = hex => {
+        const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+        return {r,g,b};
+      };
+      const rgb = hexToRgb(color.length === 7 ? color : '#7b6cf6');
+      root.leaves().forEach((leaf, i) => {
+        const w = leaf.x1 - leaf.x0, h = leaf.y1 - leaf.y0;
+        if (w < 1 || h < 1) return;
+        const alpha = 0.95 - (i / (root.leaves().length || 1)) * 0.55;
+        const g = document.createElementNS(svgNS, 'g');
+        g.setAttribute('transform', 'translate(' + leaf.x0 + ',' + leaf.y0 + ')');
+        g.style.cursor = 'pointer';
+        const rect = document.createElementNS(svgNS, 'rect');
+        rect.setAttribute('width', w); rect.setAttribute('height', h);
+        rect.setAttribute('rx', 3);
+        rect.setAttribute('fill', 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',' + alpha + ')');
+        g.appendChild(rect);
+        if (w > 40 && h > 22) {
+          const txt = document.createElementNS(svgNS, 'text');
+          txt.setAttribute('x', Math.min(w/2, w-4));
+          txt.setAttribute('y', h/2 - (w > 70 && h > 40 ? 8 : 0));
+          txt.setAttribute('text-anchor', 'middle');
+          txt.setAttribute('dominant-baseline', 'middle');
+          txt.setAttribute('fill', alpha > 0.5 ? '#fff' : '#131210');
+          txt.setAttribute('font-size', Math.min(Math.max(9, w/8), 13) + 'px');
+          txt.setAttribute('font-family', "'Noto Sans KR', sans-serif");
+          txt.setAttribute('font-weight', '600');
+          const maxChars = Math.floor(w / 8);
+          const displayName = leaf.data.name.length > maxChars ? leaf.data.name.slice(0, maxChars) + '…' : leaf.data.name;
+          txt.textContent = displayName;
+          g.appendChild(txt);
+          if (w > 70 && h > 40) {
+            const val = document.createElementNS(svgNS, 'text');
+            val.setAttribute('x', w/2);
+            val.setAttribute('y', h/2 + 10);
+            val.setAttribute('text-anchor', 'middle');
+            val.setAttribute('dominant-baseline', 'middle');
+            val.setAttribute('fill', alpha > 0.5 ? 'rgba(255,255,255,0.8)' : '#6b6760');
+            val.setAttribute('font-size', '9px');
+            val.setAttribute('font-family', "'JetBrains Mono', monospace");
+            const rev = leaf.data.value;
+            val.textContent = rev >= 10000 ? (rev/10000).toFixed(1) + '조' : rev >= 1000 ? (rev/1000).toFixed(1) + '천억' : rev + '억';
+            g.appendChild(val);
+          }
+        }
+        svg.appendChild(g);
+      });
+      el.appendChild(svg);
+    }
+
+    // INSIGHT 03 — 연봉 분포 차트
+    if (chartSalaryRef.current) {
+      const salaryMap = window.TASTE_SALARY || {};
+      const companiesWithSalary = d.companies
+        .map(c => ({ name: c.name.length > 6 ? c.name.slice(0,5)+'…' : c.name, sal: salaryMap[c.name] }))
+        .filter(c => c.sal)
+        .map(c => {
+          const yr = ['2025','2024','2023','2022'].find(y => c.sal[y]);
+          return yr ? { name: c.name, salary: c.sal[yr], year: yr } : null;
+        })
+        .filter(Boolean)
+        .sort((a,b) => b.salary - a.salary)
+        .slice(0, 15);
+      if (companiesWithSalary.length > 0) {
+        charts.push(new Chart(chartSalaryRef.current.getContext('2d'), {
+          type: 'bar',
+          data: {
+            labels: companiesWithSalary.map(c => c.name),
+            datasets: [{
+              label: '임원 평균 연봉 (만원)',
+              data: companiesWithSalary.map(c => c.salary),
+              backgroundColor: color + 'bb',
+              borderRadius: 3,
+              barThickness: 20,
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { backgroundColor: '#131210', callbacks: { label: ctx => '  ' + (ctx.raw/10000).toFixed(1) + '천만원' } }
+            },
+            scales: {
+              x: { grid: { color: '#e5e5e5' }, ticks: { font: { family: "'JetBrains Mono'", size: 10 }, callback: v => (v/10000).toFixed(0) + '천만' } },
+              y: { grid: { display: false }, ticks: { font: { family: "'Noto Sans KR'", size: 11 } } }
+            }
+          }
+        }));
+      }
+    }
+
+    return () => charts.forEach(c => c.destroy());
+  }, [ikey]);
+
+  // INSIGHT 03 연봉 분석 텍스트 생성
+  const getSalaryInsight = () => {
+    const salaryMap = window.TASTE_SALARY || {};
+    const salaries = d.companies
+      .map(c => { const s = salaryMap[c.name]; if (!s) return null; const yr = ['2025','2024','2023'].find(y => s[y]); return yr ? s[yr] : null; })
+      .filter(Boolean);
+    if (!salaries.length) return null;
+    const avg = Math.round(salaries.reduce((a,b)=>a+b,0)/salaries.length);
+    const max = Math.max(...salaries);
+    const min = Math.min(...salaries);
+    const maxCo = d.companies.find(c => { const s = salaryMap[c.name]; if(!s) return; const yr=['2025','2024','2023'].find(y=>s[y]); return yr && s[yr]===max; });
+    const minCo = d.companies.find(c => { const s = salaryMap[c.name]; if(!s) return; const yr=['2025','2024','2023'].find(y=>s[y]); return yr && s[yr]===min; });
+    return { avg, max, min, maxCo: maxCo?.name, minCo: minCo?.name, count: salaries.length };
+  };
+  const salaryInsight = getSalaryInsight();
+
+  return (
+    <div className="view">
+      {/* Back link */}
+      <div style={{ paddingTop: 24 }}>
+        <span className="ind-hero-back" onClick={() => setView({ name: 'home' })}>← 목차로</span>
+      </div>
+
+      {/* Hero */}
+      <header className="ind-hero">
+        <div>
+          <div className="ind-hero-eyebrow">{narrative.tagline}</div>
+          <h1 className="ind-hero-title" style={{ color }}>{ikey}</h1>
+          <div className="ind-hero-sub">{desc[ikey]}</div>
+        </div>
+        <div>
+          <p className="ind-hero-lede">
+            {narrative.lede}
+            <span className="pull" style={{ borderColor: color }}>"{narrative.pull}"</span>
+          </p>
+        </div>
+      </header>
+
+      {/* KPI Strip */}
+      <div className="kpi-strip">
+        <div className="kpi-cell">
+          <span className="kpi-cell-lbl">2024 총매출</span>
+          <span className="kpi-cell-val" style={{ color }}>{fmtKRW(total24)}</span>
+          <span className="kpi-cell-sub">{d.count}개사 합산</span>
+        </div>
+        <div className="kpi-cell">
+          <span className="kpi-cell-lbl">전년 대비 성장</span>
+          <span className="kpi-cell-val" style={{ color: growth24 >= 0 ? 'var(--accent-2)' : 'var(--accent)' }}>
+            {fmtPct(growth24, true)}
+          </span>
+          <span className="kpi-cell-sub">2023→2024</span>
+        </div>
+        <div className="kpi-cell">
+          <span className="kpi-cell-lbl">평균 영업이익률</span>
+          <span className="kpi-cell-val">{avgMargin.toFixed(1)}%</span>
+          <span className="kpi-cell-sub">{withMargin.length}개사 기준</span>
+        </div>
+        <div className="kpi-cell">
+          <span className="kpi-cell-lbl">대표 기업</span>
+          <span className="kpi-cell-val" style={{ fontSize: 22, fontFamily: 'var(--serif-kr)' }}>{sorted[0]?.name}</span>
+          <span className="kpi-cell-sub">매출 {fmtKRW(sorted[0]?.revenue['2024'])}</span>
+        </div>
+      </div>
+
+      {/* Treemap — revenue size map */}
+      <section style={{ marginTop: 32 }}>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">I.</span>
+            <h2 className="sh-title">매출 규모 지도</h2>
+          </div>
+          <span className="sh-sub">2025E 기준 · 크기 = 매출 규모</span>
+        </div>
+        <div ref={treemapRef} style={{ width: '100%', borderRadius: 8, overflow: 'hidden', background: 'var(--bg-2, #f7f4ef)' }}></div>
+      </section>
+
+      {/* STORY 1 — headline + chart */}
+      <div className="story">
+        <div className="story-left">
+          <div className="eyebrow">INSIGHT · 01</div>
+          <h3 className="story-title">{narrative.story1.title || '이 산업의 진짜 이야기'}</h3>
+          <div className="story-body">
+            <p>{narrative.story1.body || '이 산업의 이익 구조는 매출 규모로만 읽히지 않는다. 옆의 차트는 매출과 이익률의 관계를 보여준다.'}</p>
+          </div>
+        </div>
+        <div className="story-chart">
+          <div className="story-chart-title">상위 10개사 매출 규모</div>
+          <div className="story-chart-sub">Top 10 by revenue · 2025E</div>
+          <div style={{ height: 'calc(100% - 50px)', minHeight: 320 }}>
+            <canvas ref={chartTrendRef}></canvas>
+          </div>
+        </div>
+      </div>
+
+      {/* STORY 2 — headline + chart */}
+      <div className="story">
+        <div className="story-left">
+          <div className="eyebrow">INSIGHT · 02</div>
+          <h3 className="story-title">{narrative.story2.title || '매출과 이익률, 어디에 회사들이 모여있나'}</h3>
+          <div className="story-body">
+            <p>{narrative.story2.body || '가로축은 매출 규모, 세로축은 이익률이다. 우측 위로 갈수록 규모와 수익성을 동시에 갖춘 회사다.'}</p>
+          </div>
+        </div>
+        <div className="story-chart">
+          <div className="story-chart-title">매출 × 영업이익률</div>
+          <div className="story-chart-sub">Scatter · each dot = 1 company</div>
+          <div style={{ height: 'calc(100% - 50px)', minHeight: 320 }}>
+            <canvas ref={chartScatterRef}></canvas>
+          </div>
+        </div>
+      </div>
+
+      {/* STORY 3 — 연봉 인사이트 */}
+      {salaryInsight && (
+        <div className="story">
+          <div className="story-left">
+            <div className="eyebrow">INSIGHT · 03</div>
+            <h3 className="story-title">이 산업, 얼마나 버는가</h3>
+            <div className="story-body">
+              <p>
+                {ikey} 산업 임원 평균 연봉은 <strong>{(salaryInsight.avg/10000).toFixed(1)}천만원</strong>이다.
+                가장 높은 곳은 <strong>{salaryInsight.maxCo}</strong>({(salaryInsight.max/10000).toFixed(1)}천만원),
+                가장 낮은 곳은 <strong>{salaryInsight.minCo}</strong>({(salaryInsight.min/10000).toFixed(1)}천만원)으로
+                {' '}{Math.round(salaryInsight.max/salaryInsight.min)}배 차이가 난다.
+                매출 규모가 연봉을 보장하지는 않는다. 수익성이 높은 회사일수록 직원에게 더 많이 돌아간다.
+              </p>
+            </div>
+          </div>
+          <div className="story-chart">
+            <div className="story-chart-title">임원 평균 연봉 순위</div>
+            <div className="story-chart-sub">최신 공시 기준 · 상위 15개사</div>
+            <div style={{ height: 'calc(100% - 50px)', minHeight: 320 }}>
+              <canvas ref={chartSalaryRef}></canvas>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Companies grid */}
+      <section>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">III.</span>
+            <h2 className="sh-title">{ikey} 기업</h2>
+          </div>
+          <span className="sh-sub">{d.count}개사 · 매출 순</span>
+        </div>
+        <div className="co-grid">
+          {(() => {
+            const hasSubInd = sorted.some(c => c.subIndustry);
+            let lastSub = null;
+            const subLabels = { '음료': '음료·카페·주류', '외식': '외식·레스토랑', '식품': '식품·제과·베이커리' };
+            return sorted.map((c, i) => {
+              const r24 = c.revenue['2024'];
+              const m = calcMargin(c);
+              const g = calcGrowth(c);
+              const barW = Math.max(3, (r24 / max24) * 100);
+              const els = [];
+              // 하위산업 헤더
+              if (hasSubInd && c.subIndustry && c.subIndustry !== lastSub) {
+                lastSub = c.subIndustry;
+                const subRevTotal = sorted.filter(x => x.subIndustry === c.subIndustry)
+                  .reduce((s, x) => s + (x.revenue['2024']||0), 0);
+                els.push(
+                  <div key={'sub-'+c.subIndustry} className="sub-ind-header" style={{'--ind-color': color}}>
+                    <h3>{subLabels[c.subIndustry] || c.subIndustry}
+                      <span>{fmtKRW(subRevTotal)} 총매출</span>
+                    </h3>
+                  </div>
+                );
+              }
+              els.push(
+                <article key={c.name} className={'co-card' + (c.listed ? ' listed' : '')}
+                  style={{ '--ind-color': color, '--bar-w': barW + '%' }}
+                  onClick={() => setView({ name: 'company', industry: ikey, company: c.name })}>
+                  <div className="co-card-rank">{String(i+1).padStart(2,'0')}</div>
+                  <div>
+                    <div className="co-card-name">{c.name}</div>
+                    <div className="co-card-sub">{c.industry || desc[ikey]}</div>
+                    {c.listed && <div className="co-card-listed-badge">▲ KOSPI/KOSDAQ</div>}
+                  </div>
+                  <div>
+                    <div className="co-card-rev">{fmtKRW(r24)}</div>
+                    <div className="co-card-rev-lbl">2024 매출</div>
+                  </div>
+                  <div className="co-card-bar"></div>
+                  <div className="co-card-meta">
+                    {m != null && <span className={'margin ' + (m < 0 ? 'neg' : '')}>이익률 {m.toFixed(1)}%</span>}
+                    {g != null && <span>{fmtPct(g, true)}</span>}
+                  </div>
+                </article>
+              );
+              return els;
+            });
+          })()}
+        </div>
+      </section>
+
+      {/* Trend section */}
+      <section style={{ marginTop: 40 }}>
+        <div className="panel">
+          <div className="panel-title">5개년 산업 매출 추이</div>
+          <div className="panel-sub">2021 – 2025E · 합산 단위: 억원</div>
+          <div style={{ height: 300 }}>
+            <canvas ref={chartRevRef}></canvas>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// shared chart opts
+function commonChartOpts(unit) {
+  return {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#131210',
+        titleFont: { family: "'Noto Sans KR'", weight: '700' },
+        bodyFont: { family: "'JetBrains Mono'", size: 11 },
+        padding: 10,
+        callbacks: { label: ctx => '  ' + fmtKRW(ctx.raw) }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { family: "'JetBrains Mono'", size: 11, weight: '600' }, color: '#131210' } },
+      y: { grid: { color: '#e4dfd1', drawBorder: false }, ticks: { font: { family: "'JetBrains Mono'", size: 10 }, color: '#6b6760', callback: v => fmtKRW(v) } }
+    }
+  };
+}
+
+window.IndustryView = IndustryView;
+window.commonChartOpts = commonChartOpts;
+</script>
+<script type="text/babel">// Company detail view
+function CompanyView({ ikey, cname, data, colors, desc, setView }) {
+  const d = data[ikey];
+  const color = colors[ikey];
+  const company = d.companies.find(c => c.name === cname);
+
+  const chartLineRef = useRef(null);
+  const chartBarRef = useRef(null);
+  const chartRankRef = useRef(null);
+  const chartStockRef = useRef(null);
+
+  if (!company) return <div className="view"><p>기업을 찾을 수 없습니다.</p></div>;
+
+  const r21 = company.revenue['2021'], r22 = company.revenue['2022'], r23 = company.revenue['2023'], r24 = company.revenue['2024'], r25 = company.revenue['2025'];
+  const p21 = company.profit?.['2021'], p22 = company.profit?.['2022'], p23 = company.profit?.['2023'], p24 = company.profit?.['2024'], p25 = company.profit?.['2025'];
+  const m24 = calcMargin(company, '2024');
+  const g24 = calcGrowth(company);
+  const g23 = calcGrowth(company, '2022', '2023');
+
+  // 주가 / 연봉 데이터
+  const stockInfo = (window.TASTE_STOCK || {})[cname] || null;
+  const salaryMap = (window.TASTE_SALARY || {})[cname] || null;
+  let latestSalary = null, latestSalaryYear = null;
+  if (salaryMap) {
+    const yrs = ['2025','2024','2023','2022','2021'].filter(y => salaryMap[y]);
+    if (yrs.length) { latestSalaryYear = yrs[0]; latestSalary = salaryMap[yrs[0]]; }
+  }
+
+  // rank within industry
+  const sorted = [...d.companies].sort((a,b) => (b.revenue['2024']||0) - (a.revenue['2024']||0));
+  const rank = sorted.findIndex(c => c.name === cname) + 1;
+
+  // narrative
+  const getInsight = () => {
+    const pieces = [];
+    if (m24 != null) {
+      if (m24 > 30) pieces.push(`영업이익률 ${m24.toFixed(1)}%는 한국 기업 전체에서 상위 1%에 속한다`);
+      else if (m24 > 15) pieces.push(`영업이익률 ${m24.toFixed(1)}%는 동종 산업 평균을 크게 웃돈다`);
+      else if (m24 < 0) pieces.push(`${m24.toFixed(1)}% 영업손실은 사업 구조의 재편이 필요하다는 신호다`);
+      else if (m24 < 3) pieces.push(`${m24.toFixed(1)}%의 낮은 이익률은 규모 경쟁의 그늘을 보여준다`);
+      else pieces.push(`영업이익률 ${m24.toFixed(1)}%는 업계 평균 수준이다`);
+    }
+    if (g24 != null) {
+      if (g24 > 30) pieces.push(`그럼에도 매출은 전년 대비 ${g24.toFixed(0)}% 성장했다`);
+      else if (g24 > 10) pieces.push(`매출은 견조하게 ${g24.toFixed(0)}% 증가했다`);
+      else if (g24 < -10) pieces.push(`매출이 ${g24.toFixed(0)}% 감소하며 시장 점유를 잃고 있다`);
+    }
+    if (company.revenuePerEmployee > 10) pieces.push(`1인당 매출 ${company.revenuePerEmployee.toFixed(1)}억은 높은 생산성을 의미한다`);
+    return pieces.join('. ') + '.';
+  };
+
+  useEffect(() => {
+    const charts = [];
+    if (chartLineRef.current) {
+      charts.push(new Chart(chartLineRef.current.getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: ['2021','2022','2023','2024','2025E'],
+          datasets: [
+            { label: '매출', data: [r21||null,r22,r23,r24,r25||null], borderColor: color, backgroundColor: color + '22', fill: true, tension: .35, pointRadius: 7, pointBackgroundColor: '#fff', pointBorderColor: color, pointBorderWidth: 2, borderWidth: 3 },
+            { label: '영업이익', data: [p21||null,p22,p23,p24,p25||null], borderColor: '#131210', backgroundColor: 'transparent', borderDash: [5,5], tension: .3, pointRadius: 4, pointBackgroundColor: '#131210', borderWidth: 1.5 }
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { font: { family: "'JetBrains Mono'", size: 11 }, color: '#6b6760', boxWidth: 20, boxHeight: 2 } },
+            tooltip: { backgroundColor: '#131210', callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + fmtKRW(ctx.raw) } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { font: { family: "'JetBrains Mono'", weight: '600' } } },
+            y: { grid: { color: '#e4dfd1', drawBorder: false }, ticks: { font: { family: "'JetBrains Mono'", size: 10 }, callback: v => fmtKRW(v) } }
+          }
+        }
+      }));
+    }
+    if (chartBarRef.current) {
+      charts.push(new Chart(chartBarRef.current.getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['2021','2022','2023','2024','2025E'],
+          datasets: [
+            { label: '매출', data: [r21||null,r22,r23,r24,r25||null], backgroundColor: color + 'cc', borderRadius: 2, barThickness: 22 },
+            { label: '영업이익', data: [p21||null,p22,p23,p24,p25||null], backgroundColor: '#131210', borderRadius: 2, barThickness: 8 }
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { font: { family: "'JetBrains Mono'", size: 11 }, color: '#6b6760', boxWidth: 14 } },
+            tooltip: { backgroundColor: '#131210', callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + fmtKRW(ctx.raw) } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { font: { family: "'JetBrains Mono'", weight: '600' } } },
+            y: { grid: { color: '#e4dfd1', drawBorder: false }, ticks: { font: { family: "'JetBrains Mono'", size: 10 }, callback: v => fmtKRW(v) } }
+          }
+        }
+      }));
+    }
+    if (chartRankRef.current) {
+      const top = sorted.slice(0, 12);
+      charts.push(new Chart(chartRankRef.current.getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: top.map(c => c.name),
+          datasets: [{
+            label: '2024 매출',
+            data: top.map(c => c.revenue['2024']),
+            backgroundColor: top.map(c => c.name === cname ? color : color + '44'),
+            borderColor: top.map(c => c.name === cname ? '#131210' : 'transparent'),
+            borderWidth: 2,
+            borderRadius: 2,
+            barThickness: 12,
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { backgroundColor: '#131210', callbacks: { label: ctx => '  ' + fmtKRW(ctx.raw) } } },
+          scales: {
+            x: { grid: { color: '#e4dfd1' }, ticks: { font: { family: "'JetBrains Mono'", size: 10 }, callback: v => fmtKRW(v) } },
+            y: { grid: { display: false }, ticks: { font: { family: "'Noto Sans KR'", size: 11, weight: '500' }, color: '#131210' } }
+          }
+        }
+      }));
+    }
+    // 주가 차트
+    if (chartStockRef.current && stockInfo && Object.keys(stockInfo.monthlyPrices||{}).length > 0) {
+      const mp = stockInfo.monthlyPrices;
+      const labels = Object.keys(mp).sort();
+      const values = labels.map(k => mp[k]);
+      charts.push(new Chart(chartStockRef.current.getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: labels.map(l => {
+            const mo = parseInt(l.slice(5), 10);
+            return mo === 1 ? l.slice(0,4) + '년' : mo + '월';
+          }),
+          datasets: [{
+            label: '주가',
+            data: values,
+            borderColor: color,
+            backgroundColor: color + '18',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 0,
+            pointHoverRadius: 4,
+            borderWidth: 2,
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { backgroundColor: '#131210', callbacks: { label: ctx => '  ' + ctx.raw.toLocaleString() + '원' } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { font: { family: "'JetBrains Mono'", size: 9 }, maxTicksLimit: 12, maxRotation: 0 } },
+            y: { grid: { color: '#e5e5e5', drawBorder: false }, ticks: { font: { family: "'JetBrains Mono'", size: 10 }, callback: v => v.toLocaleString()+'원' } }
+          }
+        }
+      }));
+    }
+
+    return () => charts.forEach(c => c.destroy());
+  }, [ikey, cname]);
+
+  return (
+    <div className="view">
+      <header className="co-hero">
+        <div className="co-hero-meta">
+          <div className="crumb">
+            <span onClick={() => setView({ name: 'home' })}>목차</span>
+            <em>/</em>
+            <span onClick={() => setView({ name: 'industry', key: ikey })}>{ikey}</span>
+            <em>/</em>
+            <span style={{ color: 'var(--ink)' }}>{cname}</span>
+          </div>
+          <span>NO. {String(rank).padStart(2,'0')} · {ikey}</span>
+        </div>
+        <h1 className="co-hero-title">{cname}</h1>
+        <div className="co-hero-ind">
+          <span style={{ color }}>● </span>
+          {company.industry || desc[ikey]} 
+          {company.founded ? ` · since ${company.founded}` : ''}
+          {company.location ? ` · ${company.location}` : ''}
+        </div>
+      </header>
+
+      {/* Insight banner */}
+      <div className="insight" style={{ marginTop: 32 }}>
+        <div>
+          <div className="insight-label">EDITOR'S NOTE</div>
+          <div style={{ fontFamily: 'var(--serif-en)', fontStyle: 'italic', fontSize: 42, color: 'var(--gold)', lineHeight: 1, marginTop: 12 }}>
+            #{String(rank).padStart(2,'0')}
+          </div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'rgba(255,255,255,.5)', letterSpacing: '.12em', marginTop: 6 }}>
+            IN {ikey.toUpperCase()}
+          </div>
+        </div>
+        <div className="insight-text">
+          {getInsight()}
+        </div>
+      </div>
+
+      {/* Detail grid */}
+      <div className="co-detail-grid">
+        <div className="panel panel-chart">
+          <div className="panel-title">매출 추이</div>
+          <div className="panel-sub">Revenue & operating profit · 2021–2025E</div>
+          <div style={{ height: 320 }}>
+            <canvas ref={chartLineRef}></canvas>
+          </div>
+        </div>
+        <div className="panel panel-stat">
+          {(() => {
+            const latestRev = r25 || r24;
+            const latestProfit = r25 ? p25 : p24;
+            const latestYear = r25 ? '2025E' : '2024';
+            const latestMargin = latestRev && latestProfit != null ? (latestProfit / latestRev * 100) : m24;
+            const latestGrowth = r25 && r24 ? ((r25 - r24) / r24 * 100) : g24;
+            return (<>
+              <div className="big-stat">
+                <span className="big-stat-val" style={{ color }}>{fmtKRW(latestRev)}</span>
+                <span className="big-stat-lbl">{latestYear} 매출</span>
+              </div>
+              {latestProfit != null && (
+                <div className="big-stat">
+                  <span className={'big-stat-val ' + (latestProfit >= 0 ? 'pos' : 'neg')}>{fmtKRW(latestProfit)}</span>
+                  <span className="big-stat-lbl">{latestYear} 영업이익</span>
+                </div>
+              )}
+              {latestMargin != null && (
+                <div className="big-stat">
+                  <span className="big-stat-val">{latestMargin.toFixed(1)}%</span>
+                  <span className="big-stat-lbl">영업이익률</span>
+                </div>
+              )}
+              {latestGrowth != null && (
+                <div className="big-stat">
+                  <span className={'big-stat-val ' + (latestGrowth >= 0 ? 'pos' : 'neg')}>{fmtPct(latestGrowth, true)}</span>
+                  <span className="big-stat-lbl">전년 대비 성장</span>
+                </div>
+              )}
+            </>);
+          })()}
+        </div>
+
+        <div className="panel panel-chart">
+          <div className="panel-title">매출 vs 영업이익</div>
+          <div className="panel-sub">Year-by-year comparison</div>
+          <div style={{ height: 320 }}>
+            <canvas ref={chartBarRef}></canvas>
+          </div>
+        </div>
+
+        <div className="panel panel-stat">
+          {company.employees && (
+            <div className="big-stat">
+              <span className="big-stat-val">{fmtNum(company.employees)}</span>
+              <span className="big-stat-lbl">직원 수</span>
+            </div>
+          )}
+          {company.revenuePerEmployee != null && (
+            <div className="big-stat">
+              <span className="big-stat-val">{company.revenuePerEmployee.toFixed(1)}억</span>
+              <span className="big-stat-lbl">1인당 매출</span>
+            </div>
+          )}
+          {company.founded && (
+            <div className="big-stat">
+              <span className="big-stat-val">{company.age}년</span>
+              <span className="big-stat-lbl">업력 · since {company.founded}</span>
+            </div>
+          )}
+          <div className="big-stat">
+            <span className="big-stat-val" style={{ fontSize: 28 }}>{String(rank)}/{d.count}</span>
+            <span className="big-stat-lbl">{ikey} 내 순위</span>
+          </div>
+        </div>
+
+        {/* 주가 차트 패널 */}
+        {stockInfo && Object.keys(stockInfo.monthlyPrices||{}).length > 0 && (<>
+          <div className="panel panel-chart">
+            <div className="panel-title">주가 추이</div>
+            <div className="panel-sub">월별 종가 기준 · {Object.keys(stockInfo.monthlyPrices)[0].slice(0,4)}–{Object.keys(stockInfo.monthlyPrices).slice(-1)[0].slice(0,4)}</div>
+            <div style={{ height: 300, position: 'relative' }}>
+              <canvas ref={chartStockRef}></canvas>
+            </div>
+          </div>
+          <div className="panel panel-stat">
+            {stockInfo.marketCap && (
+              <div className="big-stat">
+                <span className="big-stat-val" style={{ color }}>{fmtKRW(stockInfo.marketCap)}</span>
+                <span className="big-stat-lbl">시가총액 (2026 기준)</span>
+              </div>
+            )}
+            {stockInfo.per && (
+              <div className="big-stat">
+                <span className="big-stat-val">{stockInfo.per}배</span>
+                <span className="big-stat-lbl">PER</span>
+              </div>
+            )}
+            {latestSalary && (
+              <div className="big-stat">
+                <span className="big-stat-val">{(latestSalary/10000).toFixed(1)}천만원</span>
+                <span className="big-stat-lbl">임원 평균 연봉 ({latestSalaryYear})</span>
+              </div>
+            )}
+          </div>
+        </>)}
+
+        <div className="panel panel-rank">
+          <div className="panel-title">산업 내 매출 순위</div>
+          <div className="panel-sub">{ikey} · 상위 12개사 · {cname} 강조</div>
+          <div style={{ height: 380 }}>
+            <canvas ref={chartRankRef}></canvas>
+          </div>
+        </div>
+      </div>
+
+      {/* Related companies — same industry */}
+      <section style={{ marginTop: 40 }}>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">→</span>
+            <h2 className="sh-title" style={{ fontSize: 22 }}>같은 산업, 다른 이야기</h2>
+          </div>
+          <span className="sh-sub">Related · {ikey}</span>
+        </div>
+        <div className="co-grid">
+          {sorted.filter(c => c.name !== cname).slice(0, 6).map((c, i) => {
+            const m = calcMargin(c);
+            const g = calcGrowth(c);
+            return (
+              <article key={c.name} className="co-card"
+                style={{ '--ind-color': color }}
+                onClick={() => setView({ name: 'company', industry: ikey, company: c.name })}>
+                <div>
+                  <div className="co-card-name">{c.name}</div>
+                  <div className="co-card-sub">{c.industry || desc[ikey]}</div>
+                </div>
+                <div>
+                  <div className="co-card-rev">{fmtKRW(c.revenue['2024'])}</div>
+                  <div className="co-card-rev-lbl">2024 매출</div>
+                </div>
+                <div className="co-card-meta">
+                  {m != null && <span className={'margin ' + (m < 0 ? 'neg' : '')}>이익률 {m.toFixed(1)}%</span>}
+                  {g != null && <span>{fmtPct(g, true)}</span>}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+window.CompanyView = CompanyView;
+</script>
+<script type="text/babel">// ── 한국 지역별 기업 분포 지도 ──
+let _korTopo = null;
+function KoreaRegionMap({ data, setView }) {
+  const svgRef  = useRef(null);
+  const wrapRef = useRef(null);
+  const [isMob, setIsMob]   = React.useState(typeof window !== 'undefined' && window.innerWidth < 560);
+  const [selId, setSelId]   = React.useState(null);
+  const [hpReg, setHpReg]   = React.useState(null);
+  const [hpPos, setHpPos]   = React.useState({x:0,y:0});
+
+  const REGION_DEFS = [
+    { id:'seoul',    name:'서울', coords:[126.978,37.566], side:'L', dcy:185, color:'#D85A30', match: l => l.startsWith('서울') },
+    { id:'gyeonggi', name:'경기', coords:[127.200,37.250], side:'R', dcy:185, color:'#1D9E75', match: l => l.startsWith('경기도') },
+    { id:'incheon',  name:'인천', coords:[126.705,37.456], side:'L', dcy:270, color:'#7F77DD', match: l => l.startsWith('인천') },
+    { id:'busan',    name:'부산', coords:[129.075,35.180], side:'R', dcy:268, color:'#378ADD', match: l => l.startsWith('부산') },
+    { id:'gwangju',  name:'광주', coords:[126.852,35.160], side:'L', dcy:358, color:'#0F6E56', match: l => l.startsWith('광주') },
+    { id:'daegu',    name:'대구', coords:[128.601,35.871], side:'R', dcy:355, color:'#BA7517', match: l => l.startsWith('대구') },
+    { id:'daejeon',  name:'대전', coords:[127.385,36.351], side:'R', dcy:432, color:'#993556', match: l => l.startsWith('대전') },
+    { id:'jeonbuk',  name:'전북', coords:[127.100,35.820], side:'L', dcy:438, color:'#3B6D11', match: l => l.startsWith('전북') },
+    { id:'jeonnam',  name:'전남', coords:[126.700,34.650], side:'L', dcy:510, color:'#639922', match: l => l.startsWith('전남') },
+    { id:'gangwon',  name:'강원', coords:[128.200,37.500], side:'R', dcy:140, color:'#0F6E56', match: l => l.startsWith('강원도') },
+    { id:'chungnam', name:'충남', coords:[126.800,36.500], side:'L', dcy:340, color:'#534AB7', match: l => l.startsWith('충남') || l.startsWith('세종') },
+    { id:'chungbuk', name:'충북', coords:[127.700,36.800], side:'R', dcy:235, color:'#BA7517', match: l => l.startsWith('충북') || l.startsWith('충청') },
+    { id:'gyeongbuk',name:'경북', coords:[128.700,36.200], side:'R', dcy:310, color:'#6B3A1A', match: l => l.startsWith('경북') },
+    { id:'gyeongnam',name:'경남', coords:[128.200,35.400], side:'R', dcy:500, color:'#A32D2D', match: l => l.startsWith('경남') },
+    { id:'ulsan',    name:'울산', coords:[129.312,35.539], side:'R', dcy:432, color:'#993556', match: l => l.startsWith('울산') },
+    { id:'jeju',     name:'제주', coords:[126.543,33.499], side:'L', dcy:510, color:'#185FA5', match: l => l.startsWith('제주') },
+  ];
+
+  const regionStats = useMemo(() => {
+    const allCos = [];
+    Object.keys(data).forEach(ind => {
+      data[ind].companies.forEach(c => allCos.push({...c, _ind: ind}));
+    });
+    return REGION_DEFS.map(rd => {
+      const cos = allCos.filter(c => rd.match(c.location || ''));
+      if (!cos.length) return null;
+      const sorted = [...cos].sort((a,b) => (b.revenue?.['2024']||0)-(a.revenue?.['2024']||0));
+      const totalRev = cos.reduce((s,c) => s+(c.revenue?.['2024']||0), 0);
+      const ldr = sorted.slice(0,2).map(c=>c.name).join(' · ');
+      const top = sorted.slice(0,10).map(c => ({ n:c.name, r:fmtKRW(c.revenue?.['2024']||0) }));
+      return { ...rd, count:cos.length, totalRev, rev:fmtKRW(totalRev), ldr, top };
+    }).filter(Boolean);
+  }, [data]);
+
+  useEffect(() => {
+    const check = () => { if(wrapRef.current) setIsMob(wrapRef.current.getBoundingClientRect().width < 560); };
+    check();
+    const ro = new ResizeObserver(check);
+    if(wrapRef.current) ro.observe(wrapRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!svgRef.current || !regionStats.length) return;
+    const el = svgRef.current;
+    const DARK = matchMedia('(prefers-color-scheme: dark)').matches;
+    if (!window.d3) return;
+    const d3s = window.d3;
+
+    const MOB = isMob;
+    const VW = MOB ? 360 : 900;
+    const SC = MOB ? 2800 : 3200, TX = MOB ? 210 : 450, TY_BASE = MOB ? 200 : 260;
+    const CX = 128.0, CY = MOB ? 36.3 : 36.5;
+    const CW = 163, CH = 76, GAP = 7;
+
+    // 데스크탑: 카드 수에 따라 SVG 높이 동적 계산
+    const L = regionStats.filter(r=>r.side==='L');
+    const R = regionStats.filter(r=>r.side==='R');
+    const maxCards = Math.max(L.length, R.length);
+    const PAD_TOP = 28, PAD_BOT = 24;
+    const minH = PAD_TOP + maxCards*(CH+GAP) - GAP + PAD_BOT;
+    const VH = MOB ? 448 : Math.max(580, minH);
+    // 지도 y중심을 SVG 중상단에 고정
+    const TY = MOB ? TY_BASE : Math.round(VH * 0.42);
+
+    const proj = d3s.geoMercator().center([CX,CY]).scale(SC).translate([TX,TY]);
+    const gpath= d3s.geoPath().projection(proj);
+    const rFn  = c => MOB ? Math.max(12, 6+Math.sqrt(c)*1.1) : Math.max(9, 7+Math.sqrt(c)*1.35);
+
+    const pFill  = DARK?'rgba(255,255,255,.04)':'rgba(0,0,0,.04)';
+    const pStroke= DARK?'rgba(255,255,255,.15)':'rgba(0,0,0,.15)';
+    const cFill  = DARK?'rgba(255,255,255,.06)':'rgba(0,0,0,.03)';
+    const cStroke= DARK?'rgba(255,255,255,.13)':'rgba(0,0,0,.1)';
+    const tPri   = DARK?'#e8e4de':'#1a1a1a';
+    const tSec   = DARK?'rgba(255,255,255,.45)':'#6B7280';
+    const tMid   = DARK?'rgba(255,255,255,.68)':'#374151';
+    const lblBg  = DARK?'rgba(18,18,18,0.88)':'rgba(255,255,255,0.92)';
+
+    el.setAttribute('viewBox',`0 0 ${VW} ${VH}`);
+
+    function svgEl(tag,attrs){
+      const e=document.createElementNS('http://www.w3.org/2000/svg',tag);
+      Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v));
+      return e;
+    }
+    function addTxt(p,txt,x,y,sz,fill,fw=400,anchor='start',opa=1){
+      const t=svgEl('text',{x,y,'font-size':sz,fill,
+        'font-weight':fw,'dominant-baseline':'middle','pointer-events':'none'});
+      if(anchor!=='start') t.setAttribute('text-anchor',anchor);
+      if(opa<1) t.setAttribute('opacity',opa);
+      t.textContent=txt; p.appendChild(t); return t;
+    }
+
+    // 카드 y좌표 충돌 없이 자동 배치
+    function resolveCardY(group) {
+      if(!group.length) return;
+      const pos2={};
+      regionStats.forEach(r=>{ pos2[r.id]=proj(r.coords); });
+      group.sort((a,b)=>pos2[a.id][1]-pos2[b.id][1]);
+      // 1차: 버블 y 기준 배치
+      group.forEach(r=>{
+        r._cy = Math.max(PAD_TOP+CH/2, Math.min(VH-PAD_BOT-CH/2, pos2[r.id][1]));
+      });
+      // 2차: 겹침 해소 (아래로 밀기)
+      for(let i=1;i<group.length;i++){
+        const minCy=group[i-1]._cy+CH+GAP;
+        if(group[i]._cy<minCy) group[i]._cy=minCy;
+      }
+      // 3차: 하단 초과 시 전체 위로 이동
+      const last=group[group.length-1];
+      const maxCy=VH-PAD_BOT-CH/2;
+      if(last._cy>maxCy){
+        const shift=last._cy-maxCy;
+        group.forEach(r=>r._cy-=shift);
+      }
+    }
+
+    function drawAll(features) {
+      while(el.firstChild) el.removeChild(el.firstChild);
+      if(features){
+        const g=svgEl('g');
+        features.forEach(f=>{
+          const p=svgEl('path',{d:gpath(f)||'',fill:pFill,stroke:pStroke,'stroke-width':'0.6'});
+          g.appendChild(p);
+        });
+        el.appendChild(g);
+      }
+
+      const pos={};
+      regionStats.forEach(r=>{ pos[r.id]=proj(r.coords); });
+
+      if(!MOB){
+        resolveCardY(L);
+        resolveCardY(R);
+
+        // 연결선 (bezier)
+        const lg=svgEl('g'); lg.setAttribute('opacity','0.5'); el.appendChild(lg);
+        regionStats.forEach(r=>{
+          const[bx,by]=pos[r.id];
+          const cx=r.side==='L'?164:736, cy=r._cy;
+          const mx=(cx+bx)/2;
+          const p=svgEl('path',{d:`M${cx},${cy} C${mx},${cy} ${mx},${by} ${bx},${by}`,
+            fill:'none',stroke:r.color,'stroke-width':'1','stroke-dasharray':'5,3'});
+          lg.appendChild(p);
+        });
+
+        // 카드
+        regionStats.forEach(r=>{
+          const x=r.side==='L'?3:737, y=r._cy-CH/2;
+          const g=svgEl('g'); g.style.cursor='pointer';
+          g.appendChild(svgEl('rect',{x,y,width:CW,height:CH,rx:7,fill:cFill,stroke:cStroke,'stroke-width':'0.5'}));
+          // 상단 컬러 라인
+          g.appendChild(svgEl('line',{x1:x+7,y1:y,x2:x+CW-7,y2:y,stroke:r.color,'stroke-width':'1.5',opacity:'0.75'}));
+          // 컬러 닷 + 지역명
+          g.appendChild(svgEl('circle',{cx:x+13,cy:y+17,r:5,fill:r.color}));
+          addTxt(g,r.name,x+25,y+17,13,tPri,500);
+          // 기업수 · 매출
+          addTxt(g,`${r.count}개사  ·  ${r.rev}`,x+9,y+35,10,tSec);
+          // 대표기업 (긴 텍스트 잘림 방지)
+          const ldrShort = r.ldr.length>18 ? r.ldr.slice(0,17)+'…' : r.ldr;
+          addTxt(g,ldrShort,x+9,y+54,11,tMid);
+          // 연결점
+          const ex=r.side==='L'?x+CW:x;
+          g.appendChild(svgEl('circle',{cx:ex,cy:r._cy,r:3,fill:r.color,opacity:'0.85'}));
+          g.addEventListener('mousemove',ev=>{
+            const wr=wrapRef.current.getBoundingClientRect();
+            setHpPos({x:ev.clientX-wr.left+14,y:ev.clientY-wr.top-30});
+            setHpReg(r);
+          });
+          g.addEventListener('mouseleave',()=>setHpReg(null));
+          el.appendChild(g);
+        });
+      }
+
+      // 버블 (항상 라벨 표시)
+      regionStats.forEach(r=>{
+        const[bx,by]=pos[r.id]; const rad=rFn(r.count);
+        const g=svgEl('g'); g.setAttribute('transform',`translate(${bx},${by})`); g.style.cursor='pointer';
+        g.appendChild(svgEl('circle',{r:rad+5,fill:r.color,opacity:'0.07'}));
+        g.appendChild(svgEl('circle',{r:rad,fill:r.color+(DARK?'38':'28'),stroke:r.color,'stroke-width':MOB?'2':'2'}));
+
+        if(rad>=20){
+          // 버블 안에 지역명 + 기업수
+          addTxt(g,r.name,0,rad>28?-6:0,Math.min(rad*0.48,13),r.color,600,'middle');
+          if(rad>28) addTxt(g,r.count+'개',0,9,9,r.color,400,'middle',0.8);
+        } else {
+          // 버블 밖 라벨 (배경 박스 포함)
+          const fs=Math.max(9, Math.min(rad*0.55, 11));
+          const lw=r.name.length*fs*0.62+10;
+          const lh=fs+6;
+          const ly=rad+lh/2+4;
+          g.appendChild(svgEl('rect',{x:-lw/2,y:ly-lh/2,width:lw,height:lh,rx:3,
+            fill:lblBg,stroke:r.color,'stroke-width':'0.5','pointer-events':'none'}));
+          addTxt(g,r.name,0,ly,fs,r.color,600,'middle');
+        }
+
+        if(!MOB){
+          const edx=r.side==='L'?-rad:rad;
+          g.appendChild(svgEl('circle',{cx:edx,cy:0,r:'2.5',fill:r.color}));
+          g.addEventListener('mousemove',ev=>{
+            const wr=wrapRef.current.getBoundingClientRect();
+            setHpPos({x:ev.clientX-wr.left+14,y:ev.clientY-wr.top-30});
+            setHpReg(r);
+          });
+          g.addEventListener('mouseleave',()=>setHpReg(null));
+        } else {
+          g.addEventListener('click',()=>setSelId(prev=>prev===r.id?null:r.id));
+        }
+        el.appendChild(g);
+      });
+    }
+
+    let cancelled = false;
+    if(_korTopo){ drawAll(topojson.feature(_korTopo,Object.values(_korTopo.objects)[0]).features); }
+    else {
+      fetch('https://cdn.jsdelivr.net/npm/datamaps@0.5.10/src/js/data/kor.topo.json')
+        .then(r=>r.json()).then(topo=>{ if(!cancelled){ _korTopo=topo; drawAll(topojson.feature(topo,Object.values(topo.objects)[0]).features); }})
+        .catch(()=>{ if(!cancelled) drawAll(null); });
+    }
+    return () => { cancelled = true; };
+  }, [regionStats, isMob]);
+
+  const selReg = selId ? regionStats.find(r=>r.id===selId) : null;
+
+  return (
+    <div ref={wrapRef} style={{ position:'relative' }}>
+      <svg ref={svgRef} style={{ width:'100%', display:'block' }} />
+
+      {/* 모바일 칩 스트립 */}
+      {isMob && (
+        <div style={{ display:'flex', flexDirection:'row', gap:7, padding:'10px 4px 4px', overflowX:'auto', scrollbarWidth:'none' }}>
+          {regionStats.map(r=>(
+            <div key={r.id} onClick={()=>setSelId(prev=>prev===r.id?null:r.id)}
+              style={{ display:'inline-flex', alignItems:'center', gap:5, borderRadius:20,
+                padding:'5px 11px 5px 8px', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0,
+                background:'var(--paper-3)', border:`${selId===r.id?'1.5px':'0.5px'} solid ${selId===r.id?r.color:'var(--rule)'}` }}>
+              <div style={{ width:8, height:8, borderRadius:'50%', background:r.color, flexShrink:0 }}></div>
+              <span style={{ fontSize:12, fontWeight:500, color:'var(--ink)' }}>{r.name}</span>
+              <span style={{ fontSize:10, color:'var(--ink-mute)' }}>{r.count}개</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* 모바일 상세 패널 */}
+      {isMob && selReg && (
+        <div style={{ margin:'8px 4px 0', background:'var(--paper-3)', border:'0.5px solid var(--rule)',
+          borderRadius:'var(--radius-lg,12px)', padding:'14px 14px 10px', animation:'fadeUp .2s ease' }}>
+          <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:3 }}>
+            <div style={{ display:'flex', alignItems:'center', gap:7 }}>
+              <div style={{ width:10, height:10, borderRadius:'50%', background:selReg.color }}></div>
+              <span style={{ fontSize:14, fontWeight:500, color:'var(--ink)' }}>{selReg.name} 주요 기업</span>
+            </div>
+            <span onClick={()=>setSelId(null)} style={{ fontSize:18, color:'var(--ink-mute)', cursor:'pointer', lineHeight:1, padding:'0 2px' }}>×</span>
+          </div>
+          <div style={{ fontSize:11, color:'var(--ink-mute)', marginBottom:10, paddingBottom:8, borderBottom:'0.5px solid var(--rule)' }}>
+            {selReg.count}개사 · 추정 총매출 {selReg.rev}
+          </div>
+          {selReg.top.map((c,i)=>(
+            <div key={i} style={{ display:'flex', alignItems:'center', gap:8, fontSize:12,
+              padding:'4px 0', borderBottom:'0.5px solid var(--rule)' }}>
+              <span style={{ fontSize:10, color:'var(--ink-mute)', minWidth:14, textAlign:'right' }}>{i+1}</span>
+              <span style={{ flex:1, color:'var(--ink)', cursor:'pointer' }}
+                onClick={()=>setView&&setView({name:'company',key:c.n})}>{c.n}</span>
+              <span style={{ fontSize:10, color:'var(--ink-mute)', whiteSpace:'nowrap' }}>{c.r}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* 데스크탑 호버 패널 */}
+      {!isMob && hpReg && (
+        <div style={{ position:'absolute', left:Math.min(hpPos.x, 660), top:Math.max(4,hpPos.y),
+          background:'var(--paper)', border:'0.5px solid var(--rule)', borderRadius:'var(--radius-lg,12px)',
+          padding:'14px 16px', minWidth:218, pointerEvents:'none', zIndex:40 }}>
+          <div style={{ fontSize:13, fontWeight:500, color:'var(--ink)', marginBottom:2 }}>{hpReg.name} 주요 기업</div>
+          <div style={{ fontSize:11, color:'var(--ink-mute)', marginBottom:9, paddingBottom:8, borderBottom:'0.5px solid var(--rule)' }}>
+            {hpReg.count}개사 · 추정 매출 {hpReg.rev}
+          </div>
+          {hpReg.top.map((c,i)=>(
+            <div key={i} style={{ display:'flex', alignItems:'center', gap:7, fontSize:12,
+              padding:'3px 0', borderBottom:'0.5px solid var(--rule)' }}>
+              <span style={{ fontSize:10, color:'var(--ink-mute)', minWidth:14, textAlign:'right' }}>{i+1}</span>
+              <span style={{ flex:1, color:'var(--ink)' }}>{c.n}</span>
+              <span style={{ fontSize:10, color:'var(--ink-mute)', whiteSpace:'nowrap' }}>{c.r}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+window.KoreaRegionMap = KoreaRegionMap;
+</script>
+<script type="text/babel">// ── 로컬 비즈니스 맵 전용 뷰 ──
+function LocalBusinessMapView({ data, setView }) {
+  const REGIONAL_SPECIALTIES = [
+    { id:'seoul',    emoji:'🏙️', region:'서울',  item:'올리브영 · 스타벅스코리아', category:'뷰티 · 카페',      desc:'메가 소비의 수도. 트렌드가 서울에서 시작된다.',        color:'#D85A30' },
+    { id:'gyeonggi', emoji:'💻', region:'경기',  item:'네이버 · 카카오',           category:'IT 플랫폼',        desc:'판교 테크 밸리. 대한민국 디지털 인프라의 심장.',       color:'#1D9E75' },
+    { id:'incheon',  emoji:'☕', region:'인천',  item:'동서식품(맥심)',             category:'커피',             desc:'국민 커피의 고향. 맥심 한 잔이 인천에서 태어난다.',    color:'#7F77DD' },
+    { id:'busan',    emoji:'🐟', region:'부산',  item:'삼진어묵 · 고래사어묵',    category:'수산 가공',         desc:'바다가 만든 맛. 부산의 어묵은 K-스낵이 됐다.',        color:'#378ADD' },
+    { id:'daejeon',  emoji:'🥐', region:'대전',  item:'로쏘(성심당)',              category:'빵',               desc:'대한민국 최고의 빵집. 성심당은 대전의 자존심이다.',    color:'#993556' },
+    { id:'gangwon',  emoji:'☕', region:'강원',  item:'테라로사',                  category:'스페셜티 커피',    desc:'커피 성지. 테라로사의 원두는 강원의 자연과 닮았다.',   color:'#0F6E56' },
+    { id:'chungnam', emoji:'💄', region:'충남',  item:'한국콜마 · 대천김',         category:'화장품 ODM · 식품', desc:'K뷰티를 만드는 공장. 이름 없는 손이 브랜드를 만든다.',color:'#534AB7' },
+    { id:'chungbuk', emoji:'🏭', region:'충북',  item:'LG화학 · 오송 바이오',     category:'화학 · 바이오',    desc:'첨단산업 클러스터. 오송이 대한민국 바이오를 이끈다.', color:'#BA7517' },
+    { id:'jeonbuk',  emoji:'🍗', region:'전북',  item:'하림 · 이성당(군산)',       category:'식품 · 빵',        desc:'식품 산업의 거점. 하림 닭고기와 이성당 빵의 고장.',    color:'#3B6D11' },
+    { id:'jeonnam',  emoji:'🦪', region:'전남',  item:'보성녹차 · 벌교꼬막',      category:'농수산물',         desc:'남도의 풍미. 자연이 만든 맛이 가득한 땅.',             color:'#639922' },
+    { id:'gwangju',  emoji:'🌿', region:'광주',  item:'무등산 수박 · 광주 한과',  category:'농산물 · 전통식품', desc:'맛의 고장 광주. 전통과 현대가 공존하는 미식 도시.',    color:'#0F6E56' },
+    { id:'daegu',    emoji:'🍎', region:'대구',  item:'서문시장 막창 · 사과',     category:'전통시장 · 농산물', desc:'패션과 먹거리의 도시. 서문시장이 대구의 맥박이다.',   color:'#BA7517' },
+    { id:'gyeongbuk',emoji:'🍶', region:'경북',  item:'하이트진로 · 안동소주',    category:'주류',             desc:'전통주의 본고장. 안동소주는 600년 역사의 맛이다.',    color:'#6B3A1A' },
+    { id:'gyeongnam',emoji:'🚢', region:'경남',  item:'통영 굴 · 하동 녹차',     category:'수산 · 농산물',    desc:'남해의 보물. 청정 바다와 산이 만나는 맛의 땅.',        color:'#A32D2D' },
+    { id:'ulsan',    emoji:'🚗', region:'울산',  item:'현대자동차 · 현대중공업',  category:'자동차 · 조선',    desc:'대한민국 산업의 심장. 울산 없이 한국 경제는 없다.',   color:'#993556' },
+    { id:'jeju',     emoji:'🍊', region:'제주',  item:'제주맥주 · 한라봉',        category:'음료 · 농산물',    desc:'청정 자연의 맛. 제주의 땅이 빚어낸 특산물.',          color:'#185FA5' },
+  ];
+
+  return (
+    <div className="view">
+      <div style={{ paddingTop: 24 }}>
+        <span className="ind-hero-back" onClick={() => setView({ name: 'home' })}>← 목차로</span>
+      </div>
+      <header className="ind-hero" style={{ gridTemplateColumns: '1fr' }}>
+        <div>
+          <div className="ind-hero-eyebrow">Feature · 지역 분석</div>
+          <h1 className="ind-hero-title" style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}>로컬 비즈니스 맵</h1>
+          <div className="ind-hero-sub">Regional Business Distribution · HQ Location Based</div>
+          <p className="ind-hero-lede" style={{ marginTop: 20 }}>
+            본사 위치를 기준으로 각 지역의 기업을 지도 위에 그린다.
+            버블 크기는 기업 수, 탭하면 해당 지역 주요 기업 리스트가 펼쳐진다.
+          </p>
+        </div>
+      </header>
+
+      {/* ── ① 지역별 기업 분포 지도 ── */}
+      <section style={{ marginBottom: 48 }}>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">①</span>
+            <h2 className="sh-title">지역별 기업 분포</h2>
+          </div>
+          <span className="sh-sub">본사 위치 기준 · 버블 크기 = 기업 수 · 호버/탭으로 주요 기업 확인</span>
+        </div>
+        <div className="panel" style={{ padding: '24px 24px 8px' }}>
+          <KoreaRegionMap data={data} setView={setView} />
+        </div>
+      </section>
+
+      {/* ── ② 지역별 특산물 ── */}
+      <section style={{ marginBottom: 48 }}>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">②</span>
+            <h2 className="sh-title">지역별 특산물</h2>
+          </div>
+          <span className="sh-sub">각 지역을 대표하는 브랜드 · 상품 · 산업</span>
+        </div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+          gap: 14,
+          marginTop: 4,
+        }}>
+          {REGIONAL_SPECIALTIES.map(r => (
+            <div key={r.id} style={{
+              background: 'var(--paper-3, #faf8f5)',
+              border: '0.5px solid var(--rule)',
+              borderRadius: 12,
+              padding: '16px 16px 14px',
+              borderTop: `3px solid ${r.color}`,
+              transition: 'box-shadow .15s',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 10 }}>
+                <span style={{ fontSize: 22, lineHeight: 1 }}>{r.emoji}</span>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)' }}>{r.region}</div>
+                  <div style={{ fontSize: 10, color: 'var(--ink-mute)', marginTop: 1 }}>{r.category}</div>
+                </div>
+              </div>
+              <div style={{
+                fontSize: 15,
+                fontWeight: 700,
+                color: r.color,
+                marginBottom: 6,
+                fontFamily: 'var(--serif-kr)',
+                lineHeight: 1.3,
+              }}>{r.item}</div>
+              <div style={{
+                fontSize: 11,
+                color: 'var(--ink-mute)',
+                lineHeight: 1.6,
+                borderTop: '0.5px solid var(--rule)',
+                paddingTop: 8,
+                marginTop: 2,
+              }}>{r.desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+window.LocalBusinessMapView = LocalBusinessMapView;
+</script>
+
+<script type="text/babel">// Brand positioning map — D3 scatter plot with filters
+function IndustryBubbleMap({ data, colors, setView }) {
+  const svgRef = useRef(null);
+  const ttRef  = useRef(null);
+
+  const industryStats = useMemo(() => {
+    return Object.keys(data).map(k => {
+      const co = data[k].companies || [];
+      const margins = co.map(c => calcMargin(c)).filter(m => m != null);
+      const avgMargin = margins.length ? margins.reduce((s,m)=>s+m,0)/margins.length : 0;
+      return { key: k, label: k, revenue: data[k].total2024, avgMargin, count: data[k].count };
+    }).filter(d => d.revenue > 0);
+  }, [data]);
+
+  useEffect(() => {
+    if (!svgRef.current || !industryStats.length) return;
+    const el  = svgRef.current;
+    const W   = el.getBoundingClientRect().width || 800;
+    const mob = W < 500;
+    const H   = mob ? 340 : 460;
+    const mg  = mob ? { top: 24, right: 12, bottom: 40, left: 48 }
+                    : { top: 32, right: 32, bottom: 48, left: 64 };
+    const iw  = W - mg.left - mg.right;
+    const ih  = H - mg.top - mg.bottom;
+
+    const svg = d3.select(el);
+    svg.selectAll('*').remove();
+    svg.attr('height', H);
+    const g = svg.append('g').attr('transform', `translate(${mg.left},${mg.top})`);
+
+    // 스케일 — y축 고정 -30%~+30%, 초과값은 끝에 클램프
+    const Y_MIN = -30, Y_MAX = 30;
+    const xExt = d3.extent(industryStats, d => d.revenue);
+    const xPad = (xExt[1] - xExt[0]) * 0.08;
+    const xScale = d3.scaleLinear().domain([0, xExt[1] + xPad]).range([0, iw]).nice();
+    const yScale = d3.scaleLinear().domain([Y_MIN, Y_MAX]).range([ih, 0]);
+    const rScale = d3.scaleSqrt().domain([0, d3.max(industryStats, d => d.count)])
+                    .range(mob ? [7, 20] : [10, 30]);
+
+    // 클램프된 y값 (그래프 끝에 고정)
+    const clampY = v => Math.max(Y_MIN, Math.min(Y_MAX, v));
+
+    // 축
+    g.append('g').attr('transform', `translate(0,${ih})`).call(
+      d3.axisBottom(xScale).ticks(mob ? 3 : 5).tickFormat(d => fmtKRW(d))
+    ).call(ax => ax.selectAll('text').attr('fill','#6B7280').attr('font-size', mob?9:11));
+    g.append('g').call(
+      d3.axisLeft(yScale).ticks(mob ? 5 : 7).tickFormat(d => d + '%')
+    ).call(ax => ax.selectAll('text').attr('fill','#6B7280').attr('font-size', mob?9:11));
+
+    // 격자선 (가로)
+    [-20, -10, 0, 10, 20].forEach(v => {
+      g.append('line').attr('x1', 0).attr('x2', iw)
+        .attr('y1', yScale(v)).attr('y2', yScale(v))
+        .attr('stroke', v === 0 ? '#9CA3AF' : '#E5E7EB')
+        .attr('stroke-dasharray', v === 0 ? '4,3' : '2,4')
+        .attr('stroke-width', v === 0 ? 1.5 : 1);
+    });
+
+    // 클립 패스 (버블이 그래프 밖으로 나가지 않도록)
+    svg.append('defs').append('clipPath').attr('id','bbl-clip')
+      .append('rect').attr('x', mg.left).attr('y', mg.top).attr('width', iw).attr('height', ih);
+
+    // 축 라벨
+    g.append('text').attr('x', iw/2).attr('y', ih+38)
+      .attr('text-anchor','middle').attr('font-size', mob?9:11).attr('fill','#6B7280')
+      .text('2024 총매출');
+    g.append('text').attr('transform',`translate(${mob?-42:-52},${ih/2}) rotate(-90)`)
+      .attr('text-anchor','middle').attr('font-size', mob?9:11).attr('fill','#6B7280')
+      .text('평균 영업이익률 (%)');
+
+    // Force simulation — 버블이 서로 겹치지 않게 밀어냄
+    const simNodes = industryStats.map(d => {
+      const clamped = clampY(d.avgMargin);
+      const isClamped = d.avgMargin !== clamped;
+      return {
+        ...d,
+        displayMargin: clamped,
+        isClamped,
+        tx: xScale(d.revenue),
+        ty: yScale(clamped),
+        x:  xScale(d.revenue),
+        y:  yScale(clamped),
+        r:  rScale(d.count),
+      };
+    });
+
+    const sim = d3.forceSimulation(simNodes)
+      .force('x', d3.forceX(d => d.tx).strength(0.7))
+      .force('y', d3.forceY(d => d.ty).strength(0.9))
+      .force('collide', d3.forceCollide(d => d.r + (mob ? 3 : 5)).strength(0.85))
+      .stop();
+
+    // 동기 실행 (애니메이션 없이 최종 위치 계산)
+    for (let i = 0; i < 300; i++) sim.tick();
+
+    // y값 경계 내 클램프 (버블이 그래프 밖으로 나가지 않게)
+    simNodes.forEach(d => {
+      d.x = Math.max(d.r, Math.min(iw - d.r, d.x));
+      d.y = Math.max(d.r, Math.min(ih - d.r, d.y));
+    });
+
+    // 버블
+    const tt = d3.select(ttRef.current);
+    const bbl = g.selectAll('.bbl').data(simNodes).enter().append('g')
+      .attr('class','bbl')
+      .attr('transform', d => `translate(${d.x},${d.y})`);
+
+    bbl.append('circle')
+      .attr('r', d => d.r)
+      .attr('fill', d => (colors[d.key]||'#64748B') + '40')
+      .attr('stroke', d => colors[d.key]||'#64748B')
+      .attr('stroke-width', mob ? 1.5 : 2)
+      .style('cursor','pointer')
+      .style('cursor', 'pointer')
+      .on('click', function(ev, d) {
+        if (setView) setView({ name: 'industry', key: d.key });
+      })
+      .on('mousemove', function(ev, d) {
+        const rect = el.getBoundingClientRect();
+        tt.classed('on', true)
+          .style('left', (ev.clientX - rect.left) + 'px')
+          .style('top',  (ev.clientY - rect.top - 70) + 'px')
+          .html(`<b>${d.label}</b><div class="tt-row"><span>총매출</span><span>${fmtKRW(d.revenue)}</span></div><div class="tt-row"><span>이익률</span><span>${d.avgMargin.toFixed(1)}%${d.isClamped ? ' ▲' : ''}</span></div><div class="tt-row"><span>기업수</span><span>${d.count}개</span></div><div class="tt-row" style="margin-top:6px;color:#9CA3AF;font-size:10px"><span>클릭하여 산업 페이지로 →</span></div>`);
+      })
+      .on('mouseleave', () => tt.classed('on', false));
+
+    // 클램프된 버블에 테두리 강조 표시
+    bbl.filter(d => d.isClamped)
+      .append('circle')
+      .attr('r', d => d.r + 3)
+      .attr('fill', 'none')
+      .attr('stroke', d => colors[d.key]||'#64748B')
+      .attr('stroke-width', 1)
+      .attr('stroke-dasharray', '3,2')
+      .attr('opacity', 0.5);
+
+    // 라벨 (줄바꿈, 배경 흰색)
+    const fs = mob ? 9 : 11;
+    bbl.each(function(d) {
+      const ng = d3.select(this);
+      const parts = d.label.split('·').map(s => s.trim());
+      const lineH = fs + 2;
+      const totalH = parts.length * lineH;
+      const yStart = -(totalH / 2) + fs * 0.4;
+      // 텍스트
+      parts.forEach((p, i) => {
+        ng.append('text')
+          .attr('text-anchor','middle').attr('dominant-baseline','middle')
+          .attr('y', yStart + i * lineH)
+          .attr('font-size', fs).attr('font-weight', 700)
+          .attr('fill', colors[d.key]||'#1F2937')
+          .attr('pointer-events','none')
+          .text(p);
+      });
+    });
+
+  }, [industryStats, colors]);
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <svg ref={svgRef} style={{ width: '100%', overflow: 'visible' }}></svg>
+      <div ref={ttRef} className="map-tooltip"></div>
+    </div>
+  );
+}
+
+function PositioningMap({ data, colors, desc, setView }) {
+  const svgRef = useRef(null);
+  const tooltipRef = useRef(null);
+  const [activeInds, setActiveInds] = useState(() => new Set(Object.keys(data)));
+  const [xMetric, setXMetric] = useState('revenue'); // revenue | employees | rpe
+  const [yMetric, setYMetric] = useState('margin'); // margin | growth
+
+  const industries = Object.keys(data);
+
+  // Flatten companies with industry
+  const allCompanies = useMemo(() => {
+    const arr = [];
+    industries.forEach(ikey => {
+      data[ikey].companies.forEach(c => arr.push({ ...c, _ind: ikey }));
+    });
+    return arr;
+  }, [data]);
+
+  const getX = (c) => {
+    if (xMetric === 'revenue') return c.revenue?.['2024'];
+    if (xMetric === 'employees') return c.employees;
+    if (xMetric === 'rpe') return c.revenuePerEmployee;
+  };
+  const getY = (c) => {
+    if (yMetric === 'margin') return calcMargin(c);
+    if (yMetric === 'growth') return calcGrowth(c);
+  };
+  const xLabel = { revenue: '매출 (억원 · 로그)', employees: '직원 수 (로그)', rpe: '1인당 매출 (억)' }[xMetric];
+  const yLabel = { margin: '영업이익률 (%)', growth: '매출 성장률 (%)' }[yMetric];
+
+  useEffect(() => {
+    const svg = d3.select(svgRef.current);
+    svg.selectAll('*').remove();
+
+    const bbox = svgRef.current.getBoundingClientRect();
+    const W = bbox.width, H = bbox.height;
+    const margin = { top: 40, right: 30, bottom: xMetric === 'revenue' ? 72 : 60, left: 70 };
+    const iw = W - margin.left - margin.right;
+    const ih = H - margin.top - margin.bottom;
+
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+    // filter
+    const points = allCompanies
+      .map(c => ({ ...c, _x: getX(c), _y: getY(c) }))
+      .filter(p => p._x != null && p._y != null && p._x > 0 && isFinite(p._x) && isFinite(p._y));
+
+    if (!points.length) return;
+
+    // scales
+    const xScale = (xMetric === 'revenue' || xMetric === 'employees')
+      ? d3.scaleLog().domain([Math.max(1, d3.min(points, d => d._x)), d3.max(points, d => d._x)]).range([0, iw]).nice()
+      : d3.scaleLinear().domain(d3.extent(points, d => d._x)).range([0, iw]).nice();
+    const yExtent = d3.extent(points, d => d._y);
+    const yPad = (yExtent[1] - yExtent[0]) * 0.1;
+    const yDomain = yMetric === 'margin' ? [Math.max(-30, yExtent[0]-5), Math.min(100, yExtent[1]+5)] : [Math.max(-50, yExtent[0]-yPad), Math.min(200, yExtent[1]+yPad)];
+    const yScale = d3.scaleLinear().domain(yDomain).range([ih, 0]).nice();
+
+    // quadrants — zero line & median
+    const yZero = yMetric === 'margin' ? 0 : 0;
+    const xMid = d3.median(points, d => d._x);
+
+    g.append('line').attr('x1', 0).attr('x2', iw)
+      .attr('y1', yScale(yZero)).attr('y2', yScale(yZero))
+      .attr('stroke', '#131210').attr('stroke-dasharray', '3,3').attr('stroke-opacity', .3);
+    g.append('line').attr('x1', xScale(xMid)).attr('x2', xScale(xMid))
+      .attr('y1', 0).attr('y2', ih)
+      .attr('stroke', '#131210').attr('stroke-dasharray', '3,3').attr('stroke-opacity', .3);
+
+    // quadrant labels
+    const qLabels = yMetric === 'margin' ? [
+      { x: 0.02, y: 0.04, t: 'Q1. 소규모 · 고마진' },
+      { x: 0.76, y: 0.04, t: 'Q2. 대형 · 고마진' },
+      { x: 0.76, y: 0.94, t: 'Q3. 대형 · 저마진' },
+      { x: 0.02, y: 0.94, t: 'Q4. 소규모 · 저마진' },
+    ] : [];
+    g.selectAll('.qlabel').data(qLabels).enter().append('text')
+      .attr('class', 'map-quadrant-label')
+      .attr('x', d => d.x * iw).attr('y', d => d.y * ih)
+      .text(d => d.t);
+
+    // axes
+    let xAxisGen;
+    if (xMetric === 'revenue') {
+      const rvTicks = makeRevTickValues(...xScale.domain());
+      xAxisGen = d3.axisBottom(xScale).tickValues(rvTicks).tickFormat(d => fmtKRW(d));
+    } else if (xMetric === 'employees') {
+      xAxisGen = d3.axisBottom(xScale).ticks(5, d3.format('~s'));
+    } else {
+      xAxisGen = d3.axisBottom(xScale).ticks(6);
+    }
+    const yAxis = d3.axisLeft(yScale).ticks(6).tickFormat(d => d + (yMetric === 'margin' || yMetric === 'growth' ? '%' : ''));
+
+    const xAxisG = g.append('g').attr('class', 'map-axis').attr('transform', `translate(0,${ih})`).call(xAxisGen);
+    if (xMetric === 'revenue') {
+      xAxisG.selectAll('text')
+        .style('text-anchor', 'end')
+        .attr('dx', '-0.4em').attr('dy', '0.5em')
+        .attr('transform', 'rotate(-30)');
+    }
+    g.append('g').attr('class', 'map-axis').call(yAxis);
+
+    g.append('text').attr('class', 'map-axis-title')
+      .attr('x', iw).attr('y', xMetric === 'revenue' ? ih + 54 : ih + 42).attr('text-anchor', 'end').text('→ ' + xLabel);
+    g.append('text').attr('class', 'map-axis-title')
+      .attr('transform', 'rotate(-90)').attr('x', 0).attr('y', -50).attr('text-anchor', 'end').text('→ ' + yLabel);
+
+    // dots
+    const dotG = g.append('g');
+    const dots = dotG.selectAll('.map-dot').data(points).enter().append('circle')
+      .attr('class', d => 'map-dot ' + (activeInds.has(d._ind) ? '' : 'dim'))
+      .attr('cx', d => xScale(d._x))
+      .attr('cy', d => yScale(d._y))
+      .attr('r', d => Math.min(18, Math.max(4, Math.sqrt((d.revenue?.['2024'] || 1000) / 800))))
+      .attr('fill', d => colors[d._ind])
+      .attr('fill-opacity', .55)
+      .attr('stroke', d => colors[d._ind])
+      .attr('stroke-width', 1);
+
+    // label top-N (visible only)
+    const visible = points.filter(p => activeInds.has(p._ind));
+    const topByRev = visible.slice().sort((a,b) => (b.revenue?.['2024']||0) - (a.revenue?.['2024']||0)).slice(0, 8);
+    const topByMargin = visible.slice().sort((a,b) => {
+      const ma = calcMargin(a) || -999, mb = calcMargin(b) || -999;
+      return mb - ma;
+    }).slice(0, 6);
+    const toLabel = new Set([...topByRev, ...topByMargin].map(c => c.name + '__' + c._ind));
+    const labelPoints = visible.filter(p => toLabel.has(p.name + '__' + p._ind));
+
+    // collision avoidance for labels
+    const labelData = labelPoints.map(d => ({
+      d,
+      x: xScale(d._x) + 8,
+      y: yScale(d._y) + 3,
+    }));
+    const FONT_H = 13, CHAR_W = 7.5;
+    for (let iter = 0; iter < 30; iter++) {
+      for (let i = 0; i < labelData.length; i++) {
+        for (let j = i + 1; j < labelData.length; j++) {
+          const a = labelData[i], b = labelData[j];
+          const aw = a.d.name.length * CHAR_W, bw = b.d.name.length * CHAR_W;
+          const dx = Math.abs(a.x - b.x), dy = Math.abs(a.y - b.y);
+          if (dx < (aw + bw) / 2 + 4 && dy < FONT_H + 4) {
+            const pushY = (FONT_H + 4 - dy) / 2 + 1;
+            if (a.y <= b.y) { a.y -= pushY; b.y += pushY; }
+            else { a.y += pushY; b.y -= pushY; }
+          }
+        }
+      }
+    }
+    g.selectAll('.map-label').data(labelData).enter().append('text')
+      .attr('x', d => d.x)
+      .attr('y', d => d.y)
+      .attr('font-family', "'Noto Sans KR'")
+      .attr('font-size', 13)
+      .attr('font-weight', 500)
+      .attr('fill', '#131210')
+      .attr('pointer-events', 'none')
+      .text(d => d.d.name);
+
+    // tooltip
+    const tt = d3.select(tooltipRef.current);
+    dots.on('mousemove', function(ev, d) {
+      const rect = svgRef.current.getBoundingClientRect();
+      const m = calcMargin(d), gr = calcGrowth(d);
+      tt.classed('on', true)
+        .style('left', (ev.clientX - rect.left) + 'px')
+        .style('top', (ev.clientY - rect.top) + 'px')
+        .html(`
+          <b>${d.name}</b>
+          <div class="tt-row"><span>산업</span><span>${d._ind}</span></div>
+          <div class="tt-row"><span>매출</span><span>${fmtKRW(d.revenue?.['2024'])}</span></div>
+          ${m != null ? `<div class="tt-row"><span>이익률</span><span>${m.toFixed(1)}%</span></div>` : ''}
+          ${gr != null ? `<div class="tt-row"><span>성장률</span><span>${fmtPct(gr, true)}</span></div>` : ''}
+        `);
+    }).on('mouseleave', () => tt.classed('on', false))
+      .on('click', (ev, d) => setView({ name: 'company', industry: d._ind, company: d.name }));
+
+  }, [allCompanies, activeInds, xMetric, yMetric]);
+
+  return (
+    <div className="view">
+      <div style={{ paddingTop: 24 }}>
+        <span className="ind-hero-back" onClick={() => setView({ name: 'home' })}>← 목차로</span>
+      </div>
+      <header className="ind-hero" style={{ gridTemplateColumns: '1fr' }}>
+        <div>
+          <div className="ind-hero-eyebrow">Feature · 시각화</div>
+          <h1 className="ind-hero-title" style={{ fontSize: 'clamp(36px, 6vw, 72px)' }}>브랜드 비즈니스 분포도</h1>
+          <div className="ind-hero-sub">Revenue × Margin · 433 companies in one picture</div>
+          <p className="ind-hero-lede" style={{ marginTop: 20 }}>
+            가로축은 규모, 세로축은 수익성. 점 하나가 회사 하나다. 
+            <b> 우측 위</b>에 있을수록 크고 남기는 회사, <b>좌측 위</b>는 작지만 밀도 높은 고마진, 
+            <b> 우측 아래</b>는 매출은 크지만 이익이 얇은 구조다.
+          </p>
+        </div>
+      </header>
+
+      {/* ── 산업 버블맵 (총매출 × 영업이익률) ── */}
+      <section style={{ marginBottom: 32 }}>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">①</span>
+            <h2 className="sh-title">산업 버블 맵</h2>
+          </div>
+          <span className="sh-sub">총매출 × 영업이익률 · 버블 크기 = 기업 수</span>
+        </div>
+        <div className="panel" style={{ padding: '24px 24px 8px' }}>
+          <IndustryBubbleMap data={data} colors={colors} setView={setView} />
+        </div>
+      </section>
+
+
+      <div className="map-wrap" style={{ position: 'relative' }}>
+        <div className="map-controls">
+          <div className="map-ctrl-group">
+            <span className="map-ctrl-lbl">X 축</span>
+            <select className="map-ctrl-select" value={xMetric} onChange={e => setXMetric(e.target.value)}>
+              <option value="revenue">매출 규모 (로그)</option>
+              <option value="employees">직원 수 (로그)</option>
+              <option value="rpe">1인당 매출</option>
+            </select>
+          </div>
+          <div className="map-ctrl-group">
+            <span className="map-ctrl-lbl">Y 축</span>
+            <select className="map-ctrl-select" value={yMetric} onChange={e => setYMetric(e.target.value)}>
+              <option value="margin">영업이익률</option>
+              <option value="growth">매출 성장률</option>
+            </select>
+          </div>
+          <div className="map-ctrl-group" style={{ marginLeft: 'auto', alignSelf: 'end' }}>
+            <span className="map-ctrl-lbl">Hint</span>
+            <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--ink-mute)' }}>점 클릭 → 기업 상세</span>
+          </div>
+        </div>
+
+        <svg ref={svgRef} id="positioning-map"></svg>
+        <div ref={tooltipRef} className="map-tooltip"></div>
+
+        <div className="map-legend">
+          {industries.map(k => (
+            <div key={k} 
+              className={'legend-item ' + (activeInds.has(k) ? '' : 'off')}
+              onClick={() => {
+                const next = new Set(activeInds);
+                if (next.has(k)) next.delete(k); else next.add(k);
+                if (!next.size) next.add(k); // keep at least one
+                setActiveInds(next);
+              }}>
+              <span className="legend-swatch" style={{ background: colors[k] }}></span>
+              <span>{k}</span>
+            </div>
+          ))}
+          <button className="legend-item" 
+            style={{ marginLeft: 'auto', fontWeight: 600 }}
+            onClick={() => setActiveInds(new Set(industries))}>
+            ALL RESET
+          </button>
+        </div>
+      </div>
+
+      {/* Editorial takes */}
+      <section>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">→</span>
+            <h2 className="sh-title" style={{ fontSize: 24 }}>맵이 말해주는 것</h2>
+          </div>
+          <span className="sh-sub">What the map reveals</span>
+        </div>
+        <div className="featured-grid">
+          <article className="feat-card half">
+            <div className="feat-label">Q1 · 소규모 고마진</div>
+            <h3 className="feat-title" style={{ fontSize: 22 }}>좌측 위 — 작지만 치열하게 남긴다</h3>
+            <p className="feat-body">
+              컴포즈커피, 메가커피, 젠틀몬스터, 성심당. 규모는 대기업의 1/10이지만 이익률은 몇 배다. 
+              이 영역에 있는 브랜드가 향후 시장을 재편한다.
+            </p>
+          </article>
+          <article className="feat-card half">
+            <div className="feat-label">Q3 · 대형 저마진</div>
+            <h3 className="feat-title" style={{ fontSize: 22 }}>우측 아래 — 크지만 얇게 번다</h3>
+            <p className="feat-body">
+              이마트, 롯데마트, 쿠팡, 교보문고. 매출은 조 단위다. 그러나 이익률은 1% 안팎. 
+              규모 경쟁이 만든 공간이다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      {/* Industry mini-maps */}
+      <section>
+        <div className="sh">
+          <div className="sh-left">
+            <span className="sh-num">→</span>
+            <h2 className="sh-title" style={{ fontSize: 24 }}>산업별 비즈니스 분포도</h2>
+          </div>
+          <span className="sh-sub">{industries.length} Industries · same axes</span>
+        </div>
+        <p style={{ fontFamily: 'var(--serif-kr)', fontSize: 15, color: 'var(--ink-2)', maxWidth: '52ch', marginBottom: 20, lineHeight: 1.7 }}>
+          같은 축(매출 × 이익률)을 산업별로 나눠 본다. 산업마다 점들이 모이는 위치가 다르다.
+          그 패턴이 산업의 구조적 DNA다.
+        </p>
+        <div className="mini-map-grid">
+          {industries
+            .slice()
+            .sort((a,b) => data[b].total2024 - data[a].total2024)
+            .map(k => (
+              <MiniMap key={k} ikey={k} data={data} color={colors[k]}
+                onCompanyClick={(name) => setView({ name: 'company', industry: k, company: name })} />
+            ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+window.PositioningMap = PositioningMap;
+</script>
+<script type="text/babel">// Small positioning map for a single industry
+function MiniMap({ ikey, data, color, onCompanyClick }) {
+  const svgRef = useRef(null);
+  const tooltipRef = useRef(null);
+
+  useEffect(() => {
+    const svg = d3.select(svgRef.current);
+    svg.selectAll('*').remove();
+    const bbox = svgRef.current.getBoundingClientRect();
+    const W = bbox.width, H = bbox.height;
+    const margin = { top: 40, right: 30, bottom: 72, left: 70 };
+    const iw = W - margin.left - margin.right;
+    const ih = H - margin.top - margin.bottom;
+
+    const points = data[ikey].companies
+      .map(c => ({ ...c, _x: c.revenue?.['2024'], _y: calcMargin(c) }))
+      .filter(p => p._x > 0 && p._y != null && p._y > -40 && p._y < 100);
+    if (!points.length) return;
+
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const xScale = d3.scaleLog()
+      .domain([Math.max(1, d3.min(points, d => d._x)), d3.max(points, d => d._x)])
+      .range([0, iw]).nice();
+    const yExt = d3.extent(points, d => d._y);
+    const yScale = d3.scaleLinear()
+      .domain([Math.max(-30, yExt[0]-3), Math.min(80, yExt[1]+3)])
+      .range([ih, 0]).nice();
+
+    // zero line
+    if (yScale.domain()[0] < 0 && yScale.domain()[1] > 0) {
+      g.append('line').attr('x1', 0).attr('x2', iw)
+        .attr('y1', yScale(0)).attr('y2', yScale(0))
+        .attr('stroke', '#131210').attr('stroke-dasharray', '2,3').attr('stroke-opacity', .2);
+    }
+
+    // axes
+    const xTicks = makeRevTickValues(...xScale.domain());
+    g.append('g').attr('class', 'map-axis')
+      .attr('transform', `translate(0,${ih})`)
+      .call(d3.axisBottom(xScale).tickValues(xTicks).tickFormat(d => fmtKRW(d)))
+      .selectAll('text')
+        .style('text-anchor', 'end')
+        .attr('dx', '-0.4em').attr('dy', '0.5em')
+        .attr('transform', 'rotate(-30)');
+    g.append('g').attr('class', 'map-axis')
+      .call(d3.axisLeft(yScale).ticks(6).tickFormat(d => d + '%'));
+    g.append('text').attr('class', 'map-axis-title')
+      .attr('x', iw).attr('y', ih + 52).attr('text-anchor', 'end').text('→ 매출 (억원 · 로그)');
+    g.append('text').attr('class', 'map-axis-title')
+      .attr('transform', 'rotate(-90)').attr('x', 0).attr('y', -50).attr('text-anchor', 'end').text('→ 영업이익률 (%)');
+
+    // dots
+    const tt = d3.select(tooltipRef.current);
+    const dots = g.selectAll('.map-dot').data(points).enter().append('circle')
+      .attr('class', 'map-dot')
+      .attr('cx', d => xScale(d._x))
+      .attr('cy', d => yScale(d._y))
+      .attr('r', d => Math.min(18, Math.max(4, Math.sqrt((d.revenue['2024'] || 1000)/800))))
+      .attr('fill', color)
+      .attr('fill-opacity', .55)
+      .attr('stroke', color)
+      .attr('stroke-width', 1)
+      .on('mousemove', function(ev, d) {
+        const rect = svgRef.current.getBoundingClientRect();
+        tt.classed('on', true)
+          .style('left', (ev.clientX - rect.left) + 'px')
+          .style('top', (ev.clientY - rect.top) + 'px')
+          .html(`<b>${d.name}</b>
+            <div class="tt-row"><span>매출</span><span>${fmtKRW(d._x)}</span></div>
+            <div class="tt-row"><span>이익률</span><span>${d._y.toFixed(1)}%</span></div>`);
+      })
+      .on('mouseleave', () => tt.classed('on', false))
+      .on('click', (ev, d) => onCompanyClick(d.name));
+
+    // label top N by revenue + top by margin
+    const top = points.slice().sort((a,b) => b._x - a._x).slice(0, 8);
+    const tm = points.slice().sort((a,b) => b._y - a._y).slice(0, 6);
+    const toLabel = new Set([...top, ...tm].map(p => p.name));
+    // collision avoidance
+    const miniLabelData = points.filter(p => toLabel.has(p.name)).map(d => ({
+      d, x: xScale(d._x) + 8, y: yScale(d._y) + 3,
+    }));
+    const ML_H = 13, ML_CW = 7.5;
+    for (let iter = 0; iter < 30; iter++) {
+      for (let i = 0; i < miniLabelData.length; i++) {
+        for (let j = i + 1; j < miniLabelData.length; j++) {
+          const a = miniLabelData[i], b = miniLabelData[j];
+          const aw = a.d.name.length * ML_CW, bw = b.d.name.length * ML_CW;
+          const dx = Math.abs(a.x - b.x), dy = Math.abs(a.y - b.y);
+          if (dx < (aw + bw) / 2 + 4 && dy < ML_H + 4) {
+            const pushY = (ML_H + 4 - dy) / 2 + 1;
+            if (a.y <= b.y) { a.y -= pushY; b.y += pushY; }
+            else { a.y += pushY; b.y -= pushY; }
+          }
+        }
+      }
+    }
+    g.selectAll('.mini-label').data(miniLabelData).enter().append('text')
+      .attr('x', d => d.x).attr('y', d => d.y)
+      .attr('font-family', "'Noto Sans KR', sans-serif")
+      .attr('font-size', 13).attr('font-weight', 500)
+      .attr('fill', '#131210').attr('pointer-events', 'none')
+      .text(d => d.d.name);
+  }, [ikey]);
+
+  const d = data[ikey];
+  const sorted = [...d.companies].sort((a,b) => (b.revenue['2024']||0) - (a.revenue['2024']||0));
+  const withM = d.companies.map(c => calcMargin(c)).filter(m => m != null);
+  const avgM = withM.reduce((s,m) => s+m, 0) / (withM.length || 1);
+
+  return (
+    <article className="mini-map-card" style={{ position: 'relative' }}>
+      <div className="mini-map-head">
+        <div>
+          <div className="mini-map-title" style={{ color }}>{ikey}</div>
+          <div className="mini-map-sub">{d.count}개사 · 평균 이익률 {avgM.toFixed(1)}%</div>
+        </div>
+        <div className="mini-map-total">{fmtKRW(d.total2024)}</div>
+      </div>
+      <svg ref={svgRef} className="mini-map-svg"></svg>
+      <div ref={tooltipRef} className="map-tooltip"></div>
+      <div className="mini-map-foot">
+        <span>1위 · {sorted[0]?.name}</span>
+        <span>{fmtKRW(sorted[0]?.revenue['2024'])}</span>
+      </div>
+    </article>
+  );
+}
+
+window.MiniMap = MiniMap;
+</script>
+<script type="text/babel">// Story mode — scroll-based narrative
+function StoryView({ data, colors, setView }) {
+  const industries = Object.keys(data);
+  const totalRev = industries.reduce((s,k) => s + data[k].total2024, 0);
+  const totalCos = industries.reduce((s,k) => s + data[k].count, 0);
+
+  // Compute key finds
+  const allCos = [];
+  industries.forEach(k => data[k].companies.forEach(c => allCos.push({ ...c, _ind: k })));
+  const byMargin = [...allCos].filter(c => calcMargin(c) != null && c.revenue['2024'] >= 500)
+    .sort((a,b) => calcMargin(b) - calcMargin(a));
+  const topMargin = byMargin[0];
+  const topRev = [...allCos].sort((a,b) => (b.revenue['2024']||0) - (a.revenue['2024']||0))[0];
+
+  const slides = [
+    {
+      kicker: 'CHAPTER 01 · 시작',
+      h: <>당신이 좋아하는 브랜드는 <em>얼마를</em> 버는가?</>,
+      body: '매일 마시는 커피, 매일 쓰는 화장품, 매일 보는 콘텐츠. 그 뒤에 있는 회사의 장부는 어떻게 생겼을까. 숫자는 때로, 브랜드 이미지가 숨기는 것을 드러낸다.',
+      numeric: { n: totalCos, tiny: `ANALYZED · ${industries.length} INDUSTRIES` }
+    },
+    {
+      kicker: 'CHAPTER 02 · 규모의 함정',
+      h: <>매출 1조는 <em>좋은 회사</em>의 증거일까.</>,
+      body: '교보문고는 연 1조를 판다. 그러나 영업이익은 적자다. 이마트는 29조를 판다. 영업이익률 0.16%. 규모가 곧 수익을 의미하지는 않는다. 때로는 정반대다.',
+      numeric: { n: '−122억', tiny: '교보문고 2024 영업이익' }
+    },
+    {
+      kicker: 'CHAPTER 03 · 이익률의 진실',
+      h: <><em>작은</em> 회사가 <em>더 많이</em> 남기는 이유.</>,
+      body: '컴포즈커피는 스타벅스의 1/7 매출을 올리지만 7배 더 남긴다. 성심당은 전국구 체인이 아니지만 한국에서 가장 이익률이 높은 베이커리다. 집중이 확장을 이긴다.',
+      numeric: { n: '44.5%', tiny: '컴포즈커피 영업이익률' }
+    },
+    {
+      kicker: 'CHAPTER 04 · 플랫폼의 승리',
+      h: <>디지털은 한 번 만들고 <em>계속 판다.</em></>,
+      body: '두나무는 629명의 직원으로 1.2조 이익을 낸다. 네오플은 매출의 71%를 그대로 이익으로 남긴다. 복제비용 제로의 경제학이 만든 비대칭이다. 인건비가 있는 산업과 없는 산업의 차이다.',
+      numeric: { n: '71.3%', tiny: '네오플 영업이익률' }
+    },
+    {
+      kicker: 'CHAPTER 05 · 다음 질문',
+      h: <>이제, 당신은 <em>무엇을</em> 볼 것인가.</>,
+      body: '이직할 회사의 체력을 볼 수 있다. 브랜드 뒤의 사업 구조를 읽을 수 있다. 취향을 소비로, 소비를 산업으로, 산업을 자본의 흐름으로 연결해 볼 수 있다. 10개의 산업에서 시작하자.',
+      numeric: { n: (totalRev/10000).toFixed(0) + '조', tiny: '2025E TOTAL · GO EXPLORE' }
+    }
+  ];
+
+  return (
+    <div className="storymode">
+      <div style={{ padding: '24px 20px 0', maxWidth: 'var(--max)', margin: '0 auto' }}>
+        <span className="ind-hero-back" onClick={() => setView({ name: 'home' })}>← 목차로</span>
+      </div>
+      {slides.map((s, i) => (
+        <section key={i} className="story-slide" 
+          style={{ background: i % 2 === 0 ? 'var(--paper)' : 'var(--paper-3)' }}>
+          <div className="slide-n">{String(i+1).padStart(2,'0')} / {String(slides.length).padStart(2,'0')}</div>
+          <div style={{ maxWidth: 'var(--max)', margin: '0 auto', width: '100%' }}>
+            <div className="slide-kicker">{s.kicker}</div>
+            <h2 className="slide-h">{s.h}</h2>
+            <p className="slide-body">{s.body}</p>
+            <div className="slide-number" style={{ color: i === 4 ? 'var(--accent)' : 'var(--ink)' }}>
+              {s.numeric.n}
+              <span className="tiny">{s.numeric.tiny}</span>
+            </div>
+          </div>
+        </section>
+      ))}
+      <section className="story-slide" style={{ background: 'var(--ink)', color: 'var(--paper-3)', textAlign: 'center' }}>
+        <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          <div className="slide-kicker" style={{ color: 'var(--gold)' }}>THE END · 이제 데이터로</div>
+          <h2 className="slide-h" style={{ color: 'var(--paper-3)' }}>
+            10개 산업, 433개 회사.<br/>
+            <em style={{ color: 'var(--gold)' }}>어디부터 볼까.</em>
+          </h2>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginTop: 40, flexWrap: 'wrap' }}>
+            <button className="chip filled" 
+              style={{ padding: '12px 20px', fontSize: 12, background: 'var(--gold)', color: 'var(--ink)', borderColor: 'var(--gold)' }}
+              onClick={() => setView({ name: 'home' })}>
+              산업 목차로 →
+            </button>
+            <button className="chip"
+              style={{ padding: '12px 20px', fontSize: 12, borderColor: 'rgba(255,255,255,.3)', color: 'var(--paper-3)' }}
+              onClick={() => setView({ name: 'map' })}>
+              비즈니스 분포도 →
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+window.StoryView = StoryView;
+</script>
+<script type="text/babel">// Main app shell — router & state
+const { useState, useEffect } = React;
+
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "accent": "#b5321a",
+  "paper": "#ffffff",
+  "density": "comfortable"
+}/*EDITMODE-END*/;
+
+function App() {
+  const [view, setView] = useState(() => {
+    // URL hash로 초기 뷰 복원
+    try {
+      const h = window.location.hash;
+      if (h && h.startsWith('#v=')) return JSON.parse(decodeURIComponent(h.slice(3)));
+    } catch(e) {}
+    return { name: 'home' };
+  });
+  const [tweaksOpen, setTweaksOpen] = useState(false);
+  const [tweaks, setTweaks] = useState(TWEAKS);
+
+  // 뷰 변경 시 history에 push
+  const navigateTo = (newView) => {
+    const encoded = encodeURIComponent(JSON.stringify(newView));
+    window.history.pushState(newView, '', '#v=' + encoded);
+    setView(newView);
+    window.scrollTo(0, 0);
+  };
+
+  // 브라우저 뒤로가기/앞으로가기 처리
+  useEffect(() => {
+    const onPop = (ev) => {
+      if (ev.state) {
+        setView(ev.state);
+        window.scrollTo(0, 0);
+      } else {
+        setView({ name: 'home' });
+        window.scrollTo(0, 0);
+      }
+    };
+    window.addEventListener('popstate', onPop);
+    // 초기 상태 등록
+    const encoded = encodeURIComponent(JSON.stringify(view));
+    window.history.replaceState(view, '', '#v=' + encoded);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  // edit mode
+  useEffect(() => {
+    const handler = (ev) => {
+      if (ev.data?.type === '__activate_edit_mode') setTweaksOpen(true);
+      if (ev.data?.type === '__deactivate_edit_mode') setTweaksOpen(false);
+    };
+    window.addEventListener('message', handler);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', handler);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--accent', tweaks.accent);
+    document.documentElement.style.setProperty('--paper', tweaks.paper);
+  }, [tweaks]);
+
+  const data = window.TASTE_DATA;
+  const colors = window.TASTE_COLORS;
+  const wows = window.TASTE_WOWS;
+  const desc = window.TASTE_DESC;
+
+  const setT = (k, v) => {
+    const next = { ...tweaks, [k]: v };
+    setTweaks(next);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [k]: v } }, '*');
+  };
+
+  return (
+    <>
+      <Topbar view={view} setView={navigateTo} />
+      {view.name === 'home' && <HomeView data={data} colors={colors} wows={wows} desc={desc} setView={navigateTo} />}
+      {view.name === 'industry' && <IndustryView ikey={view.key} data={data} colors={colors} wows={wows} desc={desc} setView={navigateTo} />}
+      {view.name === 'company' && <CompanyView ikey={view.industry} cname={view.company} data={data} colors={colors} desc={desc} setView={navigateTo} />}
+      {view.name === 'map' && <PositioningMap data={data} colors={colors} desc={desc} setView={navigateTo} />}
+      {view.name === 'localmap' && <LocalBusinessMapView data={data} setView={navigateTo} />}
+      {view.name === 'story' && <StoryView data={data} colors={colors} setView={navigateTo} />}
+
+      <footer className="footer">
+        <div>
+          <div className="footer-title">Money Behind Taste</div>
+          <div style={{ marginTop: 6 }}>VOL.01 · 2025E · DART 공시 데이터 기반</div>
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <div>{Object.keys(data).length} INDUSTRIES · {Object.values(data).reduce((s,d) => s+d.count, 0)} COMPANIES</div>
+          <div style={{ marginTop: 6 }}>DESIGNED AS AN EDITORIAL · 2026</div>
+        </div>
+      </footer>
+
+      {tweaksOpen && (
+        <div className="tweaks-panel">
+          <h4>Tweaks</h4>
+          <div className="tweaks-row">
+            <label>Accent color</label>
+            <input type="color" value={tweaks.accent} onChange={e => setT('accent', e.target.value)} />
+          </div>
+          <div className="tweaks-row">
+            <label>Paper tone</label>
+            <input type="color" value={tweaks.paper} onChange={e => setT('paper', e.target.value)} />
+          </div>
+          <div className="tweaks-row">
+            <label>Quick jump</label>
+            <select onChange={e => {
+              const v = e.target.value;
+              if (v === 'home') setView({ name: 'home' });
+              else if (v === 'map') setView({ name: 'map' });
+              else if (v === 'localmap') setView({ name: 'localmap' });
+              else if (v === 'story') setView({ name: 'story' });
+              else setView({ name: 'industry', key: v });
+            }}>
+              <option value="home">목차</option>
+              <option value="map">비즈니스 분포도</option>
+              <option value="localmap">로컬 비즈니스 맵</option>
+              <option value="story">스토리</option>
+              {Object.keys(data).map(k => <option key={k} value={k}>{k}</option>)}
+            </select>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+// data.json 로딩 완료 후 앱 실행
+function _mountApp() {
+  const root = ReactDOM.createRoot(document.getElementById('app'));
+  root.render(<App />);
+}
+if (window.TASTE_DATA) {
+  _mountApp();
+} else {
+  document.addEventListener('tasteDataReady', _mountApp);
+}
+</script>
+
+
+</body></html>
