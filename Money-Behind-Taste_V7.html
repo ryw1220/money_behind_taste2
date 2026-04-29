@@ -1218,10 +1218,14 @@ body::before {
 <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.29.0/babel.min.js"></script>
 <script>
-fetch('data.json').then(function(r){return r.json();}).then(function(d){window.TASTE_DATA=d;document.dispatchEvent(new Event('tasteDataReady'));}).catch(function(e){console.error('data.json load failed',e);});
-</script>
-<script>
-fetch('stock.json').then(function(r){return r.json();}).then(function(d){window.TASTE_STOCK=d;}).catch(function(e){console.error('stock.json load failed',e);});
+Promise.all([
+  fetch('data.json').then(function(r){return r.json();}),
+  fetch('stock.json').then(function(r){return r.json();}).catch(function(){return {};})
+]).then(function(results){
+  window.TASTE_DATA = results[0];
+  window.TASTE_STOCK = results[1];
+  document.dispatchEvent(new Event('tasteDataReady'));
+}).catch(function(e){console.error('data load failed',e);});
 </script>
 <script>(function(){
 const COLORS = {
