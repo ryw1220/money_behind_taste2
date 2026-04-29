@@ -1861,13 +1861,19 @@ function IndustryView({ ikey, data, colors, wows, desc, setView }) {
         const alpha = 0.95 - (i / (root.leaves().length || 1)) * 0.55;
         const g = document.createElementNS(svgNS, 'g');
         g.setAttribute('transform', 'translate(' + leaf.x0 + ',' + leaf.y0 + ')');
-        g.style.cursor = 'pointer';
+        const isLargeEnough = w > 40 && h > 22;
+        g.style.cursor = isLargeEnough ? 'pointer' : 'default';
+        if (isLargeEnough) {
+          g.addEventListener('click', () => setView({ name: 'company', industry: ikey, company: leaf.data.name }));
+          g.addEventListener('mouseenter', () => { rect.setAttribute('filter', 'brightness(1.12)'); });
+          g.addEventListener('mouseleave', () => { rect.removeAttribute('filter'); });
+        }
         const rect = document.createElementNS(svgNS, 'rect');
         rect.setAttribute('width', w); rect.setAttribute('height', h);
         rect.setAttribute('rx', 3);
         rect.setAttribute('fill', 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',' + alpha + ')');
         g.appendChild(rect);
-        if (w > 40 && h > 22) {
+        if (isLargeEnough) {
           const txt = document.createElementNS(svgNS, 'text');
           txt.setAttribute('x', Math.min(w/2, w-4));
           txt.setAttribute('y', h/2 - (w > 70 && h > 40 ? 8 : 0));
@@ -2202,6 +2208,18 @@ function CompanyView({ ikey, cname, data, colors, desc, setView }) {
 
   // 주가 / 연봉 데이터
   const stockInfo = (window.TASTE_STOCK || {})[cname] || null;
+  // 최근 3년 주가 상승률 계산
+  const threeYearReturn = (() => {
+    if (!stockInfo) return null;
+    const yp = stockInfo.yearlyPrices || {};
+    const years = Object.keys(yp).sort();
+    if (years.length < 2) return null;
+    const latestYr = years[years.length - 1];
+    const baseYr = String(parseInt(latestYr) - 3);
+    const pNow = yp[latestYr], pBase = yp[baseYr];
+    if (!pNow || !pBase) return null;
+    return ((pNow - pBase) / pBase * 100).toFixed(1);
+  })();
   const salaryMap = (window.TASTE_SALARY || {})[cname] || null;
   let latestSalary = null, latestSalaryYear = null;
   if (salaryMap) {
@@ -2478,10 +2496,16 @@ function CompanyView({ ikey, cname, data, colors, desc, setView }) {
                 <span className="big-stat-lbl">시가총액 (2026 기준)</span>
               </div>
             )}
-            {stockInfo.per && (
+            <div className="big-stat">
+              <span className="big-stat-val">{stockInfo.per != null ? stockInfo.per + '배' : 'N/A'}</span>
+              <span className="big-stat-lbl">PER</span>
+            </div>
+            {threeYearReturn != null && (
               <div className="big-stat">
-                <span className="big-stat-val">{stockInfo.per}배</span>
-                <span className="big-stat-lbl">PER</span>
+                <span className="big-stat-val" style={{ color: parseFloat(threeYearReturn) >= 0 ? '#1d6a3a' : '#b5321a' }}>
+                  {parseFloat(threeYearReturn) >= 0 ? '+' : ''}{threeYearReturn}%
+                </span>
+                <span className="big-stat-lbl">최근 3년 주가 상승률</span>
               </div>
             )}
             {latestSalary && (
@@ -2976,8 +3000,8 @@ function IndustryBubbleMap({ data, colors, setView }) {
     const W   = el.getBoundingClientRect().width || 800;
     const mob = W < 500;
     const H   = mob ? 340 : 460;
-    const mg  = mob ? { top: 24, right: 12, bottom: 40, left: 48 }
-                    : { top: 32, right: 32, bottom: 48, left: 64 };
+    const mg  = mob ? { top: 24, right: 12, bottom: 56, left: 48 }
+                    : { top: 32, right: 32, bottom: 64, left: 64 };
     const iw  = W - mg.left - mg.right;
     const ih  = H - mg.top - mg.bottom;
 
@@ -2986,11 +3010,13 @@ function IndustryBubbleMap({ data, colors, setView }) {
     svg.attr('height', H);
     const g = svg.append('g').attr('transform', `translate(${mg.left},${mg.top})`);
 
-    // 스케일 — y축 고정 -30%~+30%, 초과값은 끝에 클램프
+    // 스케일 — y축 고정 -30%~+30%, x축 로그 스케일로 균형감 유지
     const Y_MIN = -30, Y_MAX = 30;
     const xExt = d3.extent(industryStats, d => d.revenue);
-    const xPad = (xExt[1] - xExt[0]) * 0.08;
-    const xScale = d3.scaleLinear().domain([0, xExt[1] + xPad]).range([0, iw]).nice();
+    const xScale = d3.scaleLog()
+      .domain([Math.max(1, xExt[0] * 0.5), xExt[1] * 1.4])
+      .range([0, iw])
+      .nice();
     const yScale = d3.scaleLinear().domain([Y_MIN, Y_MAX]).range([ih, 0]);
     const rScale = d3.scaleSqrt().domain([0, d3.max(industryStats, d => d.count)])
                     .range(mob ? [7, 20] : [10, 30]);
@@ -2998,10 +3024,14 @@ function IndustryBubbleMap({ data, colors, setView }) {
     // 클램프된 y값 (그래프 끝에 고정)
     const clampY = v => Math.max(Y_MIN, Math.min(Y_MAX, v));
 
-    // 축
+    // 축 (로그 스케일용 tick 값 사용)
+    const xTicks = makeRevTickValues(xScale.domain()[0], xScale.domain()[1]);
     g.append('g').attr('transform', `translate(0,${ih})`).call(
-      d3.axisBottom(xScale).ticks(mob ? 3 : 5).tickFormat(d => fmtKRW(d))
-    ).call(ax => ax.selectAll('text').attr('fill','#6B7280').attr('font-size', mob?9:11));
+      d3.axisBottom(xScale).tickValues(xTicks).tickFormat(d => fmtKRW(d))
+    ).call(ax => {
+      ax.selectAll('text').attr('fill','#6B7280').attr('font-size', mob?9:11)
+        .style('text-anchor','end').attr('dx','-0.4em').attr('dy','0.5em').attr('transform','rotate(-30)');
+    });
     g.append('g').call(
       d3.axisLeft(yScale).ticks(mob ? 5 : 7).tickFormat(d => d + '%')
     ).call(ax => ax.selectAll('text').attr('fill','#6B7280').attr('font-size', mob?9:11));
@@ -3022,7 +3052,7 @@ function IndustryBubbleMap({ data, colors, setView }) {
     // 축 라벨
     g.append('text').attr('x', iw/2).attr('y', ih+38)
       .attr('text-anchor','middle').attr('font-size', mob?9:11).attr('fill','#6B7280')
-      .text('2024 총매출');
+      .text('2024 총매출 (로그 스케일)');
     g.append('text').attr('transform',`translate(${mob?-42:-52},${ih/2}) rotate(-90)`)
       .attr('text-anchor','middle').attr('font-size', mob?9:11).attr('fill','#6B7280')
       .text('평균 영업이익률 (%)');
@@ -3771,43 +3801,4 @@ function App() {
             <input type="color" value={tweaks.accent} onChange={e => setT('accent', e.target.value)} />
           </div>
           <div className="tweaks-row">
-            <label>Paper tone</label>
-            <input type="color" value={tweaks.paper} onChange={e => setT('paper', e.target.value)} />
-          </div>
-          <div className="tweaks-row">
-            <label>Quick jump</label>
-            <select onChange={e => {
-              const v = e.target.value;
-              if (v === 'home') setView({ name: 'home' });
-              else if (v === 'map') setView({ name: 'map' });
-              else if (v === 'localmap') setView({ name: 'localmap' });
-              else if (v === 'story') setView({ name: 'story' });
-              else setView({ name: 'industry', key: v });
-            }}>
-              <option value="home">목차</option>
-              <option value="map">비즈니스 분포도</option>
-              <option value="localmap">로컬 비즈니스 맵</option>
-              <option value="story">스토리</option>
-              {Object.keys(data).map(k => <option key={k} value={k}>{k}</option>)}
-            </select>
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
-
-// data.json 로딩 완료 후 앱 실행
-function _mountApp() {
-  const root = ReactDOM.createRoot(document.getElementById('app'));
-  root.render(<App />);
-}
-if (window.TASTE_DATA) {
-  _mountApp();
-} else {
-  document.addEventListener('tasteDataReady', _mountApp);
-}
-</script>
-
-
-</body></html>
+            <label>Paper ton
