@@ -3801,4 +3801,39 @@ function App() {
             <input type="color" value={tweaks.accent} onChange={e => setT('accent', e.target.value)} />
           </div>
           <div className="tweaks-row">
-            <label>Paper ton
+            <label>Paper tone</label>
+            <input type="color" value={tweaks.paper} onChange={e => setT('paper', e.target.value)} />
+          </div>
+          <div className="tweaks-row">
+            <label>Quick jump</label>
+            <select onChange={e => {
+              const v = e.target.value;
+              if (v === 'home') setView({ name: 'home' });
+              else if (v === 'map') setView({ name: 'map' });
+              else if (v === 'localmap') setView({ name: 'localmap' });
+              else if (v === 'story') setView({ name: 'story' });
+              else setView({ name: 'industry', key: v });
+            }}>
+              <option value="home">목차</option>
+              <option value="map">비즈니스 분포도</option>
+              <option value="localmap">로컬 비즈니스 맵</option>
+              <option value="story">스토리</option>
+              {Object.keys(data).map(k => <option key={k} value={k}>{k}</option>)}
+            </select>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+function _mountApp() {
+  const root = ReactDOM.createRoot(document.getElementById('app'));
+  root.render(<App />);
+}
+if (window.TASTE_DATA) { _mountApp(); }
+else { document.addEventListener('tasteDataReady', _mountApp); }
+</script>
+
+
+</body></html>
