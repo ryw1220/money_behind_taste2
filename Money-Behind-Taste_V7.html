@@ -1218,14 +1218,14 @@ body::before {
 <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.29.0/babel.min.js"></script>
 <script>
-Promise.all([
-  fetch('data.json').then(function(r){return r.json();}),
-  fetch('stock.json').then(function(r){return r.json();}).catch(function(){return {};})
-]).then(function(results){
-  window.TASTE_DATA = results[0];
-  window.TASTE_STOCK = results[1];
+fetch('stock.json').then(function(r){return r.json();}).then(function(d){
+  window.TASTE_STOCK=d;
+  document.dispatchEvent(new Event('stockDataReady'));
+}).catch(function(){window.TASTE_STOCK={};});
+fetch('data.json').then(function(r){return r.json();}).then(function(d){
+  window.TASTE_DATA=d;
   document.dispatchEvent(new Event('tasteDataReady'));
-}).catch(function(e){console.error('data load failed',e);});
+}).catch(function(e){console.error('data.json load failed',e);});
 </script>
 <script>(function(){
 const COLORS = {
@@ -2210,8 +2210,20 @@ function CompanyView({ ikey, cname, data, colors, desc, setView }) {
   const g24 = calcGrowth(company);
   const g23 = calcGrowth(company, '2022', '2023');
 
-  // 주가 / 연봉 데이터
-  const stockInfo = (window.TASTE_STOCK || {})[cname] || null;
+  // 주가 / 연봉 데이터 — stock.json 비동기 로드 대응
+  const [stockInfo, setStockInfo] = React.useState(() => (window.TASTE_STOCK || {})[cname] || null);
+  React.useEffect(() => {
+    // 이미 로드됐으면 바로 세팅
+    const s = (window.TASTE_STOCK || {})[cname];
+    if (s) { setStockInfo(s); return; }
+    // 아직 로드 중이면 이벤트 대기
+    const handler = () => {
+      const loaded = (window.TASTE_STOCK || {})[cname];
+      if (loaded) setStockInfo(loaded);
+    };
+    document.addEventListener('stockDataReady', handler);
+    return () => document.removeEventListener('stockDataReady', handler);
+  }, [cname]);
   // 최근 3년 주가 상승률 계산
   const threeYearReturn = (() => {
     if (!stockInfo) return null;
