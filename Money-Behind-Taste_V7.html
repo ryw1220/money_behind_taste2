@@ -2192,7 +2192,7 @@ window.IndustryView = IndustryView;
 window.commonChartOpts = commonChartOpts;
 </script>
 <script type="text/babel">// Company detail view
-function CompanyView({ ikey, cname, data, colors, desc, setView }) {
+function CompanyView({ ikey, cname, data, colors, desc, setView, stockReady }) {
   const d = data[ikey];
   const color = colors[ikey];
   const company = d.companies.find(c => c.name === cname);
@@ -2210,20 +2210,8 @@ function CompanyView({ ikey, cname, data, colors, desc, setView }) {
   const g24 = calcGrowth(company);
   const g23 = calcGrowth(company, '2022', '2023');
 
-  // 주가 / 연봉 데이터 — stock.json 비동기 로드 대응
-  const [stockInfo, setStockInfo] = React.useState(() => (window.TASTE_STOCK || {})[cname] || null);
-  React.useEffect(() => {
-    // 이미 로드됐으면 바로 세팅
-    const s = (window.TASTE_STOCK || {})[cname];
-    if (s) { setStockInfo(s); return; }
-    // 아직 로드 중이면 이벤트 대기
-    const handler = () => {
-      const loaded = (window.TASTE_STOCK || {})[cname];
-      if (loaded) setStockInfo(loaded);
-    };
-    document.addEventListener('stockDataReady', handler);
-    return () => document.removeEventListener('stockDataReady', handler);
-  }, [cname]);
+  // 주가 데이터 — stockReady prop이 바뀌면 자동으로 재읽기
+  const stockInfo = (window.TASTE_STOCK || {})[cname] || null;
   // 최근 3년 주가 상승률 계산
   const threeYearReturn = (() => {
     if (!stockInfo) return null;
@@ -2380,7 +2368,7 @@ function CompanyView({ ikey, cname, data, colors, desc, setView }) {
     }
 
     return () => charts.forEach(c => c.destroy());
-  }, [ikey, cname, stockInfo]);
+  }, [ikey, cname, stockReady]);
 
   return (
     <div className="view">
@@ -3734,6 +3722,14 @@ function App() {
   });
   const [tweaksOpen, setTweaksOpen] = useState(false);
   const [tweaks, setTweaks] = useState(TWEAKS);
+  // stock.json 로드 완료 여부 — CompanyView에 prop으로 전달해 강제 리렌더
+  const [stockReady, setStockReady] = useState(!!window.TASTE_STOCK);
+  useEffect(() => {
+    if (window.TASTE_STOCK) { setStockReady(true); return; }
+    const h = () => setStockReady(true);
+    document.addEventListener('stockDataReady', h);
+    return () => document.removeEventListener('stockDataReady', h);
+  }, []);
 
   // 뷰 변경 시 history에 push
   const navigateTo = (newView) => {
@@ -3793,7 +3789,7 @@ function App() {
       <Topbar view={view} setView={navigateTo} />
       {view.name === 'home' && <HomeView data={data} colors={colors} wows={wows} desc={desc} setView={navigateTo} />}
       {view.name === 'industry' && <IndustryView ikey={view.key} data={data} colors={colors} wows={wows} desc={desc} setView={navigateTo} />}
-      {view.name === 'company' && <CompanyView ikey={view.industry} cname={view.company} data={data} colors={colors} desc={desc} setView={navigateTo} />}
+      {view.name === 'company' && <CompanyView ikey={view.industry} cname={view.company} data={data} colors={colors} desc={desc} setView={navigateTo} stockReady={stockReady} />}
       {view.name === 'map' && <PositioningMap data={data} colors={colors} desc={desc} setView={navigateTo} />}
       {view.name === 'localmap' && <LocalBusinessMapView data={data} setView={navigateTo} />}
       {view.name === 'story' && <StoryView data={data} colors={colors} setView={navigateTo} />}
