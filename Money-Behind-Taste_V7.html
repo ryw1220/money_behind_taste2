@@ -2380,7 +2380,7 @@ function CompanyView({ ikey, cname, data, colors, desc, setView }) {
     }
 
     return () => charts.forEach(c => c.destroy());
-  }, [ikey, cname]);
+  }, [ikey, cname, stockInfo]);
 
   return (
     <div className="view">
