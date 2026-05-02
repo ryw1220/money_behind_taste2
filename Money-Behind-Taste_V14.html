@@ -722,12 +722,63 @@ a { color: inherit; text-decoration: none; }
   .hero-stat:last-child { padding-right: 0 !important; border-right: none !important; }
 
 
+/* ── Mobile hamburger ── */
+.mobile-menu-btn { display: none; }
+.mobile-nav-overlay { display: none; }
+.hb-line { display: block; width: 22px; height: 2px; background: #111; border-radius: 1px; transition: transform 200ms ease, opacity 200ms; }
+.hb-line + .hb-line { margin-top: 5px; }
+.hb-top-open { transform: rotate(45deg) translate(5px, 5px); }
+.hb-bot-open { transform: rotate(-45deg) translate(5px, -5px); }
+
 @media (max-width: 900px) {
   .page { padding: 24px 16px 48px !important; }
-  .topnav-inner { padding: 12px 16px !important; gap: 16px !important; flex-wrap: wrap; }
-  .nav-links { display: none; }
-  .nav-search { display: none; }
+  .topnav-inner { padding: 12px 16px !important; gap: 8px !important; flex-wrap: nowrap; }
+  .nav-links { display: none !important; }
+  .nav-search { display: none !important; }
   .brand-mark .ko { display: none; }
+  .mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 4px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .mobile-nav-overlay {
+    display: block;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 290;
+  }
+  .mobile-nav-menu {
+    position: absolute;
+    top: 52px; left: 0; right: 0;
+    background: #fff;
+    border-bottom: 2px solid #111;
+    padding: 4px 0 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  }
+  .mobile-nav-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-family: inherit;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #F1EFEA;
+    cursor: pointer;
+    color: #111;
+    letter-spacing: -0.01em;
+  }
+  .mobile-nav-item.active { color: #B5321A; font-weight: 700; }
+  .mobile-nav-item:active { background: #F9F8F6; }
+
   .hero-title { font-size: clamp(36px, 10vw, 56px) !important; }
   .hero-stats { grid-template-columns: repeat(2, 1fr) !important; }
   .hero-stat:nth-child(2) { border-right: none !important; }
@@ -768,6 +819,8 @@ a { color: inherit; text-decoration: none; }
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 
   <script>
   (function() {
@@ -1137,28 +1190,59 @@ const { useState, useEffect, useMemo } = React;
 
 // ─────────────────────── Top Nav ───────────────────────
 function TopNav({ view, onView }) {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const navItems = [
+    { label: "홈", viewName: "home" },
+    { label: "브랜드 분포도", viewName: "distribution" },
+    { label: "로컬 비즈니스맵", viewName: "map" },
+    { label: "스토리", viewName: "story" },
+  ];
+  const close = () => setMenuOpen(false);
   return (
-    <header className="topnav">
-      <div className="topnav-inner">
-        <div className="brand-mark" onClick={() => onView({ name: "home" })}>
-          <span className="dot" />
-          <span className="name">Money Behind Taste</span>
-          <span className="ko">돈의 지도</span>
+    <React.Fragment>
+      <header className="topnav" style={{ position: "relative", zIndex: 300 }}>
+        <div className="topnav-inner">
+          <div className="brand-mark" onClick={() => { onView({ name: "home" }); close(); }}>
+            <span className="dot" />
+            <span className="name">Money Behind Taste</span>
+            <span className="ko">돈의 지도</span>
+          </div>
+          <nav className="nav-links">
+            {navItems.map(item => (
+              <button key={item.label}
+                className={view.name === item.viewName ? "active" : ""}
+                onClick={() => onView({ name: item.viewName })}>
+                {item.label}
+              </button>
+            ))}
+            <button>도서 소개</button>
+          </nav>
+          <div className="nav-search">
+            <span style={{ fontSize: 14 }}>⌕</span>
+            <input placeholder="브랜드, 기업, 산업 검색" />
+            <span style={{ fontSize: 10, color: "#9A988F", border: "1px solid #E5E2DA", padding: "2px 5px", borderRadius: 3 }}>⌘K</span>
+          </div>
+          <button className="mobile-menu-btn" onClick={() => setMenuOpen(o => !o)} aria-label="메뉴">
+            <span className={"hb-line" + (menuOpen ? " hb-top-open" : "")} />
+            <span className={"hb-line" + (menuOpen ? " hb-bot-open" : "")} />
+          </button>
         </div>
-        <nav className="nav-links">
-          <button className={view.name === "home" ? "active" : ""} onClick={() => onView({ name: "home" })}>홈</button>
-          <button className={view.name === "distribution" ? "active" : ""} onClick={() => onView({ name: "distribution" })}>브랜드 분포도</button>
-          <button className={view.name === "map" ? "active" : ""} onClick={() => onView({ name: "map" })}>로컬 비즈니스맵</button>
-          <button onClick={() => onView({ name: "story" })}>스토리</button>
-          <button>도서 소개</button>
-        </nav>
-        <div className="nav-search">
-          <span style={{ fontSize: 14 }}>⌕</span>
-          <input placeholder="브랜드, 기업, 산업 검색" />
-          <span style={{ fontSize: 10, color: "#9A988F", border: "1px solid #E5E2DA", padding: "2px 5px", borderRadius: 3 }}>⌘K</span>
+      </header>
+      {menuOpen && (
+        <div className="mobile-nav-overlay" onClick={close}>
+          <nav className="mobile-nav-menu" onClick={e => e.stopPropagation()}>
+            {navItems.map(item => (
+              <button key={item.label}
+                className={"mobile-nav-item" + (view.name === item.viewName ? " active" : "")}
+                onClick={() => { onView({ name: item.viewName }); close(); }}>
+                {item.label}
+              </button>
+            ))}
+            <button className="mobile-nav-item" onClick={close}>도서 소개</button>
+          </nav>
         </div>
-      </div>
-    </header>
+      )}
+    </React.Fragment>
   );
 }
 
@@ -1852,110 +1936,178 @@ Object.assign(window, { TopNav, HomeView, IndustryView, CompanyView, StoryMode, 
 function LocalMapView({ onView }) {
   const regionData = window.TASTE_REGION_DATA;
   const totalCo = Object.values(regionData).reduce((s, r) => s + r.count, 0);
-  const KOREA_PATH = "M 168,42 L 185,35 L 198,40 L 210,32 L 228,38 L 240,30 L 252,36 L 258,28 L 272,34 L 280,28 L 295,35 L 300,48 L 308,52 L 312,62 L 306,72 L 314,80 L 318,92 L 310,102 L 316,112 L 312,124 L 320,132 L 318,144 L 326,152 L 322,164 L 328,174 L 322,184 L 330,194 L 326,206 L 334,214 L 328,226 L 336,234 L 330,248 L 322,256 L 326,268 L 318,278 L 308,282 L 296,278 L 282,284 L 270,278 L 256,284 L 244,278 L 230,282 L 218,276 L 204,282 L 190,278 L 178,282 L 166,278 L 158,268 L 152,256 L 160,244 L 152,234 L 158,222 L 150,212 L 156,200 L 148,190 L 154,178 L 146,168 L 152,156 L 144,148 L 150,136 L 142,126 L 148,114 L 140,104 L 146,92 L 152,82 L 158,70 L 162,58 Z";
-  const REGIONS = [
-    { name: "서울",  x: 178, y: 118, anchor: "start" },
-    { name: "인천",  x: 152, y: 138, anchor: "end" },
-    { name: "경기",  x: 204, y: 152, anchor: "start" },
-    { name: "강원",  x: 268, y: 110, anchor: "start" },
-    { name: "충북",  x: 232, y: 192, anchor: "start" },
-    { name: "충남",  x: 170, y: 202, anchor: "end" },
-    { name: "대전",  x: 210, y: 220, anchor: "start" },
-    { name: "전북",  x: 188, y: 254, anchor: "end" },
-    { name: "전남",  x: 174, y: 298, anchor: "end" },
-    { name: "경북",  x: 272, y: 200, anchor: "start" },
-    { name: "경남",  x: 270, y: 260, anchor: "start" },
-    { name: "부산",  x: 308, y: 292, anchor: "start" },
-    { name: "제주",  x: 210, y: 388, anchor: "start" },
+  const svgRef  = React.useRef(null);
+  const topoRef = React.useRef(null);
+
+  const REGION_DEFS = [
+    { name: "서울",  coords: [126.978, 37.566] },
+    { name: "인천",  coords: [126.705, 37.456] },
+    { name: "경기",  coords: [127.200, 37.250] },
+    { name: "강원",  coords: [128.200, 37.500] },
+    { name: "충북",  coords: [127.700, 36.800] },
+    { name: "충남",  coords: [126.800, 36.500] },
+    { name: "대전",  coords: [127.385, 36.351] },
+    { name: "전북",  coords: [127.100, 35.820] },
+    { name: "전남",  coords: [126.700, 34.650] },
+    { name: "경북",  coords: [128.700, 36.200] },
+    { name: "경남",  coords: [128.200, 35.400] },
+    { name: "부산",  coords: [129.075, 35.180] },
+    { name: "제주",  coords: [126.543, 33.499] },
   ];
+
   const SPECIALTIES = [
-    { region: "서울", icon: "💄", label: "뷰티·화장품", brands: ["아모레퍼시픽", "올리브영"], color: "#7A2541" },
-    { region: "경기 수원", icon: "🔬", label: "반도체·전자", brands: ["삼성전자"], color: "#2D2D8C" },
-    { region: "경기 판교", icon: "💻", label: "IT·플랫폼", brands: ["네이버", "카카오"], color: "#4A6FA5" },
-    { region: "대전", icon: "🍞", label: "베이커리·식품", brands: ["성심당"], color: "#5A3825" },
-    { region: "부산", icon: "☕", label: "커피·외식", brands: ["컴포즈커피"], color: "#B5321A" },
+    { region: "서울",  icon: "💄", label: "뷰티·화장품",  brands: ["아모레퍼시픽", "올리브영"], color: "#7A2541" },
+    { region: "경기",  icon: "💻", label: "IT·플랫폼",    brands: ["네이버", "카카오"],          color: "#4A6FA5" },
+    { region: "대전",  icon: "🍞", label: "베이커리·식품", brands: ["성심당"],                    color: "#5A3825" },
+    { region: "부산",  icon: "☕", label: "커피·외식",     brands: ["컴포즈커피"],                color: "#B5321A" },
+    { region: "제주",  icon: "🎮", label: "게임",          brands: ["넥슨"],                      color: "#2D5EA8" },
   ];
-  const maxCount = Math.max(...Object.values(regionData).map(r => r.count));
-  const [hovered, setHovered] = React.useState(null);
-  const sortedRegions = REGIONS
-    .map(r => ({ ...r, data: regionData[r.name] }))
-    .filter(r => r.data)
-    .sort((a, b) => b.data.count - a.data.count);
+
+  React.useEffect(() => {
+    const el = svgRef.current;
+    if (!el || !window.d3) return;
+    const d3s = window.d3;
+    const VW = 500, VH = 580;
+    const proj = d3s.geoMercator().center([127.5, 36.0]).scale(3200).translate([255, 275]);
+    const gpath = d3s.geoPath().projection(proj);
+    const maxCount = Math.max(...Object.values(regionData).map(r => r.count));
+    function rFn(cnt) { return Math.max(9, Math.min(46, Math.sqrt(cnt / maxCount) * 50)); }
+    function ns(tag, attrs) {
+      const e = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      Object.entries(attrs || {}).forEach(([k, v]) => e.setAttribute(k, String(v)));
+      return e;
+    }
+    function addTxt(parent, str, x, y, sz, fill, fw, anchor) {
+      const t = ns("text", { x, y, "font-size": sz, fill,
+        "font-weight": fw || 400, "text-anchor": anchor || "middle",
+        "dominant-baseline": "middle", "pointer-events": "none",
+        "font-family": "Pretendard Variable, Pretendard, sans-serif" });
+      t.textContent = str;
+      parent.appendChild(t);
+    }
+    function drawMap(features) {
+      while (el.firstChild) el.removeChild(el.firstChild);
+      el.setAttribute("viewBox", "0 0 " + VW + " " + VH);
+      if (features) {
+        const g = ns("g");
+        features.forEach(f => {
+          g.appendChild(ns("path", { d: gpath(f) || "",
+            fill: "#EDE9E0", stroke: "#C8C4B8",
+            "stroke-width": "0.8", "stroke-linejoin": "round" }));
+        });
+        el.appendChild(g);
+      }
+      REGION_DEFS.forEach(rd => {
+        const d = regionData[rd.name];
+        if (!d) return;
+        const [bx, by] = proj(rd.coords);
+        const cnt = d.count;
+        const rad = rFn(cnt);
+        const col = d.colors && d.colors[0] ? d.colors[0] : "#B5321A";
+        const g = ns("g", { transform: "translate(" + bx.toFixed(1) + "," + by.toFixed(1) + ")" });
+        g.style.cursor = "pointer";
+        g.appendChild(ns("circle", { r: rad + 5, fill: col, opacity: "0.08" }));
+        g.appendChild(ns("circle", { r: rad, fill: col, opacity: "0.18",
+          stroke: col, "stroke-width": "1.5" }));
+        (d.colors || []).slice(0, 2).forEach(function(c, ci) {
+          const r2 = rad - 3 - ci * 5;
+          if (r2 < 5) return;
+          g.appendChild(ns("circle", { r: r2, fill: "none", stroke: c,
+            "stroke-width": "2.5",
+            "stroke-dasharray": (r2 * 1.2).toFixed(1) + " 999",
+            opacity: "0.72" }));
+        });
+        g.appendChild(ns("circle", { r: "4", fill: col, opacity: "0.95" }));
+        const fs = Math.max(9, Math.min(13, rad * 0.48));
+        if (rad >= 22) {
+          addTxt(g, rd.name, 0, rd.name.length > 2 ? -5 : 0, fs, col, 700);
+          if (rad > 28) addTxt(g, cnt + "개사", 0, 9, 9, col, 400);
+        } else {
+          const lw = rd.name.length * fs * 0.65 + 12;
+          const lh = fs + 8;
+          const ly = rad + lh / 2 + 5;
+          g.appendChild(ns("rect", { x: (-lw/2).toFixed(1), y: (ly-lh/2).toFixed(1),
+            width: lw.toFixed(1), height: lh.toFixed(1), rx: 3,
+            fill: "rgba(255,255,255,0.92)", stroke: col,
+            "stroke-width": "0.6", "pointer-events": "none" }));
+          addTxt(g, rd.name, 0, ly.toFixed(1), fs.toFixed(1), col, 700);
+        }
+        el.appendChild(g);
+      });
+    }
+    if (topoRef.current) {
+      const topo = topoRef.current;
+      drawMap(window.topojson.feature(topo, Object.values(topo.objects)[0]).features);
+    } else {
+      fetch("https://cdn.jsdelivr.net/npm/datamaps@0.5.10/src/js/data/kor.topo.json")
+        .then(function(r) { return r.json(); })
+        .then(function(topo) {
+          topoRef.current = topo;
+          drawMap(window.topojson.feature(topo, Object.values(topo.objects)[0]).features);
+        })
+        .catch(function() { drawMap(null); });
+    }
+  }, []);
+
+  const sortedRegions = REGION_DEFS
+    .map(function(r) { return Object.assign({}, r, { data: regionData[r.name] }); })
+    .filter(function(r) { return r.data; })
+    .sort(function(a, b) { return b.data.count - a.data.count; });
+
   return (
     <main className="page">
-      <div className="hero-eyebrow"><div className="rule" /><span className="mono-eyebrow">GEOGRAPHY · 지역 지도</span></div>
-      <h1 className="hero-title" style={{ fontSize: "clamp(40px, 6vw, 72px)", marginBottom: 16 }}>로컬 비즈니스맵</h1>
+      <div className="hero-eyebrow">
+        <div className="rule" />
+        <span className="mono-eyebrow">GEOGRAPHY · 지역 지도</span>
+      </div>
+      <h1 className="hero-title" style={{ fontSize: "clamp(40px, 6vw, 72px)", marginBottom: 16 }}>
+        로컬 비즈니스맵
+      </h1>
       <p className="hero-sub" style={{ marginBottom: 36 }}>
         {totalCo}개 기업의 본사 위치로 본 한국 소비산업의 지역적 풍경.<br/>
         제주의 던전앤파이터, 부산의 컴포즈커피, 대전의 성심당.
       </p>
-      <div className="localmap-two-col" style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 32, alignItems: "start", marginBottom: 36 }}>
-        <div style={{ background: "#fff", border: "1px solid #E5E2DA", padding: "20px 12px 12px" }}>
-          <svg viewBox="0 0 480 440" style={{ width: "100%", display: "block" }}>
-            <path d={KOREA_PATH} fill="#F1EFEA" stroke="#D9D5CB" strokeWidth="1.5" strokeLinejoin="round" />
-            {REGIONS.filter(r => r.name !== "서울").map(r => {
-              const seoul = REGIONS.find(x => x.name === "서울");
-              return <line key={"s"+r.name} x1={seoul.x} y1={seoul.y} x2={r.x} y2={r.y} stroke="#D9D5CB" strokeWidth="0.7" strokeDasharray="3 4" opacity="0.5"/>;
-            })}
-            {REGIONS.map(r => {
-              const d = regionData[r.name];
-              if (!d) return null;
-              const cnt = d.count;
-              const r1 = Math.max(7, Math.min(42, Math.sqrt(cnt / maxCount) * 48));
-              const topColor = d.colors?.[0] || "#B5321A";
-              const isHov = hovered === r.name;
-              return (
-                <g key={r.name} style={{ cursor: "pointer" }} onMouseEnter={() => setHovered(r.name)} onMouseLeave={() => setHovered(null)}>
-                  <circle cx={r.x} cy={r.y} r={r1 + 5} fill="none" stroke={topColor} strokeWidth="1" opacity={isHov ? 0.4 : 0.2}/>
-                  <circle cx={r.x} cy={r.y} r={r1} fill={topColor} opacity={isHov ? 0.22 : 0.14}/>
-                  {(d.colors || []).slice(0,2).map((c, ci) => (
-                    <circle key={ci} cx={r.x} cy={r.y} r={r1 - 2 - ci*5} fill="none" stroke={c} strokeWidth={2.5} strokeDasharray={`${(r1 - 2 - ci*5)*1.1} 999`} opacity={0.65}/>
-                  ))}
-                  <circle cx={r.x} cy={r.y} r={isHov ? 4.5 : 3} fill={topColor} opacity="0.9"/>
-                  <text x={r.x + (r.anchor === "end" ? -(r1+6) : (r1+6))} y={r.y + 4} textAnchor={r.anchor === "end" ? "end" : "start"} fontSize="11" fontWeight="700" fill="#1A1A1A" fontFamily="Pretendard Variable, Pretendard, sans-serif">{r.name}</text>
-                  <text x={r.x + (r.anchor === "end" ? -(r1+6) : (r1+6))} y={r.y + 17} textAnchor={r.anchor === "end" ? "end" : "start"} fontSize="9" fill="#6B6B68" fontFamily="Pretendard Variable, Pretendard, sans-serif">{cnt}개사</text>
-                </g>
-              );
-            })}
-          </svg>
+      <div className="localmap-two-col" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 32, alignItems: "start", marginBottom: 36 }}>
+        <div style={{ background: "#FAFAF8", border: "1px solid #E5E2DA", overflow: "hidden" }}>
+          <svg ref={svgRef} style={{ width: "100%", display: "block" }} />
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <div className="mono-eyebrow" style={{ marginBottom: 8 }}>Regional Specialties</div>
-          {SPECIALTIES.map(sp => (
-            <div key={sp.region} style={{ background: "#fff", border: "1px solid #E5E2DA", borderLeft: `3px solid ${sp.color}`, padding: "16px 18px", flex: 1, minHeight: 0 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
-                <div>
+          {SPECIALTIES.map(function(sp) {
+            return (
+              <div key={sp.region} style={{ background: "#fff", border: "1px solid #E5E2DA", borderLeft: "3px solid " + sp.color, padding: "16px 18px" }}>
+                <div style={{ marginBottom: 8 }}>
                   <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: sp.color, marginBottom: 4 }}>{sp.region}</div>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <span style={{ fontSize: 20 }}>{sp.icon}</span>
                     <span style={{ fontFamily: "Fraunces, serif", fontSize: 18, fontWeight: 500, letterSpacing: "-0.02em" }}>{sp.label}</span>
                   </div>
                 </div>
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  {sp.brands.map(function(b) {
+                    return <span key={b} style={{ fontSize: 12, background: "#F7F7F7", border: "1px solid #E5E2DA", padding: "3px 10px", borderRadius: 999, color: "#2A2A28", fontWeight: 500 }}>{b}</span>;
+                  })}
+                </div>
               </div>
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                {sp.brands.map(b => (
-                  <span key={b} style={{ fontSize: 12, background: "#F7F7F7", border: "1px solid #E5E2DA", padding: "3px 10px", borderRadius: 999, color: "#2A2A28", fontWeight: 500 }}>{b}</span>
-                ))}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
       <div className="mono-eyebrow" style={{ marginBottom: 16 }}>Regional Highlights</div>
       <div className="localmap-region-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 40px" }}>
-        {sortedRegions.map(r => {
+        {sortedRegions.map(function(r) {
           const d = r.data;
-          const topColor = d.colors?.[0] || "#B5321A";
+          const topColor = d.colors && d.colors[0] ? d.colors[0] : "#B5321A";
           return (
-            <div key={r.name} style={{ borderTop: "1px solid #E5E2DA", padding: "16px 0", background: hovered === r.name ? "#F9F8F6" : "transparent", transition: "background 150ms" }} onMouseEnter={() => setHovered(r.name)} onMouseLeave={() => setHovered(null)}>
+            <div key={r.name} style={{ borderTop: "1px solid #E5E2DA", padding: "16px 0" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8 }}>
                 <div style={{ fontFamily: "Fraunces, serif", fontSize: 22, fontWeight: 500, letterSpacing: "-0.025em" }}>{r.name}</div>
                 <div className="tnum" style={{ color: topColor, fontWeight: 700, fontSize: 13 }}>{d.count}개사</div>
               </div>
               <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-                {d.companies.slice(0,4).map(name => (
-                  <span key={name} style={{ fontSize: 11, color: "#2A2A28", background: "#F1EFEA", padding: "2px 8px", borderRadius: 999 }}>{name}</span>
-                ))}
+                {d.companies.slice(0, 4).map(function(name) {
+                  return <span key={name} style={{ fontSize: 11, color: "#2A2A28", background: "#F1EFEA", padding: "2px 8px", borderRadius: 999 }}>{name}</span>;
+                })}
                 {d.companies.length > 4 && <span style={{ fontSize: 11, color: "#9A988F" }}>+{d.companies.length - 4}</span>}
               </div>
             </div>
@@ -2128,33 +2280,35 @@ function CompanyScatterChart({ companies, onView, highlightIndustry }) {
 }
 
 // ─────────────────────── Industry Bubble Map (Log Scale) ─────────────
-
 function IndustryBubbleMapLog({ industries, onPick }) {
-  const W = 1280, H = 360;
-  const pad = { l: 72, r: 40, t: 36, b: 56 };
+  const W = 1280, H = 400;
+  const pad = { l: 72, r: 40, t: 40, b: 60 };
   const iW = W - pad.l - pad.r;
   const iH = H - pad.t - pad.b;
-  const revenues = industries.map(d => d.revenue).filter(v => v > 0);
-  const logMin = Math.log10(Math.min(...revenues)) - 0.08;
-  const logMax = Math.log10(Math.max(...revenues)) + 0.08;
+
+  const revenues = industries.map(d => d.revenue);
+  const logMin = Math.log10(Math.min(...revenues)) - 0.1;
+  const logMax = Math.log10(Math.max(...revenues)) + 0.1;
+
   const margins = industries.map(d => d.avgMargin);
-  const yPad = 6;
-  const yMin = Math.min(-4, Math.min(...margins) - yPad);
-  const yMax = Math.max(18, Math.max(...margins) + yPad);
-  const sx = v => pad.l + ((Math.log10(Math.max(1, v)) - logMin) / (logMax - logMin)) * iW;
+  const yPad = 8;
+  const yMin = Math.min(-5, Math.min(...margins) - yPad);
+  const yMax = Math.max(20, Math.max(...margins) + yPad);
+
+  const sx = v => pad.l + ((Math.log10(v) - logMin) / (logMax - logMin)) * iW;
   const sy = v => pad.t + iH - ((v - yMin) / (yMax - yMin)) * iH;
-  const sz = c => Math.max(16, Math.min(40, Math.sqrt(c) * 5.5));
-  const xTicks = [1000, 3000, 5000, 10000, 30000, 50000, 100000, 300000, 500000, 1000000, 3000000];
+  const sz = c => Math.max(20, Math.min(54, Math.sqrt(c) * 8));
+
+  const xTicks = [1000, 3000, 5000, 10000, 30000, 50000, 100000, 300000, 500000, 1000000, 3000000, 5000000];
   const yTicks = [-5, 0, 5, 10, 15, 20];
   const zeroY = sy(0);
-  function fmtX(t) {
-    if (t >= 1000000) return (t/10000).toFixed(0)+"조";
-    if (t >= 10000) return (t/10000).toFixed(1)+"조";
-    return (t/1000)+"천억";
-  }
+
   return (
     <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: "block" }}>
+      {/* Zero line */}
       <line x1={pad.l} x2={W - pad.r} y1={zeroY} y2={zeroY} stroke="#B5321A" strokeDasharray="3 3" strokeWidth="1" opacity="0.4"/>
+
+      {/* Grid */}
       {yTicks.map(t => (
         <line key={t} x1={pad.l} x2={W - pad.r} y1={sy(t)} y2={sy(t)} stroke="#E5E2DA" strokeDasharray="2 4" strokeWidth="0.8"/>
       ))}
@@ -2164,32 +2318,46 @@ function IndustryBubbleMapLog({ industries, onPick }) {
       {xTicks.map(t => {
         const x = sx(t);
         if (x < pad.l - 1 || x > W - pad.r + 1) return null;
+        const label = t >= 10000000 ? (t/10000000)+"천조" : t >= 1000000 ? (t/1000000)+"백조" : t >= 10000 ? (t/10000).toFixed(1)+"조" : (t/1000)+"천억";
         return (
           <g key={t}>
             <line x1={x} x2={x} y1={pad.t} y2={pad.t + iH} stroke="#E5E2DA" strokeDasharray="2 4" strokeWidth="0.8"/>
-            <text x={x} y={pad.t + iH + 18} textAnchor="middle" fontSize="9" fill="#9A988F" fontFamily="Pretendard Variable, sans-serif">{fmtX(t)}</text>
+            <text x={x} y={pad.t + iH + 18} textAnchor="middle" fontSize="9" fill="#9A988F" fontFamily="Pretendard Variable, sans-serif">{label}</text>
           </g>
         );
       })}
-      <text x={pad.l + iW/2} y={H - 6} textAnchor="middle" fontSize="10" fill="#6B6B68" fontFamily="Pretendard Variable, sans-serif">2024 총매출 (로그 스케일)</text>
+      <text x={pad.l + iW/2} y={H - 8} textAnchor="middle" fontSize="10" fill="#6B6B68" fontFamily="Pretendard Variable, sans-serif">2024 총매출 (로그 스케일)</text>
       <text transform={`rotate(-90) translate(${-(pad.t + iH/2)}, ${pad.l - 50})`} textAnchor="middle" fontSize="10" fill="#6B6B68" fontFamily="Pretendard Variable, sans-serif">↑ 평균 영업이익률 (%)</text>
+
+      {/* Axes */}
       <line x1={pad.l} x2={W - pad.r} y1={pad.t + iH} y2={pad.t + iH} stroke="#111" strokeWidth="1.5"/>
       <line x1={pad.l} x2={pad.l} y1={pad.t} y2={pad.t + iH} stroke="#111" strokeWidth="1.5"/>
+
       {industries.map(ind => {
         const cx = sx(ind.revenue);
         const cy = sy(ind.avgMargin);
         const r = sz(ind.count);
-        const lines = ind.name.split(/[·]/).map(s => s.trim()).filter(Boolean);
+        const shortName = ind.name.length > 6 ? ind.name.replace(/·/g, '\n') : ind.name;
+        const lines = ind.name.split(/[·\s]/).filter(Boolean);
         return (
           <g key={ind.id} style={{ cursor: "pointer" }} onClick={() => onPick && onPick(ind)}>
-            <circle cx={cx} cy={cy} r={r} fill={ind.color} opacity="0.15"/>
-            <circle cx={cx} cy={cy} r={r} fill="none" stroke={ind.color} strokeWidth="1.5" opacity="0.55"/>
-            <circle cx={cx} cy={cy} r="3.5" fill={ind.color}/>
-            {lines.map((ln, li) => (
-              <text key={li} x={cx} y={cy - r - 6 + li * 13}
-                textAnchor="middle" fontSize="11" fontWeight="700"
-                fill={ind.color} fontFamily="Pretendard Variable, sans-serif">{ln}</text>
+            <circle cx={cx} cy={cy} r={r} fill={ind.color} opacity="0.18"/>
+            <circle cx={cx} cy={cy} r={r} fill="none" stroke={ind.color} strokeWidth="1.5" opacity="0.6"/>
+            <circle cx={cx} cy={cy} r="4" fill={ind.color}/>
+            {lines.slice(0,2).map((ln, li) => (
+              <text key={li} x={cx} y={cy - r - 8 + li * 14}
+                textAnchor="middle" fontSize="11.5" fontWeight="700"
+                fill={ind.color} fontFamily="Pretendard Variable, sans-serif">
+                {ln}
+              </text>
             ))}
+            {lines.length > 2 && (
+              <text x={cx} y={cy - r - 8 + 2*14}
+                textAnchor="middle" fontSize="11.5" fontWeight="700"
+                fill={ind.color} fontFamily="Pretendard Variable, sans-serif">
+                {lines.slice(2).join('·')}
+              </text>
+            )}
           </g>
         );
       })}
@@ -2197,13 +2365,12 @@ function IndustryBubbleMapLog({ industries, onPick }) {
   );
 }
 
-
 // ─────────────────────── Brand Distribution View ──────────────────────
-
 function BrandDistributionView({ onView }) {
   const inds = window.TASTE_INDUSTRIES;
   const allCos = React.useMemo(() => Object.values(window.TASTE_COMPANIES), []);
   const totalCo = allCos.length;
+
   const indStats = React.useMemo(() => {
     return inds.map(ind => {
       const cos = allCos.filter(c => c.industry === ind.id);
@@ -2212,15 +2379,23 @@ function BrandDistributionView({ onView }) {
       return { ...ind, avgMargin: Math.round(avgMargin * 10) / 10 };
     });
   }, []);
+
   const [activeInd, setActiveInd] = React.useState(null);
+
   const filteredCos = React.useMemo(() => {
     if (!activeInd) return allCos;
     return allCos.filter(c => c.industry === activeInd);
   }, [activeInd, allCos]);
+
   return (
     <main className="page">
-      <div className="hero-eyebrow"><div className="rule" /><span className="mono-eyebrow">FEATURE · 시각화</span></div>
-      <h1 className="hero-title" style={{ fontSize: "clamp(44px, 6.5vw, 88px)" }}>브랜드 비즈니스 분포도</h1>
+      <div className="hero-eyebrow">
+        <div className="rule" />
+        <span className="mono-eyebrow">FEATURE · 시각화</span>
+      </div>
+      <h1 className="hero-title" style={{ fontSize: "clamp(52px, 7vw, 96px)" }}>
+        브랜드 비즈니스 분포도
+      </h1>
       <p style={{ fontFamily: "Fraunces, serif", fontSize: 18, color: "#6B6B68", fontStyle: "italic", margin: "0 0 24px", letterSpacing: "-0.01em" }}>
         Revenue × Margin · {totalCo} companies in one picture
       </p>
@@ -2229,6 +2404,8 @@ function BrandDistributionView({ onView }) {
         있을수록 크고 남기는 회사, <strong>좌측 위</strong>는 작지만 밀도 높은 고마진, <strong>우측 아래</strong>는 매출은 크지만 이익이 얕은 구조다.
       </p>
       <div style={{ borderBottom: "1px solid #111", margin: "32px 0 40px" }} />
+
+      {/* Section ① Industry Bubble Map (log scale) */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 16 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
           <span style={{ fontFamily: "Fraunces, serif", fontSize: 28, color: "#B5321A", fontWeight: 500 }}>①</span>
@@ -2236,49 +2413,15 @@ function BrandDistributionView({ onView }) {
         </div>
         <span style={{ fontSize: 12, color: "#9A988F" }}>총매출 × 영업이익률 · 버블 크기 = 기업 수</span>
       </div>
-      <div style={{ borderTop: "1px solid #E5E2DA" }} />
-      <div style={{ background: "#fff", border: "1px solid #E5E2DA", padding: "10px 8px 4px", overflowX: "auto" }}>
+      <div style={{ borderTop: "1px solid #E5E2DA", marginBottom: 0 }} />
+      <div style={{ background: "#fff", border: "1px solid #E5E2DA", padding: "12px 8px 4px" }}>
         <IndustryBubbleMapLog industries={indStats} onPick={(ind) => onView({ name: "industry", id: ind.id })} />
       </div>
+
+      {/* Section ② All company scatter */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", margin: "56px 0 16px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
           <span style={{ fontFamily: "Fraunces, serif", fontSize: 28, color: "#B5321A", fontWeight: 500 }}>②</span>
-          <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 32, fontWeight: 500, letterSpacing: "-0.025em", margin: 0 }}>산업별 기업 분포</h2>
-        </div>
-        <span style={{ fontSize: 12, color: "#9A988F" }}>산업을 선택하면 해당 기업만 표시</span>
-      </div>
-      <div style={{ borderTop: "1px solid #E5E2DA", marginBottom: 20 }} />
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 }}>
-        <button onClick={() => setActiveInd(null)} style={{ padding: "8px 16px", borderRadius: 999, fontSize: 13, fontWeight: 600, fontFamily: "inherit", background: !activeInd ? "#111" : "#F1EFEA", color: !activeInd ? "#fff" : "#2A2A28", border: "none", cursor: "pointer", transition: "all 150ms" }}>
-          전체 ({totalCo})
-        </button>
-        {inds.map(ind => {
-          const cnt = allCos.filter(c => c.industry === ind.id).length;
-          const active = activeInd === ind.id;
-          return (
-            <button key={ind.id} onClick={() => setActiveInd(active ? null : ind.id)} style={{ padding: "8px 16px", borderRadius: 999, fontSize: 13, fontWeight: 600, fontFamily: "inherit", background: active ? ind.color : "#F1EFEA", color: active ? "#fff" : "#2A2A28", border: `2px solid ${active ? ind.color : "transparent"}`, cursor: "pointer", transition: "all 150ms" }}>
-              <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: active ? "#fff" : ind.color, marginRight: 6, verticalAlign: "middle" }} />
-              {ind.name} ({cnt})
-            </button>
-          );
-        })}
-      </div>
-      <div style={{ background: "#fff", border: "1px solid #E5E2DA", padding: "16px 8px 8px", overflowX: "auto" }}>
-        {activeInd && (
-          <div style={{ padding: "0 8px 10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: inds.find(i => i.id === activeInd)?.color || "#111" }}>
-              {inds.find(i => i.id === activeInd)?.name} — {filteredCos.length}개사
-            </div>
-            <button onClick={() => onView({ name: "industry", id: activeInd })} style={{ fontSize: 12, color: "#6B6B68", border: "1px solid #E5E2DA", padding: "5px 12px", borderRadius: 4, background: "#fff", cursor: "pointer", fontFamily: "inherit" }}>
-              산업 대시보드 →
-            </button>
-          </div>
-        )}
-        <CompanyScatterChart companies={filteredCos} onView={onView} highlightIndustry={activeInd} />
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", margin: "56px 0 16px" }}>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
-          <span style={{ fontFamily: "Fraunces, serif", fontSize: 28, color: "#B5321A", fontWeight: 500 }}>③</span>
           <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 32, fontWeight: 500, letterSpacing: "-0.025em", margin: 0 }}>전체 기업 분포도</h2>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#6B6B68" }}>
@@ -2286,21 +2429,109 @@ function BrandDistributionView({ onView }) {
           점 클릭 → 기업 상세
         </div>
       </div>
-      <div style={{ borderTop: "1px solid #E5E2DA" }} />
-      <div style={{ background: "#fff", border: "1px solid #E5E2DA", padding: "16px 8px 8px", overflowX: "auto" }}>
-        <CompanyScatterChart companies={allCos} onView={onView} highlightIndustry={null} />
+      <div style={{ borderTop: "1px solid #E5E2DA", marginBottom: 0 }} />
+      <div style={{ background: "#fff", border: "1px solid #E5E2DA", padding: "16px 8px 8px" }}>
+        <CompanyScatterChart companies={filteredCos} onView={onView} highlightIndustry={activeInd} />
+      </div>
+
+      {/* Section ③ Industry toggle */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", margin: "56px 0 16px" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
+          <span style={{ fontFamily: "Fraunces, serif", fontSize: 28, color: "#B5321A", fontWeight: 500 }}>③</span>
+          <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 32, fontWeight: 500, letterSpacing: "-0.025em", margin: 0 }}>산업별 기업 분포</h2>
+        </div>
+        <span style={{ fontSize: 12, color: "#9A988F" }}>산업을 선택하면 해당 기업만 표시</span>
+      </div>
+      <div style={{ borderTop: "1px solid #E5E2DA", marginBottom: 20 }} />
+
+      {/* Toggle buttons */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 }}>
+        <button
+          onClick={() => setActiveInd(null)}
+          style={{ padding: "8px 16px", borderRadius: 999, fontSize: 13, fontWeight: 600, fontFamily: "inherit",
+            background: !activeInd ? "#111" : "#F1EFEA",
+            color: !activeInd ? "#fff" : "#2A2A28",
+            border: "none", cursor: "pointer", transition: "all 150ms" }}>
+          전체 ({totalCo})
+        </button>
+        {inds.map(ind => {
+          const cnt = allCos.filter(c => c.industry === ind.id).length;
+          const active = activeInd === ind.id;
+          return (
+            <button key={ind.id}
+              onClick={() => setActiveInd(active ? null : ind.id)}
+              style={{ padding: "8px 16px", borderRadius: 999, fontSize: 13, fontWeight: 600, fontFamily: "inherit",
+                background: active ? ind.color : "#F1EFEA",
+                color: active ? "#fff" : "#2A2A28",
+                border: `2px solid ${active ? ind.color : "transparent"}`,
+                cursor: "pointer", transition: "all 150ms" }}>
+              <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: active ? "#fff" : ind.color, marginRight: 6, verticalAlign: "middle" }} />
+              {ind.name} ({cnt})
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Filtered scatter */}
+      {activeInd && (
+        <div style={{ background: "#fff", border: "1px solid #E5E2DA", padding: "16px 8px 8px", marginBottom: 32 }}>
+          <div style={{ padding: "0 8px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: inds.find(i => i.id === activeInd)?.color || "#111" }}>
+              {inds.find(i => i.id === activeInd)?.name} — {filteredCos.length}개사
+            </div>
+            <button onClick={() => onView({ name: "industry", id: activeInd })}
+              style={{ fontSize: 12, color: "#6B6B68", border: "1px solid #E5E2DA", padding: "5px 12px", borderRadius: 4, background: "#fff", cursor: "pointer", fontFamily: "inherit" }}>
+              산업 대시보드 →
+            </button>
+          </div>
+          <CompanyScatterChart companies={filteredCos} onView={onView} highlightIndustry={null} />
+        </div>
+      )}
+
+      {/* Industry ranking table */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", margin: "48px 0 16px" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
+          <span style={{ fontFamily: "Fraunces, serif", fontSize: 28, color: "#B5321A", fontWeight: 500 }}>④</span>
+          <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 32, fontWeight: 500, letterSpacing: "-0.025em", margin: 0 }}>산업별 수익성 비교</h2>
+        </div>
+        <span style={{ fontSize: 12, color: "#9A988F" }}>2024 기준 · 평균 영업이익률 내림차순</span>
+      </div>
+      <div style={{ borderTop: "1px solid #E5E2DA", marginBottom: 0 }} />
+      <div style={{ background: "#fff", border: "1px solid #E5E2DA" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "44px 1.8fr 1fr 1fr 1fr", padding: "10px 20px", background: "#F7F7F7", fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9A988F", borderBottom: "1px solid #E5E2DA" }}>
+          <span>#</span><span>산업</span><span style={{textAlign:"right"}}>합산 매출</span><span style={{textAlign:"right"}}>기업 수</span><span style={{textAlign:"right"}}>평균 이익률</span>
+        </div>
+        {[...indStats].sort((a,b) => b.avgMargin - a.avgMargin).map((ind, i) => (
+          <div key={ind.id} onClick={() => onView({ name: "industry", id: ind.id })}
+            style={{ display: "grid", gridTemplateColumns: "44px 1.8fr 1fr 1fr 1fr", padding: "15px 20px", borderBottom: "1px solid #F0EDE8", cursor: "pointer" }}
+            onMouseEnter={e => e.currentTarget.style.background="#F9F8F6"}
+            onMouseLeave={e => e.currentTarget.style.background="transparent"}>
+            <span style={{ fontFamily: "Fraunces, serif", color: "#9A988F", fontSize: 14 }}>{String(i+1).padStart(2,"0")}</span>
+            <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span style={{ width: 10, height: 10, borderRadius: "50%", background: ind.color, display: "inline-block" }} />
+              <span style={{ fontWeight: 600, fontSize: 14 }}>{ind.name}</span>
+            </span>
+            <span className="tnum" style={{ textAlign: "right", fontFamily: "Fraunces, serif", fontSize: 15, fontWeight: 500 }}>
+              {ind.revenue >= 10000 ? (ind.revenue/10000).toFixed(1)+"조" : Math.round(ind.revenue).toLocaleString()+"억"}
+            </span>
+            <span className="tnum" style={{ textAlign: "right", fontSize: 14, color: "#6B6B68" }}>{ind.count}개사</span>
+            <span className="tnum" style={{ textAlign: "right", fontFamily: "Fraunces, serif", fontSize: 16, fontWeight: 500,
+              color: ind.avgMargin > 15 ? "#1A6B5A" : ind.avgMargin > 5 ? "#111" : "#B5321A" }}>
+              {ind.avgMargin > 0 ? "+" : ""}{ind.avgMargin.toFixed(1)}%
+            </span>
+          </div>
+        ))}
       </div>
     </main>
   );
 }
-
 
   
 
 function IndustryScaleTable({ onView }) {
   const MODES = [
     { key: "revenue",     label: "합산 매출 순",    sub: "2024 누적 매출 기준" },
-    { key: "revGrowth",   label: "3년 매출 성장률",  sub: "2021→2024 연평균 성장률 (CAGR)" },
+    { key: "revGrowth",   label: "매출 성장률",  sub: "2021→2024 연평균 성장률 (CAGR)" },
     { key: "profGrowth",  label: "영업이익 성장률",  sub: "2021→2024 영업이익 변화율" },
     { key: "stockGrowth", label: "주가 성장률",      sub: "상장사 2021→2024 주가 변화" },
   ];
