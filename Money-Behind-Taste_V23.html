@@ -2968,4 +2968,15 @@ function App() {
       <TopNav view={view} onView={handleView} />
       {view.name === "home"         && <HomeView onView={handleView} />}
       {view.name === "distribution" && <BrandDistributionView onView={handleView} />}
-      {view.name === "industry"     && <IndustryView industryId={view.id} onV
+      {view.name === "industry"     && <IndustryView industryId={view.id} onView={handleView} />}
+      {view.name === "company"      && <CompanyView companyId={view.id} onView={handleView} />}
+      {view.name === "bizmap"       && <BizMapView onView={handleView} />}
+      {view.name === "story"        && <StoryView onView={handleView} />}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
