@@ -476,6 +476,38 @@ a { color: inherit; text-decoration: none; }
 .co-table .pos { color: var(--mbt-green); font-weight: 600; }
 .co-table .neg { color: var(--mbt-brick); font-weight: 600; }
 .co-table .arrow { color: var(--mbt-gray-2); text-align: right; }
+@media (max-width: 640px) {
+  .co-table .row {
+    grid-template-columns: 30px 1fr auto 24px;
+    padding: 12px 14px;
+    gap: 0 8px;
+  }
+  .co-table .row .col-margin,
+  .co-table .row .col-growth,
+  .co-table .row .col-emp { display: none; }
+  .co-table .row.head .col-margin,
+  .co-table .row.head .col-growth,
+  .co-table .row.head .col-emp { display: none; }
+  .co-table .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+
+/* Revenue chart + table responsive grid */
+.rev-chart-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+@media (max-width: 640px) {
+  .rev-chart-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .ind-hero { grid-template-columns: 1fr; gap: 24px; }
+  .dash-grid { grid-template-columns: 1fr; }
+  .ind-hero h1 { font-size: 48px; }
+}
 
 /* ───── Company detail ───── */
 .co-hero {
@@ -1684,7 +1716,7 @@ function IndustryView({ industryId, onView }) {
       </div>
       <div className="co-table">
         <div className="row head">
-          <span>#</span><span>기업명</span><span>매출 (2024)</span><span>영업이익률</span><span>5Y 성장률</span><span>직원 수</span><span></span>
+          <span>#</span><span>기업명</span><span>매출 (2024)</span><span className="col-margin">영업이익률</span><span className="col-growth">5Y 성장률</span><span className="col-emp">직원 수</span><span></span>
         </div>
         {allSorted.map((c, i) => {
           const coData = window.TASTE_COMPANIES[c.name] || {};
@@ -1695,11 +1727,14 @@ function IndustryView({ industryId, onView }) {
           return (
             <div key={c.name} className="row" onClick={() => isFeature && onView({ name: "company", id: c.name })}>
               <span className="rank tnum">{String(i + 1).padStart(2, "0")}</span>
-              <span className="name">{c.name} {isFeature && <span style={{ marginLeft: 6, fontSize: 9, padding: "2px 6px", background: ind.color, color: "#fff", borderRadius: 2, letterSpacing: "0.06em" }}>FEATURED</span>}</span>
+              <span className="name" style={{ display: "flex", alignItems: "center", gap: 6, minWidth: 0 }}>
+                <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.name}</span>
+                {window.TASTE_STOCK && window.TASTE_STOCK[c.name] && <span style={{ flexShrink: 0, fontSize: 9, padding: "2px 6px", background: ind.color, color: "#fff", borderRadius: 2, letterSpacing: "0.06em" }}>상장사</span>}
+              </span>
               <span className="num tnum">{fmtKR(c.v)}</span>
-              <span className={"num tnum " + (parseFloat(margin) >= 10 ? "pos" : "")}>{margin}%</span>
-              <span className={"num tnum " + (parseFloat(growth) > 0 ? "pos" : "neg")}>{parseFloat(growth) > 0 ? "+" : ""}{growth}%</span>
-              <span className="num tnum" style={{ color: "#6B6B68" }}>{emp.toLocaleString()}</span>
+              <span className={"num tnum col-margin " + (parseFloat(margin) >= 10 ? "pos" : "")}>{margin}%</span>
+              <span className={"num tnum col-growth " + (parseFloat(growth) > 0 ? "pos" : "neg")}>{parseFloat(growth) > 0 ? "+" : ""}{growth}%</span>
+              <span className="num tnum col-emp" style={{ color: "#6B6B68" }}>{emp.toLocaleString()}</span>
               <span className="arrow">→</span>
             </div>
           );
@@ -1844,7 +1879,7 @@ function CompanyView({ companyId, onView }) {
             <div className="item"><div className="sw" style={{ background: "#1A6B5A" }} />영업이익률 (%)</div>
           </div>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 20, alignItems: "start", marginBottom: 24 }}>
+        <div className="rev-chart-grid">
           <RevenueProfitChart data={co} color={ind.color} />
           <RevenueTable data={co} color={ind.color} />
         </div>
@@ -2933,23 +2968,4 @@ function App() {
       <TopNav view={view} onView={handleView} />
       {view.name === "home"         && <HomeView onView={handleView} />}
       {view.name === "distribution" && <BrandDistributionView onView={handleView} />}
-      {view.name === "industry"     && <IndustryView industryId={view.id} onView={handleView} />}
-      {view.name === "company"      && <CompanyView companyId={view.id} onView={handleView} />}
-      {view.name === "map"          && <LocalMapView onView={handleView} />}
-      {view.name === "story"        && <StoryMode onView={handleView} />}
-      {view.name !== "story" && (
-        <footer className="footer">
-          <div>© 2026 Money Behind Taste · 데이터 출처: DART 전자공시</div>
-          <div>《좋아하는 것들의 재무제표》 · 2026.10 출간 예정</div>
-        </footer>
-      )}
-    </>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-
-  
-  </script>
-</body>
-</html>
+      {view.name === "industry"     && <IndustryView industryId={view.id} onV
