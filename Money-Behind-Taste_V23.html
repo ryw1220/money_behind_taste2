@@ -988,11 +988,12 @@ function RevenueTable({ data, color }) {
         textTransform: "uppercase", color: "#9A988F", borderBottom: "1px solid #E5E2DA" }}>
         <span>연도</span>
         <span style={{ textAlign: "right" }}>매출 (억)</span>
-        <span style={{ textAlign: "right" }}>이익률</span>
+        <span style={{ textAlign: "right" }}>영업이익 (억)</span>
       </div>
       {years.map((y) => {
         const rev = data.revenue[y];
         const margin = data.margins[y];
+        const profit = Math.round(rev * margin / 100);
         const isLatest = y === latestActual;
         const isEst = parseInt(y) >= 2025;
         return (
@@ -1012,7 +1013,7 @@ function RevenueTable({ data, color }) {
             <span className="tnum" style={{ textAlign: "right", fontFamily: "Fraunces, serif",
               fontSize: 14, fontWeight: isLatest ? 600 : 400,
               color: margin > 15 ? "#1A6B5A" : margin > 5 ? "#111" : "#B5321A" }}>
-              {margin > 0 ? "+" : ""}{margin.toFixed(1)}%
+              {profit > 0 ? "" : ""}{profit.toLocaleString()}
             </span>
           </div>
         );
@@ -1135,7 +1136,7 @@ function RevenueProfitChart({ data, color = "#B5321A" }) {
 function StockChart({ data, color = "#1A6B5A" }) {
   const [hover, setHover] = React.useState(null);
   const W = 720, H = 300;
-  const pad = { l: 50, r: 50, t: 24, b: 46 };
+  const pad = { l: 50, r: 50, t: 24, b: 58 };
   const iW = W - pad.l - pad.r;
   const iH = H - pad.t - pad.b;
   const ps = data.map(d => d.p);
@@ -1150,13 +1151,13 @@ function StockChart({ data, color = "#1A6B5A" }) {
   const first = data[0].p, last = data[data.length - 1].p;
   const ret = ((last - first) / first) * 100;
 
-  // 분기별 x축 라벨 (3개월마다)
+  // 반기별 x축 라벨 (6개월마다)
   function fmtM(m) {
     if (!m) return "";
     const [yyyy, mm] = m.split("-");
     return `${yyyy.slice(2)}년 ${parseInt(mm)}월`;
   }
-  const quarterIdx = data.map((d, i) => i).filter(i => i % 3 === 0);
+  const quarterIdx = data.map((d, i) => i).filter(i => i % 6 === 0);
 
   // hover 툴팁 위치 보정
   const tipX = hover !== null ? x(hover) : 0;
@@ -1189,7 +1190,7 @@ function StockChart({ data, color = "#1A6B5A" }) {
         return (
           <g key={i}>
             <line x1={xi} x2={xi} y1={pad.t + iH} y2={pad.t + iH + 4} stroke="#9A988F" strokeWidth="0.8"/>
-            <text x={xi} y={pad.t + iH + 16} textAnchor="middle" fontSize="9.5" fill="#6B6B68"
+            <text x={xi} y={pad.t + iH + 20} textAnchor="middle" fontSize="13" fill="#6B6B68"
               fontFamily="Pretendard Variable, sans-serif">
               {m}
             </text>
@@ -1913,11 +1914,11 @@ function CompanyView({ companyId, onView }) {
                   ["PER (추정)", perStr, "per"],
                 ];
                 return (
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 0, marginTop: 24, borderTop: "1px solid #E5E2DA", paddingTop: 18 }}>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "16px 0", marginTop: 24, borderTop: "1px solid #E5E2DA", paddingTop: 18 }}>
                     {metrics.map(([l, v, type]) => (
-                      <div key={l}>
-                        <div style={{ fontSize: 10, color: "#9A988F", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 6 }}>{l}</div>
-                        <div className="tnum" style={{ fontFamily: "Fraunces, serif", fontSize: 20, fontWeight: 500,
+                      <div key={l} style={{ flex: "1 1 20%", minWidth: 80, paddingRight: 8 }}>
+                        <div style={{ fontSize: 10, color: "#9A988F", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 5, whiteSpace: "nowrap" }}>{l}</div>
+                        <div className="tnum" style={{ fontFamily: "Fraunces, serif", fontSize: 18, fontWeight: 500,
                           color: type === "ret" && parseFloat(v) > 0 ? "#1A6B5A" : type === "ret" ? "#B5321A" : type === "per" && perVal != null ? "#2A2A28" : "#111" }}>
                           {type === "ret" && parseFloat(v) > 0 ? "+" : ""}{v}
                         </div>
