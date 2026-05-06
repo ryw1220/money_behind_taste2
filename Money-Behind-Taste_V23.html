@@ -564,10 +564,14 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid var(--mbt-line);
   margin-bottom: 48px;
 }
+@media (max-width: 640px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 .kpi {
-  padding: 28px 28px 28px 0;
+  padding: 28px 16px 24px 24px;
   border-right: 1px solid var(--mbt-line);
-  padding-left: 24px;
 }
 .kpi:first-child { padding-left: 0; }
 .kpi:last-child { border-right: none; }
@@ -616,6 +620,11 @@ a { color: inherit; text-decoration: none; }
 
 /* Two-up grid */
 .two-up { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; margin-bottom: 24px; }
+@media (max-width: 640px) {
+  .two-up { grid-template-columns: 1fr; }
+  .chart-card { padding: 22px 18px 20px; }
+  .chart-card .head h3 { font-size: 22px; }
+}
 
 /* Brand cards */
 .brand-grid {
@@ -2971,8 +2980,8 @@ function App() {
       {view.name === "distribution" && <BrandDistributionView onView={handleView} />}
       {view.name === "industry"     && <IndustryView industryId={view.id} onView={handleView} />}
       {view.name === "company"      && <CompanyView companyId={view.id} onView={handleView} />}
-      {view.name === "bizmap"       && <BizMapView onView={handleView} />}
-      {view.name === "story"        && <StoryView onView={handleView} />}
+      {view.name === "map"          && <LocalMapView onView={handleView} />}
+      {view.name === "story"        && <StoryMode onView={handleView} />}
     </>
   );
 }
