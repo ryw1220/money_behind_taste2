@@ -1,8 +1,8 @@
 (function () {
-  const STAGING_API = "https://mbt-public-api-staging.ryw1220.workers.dev";
+  const PRODUCTION_API = "https://mbt-public-api.ryw1220.workers.dev";
   const host = window.location.hostname;
-  const MBT_API_BASE = host.endsWith(".workers.dev") ? "" : STAGING_API;
-  const MBT_CLIENT_RELEASE = "MBT-WEB-2026-RC2";
+  const MBT_API_BASE = host.endsWith(".workers.dev") ? "" : PRODUCTION_API;
+  const MBT_CLIENT_RELEASE = "MBT-WEB-2026-RC3";
   const MBT_INDUSTRY_MAP_VERSION = "MBT-12-INDUSTRY-MAP-2026-V1";
 
   const MBT_RAW_INDUSTRY_MAP = {
