@@ -2170,10 +2170,11 @@ function CompanyView({ companyId, onView }) {
   const prevMargin = co.margins[prevYear] || 0;
   const marginDelta = lastMargin - prevMargin;
 
-  // Stock — pick parent if listed
-  const stockKey = window.TASTE_STOCK[co.name] ? co.name : null;
+  // Stock — use the company itself first, then a disclosed parent/operator reference.
+  const stockKey = window.TASTE_STOCK[co.name] ? co.name : co.parent && window.TASTE_STOCK[co.parent] ? co.parent : null;
   const stock = stockKey ? window.TASTE_STOCK[stockKey] : null;
   const stockReturn = stock ? ((stock[stock.length - 1].p - stock[0].p) / stock[0].p) * 100 : null;
+  const stockContext = co.financialScope === "operator_company" ? "운영사" : co.parent ? "모기업" : "해당 기업";
 
   return (
     <main className="page">
@@ -2232,7 +2233,7 @@ function CompanyView({ companyId, onView }) {
               <div className="val tnum" style={{ color: stockReturn > 0 ? "#1A6B5A" : "#B5321A" }}>
                 {stockReturn > 0 ? "+" : ""}{stockReturn.toFixed(1)}<span className="u">%</span>
               </div>
-              <div className="delta" style={{ color: "#6B6B68" }}>모기업 {stockKey} 기준</div>
+              <div className="delta" style={{ color: "#6B6B68" }}>{stockContext} {stockKey} 기준</div>
             </>
           ) : (
             <>
@@ -2288,7 +2289,7 @@ function CompanyView({ companyId, onView }) {
             <h3>주가 흐름 · 36개월</h3>
           </div>
           {stock
-            ? <div style={{ fontSize: 12, color: "#6B6B68" }}>{`모기업 ${stockKey} 기준`}</div>
+            ? <div style={{ fontSize: 12, color: "#6B6B68" }}>{`${stockContext} ${stockKey} 기준`}</div>
             : <div style={{ fontSize: 11, fontWeight: 700, color: "#2A2A28", background: "#E5E2DA", padding: "3px 10px", borderRadius: 20, letterSpacing: "0.04em" }}>비상장</div>
           }
         </div>
