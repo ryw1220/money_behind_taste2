@@ -1,0 +1,1804 @@
+{
+  "_meta": {
+    "generatedAt": "2026-08-30T03:21:05.880Z",
+    "purpose": "Career comparison prototype only",
+    "sourceDatabase": "outputs/company_financial_database/money_behind_taste.sqlite3",
+    "publicRosterCompanies": 540,
+    "sourceCompaniesWithConfirmedTenure": 199,
+    "matchedPublicCompanies": 199,
+    "unit": "years"
+  },
+  "rows": [
+    {
+      "publicId": "mbt_02fbcb07b8b6e7e7",
+      "displayName": "(주)엔에이치엔벅스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.2855357142857144,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_39dfc9e1d21d3a0e",
+      "displayName": "APR",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.2,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_54e69ce4f8743396",
+      "displayName": "BGF리테일",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.564792332268371,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_7058d9974b9b746a",
+      "displayName": "CJ CGV",
+      "fiscalYear": 2025,
+      "averageTenureYears": 10.790234375,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_fc7dd0bf523282cd",
+      "displayName": "CJ ENM",
+      "fiscalYear": 2025,
+      "averageTenureYears": 6.884165324745035,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_68d697a0c1594994",
+      "displayName": "CJ제일제당",
+      "fiscalYear": 2025,
+      "averageTenureYears": 9.342189018464527,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_1fca92438c60fe6b",
+      "displayName": "F&F(MLB·디스커버리)",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.411119711042312,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_22d14ca67454da5a",
+      "displayName": "GS 리테일",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.738978641840086,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_e8d256c70fdd2c70",
+      "displayName": "HS애드",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.337483617300131,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_2bd1468e6791dbde",
+      "displayName": "JYP엔터테인먼트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.206317204301075,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_8526305a8a14b1f0",
+      "displayName": "KGM모빌리티",
+      "fiscalYear": 2025,
+      "averageTenureYears": 25.314832767813865,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_2f75a50a29004808",
+      "displayName": "KT",
+      "fiscalYear": 2025,
+      "averageTenureYears": 19.272940616284608,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_1fc5900ddb808f5e",
+      "displayName": "LF",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.961868131868132,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_ccf08ef30bd4270f",
+      "displayName": "LG생활건강",
+      "fiscalYear": 2025,
+      "averageTenureYears": 15.11133815100922,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_683d423e85522836",
+      "displayName": "LG유플러스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.312800819252432,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_367cea37bfb7c328",
+      "displayName": "NEW",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.1386111111111115,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_6dfabb1a00c1976f",
+      "displayName": "SBS",
+      "fiscalYear": 2025,
+      "averageTenureYears": 16.636538461538464,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_421b594b66187915",
+      "displayName": "SK디앤디",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.6006622516556295,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_85fff6201120b78d",
+      "displayName": "SK매직",
+      "fiscalYear": 2025,
+      "averageTenureYears": 6.6045454545454545,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_5e86cc2c733ba7d3",
+      "displayName": "SK텔레콤",
+      "fiscalYear": 2025,
+      "averageTenureYears": 13.696106094808126,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_cb54ef18b5883a50",
+      "displayName": "SK하이닉스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 13.432906885872239,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_5a1f3a8e6132ecac",
+      "displayName": "SM엔터테인먼트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.100980392156862,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_1b5870bf4f7ac29a",
+      "displayName": "SSL중앙",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.223039215686275,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_eabf8d86d51ff414",
+      "displayName": "VT(브이티)",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.2569193742478943,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_8c586de286fb1e68",
+      "displayName": "YBM",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.474606741573034,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b91060c26a6b8c5e",
+      "displayName": "YG엔터테인먼트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.9490410958904105,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_e4730e7c9b60a2ab",
+      "displayName": "YG플러스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.8058823529411767,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_ef2169527de690bf",
+      "displayName": "YTN",
+      "fiscalYear": 2025,
+      "averageTenureYears": 14.856298317417007,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_0195fd10d5a2371a",
+      "displayName": "가비아",
+      "fiscalYear": 2025,
+      "averageTenureYears": 6.38127659574468,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_8d9df78b860aca4a",
+      "displayName": "감성코퍼레이션",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.0262626262626267,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_93b7a0ab03e7aba4",
+      "displayName": "강원랜드",
+      "fiscalYear": 2025,
+      "averageTenureYears": 12.287250305748064,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_85db7920f9409d2b",
+      "displayName": "경동나비엔",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.256989619377162,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_7d4966499e781586",
+      "displayName": "경향신문사",
+      "fiscalYear": 2025,
+      "averageTenureYears": 16.8007005899705,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_f02ded7c2dbe3c49",
+      "displayName": "골든블루",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.661458333333334,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_662306de8b854cc6",
+      "displayName": "골프존",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.648821292775666,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_aa4f37107aeff171",
+      "displayName": "교촌치킨",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.148123620309051,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_14d0e52e6dcea89c",
+      "displayName": "국보디자인",
+      "fiscalYear": 2025,
+      "averageTenureYears": 6.860851505711319,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_1b6028d99fa84a91",
+      "displayName": "국순당",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.672288359788359,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_727a99fd0090ff9c",
+      "displayName": "기아차",
+      "fiscalYear": 2025,
+      "averageTenureYears": 20.75669747853197,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_10f4b4e27c1eb5fa",
+      "displayName": "남양유업",
+      "fiscalYear": 2025,
+      "averageTenureYears": 13.708004851425109,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b4c212016a3e4e31",
+      "displayName": "네이버",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.659203487220131,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_71a1f868d882185f",
+      "displayName": "넵튠",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.8928,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_8b21a907e29c4a69",
+      "displayName": "노랑풍선",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.355947136563876,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_d8159d96c5877811",
+      "displayName": "노머스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 1.6067857142857143,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_ccdefe4b352089d3",
+      "displayName": "노브랜드",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.391472868217054,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_c37e57a06f2b8c51",
+      "displayName": "농심",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.099181966915106,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_dc3e2022c7e3a387",
+      "displayName": "뉴발란스코리아",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.306784439685939,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_e66c1b44b90d1f8a",
+      "displayName": "다날",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.1466666666666665,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_a5341fe5425f5a17",
+      "displayName": "달바글로벌",
+      "fiscalYear": 2025,
+      "averageTenureYears": 1.6847290640394088,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_513e265ed8ec22fe",
+      "displayName": "당근마켓",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.2624521072796933,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_4533fe001b6b6a55",
+      "displayName": "대교",
+      "fiscalYear": 2025,
+      "averageTenureYears": 13.558541754980926,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_48b2fe572277488c",
+      "displayName": "대상",
+      "fiscalYear": 2025,
+      "averageTenureYears": 12.173211254732994,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_fb6be481c95f4850",
+      "displayName": "대원미디어",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.877941176470588,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_4f51b734e870be1c",
+      "displayName": "대한항공",
+      "fiscalYear": 2025,
+      "averageTenureYears": 18.36275794300688,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_7e4e426767b4b804",
+      "displayName": "더 존 비즈온",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.103025302530253,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_7733a75f400b5f59",
+      "displayName": "더네이처홀딩스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.672723475355054,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_7ea5230eb2d5eefe",
+      "displayName": "더본코리아",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.389627039627039,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_75d1465c87d27a2d",
+      "displayName": "데이원컴퍼니",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.0254491017964074,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_54d42e6014a43402",
+      "displayName": "도이치모터스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.909104367135456,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_302f15449d3a239f",
+      "displayName": "두나무",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.9631034482758616,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_021ad0e6b5a2f988",
+      "displayName": "듀오백",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.682352941176471,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_2a197c2aaf002903",
+      "displayName": "드림어스컴퍼니",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.183068783068784,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_8480e472eeccaf96",
+      "displayName": "디앤씨미디어",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.4239482200647244,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_a3df390be436c272",
+      "displayName": "디지털조선",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.798571428571428,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_aee113f148878396",
+      "displayName": "디지털타임스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 6.78939393939394,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_67e5012f550e1234",
+      "displayName": "락앤락",
+      "fiscalYear": 2024,
+      "averageTenureYears": 7.484229390681003,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_f31accde3d8b47ed",
+      "displayName": "래드캡투어",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.374515503875967,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_ed265f8e1d153028",
+      "displayName": "로보락(팅크웨어)",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.897972116603295,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b5b2aca72c3d6583",
+      "displayName": "롯데쇼핑",
+      "fiscalYear": 2025,
+      "averageTenureYears": 12.54866192411924,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_315f658d5743cae8",
+      "displayName": "롯데월드",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.98486813661911,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_01187a1bfff8ec2f",
+      "displayName": "롯데웰푸드",
+      "fiscalYear": 2025,
+      "averageTenureYears": 14.349751072961373,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_291839d55f401432",
+      "displayName": "롯데하이마트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 9.693480755649716,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_06eb37b017885730",
+      "displayName": "롯데호텔",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.98486813661911,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_50481dcd4bdff415",
+      "displayName": "마녀공장",
+      "fiscalYear": 2025,
+      "averageTenureYears": 1.9166666666666667,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_56c6da06a10b37ab",
+      "displayName": "매일유업",
+      "fiscalYear": 2025,
+      "averageTenureYears": 13.933420093701196,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_89da0f4085d52b45",
+      "displayName": "메가스터디교육",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.471328671328671,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_6aeaf605a36332fc",
+      "displayName": "메쎄이상",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.2953125,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_ee5d42c6b3b51740",
+      "displayName": "모나미",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.013574660633484,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_ba6de74cbe0d70ac",
+      "displayName": "모두투어",
+      "fiscalYear": 2025,
+      "averageTenureYears": 14.221319796954313,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_a376de19d781928a",
+      "displayName": "무신사",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.706595365418895,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_4ef0c94a43636cbf",
+      "displayName": "미래엔",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.91206675224647,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b1980eaf0a773697",
+      "displayName": "미트박스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.845833333333333,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_9075e25348d8c551",
+      "displayName": "밀리의 서재",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.341628959276018,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_23bf9ad8b61885f3",
+      "displayName": "바디프랜드",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.7480978865406005,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_a036f8e1c0a9f253",
+      "displayName": "바디프렌드",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.7480978865406005,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_36cd8cd437088ff2",
+      "displayName": "바이브컴퍼니",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.365151515151515,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_cd91314bd0733e51",
+      "displayName": "배럴",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.5179324894514767,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_3c110b8cfd59ac6c",
+      "displayName": "보령",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.69468085106383,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_07bbd070cd553771",
+      "displayName": "보해양조",
+      "fiscalYear": 2025,
+      "averageTenureYears": 13.136563876651982,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_2923966121a4dd39",
+      "displayName": "불스원",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.441434262948206,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_44cb2333990d0b9b",
+      "displayName": "비상교육",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.589583333333333,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_a472086d61c2aa64",
+      "displayName": "빙그레",
+      "fiscalYear": 2025,
+      "averageTenureYears": 10.583183183183182,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_a0b52947342f1a63",
+      "displayName": "사람인",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.3761904761904775,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_5170ef71d6545571",
+      "displayName": "삼성물산 패션부문",
+      "fiscalYear": 2025,
+      "averageTenureYears": 15.013529856386999,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_28121cf5c5b6cb79",
+      "displayName": "삼성출판사",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.242009132420091,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_fe6e03e59eed1167",
+      "displayName": "삼양식품",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.444765840220386,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_cccf4e41011f8707",
+      "displayName": "삼천리자전거",
+      "fiscalYear": 2025,
+      "averageTenureYears": 13.339252336448597,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b975d250e85299a5",
+      "displayName": "삼표시멘트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 17.175808936825888,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_3953158a0d3958fd",
+      "displayName": "샘표",
+      "fiscalYear": 2025,
+      "averageTenureYears": 17.2,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_8ccb12da2d3d3d9c",
+      "displayName": "서울신문사",
+      "fiscalYear": 2021,
+      "averageTenureYears": 15.178082191780822,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b6268fc639fc8a36",
+      "displayName": "서울옥션",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.172571428571429,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_5c4b576ef78b1513",
+      "displayName": "선샤인푸드",
+      "fiscalYear": 2024,
+      "averageTenureYears": 1.5555555555555558,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_40532318e2a0bdb3",
+      "displayName": "세븐브로이맥주",
+      "fiscalYear": 2025,
+      "averageTenureYears": 1.5037037037037038,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_0f8b3d9f603b2679",
+      "displayName": "손오공",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.46875,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_ba4d06299ce9c372",
+      "displayName": "슈피겐코리아",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.317617866004963,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_c8855d7c4e9eecf2",
+      "displayName": "스튜디오드래곤",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.760335195530725,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_d657623bc376fde5",
+      "displayName": "시디즈",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.029411764705882,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_5eaffd972fcb13d9",
+      "displayName": "시프트업",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.4577710843373493,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_18bd58c21f7d3520",
+      "displayName": "신세계인터내셔날",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.445756457564576,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_ecd0e703daaeb415",
+      "displayName": "신세계인터내셔날(딥디크)",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.445756457564576,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_764f757047bed2d7",
+      "displayName": "실리콘투",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.8633333333333333,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_eca9a4b80cbde191",
+      "displayName": "쏘카",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.774599542334096,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_6a26f20fbc241266",
+      "displayName": "씨앤씨인터내셔널",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.766516516516516,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_f802afbf78916932",
+      "displayName": "아난티",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.1421428571428573,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_1954a93cc0c7c74d",
+      "displayName": "아로마티카",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.696078431372549,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_3ca24e21dc4f605d",
+      "displayName": "아모레퍼시픽",
+      "fiscalYear": 2025,
+      "averageTenureYears": 13.714932603201348,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_816c1a87e3472383",
+      "displayName": "아시아경제",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.564102564102564,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_0f1c296161faf69c",
+      "displayName": "아시아나항공",
+      "fiscalYear": 2025,
+      "averageTenureYears": 16.332557828586708,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_902067f2d6683ad2",
+      "displayName": "아이스크림 에듀",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.093916349809887,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_e1aea2f972f14a58",
+      "displayName": "아이에스동서",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.69421101774043,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_f083e45df58620f1",
+      "displayName": "아이패밀리에스씨",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.9014844804318494,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_5c81921c19eea798",
+      "displayName": "애니플러스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.117647058823529,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_3a4a3617e93bec3d",
+      "displayName": "야나두",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.1305607476635515,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_a99ce60fe48ae28e",
+      "displayName": "야놀자 (놀)",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.801470588235294,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_7fdcba8560205deb",
+      "displayName": "에넥스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 13.358695652173912,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b200999bc48058b1",
+      "displayName": "에버랜드(삼성물산 리조트)",
+      "fiscalYear": 2025,
+      "averageTenureYears": 15.013529856386999,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_f9f9d2b01ad6e0c2",
+      "displayName": "에브리봇 (로봇청소기)",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.122448979591837,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_629bf09caf076a2a",
+      "displayName": "에이블씨엔씨",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.460645161290323,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_9aa39d77d5e11944",
+      "displayName": "에이스침대",
+      "fiscalYear": 2025,
+      "averageTenureYears": 9.725581395348838,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_1a86de5b2e5bf39b",
+      "displayName": "에코마케팅",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.25,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_70a4ab90806018dc",
+      "displayName": "엔씨소프트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.470171673819743,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_ba93f0148f121a93",
+      "displayName": "엔이능률",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.094573643410852,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_18502298f72556cf",
+      "displayName": "영원무역",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.794871794871795,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b627605f10ddf3ff",
+      "displayName": "예림당",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.272727272727273,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_66a9290093076825",
+      "displayName": "예스24",
+      "fiscalYear": 2025,
+      "averageTenureYears": 6.801144492131617,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_d81fecb937b37977",
+      "displayName": "오뚜기",
+      "fiscalYear": 2025,
+      "averageTenureYears": 9.645808736717827,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b372a6dd60e9f942",
+      "displayName": "오리온",
+      "fiscalYear": 2025,
+      "averageTenureYears": 10.46272335181762,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_80bda82cf636904f",
+      "displayName": "오아시스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.5075,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_6415951d3679c5fe",
+      "displayName": "와이랩",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.4238805970149255,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_3b27cea20993f615",
+      "displayName": "와이비엠",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.474606741573034,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_4433f174ed63a952",
+      "displayName": "웅진씽크빅",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.310574412532636,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_eb108988c1dfb4c7",
+      "displayName": "원티드랩",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.9044692737430164,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_c171bb947e5f069a",
+      "displayName": "위닉스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.848978288633461,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_ae3df1f6bc134655",
+      "displayName": "유유제약",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.854838709677419,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_7d926b3654d80329",
+      "displayName": "이노션",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.630469530469531,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_22485fa12e07ca84",
+      "displayName": "이마트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 13.948884073672806,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_52dab11c19424425",
+      "displayName": "이스트소프트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.9743589743589745,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_426876410fe89c3a",
+      "displayName": "이퓨쳐",
+      "fiscalYear": 2025,
+      "averageTenureYears": 9.927777777777777,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b63ab6d5825c215d",
+      "displayName": "인포뱅크",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.351744186046512,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_63ed7fab9bd7b6ee",
+      "displayName": "제일기획",
+      "fiscalYear": 2025,
+      "averageTenureYears": 10.352614162806088,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_480913fa6a6d40d7",
+      "displayName": "제주맥주",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.3780193236714977,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_77ba6bc495049569",
+      "displayName": "제주항공",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.447633776678008,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_73065dff6d270960",
+      "displayName": "젝시믹스(구 브랜드엑스코퍼레이션)",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.341860465116279,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_aadbe9bc2b53496f",
+      "displayName": "지누스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.229978354978354,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_58d4b449409f9ae6",
+      "displayName": "지니뮤직",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.211594202898551,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_f4abdcbe2ba947be",
+      "displayName": "지어소프트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.8834959349593494,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_a1a6c201d5bbd8b3",
+      "displayName": "차이커뮤니케이션",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.4392363636363634,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_c5526842f0f06605",
+      "displayName": "참좋은여행",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.020385674931129,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_a24dc6fe7e836360",
+      "displayName": "초록뱀미디어",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.3188372093023264,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_38fde3bbecde0cd5",
+      "displayName": "카카오",
+      "fiscalYear": 2025,
+      "averageTenureYears": 6.296447390787013,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_635f00af2175f817",
+      "displayName": "캐리 소프트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.219298245614035,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_525d8f28e9b75894",
+      "displayName": "컬리",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.416747070985527,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_190892a0e43d7ca0",
+      "displayName": "코스맥스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 6.536315228966987,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_8fd8be43792095c4",
+      "displayName": "코오롱 인더스트리",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.684741784037557,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_d3f07e4cf5a83719",
+      "displayName": "코오롱FnC",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.684741784037557,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_485d0436bb458699",
+      "displayName": "코웨이",
+      "fiscalYear": 2025,
+      "averageTenureYears": 9.325494332493703,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_6272c4ef88cd011d",
+      "displayName": "콘텐트리중앙",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.229166666666666,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_5c4bfa3c64b39ffd",
+      "displayName": "쿠쿠 홈시스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.848449848024316,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_6da6259f1fa2bce3",
+      "displayName": "클리오",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.9685950413223146,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_cf71e2d4221ef958",
+      "displayName": "태림포장",
+      "fiscalYear": 2025,
+      "averageTenureYears": 9.86827393431167,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_aa33c74ebad0146a",
+      "displayName": "토니모리",
+      "fiscalYear": 2025,
+      "averageTenureYears": 4.413114754098361,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_768a1be5aae20913",
+      "displayName": "토스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 1.4017287680429673,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_220048d5631abcb2",
+      "displayName": "티니핑",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.5073863636363636,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_333d67dd10ccc40d",
+      "displayName": "팅크웨어",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.897972116603295,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_cd7e460976e796e9",
+      "displayName": "파라다이스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 10.32939211756847,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_6a00c8cac29ec44b",
+      "displayName": "파마리서치",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.277376425855513,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_d8097e8d3fe68c22",
+      "displayName": "팬엔터테인먼트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.1041666666666665,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_101aeb7560754213",
+      "displayName": "퍼시스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.185328185328185,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_18c4e1198eb0c01d",
+      "displayName": "폴라리스 오피스",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.208333333333333,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_7264883c42653c3d",
+      "displayName": "풀무원",
+      "fiscalYear": 2025,
+      "averageTenureYears": 7.411355311355311,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_f1d2792c93322460",
+      "displayName": "플리토",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.4434554973821987,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_d165b7ca70e0ee3d",
+      "displayName": "하나투어",
+      "fiscalYear": 2025,
+      "averageTenureYears": 9.06698578908003,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_cb878af400ca4239",
+      "displayName": "하림",
+      "fiscalYear": 2025,
+      "averageTenureYears": 6.629452678107125,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_c34d3149c66e22ab",
+      "displayName": "하이브",
+      "fiscalYear": 2025,
+      "averageTenureYears": 2.9584546472564393,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_acd58ab8d060905c",
+      "displayName": "하이트진로",
+      "fiscalYear": 2025,
+      "averageTenureYears": 18.293015332197616,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_e151426c6a5dc507",
+      "displayName": "한국경제TV",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.544740437158469,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_b68f4c52a32ee76c",
+      "displayName": "한국맥널티",
+      "fiscalYear": 2025,
+      "averageTenureYears": 3.8390476190476193,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_388bfaa1f58075cf",
+      "displayName": "한국콜마",
+      "fiscalYear": 2025,
+      "averageTenureYears": 5.998702983138781,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_6fd9dea5b7bc2680",
+      "displayName": "한글과 컴퓨터",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.258571428571429,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_7417fbbac04eee34",
+      "displayName": "한샘",
+      "fiscalYear": 2025,
+      "averageTenureYears": 9.776446654611211,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_12e1e228f199bea6",
+      "displayName": "한섬",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.164587332053744,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_f7ce70bd05107407",
+      "displayName": "한솔교육",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.146796875,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_80dcf505ae4ec8be",
+      "displayName": "한솔제지",
+      "fiscalYear": 2025,
+      "averageTenureYears": 15.623556581986142,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_27987bdab35fffa2",
+      "displayName": "한화리조트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 6.659940298507462,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_a0fb490587090fa2",
+      "displayName": "해태제과",
+      "fiscalYear": 2025,
+      "averageTenureYears": 12.689823874755382,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_957c20b5e3cb74da",
+      "displayName": "현대리바트",
+      "fiscalYear": 2025,
+      "averageTenureYears": 9.776710013003902,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_6447b114adb40f0e",
+      "displayName": "현대엘레베이터",
+      "fiscalYear": 2025,
+      "averageTenureYears": 11.957202650854553,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_38a81ce793fdf0d6",
+      "displayName": "현대차",
+      "fiscalYear": 2025,
+      "averageTenureYears": 15.800632248822282,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    },
+    {
+      "publicId": "mbt_eb8b2b9349656972",
+      "displayName": "호텔신라",
+      "fiscalYear": 2025,
+      "averageTenureYears": 8.921675392670158,
+      "confidence": "confirmed",
+      "sourceKind": "opendart_api",
+      "sourceNote": "OpenDART empSttus 11011"
+    }
+  ]
+}
