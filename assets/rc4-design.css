@@ -384,3 +384,193 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .mbt-legacy-company .kpi-grid[data-mobile-panel] { display: none; }
   .mbt-legacy-company[data-mobile-tab=core] .kpi-grid[data-mobile-panel=core] { display: grid !important; }
 }
+
+
+/* RC4.2 · revised insight reading typography */
+.story-stage-rc42 .story-chapter {
+  min-height: calc(100vh - 54px);
+  height: auto;
+  padding: 88px 28px;
+  align-items: stretch;
+}
+
+.story-stage-rc42 .story-chapter-inner {
+  width: min(100%, 760px);
+  margin: auto;
+}
+
+.story-stage-rc42 .story-chapter .ch-num {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.story-stage-rc42 .story-chapter .ch-bignum {
+  font-size: clamp(56px, 8vw, 108px);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin: 0 0 30px;
+}
+
+.story-stage-rc42 .story-chapter .ch-bignum .small {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+
+.story-stage-rc42 .story-chapter .ch-title {
+  max-width: 760px;
+  margin: 0 0 18px;
+  font-family: var(--font-sans);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 700;
+  line-height: 1.32;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.story-stage-rc42 .story-chapter.intro .ch-title {
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.28;
+}
+
+.story-stage-rc42 .story-chapter .ch-body {
+  max-width: 56ch;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: -0.012em;
+}
+
+.story-stage-rc42 .story-chapter.intro .ch-body {
+  font-size: 16.5px;
+}
+
+.story-stage-rc42 .story-source {
+  max-width: 56ch;
+  margin: 22px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--mbt-line-2);
+  color: var(--mbt-gray-1);
+  font-size: 12px;
+  line-height: 1.55;
+  opacity: 0.78;
+}
+
+.story-stage-rc42 .story-chapter.dark .ch-title {
+  color: #f4efe8;
+}
+
+.story-stage-rc42 .story-chapter.dark .story-source {
+  border-top-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.story-stage-rc42 .story-cta {
+  min-height: 44px;
+  margin-top: 30px;
+  padding: 13px 24px;
+  font-size: 14.5px;
+}
+
+@media (max-width: 700px) {
+  .story-stage-rc42 .story-chapter {
+    min-height: calc(100svh - 94px);
+    padding: 68px 24px !important;
+  }
+
+  .story-stage-rc42 .story-chapter .ch-num {
+    margin-bottom: 16px;
+    font-size: 11.5px;
+  }
+
+  .story-stage-rc42 .story-chapter .ch-bignum {
+    font-size: clamp(54px, 18vw, 76px);
+    margin-bottom: 24px;
+  }
+
+  .story-stage-rc42 .story-chapter .ch-bignum .small {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+
+  .story-stage-rc42 .story-chapter .ch-title,
+  .story-stage-rc42 .story-chapter.intro .ch-title {
+    font-size: clamp(26px, 8vw, 32px);
+    line-height: 1.3;
+  }
+
+  .story-stage-rc42 .story-chapter .ch-body,
+  .story-stage-rc42 .story-chapter.intro .ch-body {
+    font-size: 15.5px !important;
+    line-height: 1.75;
+  }
+
+  .story-stage-rc42 .story-progress {
+    right: 10px;
+  }
+}
+
+/* RC4.2 · stronger industry names and color underlines */
+.mbt-atlas-base > strong,
+.mbt-atlas-preview > strong {
+  position: relative;
+  font-size: clamp(15px, 1.25vw, 18px);
+  font-weight: 750;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+}
+
+.mbt-atlas-base > strong {
+  min-height: 45px;
+}
+
+.mbt-atlas-base > strong::after,
+.mbt-atlas-preview > strong::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 2px;
+  margin-top: 7px;
+  background: var(--c);
+  border-radius: 999px;
+}
+
+.mbt-atlas-cell.is-compact .mbt-atlas-base > strong,
+.mbt-atlas-cell.is-compact .mbt-atlas-preview > strong {
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.12;
+}
+
+.mbt-atlas-cell.is-compact .mbt-atlas-base > strong {
+  min-height: 31px;
+}
+
+.mbt-atlas-cell.is-compact .mbt-atlas-base > strong::after,
+.mbt-atlas-cell.is-compact .mbt-atlas-preview > strong::after {
+  width: 24px;
+  height: 2px;
+  margin-top: 4px;
+}
+
+@media (max-width: 700px) {
+  .mbt-atlas-base > strong,
+  .mbt-atlas-preview > strong {
+    font-size: 14.5px;
+  }
+
+  .mbt-atlas-cell.is-compact .mbt-atlas-base > strong,
+  .mbt-atlas-cell.is-compact .mbt-atlas-preview > strong {
+    font-size: 13.5px;
+  }
+}
