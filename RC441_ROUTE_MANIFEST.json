@@ -1,0 +1,34 @@
+{
+  "releaseId": "MBT-WEB-2026-RC4.4.1-SCOPE",
+  "dataReleaseId": "MBT-ROSTER-2026-V1.2",
+  "status": "READY_TO_PUSH",
+  "companies": 539,
+  "industries": 12,
+  "sitemapUrls": 556,
+  "indexRoutes": 1095,
+  "scopeLeaks": [],
+  "oldCountLeaks": [],
+  "indexSha256": "7f31fcb047221f14638f5357219da876d286c4b2ec2f15d38afba7b0ab069803",
+  "assets": [
+    {
+      "name": "company-explorer-integration.js",
+      "sizeBytes": 115347,
+      "sha256": "a017f0a38d45c2637f25c07378540aed5a899e5526bc49a4918922abc7cb8fad"
+    },
+    {
+      "name": "mbt-inline-2.js",
+      "sizeBytes": 92611,
+      "sha256": "c90df6f5f50c100abeb405072f4b350e0e0d36daa9a89dd0f485bacfa3814867"
+    },
+    {
+      "name": "mbt-inline-3.js",
+      "sizeBytes": 9940,
+      "sha256": "de619a9b9ea3fd72ce62de768d7612b5835ac77453c92aaee8263db1c9eca090"
+    },
+    {
+      "name": "rc4-design.css",
+      "sizeBytes": 49578,
+      "sha256": "6229f11cd94dc438eece13f5a8d7f53fd5f77a2e019d9361b5cf86bda5039858"
+    }
+  ]
+}

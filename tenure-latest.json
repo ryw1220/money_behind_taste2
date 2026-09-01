@@ -3,9 +3,9 @@
     "generatedAt": "2026-08-30T03:21:05.880Z",
     "purpose": "Career comparison prototype only",
     "sourceDatabase": "outputs/company_financial_database/money_behind_taste.sqlite3",
-    "publicRosterCompanies": 540,
-    "sourceCompaniesWithConfirmedTenure": 199,
-    "matchedPublicCompanies": 199,
+    "publicRosterCompanies": 539,
+    "sourceCompaniesWithConfirmedTenure": 198,
+    "matchedPublicCompanies": 198,
     "unit": "years"
   },
   "rows": [
@@ -185,15 +185,6 @@
       "displayName": "SK텔레콤",
       "fiscalYear": 2025,
       "averageTenureYears": 13.696106094808126,
-      "confidence": "confirmed",
-      "sourceKind": "opendart_api",
-      "sourceNote": "OpenDART empSttus 11011"
-    },
-    {
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "fiscalYear": 2025,
-      "averageTenureYears": 13.432906885872239,
       "confidence": "confirmed",
       "sourceKind": "opendart_api",
       "sourceNote": "OpenDART empSttus 11011"

@@ -3,11 +3,11 @@
     "generatedAt": "2026-08-30T09:37:48.826645+00:00",
     "purpose": "Career comparison prototype only",
     "sourceDataset": "https://www.data.go.kr/tcs/dss/selectFileDataDetailView.do?publicDataPk=15083277",
-    "listedPublicCompanies": 176,
-    "uniqueLegalEntities": 175,
-    "identityReadyLegalEntities": 161,
+    "listedPublicCompanies": 175,
+    "uniqueLegalEntities": 174,
+    "identityReadyLegalEntities": 160,
     "requestedMonths": 12,
-    "readyCompanyCount": 156,
+    "readyCompanyCount": 155,
     "partialCompanyCount": 0,
     "notMatchedCompanyCount": 6,
     "identityUnresolvedCompanyCount": 14,
@@ -40,7 +40,7 @@
       "averageSubscriberCount": 67.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 56,
-      "scopeCoverageRatioPct": 112.0,
+      "scopeCoverageRatioPct": 112,
       "scopeQuality": "aligned"
     },
     {
@@ -76,12 +76,12 @@
       "latestSubscriberCount": 3038,
       "subscriberChange": -81,
       "subscriberChangePct": -2.6,
-      "newAcquisitionRateEstimatePct": 40.0,
+      "newAcquisitionRateEstimatePct": 40,
       "lossRateProxyPct": 42.1,
       "averageSubscriberCount": 3068.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 3130,
-      "scopeCoverageRatioPct": 97.0,
+      "scopeCoverageRatioPct": 97,
       "scopeQuality": "aligned"
     },
     {
@@ -96,12 +96,12 @@
       "latestSubscriberCount": 1576,
       "subscriberChange": -816,
       "subscriberChangePct": -34.1,
-      "newAcquisitionRateEstimatePct": 134.0,
+      "newAcquisitionRateEstimatePct": 134,
       "lossRateProxyPct": 160.4,
       "averageSubscriberCount": 2088.8,
       "workplaceCountLatest": 2,
       "referenceEmployeeCount": 4096,
-      "scopeCoverageRatioPct": 38.0,
+      "scopeCoverageRatioPct": 38,
       "scopeQuality": "warning"
     },
     {
@@ -121,7 +121,7 @@
       "averageSubscriberCount": 3002.8,
       "workplaceCountLatest": 2,
       "referenceEmployeeCount": 3105,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -162,7 +162,7 @@
       "averageSubscriberCount": 604.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 646,
-      "scopeCoverageRatioPct": 90.0,
+      "scopeCoverageRatioPct": 90,
       "scopeQuality": "aligned"
     },
     {
@@ -182,7 +182,7 @@
       "averageSubscriberCount": 5481.6,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 7304,
-      "scopeCoverageRatioPct": 74.0,
+      "scopeCoverageRatioPct": 74,
       "scopeQuality": "aligned"
     },
     {
@@ -202,7 +202,7 @@
       "averageSubscriberCount": 757.5,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 763,
-      "scopeCoverageRatioPct": 93.0,
+      "scopeCoverageRatioPct": 93,
       "scopeQuality": "aligned"
     },
     {
@@ -222,7 +222,7 @@
       "averageSubscriberCount": 494.9,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 496,
-      "scopeCoverageRatioPct": 104.0,
+      "scopeCoverageRatioPct": 104,
       "scopeQuality": "aligned"
     },
     {
@@ -237,12 +237,12 @@
       "latestSubscriberCount": 3807,
       "subscriberChange": -135,
       "subscriberChangePct": -3.4,
-      "newAcquisitionRateEstimatePct": 3.0,
+      "newAcquisitionRateEstimatePct": 3,
       "lossRateProxyPct": 6.8,
       "averageSubscriberCount": 3874.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 4126,
-      "scopeCoverageRatioPct": 92.0,
+      "scopeCoverageRatioPct": 92,
       "scopeQuality": "aligned"
     },
     {
@@ -256,13 +256,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 13890,
       "subscriberChange": -285,
-      "subscriberChangePct": -2.0,
+      "subscriberChangePct": -2,
       "newAcquisitionRateEstimatePct": 5.7,
       "lossRateProxyPct": 7.1,
       "averageSubscriberCount": 14099.3,
       "workplaceCountLatest": 2,
       "referenceEmployeeCount": 14701,
-      "scopeCoverageRatioPct": 94.0,
+      "scopeCoverageRatioPct": 94,
       "scopeQuality": "aligned"
     },
     {
@@ -276,13 +276,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 886,
       "subscriberChange": 9,
-      "subscriberChangePct": 1.0,
+      "subscriberChangePct": 1,
       "newAcquisitionRateEstimatePct": 38.9,
       "lossRateProxyPct": 36.4,
       "averageSubscriberCount": 890.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 910,
-      "scopeCoverageRatioPct": 97.0,
+      "scopeCoverageRatioPct": 97,
       "scopeQuality": "aligned"
     },
     {
@@ -397,34 +397,14 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 3,
       "subscriberChange": -1,
-      "subscriberChangePct": -25.0,
-      "newAcquisitionRateEstimatePct": 0.0,
+      "subscriberChangePct": -25,
+      "newAcquisitionRateEstimatePct": 0,
       "lossRateProxyPct": 27.3,
       "averageSubscriberCount": 3.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 5316,
-      "scopeCoverageRatioPct": 0.0,
+      "scopeCoverageRatioPct": 0,
       "scopeQuality": "warning"
-    },
-    {
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "corpCode": "00164779",
-      "status": "ready",
-      "monthsCovered": 12,
-      "requestedMonths": 12,
-      "firstMonth": "2025-08",
-      "lastMonth": "2026-07",
-      "latestSubscriberCount": 36777,
-      "subscriberChange": 3631,
-      "subscriberChangePct": 11.0,
-      "newAcquisitionRateEstimatePct": 14.1,
-      "lossRateProxyPct": 3.4,
-      "averageSubscriberCount": 34558.4,
-      "workplaceCountLatest": 1,
-      "referenceEmployeeCount": 34549,
-      "scopeCoverageRatioPct": 106.0,
-      "scopeQuality": "aligned"
     },
     {
       "publicId": "mbt_5a1f3a8e6132ecac",
@@ -437,13 +417,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 761,
       "subscriberChange": 36,
-      "subscriberChangePct": 5.0,
-      "newAcquisitionRateEstimatePct": 34.0,
+      "subscriberChangePct": 5,
+      "newAcquisitionRateEstimatePct": 34,
       "lossRateProxyPct": 29.6,
       "averageSubscriberCount": 744.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 765,
-      "scopeCoverageRatioPct": 99.0,
+      "scopeCoverageRatioPct": 99,
       "scopeQuality": "aligned"
     },
     {
@@ -458,12 +438,12 @@
       "latestSubscriberCount": 7,
       "subscriberChange": -1,
       "subscriberChangePct": -12.5,
-      "newAcquisitionRateEstimatePct": 0.0,
+      "newAcquisitionRateEstimatePct": 0,
       "lossRateProxyPct": 13.3,
       "averageSubscriberCount": 7.5,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 277,
-      "scopeCoverageRatioPct": 3.0,
+      "scopeCoverageRatioPct": 3,
       "scopeQuality": "warning"
     },
     {
@@ -477,13 +457,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 304,
       "subscriberChange": 0,
-      "subscriberChangePct": 0.0,
+      "subscriberChangePct": 0,
       "newAcquisitionRateEstimatePct": 24.1,
       "lossRateProxyPct": 25.1,
       "averageSubscriberCount": 303.3,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 356,
-      "scopeCoverageRatioPct": 85.0,
+      "scopeCoverageRatioPct": 85,
       "scopeQuality": "aligned"
     },
     {
@@ -503,7 +483,7 @@
       "averageSubscriberCount": 428.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 438,
-      "scopeCoverageRatioPct": 97.0,
+      "scopeCoverageRatioPct": 97,
       "scopeQuality": "aligned"
     },
     {
@@ -523,7 +503,7 @@
       "averageSubscriberCount": 145.9,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 153,
-      "scopeCoverageRatioPct": 94.0,
+      "scopeCoverageRatioPct": 94,
       "scopeQuality": "aligned"
     },
     {
@@ -543,7 +523,7 @@
       "averageSubscriberCount": 713.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 733,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -557,13 +537,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 410,
       "subscriberChange": 27,
-      "subscriberChangePct": 7.0,
+      "subscriberChangePct": 7,
       "newAcquisitionRateEstimatePct": 28.7,
       "lossRateProxyPct": 22.1,
       "averageSubscriberCount": 393.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 423,
-      "scopeCoverageRatioPct": 97.0,
+      "scopeCoverageRatioPct": 97,
       "scopeQuality": "aligned"
     },
     {
@@ -583,7 +563,7 @@
       "averageSubscriberCount": 100.3,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 99,
-      "scopeCoverageRatioPct": 105.0,
+      "scopeCoverageRatioPct": 105,
       "scopeQuality": "aligned"
     },
     {
@@ -603,7 +583,7 @@
       "averageSubscriberCount": 4363.7,
       "workplaceCountLatest": 2,
       "referenceEmployeeCount": 4906,
-      "scopeCoverageRatioPct": 88.0,
+      "scopeCoverageRatioPct": 88,
       "scopeQuality": "aligned"
     },
     {
@@ -623,7 +603,7 @@
       "averageSubscriberCount": 1663.9,
       "workplaceCountLatest": 9,
       "referenceEmployeeCount": 1734,
-      "scopeCoverageRatioPct": 94.0,
+      "scopeCoverageRatioPct": 94,
       "scopeQuality": "aligned"
     },
     {
@@ -643,7 +623,7 @@
       "averageSubscriberCount": 520.9,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 526,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -663,7 +643,7 @@
       "averageSubscriberCount": 364.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 453,
-      "scopeCoverageRatioPct": 78.0,
+      "scopeCoverageRatioPct": 78,
       "scopeQuality": "aligned"
     },
     {
@@ -683,7 +663,7 @@
       "averageSubscriberCount": 456.6,
       "workplaceCountLatest": 26,
       "referenceEmployeeCount": 321,
-      "scopeCoverageRatioPct": 131.0,
+      "scopeCoverageRatioPct": 131,
       "scopeQuality": "aligned"
     },
     {
@@ -703,7 +683,7 @@
       "averageSubscriberCount": 251.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 252,
-      "scopeCoverageRatioPct": 100.0,
+      "scopeCoverageRatioPct": 100,
       "scopeQuality": "aligned"
     },
     {
@@ -718,12 +698,12 @@
       "latestSubscriberCount": 9321,
       "subscriberChange": -275,
       "subscriberChangePct": -2.9,
-      "newAcquisitionRateEstimatePct": 6.0,
+      "newAcquisitionRateEstimatePct": 6,
       "lossRateProxyPct": 8.6,
       "averageSubscriberCount": 9492.3,
       "workplaceCountLatest": 3,
       "referenceEmployeeCount": 36566,
-      "scopeCoverageRatioPct": 25.0,
+      "scopeCoverageRatioPct": 25,
       "scopeQuality": "warning"
     },
     {
@@ -743,7 +723,7 @@
       "averageSubscriberCount": 274.9,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1649,
-      "scopeCoverageRatioPct": 17.0,
+      "scopeCoverageRatioPct": 17,
       "scopeQuality": "warning"
     },
     {
@@ -763,7 +743,7 @@
       "averageSubscriberCount": 5005.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 5047,
-      "scopeCoverageRatioPct": 102.0,
+      "scopeCoverageRatioPct": 102,
       "scopeQuality": "aligned"
     },
     {
@@ -778,12 +758,12 @@
       "latestSubscriberCount": 203,
       "subscriberChange": 91,
       "subscriberChangePct": 81.2,
-      "newAcquisitionRateEstimatePct": 87.0,
-      "lossRateProxyPct": 26.0,
+      "newAcquisitionRateEstimatePct": 87,
+      "lossRateProxyPct": 26,
       "averageSubscriberCount": 145.9,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 125,
-      "scopeCoverageRatioPct": 162.0,
+      "scopeCoverageRatioPct": 162,
       "scopeQuality": "warning"
     },
     {
@@ -803,7 +783,7 @@
       "averageSubscriberCount": 397.3,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 454,
-      "scopeCoverageRatioPct": 79.0,
+      "scopeCoverageRatioPct": 79,
       "scopeQuality": "aligned"
     },
     {
@@ -823,7 +803,7 @@
       "averageSubscriberCount": 81.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 84,
-      "scopeCoverageRatioPct": 98.0,
+      "scopeCoverageRatioPct": 98,
       "scopeQuality": "aligned"
     },
     {
@@ -843,7 +823,7 @@
       "averageSubscriberCount": 252.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 258,
-      "scopeCoverageRatioPct": 88.0,
+      "scopeCoverageRatioPct": 88,
       "scopeQuality": "aligned"
     },
     {
@@ -863,7 +843,7 @@
       "averageSubscriberCount": 5311.5,
       "workplaceCountLatest": 9,
       "referenceEmployeeCount": 5501,
-      "scopeCoverageRatioPct": 98.0,
+      "scopeCoverageRatioPct": 98,
       "scopeQuality": "aligned"
     },
     {
@@ -877,13 +857,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 240,
       "subscriberChange": -18,
-      "subscriberChangePct": -7.0,
+      "subscriberChangePct": -7,
       "newAcquisitionRateEstimatePct": 26.4,
       "lossRateProxyPct": 32.4,
       "averageSubscriberCount": 250.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 273,
-      "scopeCoverageRatioPct": 88.0,
+      "scopeCoverageRatioPct": 88,
       "scopeQuality": "aligned"
     },
     {
@@ -918,13 +898,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 2328,
       "subscriberChange": 22,
-      "subscriberChangePct": 1.0,
+      "subscriberChangePct": 1,
       "newAcquisitionRateEstimatePct": 10.2,
       "lossRateProxyPct": 9.8,
       "averageSubscriberCount": 2312.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 2359,
-      "scopeCoverageRatioPct": 99.0,
+      "scopeCoverageRatioPct": 99,
       "scopeQuality": "aligned"
     },
     {
@@ -944,7 +924,7 @@
       "averageSubscriberCount": 4847.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 5106,
-      "scopeCoverageRatioPct": 93.0,
+      "scopeCoverageRatioPct": 93,
       "scopeQuality": "aligned"
     },
     {
@@ -960,11 +940,11 @@
       "subscriberChange": 15,
       "subscriberChangePct": 5.9,
       "newAcquisitionRateEstimatePct": 26.5,
-      "lossRateProxyPct": 20.0,
+      "lossRateProxyPct": 20,
       "averageSubscriberCount": 264.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 272,
-      "scopeCoverageRatioPct": 99.0,
+      "scopeCoverageRatioPct": 99,
       "scopeQuality": "aligned"
     },
     {
@@ -984,7 +964,7 @@
       "averageSubscriberCount": 17863.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 18318,
-      "scopeCoverageRatioPct": 98.0,
+      "scopeCoverageRatioPct": 98,
       "scopeQuality": "aligned"
     },
     {
@@ -1000,11 +980,11 @@
       "subscriberChange": -3,
       "subscriberChangePct": -0.2,
       "newAcquisitionRateEstimatePct": 13.4,
-      "lossRateProxyPct": 14.0,
-      "averageSubscriberCount": 1773.0,
+      "lossRateProxyPct": 14,
+      "averageSubscriberCount": 1773,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1818,
-      "scopeCoverageRatioPct": 97.0,
+      "scopeCoverageRatioPct": 97,
       "scopeQuality": "aligned"
     },
     {
@@ -1045,7 +1025,7 @@
       "averageSubscriberCount": 339.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 715,
-      "scopeCoverageRatioPct": 47.0,
+      "scopeCoverageRatioPct": 47,
       "scopeQuality": "warning"
     },
     {
@@ -1082,11 +1062,11 @@
       "subscriberChange": 20,
       "subscriberChangePct": 1.7,
       "newAcquisitionRateEstimatePct": 39.1,
-      "lossRateProxyPct": 40.0,
-      "averageSubscriberCount": 1239.0,
+      "lossRateProxyPct": 40,
+      "averageSubscriberCount": 1239,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1351,
-      "scopeCoverageRatioPct": 91.0,
+      "scopeCoverageRatioPct": 91,
       "scopeQuality": "aligned"
     },
     {
@@ -1120,13 +1100,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 83,
       "subscriberChange": 0,
-      "subscriberChangePct": 0.0,
+      "subscriberChangePct": 0,
       "newAcquisitionRateEstimatePct": 21.9,
       "lossRateProxyPct": 21.9,
       "averageSubscriberCount": 82.3,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 85,
-      "scopeCoverageRatioPct": 98.0,
+      "scopeCoverageRatioPct": 98,
       "scopeQuality": "aligned"
     },
     {
@@ -1146,7 +1126,7 @@
       "averageSubscriberCount": 188.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 189,
-      "scopeCoverageRatioPct": 89.0,
+      "scopeCoverageRatioPct": 89,
       "scopeQuality": "aligned"
     },
     {
@@ -1187,7 +1167,7 @@
       "averageSubscriberCount": 12.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 279,
-      "scopeCoverageRatioPct": 4.0,
+      "scopeCoverageRatioPct": 4,
       "scopeQuality": "warning"
     },
     {
@@ -1203,11 +1183,11 @@
       "subscriberChange": -7,
       "subscriberChangePct": -2.1,
       "newAcquisitionRateEstimatePct": 13.5,
-      "lossRateProxyPct": 15.0,
+      "lossRateProxyPct": 15,
       "averageSubscriberCount": 333.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 344,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -1227,7 +1207,7 @@
       "averageSubscriberCount": 4748.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 17712,
-      "scopeCoverageRatioPct": 26.0,
+      "scopeCoverageRatioPct": 26,
       "scopeQuality": "warning"
     },
     {
@@ -1247,7 +1227,7 @@
       "averageSubscriberCount": 5675.7,
       "workplaceCountLatest": 8,
       "referenceEmployeeCount": 5825,
-      "scopeCoverageRatioPct": 92.0,
+      "scopeCoverageRatioPct": 92,
       "scopeQuality": "aligned"
     },
     {
@@ -1263,11 +1243,11 @@
       "subscriberChange": -207,
       "subscriberChangePct": -5.6,
       "newAcquisitionRateEstimatePct": 7.5,
-      "lossRateProxyPct": 14.0,
+      "lossRateProxyPct": 14,
       "averageSubscriberCount": 3596.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 3776,
-      "scopeCoverageRatioPct": 92.0,
+      "scopeCoverageRatioPct": 92,
       "scopeQuality": "aligned"
     },
     {
@@ -1287,7 +1267,7 @@
       "averageSubscriberCount": 100.6,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 108,
-      "scopeCoverageRatioPct": 94.0,
+      "scopeCoverageRatioPct": 94,
       "scopeQuality": "aligned"
     },
     {
@@ -1307,7 +1287,7 @@
       "averageSubscriberCount": 1862.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1921,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -1327,7 +1307,7 @@
       "averageSubscriberCount": 1703.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 2002,
-      "scopeCoverageRatioPct": 85.0,
+      "scopeCoverageRatioPct": 85,
       "scopeQuality": "aligned"
     },
     {
@@ -1343,11 +1323,11 @@
       "subscriberChange": 26,
       "subscriberChangePct": 19.3,
       "newAcquisitionRateEstimatePct": 46.7,
-      "lossRateProxyPct": 33.0,
+      "lossRateProxyPct": 33,
       "averageSubscriberCount": 145.5,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 160,
-      "scopeCoverageRatioPct": 101.0,
+      "scopeCoverageRatioPct": 101,
       "scopeQuality": "aligned"
     },
     {
@@ -1364,10 +1344,10 @@
       "subscriberChangePct": 52.3,
       "newAcquisitionRateEstimatePct": 60.1,
       "lossRateProxyPct": 23.6,
-      "averageSubscriberCount": 178.0,
+      "averageSubscriberCount": 178,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 221,
-      "scopeCoverageRatioPct": 91.0,
+      "scopeCoverageRatioPct": 91,
       "scopeQuality": "aligned"
     },
     {
@@ -1384,10 +1364,10 @@
       "subscriberChangePct": -0.7,
       "newAcquisitionRateEstimatePct": 10.4,
       "lossRateProxyPct": 11.8,
-      "averageSubscriberCount": 577.0,
+      "averageSubscriberCount": 577,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 591,
-      "scopeCoverageRatioPct": 97.0,
+      "scopeCoverageRatioPct": 97,
       "scopeQuality": "aligned"
     },
     {
@@ -1402,7 +1382,7 @@
       "latestSubscriberCount": 325,
       "subscriberChange": -20,
       "subscriberChangePct": -5.8,
-      "newAcquisitionRateEstimatePct": 25.0,
+      "newAcquisitionRateEstimatePct": 25,
       "lossRateProxyPct": 29.6,
       "averageSubscriberCount": 331.5,
       "workplaceCountLatest": 1,
@@ -1427,7 +1407,7 @@
       "averageSubscriberCount": 12.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 80,
-      "scopeCoverageRatioPct": 12.0,
+      "scopeCoverageRatioPct": 12,
       "scopeQuality": "warning"
     },
     {
@@ -1442,12 +1422,12 @@
       "latestSubscriberCount": 224,
       "subscriberChange": 31,
       "subscriberChangePct": 16.1,
-      "newAcquisitionRateEstimatePct": 39.0,
+      "newAcquisitionRateEstimatePct": 39,
       "lossRateProxyPct": 21.1,
-      "averageSubscriberCount": 218.0,
+      "averageSubscriberCount": 218,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 221,
-      "scopeCoverageRatioPct": 101.0,
+      "scopeCoverageRatioPct": 101,
       "scopeQuality": "aligned"
     },
     {
@@ -1467,7 +1447,7 @@
       "averageSubscriberCount": 146.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 132,
-      "scopeCoverageRatioPct": 102.0,
+      "scopeCoverageRatioPct": 102,
       "scopeQuality": "aligned"
     },
     {
@@ -1487,7 +1467,7 @@
       "averageSubscriberCount": 81.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 79,
-      "scopeCoverageRatioPct": 104.0,
+      "scopeCoverageRatioPct": 104,
       "scopeQuality": "aligned"
     },
     {
@@ -1504,10 +1484,10 @@
       "subscriberChangePct": 1.1,
       "newAcquisitionRateEstimatePct": 21.9,
       "lossRateProxyPct": 21.1,
-      "averageSubscriberCount": 1638.0,
+      "averageSubscriberCount": 1638,
       "workplaceCountLatest": 2,
       "referenceEmployeeCount": 1645,
-      "scopeCoverageRatioPct": 100.0,
+      "scopeCoverageRatioPct": 100,
       "scopeQuality": "aligned"
     },
     {
@@ -1527,7 +1507,7 @@
       "averageSubscriberCount": 220.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 227,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -1547,7 +1527,7 @@
       "averageSubscriberCount": 1010.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1056,
-      "scopeCoverageRatioPct": 94.0,
+      "scopeCoverageRatioPct": 94,
       "scopeQuality": "aligned"
     },
     {
@@ -1564,10 +1544,10 @@
       "subscriberChangePct": 9.7,
       "newAcquisitionRateEstimatePct": 45.1,
       "lossRateProxyPct": 34.5,
-      "averageSubscriberCount": 2008.0,
+      "averageSubscriberCount": 2008,
       "workplaceCountLatest": 7,
       "referenceEmployeeCount": 1998,
-      "scopeCoverageRatioPct": 110.0,
+      "scopeCoverageRatioPct": 110,
       "scopeQuality": "aligned"
     },
     {
@@ -1608,7 +1588,7 @@
       "averageSubscriberCount": 189.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 219,
-      "scopeCoverageRatioPct": 85.0,
+      "scopeCoverageRatioPct": 85,
       "scopeQuality": "aligned"
     },
     {
@@ -1628,7 +1608,7 @@
       "averageSubscriberCount": 2945.2,
       "workplaceCountLatest": 5,
       "referenceEmployeeCount": 3025,
-      "scopeCoverageRatioPct": 104.0,
+      "scopeCoverageRatioPct": 104,
       "scopeQuality": "aligned"
     },
     {
@@ -1643,12 +1623,12 @@
       "latestSubscriberCount": 106,
       "subscriberChange": -1,
       "subscriberChangePct": -0.9,
-      "newAcquisitionRateEstimatePct": 13.0,
+      "newAcquisitionRateEstimatePct": 13,
       "lossRateProxyPct": 15.8,
       "averageSubscriberCount": 107.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 107,
-      "scopeCoverageRatioPct": 99.0,
+      "scopeCoverageRatioPct": 99,
       "scopeQuality": "aligned"
     },
     {
@@ -1668,7 +1648,7 @@
       "averageSubscriberCount": 564.6,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 649,
-      "scopeCoverageRatioPct": 85.0,
+      "scopeCoverageRatioPct": 85,
       "scopeQuality": "aligned"
     },
     {
@@ -1704,11 +1684,11 @@
       "subscriberChange": -7,
       "subscriberChangePct": -6.7,
       "newAcquisitionRateEstimatePct": 29.2,
-      "lossRateProxyPct": 36.0,
+      "lossRateProxyPct": 36,
       "averageSubscriberCount": 102.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 105,
-      "scopeCoverageRatioPct": 93.0,
+      "scopeCoverageRatioPct": 93,
       "scopeQuality": "aligned"
     },
     {
@@ -1728,7 +1708,7 @@
       "averageSubscriberCount": 9.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 21,
-      "scopeCoverageRatioPct": 62.0,
+      "scopeCoverageRatioPct": 62,
       "scopeQuality": "aligned"
     },
     {
@@ -1748,7 +1728,7 @@
       "averageSubscriberCount": 41.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 45,
-      "scopeCoverageRatioPct": 93.0,
+      "scopeCoverageRatioPct": 93,
       "scopeQuality": "aligned"
     },
     {
@@ -1764,11 +1744,11 @@
       "subscriberChange": -19,
       "subscriberChangePct": -32.2,
       "newAcquisitionRateEstimatePct": 59.8,
-      "lossRateProxyPct": 94.0,
+      "lossRateProxyPct": 94,
       "averageSubscriberCount": 46.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 48,
-      "scopeCoverageRatioPct": 83.0,
+      "scopeCoverageRatioPct": 83,
       "scopeQuality": "aligned"
     },
     {
@@ -1788,7 +1768,7 @@
       "averageSubscriberCount": 401.5,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 403,
-      "scopeCoverageRatioPct": 97.0,
+      "scopeCoverageRatioPct": 97,
       "scopeQuality": "aligned"
     },
     {
@@ -1808,7 +1788,7 @@
       "averageSubscriberCount": 172.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 179,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -1828,7 +1808,7 @@
       "averageSubscriberCount": 161.6,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 170,
-      "scopeCoverageRatioPct": 92.0,
+      "scopeCoverageRatioPct": 92,
       "scopeQuality": "aligned"
     },
     {
@@ -1848,7 +1828,7 @@
       "averageSubscriberCount": 335.6,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 332,
-      "scopeCoverageRatioPct": 110.0,
+      "scopeCoverageRatioPct": 110,
       "scopeQuality": "aligned"
     },
     {
@@ -1888,7 +1868,7 @@
       "averageSubscriberCount": 967.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1084,
-      "scopeCoverageRatioPct": 84.0,
+      "scopeCoverageRatioPct": 84,
       "scopeQuality": "aligned"
     },
     {
@@ -1903,12 +1883,12 @@
       "latestSubscriberCount": 371,
       "subscriberChange": 85,
       "subscriberChangePct": 29.7,
-      "newAcquisitionRateEstimatePct": 57.0,
+      "newAcquisitionRateEstimatePct": 57,
       "lossRateProxyPct": 30.9,
       "averageSubscriberCount": 313.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 309,
-      "scopeCoverageRatioPct": 120.0,
+      "scopeCoverageRatioPct": 120,
       "scopeQuality": "aligned"
     },
     {
@@ -1928,7 +1908,7 @@
       "averageSubscriberCount": 406.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 437,
-      "scopeCoverageRatioPct": 78.0,
+      "scopeCoverageRatioPct": 78,
       "scopeQuality": "aligned"
     },
     {
@@ -1945,10 +1925,10 @@
       "subscriberChangePct": -18.2,
       "newAcquisitionRateEstimatePct": 33.3,
       "lossRateProxyPct": 55.6,
-      "averageSubscriberCount": 9.0,
+      "averageSubscriberCount": 9,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 666,
-      "scopeCoverageRatioPct": 1.0,
+      "scopeCoverageRatioPct": 1,
       "scopeQuality": "warning"
     },
     {
@@ -1964,11 +1944,11 @@
       "subscriberChange": -19,
       "subscriberChangePct": -10.7,
       "newAcquisitionRateEstimatePct": 15.8,
-      "lossRateProxyPct": 27.0,
+      "lossRateProxyPct": 27,
       "averageSubscriberCount": 170.6,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 700,
-      "scopeCoverageRatioPct": 23.0,
+      "scopeCoverageRatioPct": 23,
       "scopeQuality": "warning"
     },
     {
@@ -1985,10 +1965,10 @@
       "subscriberChangePct": -3.1,
       "newAcquisitionRateEstimatePct": 20.1,
       "lossRateProxyPct": 23.4,
-      "averageSubscriberCount": 4427.0,
+      "averageSubscriberCount": 4427,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 4748,
-      "scopeCoverageRatioPct": 92.0,
+      "scopeCoverageRatioPct": 92,
       "scopeQuality": "aligned"
     },
     {
@@ -2008,7 +1988,7 @@
       "averageSubscriberCount": 242.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 273,
-      "scopeCoverageRatioPct": 87.0,
+      "scopeCoverageRatioPct": 87,
       "scopeQuality": "aligned"
     },
     {
@@ -2028,7 +2008,7 @@
       "averageSubscriberCount": 6916.9,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 7479,
-      "scopeCoverageRatioPct": 93.0,
+      "scopeCoverageRatioPct": 93,
       "scopeQuality": "aligned"
     },
     {
@@ -2048,7 +2028,7 @@
       "averageSubscriberCount": 259.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 263,
-      "scopeCoverageRatioPct": 100.0,
+      "scopeCoverageRatioPct": 100,
       "scopeQuality": "aligned"
     },
     {
@@ -2068,7 +2048,7 @@
       "averageSubscriberCount": 41.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 357,
-      "scopeCoverageRatioPct": 11.0,
+      "scopeCoverageRatioPct": 11,
       "scopeQuality": "warning"
     },
     {
@@ -2088,7 +2068,7 @@
       "averageSubscriberCount": 258.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 247,
-      "scopeCoverageRatioPct": 113.0,
+      "scopeCoverageRatioPct": 113,
       "scopeQuality": "aligned"
     },
     {
@@ -2108,7 +2088,7 @@
       "averageSubscriberCount": 56.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 51,
-      "scopeCoverageRatioPct": 153.0,
+      "scopeCoverageRatioPct": 153,
       "scopeQuality": "warning"
     },
     {
@@ -2124,11 +2104,11 @@
       "subscriberChange": -28,
       "subscriberChangePct": -15.1,
       "newAcquisitionRateEstimatePct": 9.2,
-      "lossRateProxyPct": 26.0,
+      "lossRateProxyPct": 26,
       "averageSubscriberCount": 173.3,
       "workplaceCountLatest": 2,
       "referenceEmployeeCount": 184,
-      "scopeCoverageRatioPct": 85.0,
+      "scopeCoverageRatioPct": 85,
       "scopeQuality": "aligned"
     },
     {
@@ -2163,7 +2143,7 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 1230,
       "subscriberChange": 12,
-      "subscriberChangePct": 1.0,
+      "subscriberChangePct": 1,
       "newAcquisitionRateEstimatePct": 17.6,
       "lossRateProxyPct": 17.9,
       "averageSubscriberCount": 1240.4,
@@ -2185,11 +2165,11 @@
       "subscriberChange": -28,
       "subscriberChangePct": -15.5,
       "newAcquisitionRateEstimatePct": 37.6,
-      "lossRateProxyPct": 57.0,
+      "lossRateProxyPct": 57,
       "averageSubscriberCount": 149.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 155,
-      "scopeCoverageRatioPct": 99.0,
+      "scopeCoverageRatioPct": 99,
       "scopeQuality": "aligned"
     },
     {
@@ -2209,7 +2189,7 @@
       "averageSubscriberCount": 157.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 559,
-      "scopeCoverageRatioPct": 28.0,
+      "scopeCoverageRatioPct": 28,
       "scopeQuality": "warning"
     },
     {
@@ -2223,13 +2203,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 351,
       "subscriberChange": 7,
-      "subscriberChangePct": 2.0,
+      "subscriberChangePct": 2,
       "newAcquisitionRateEstimatePct": 53.7,
       "lossRateProxyPct": 52.2,
       "averageSubscriberCount": 354.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 360,
-      "scopeCoverageRatioPct": 98.0,
+      "scopeCoverageRatioPct": 98,
       "scopeQuality": "aligned"
     },
     {
@@ -2249,7 +2229,7 @@
       "averageSubscriberCount": 3337.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 3262,
-      "scopeCoverageRatioPct": 105.0,
+      "scopeCoverageRatioPct": 105,
       "scopeQuality": "aligned"
     },
     {
@@ -2269,7 +2249,7 @@
       "averageSubscriberCount": 241.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 258,
-      "scopeCoverageRatioPct": 72.0,
+      "scopeCoverageRatioPct": 72,
       "scopeQuality": "aligned"
     },
     {
@@ -2289,7 +2269,7 @@
       "averageSubscriberCount": 330.3,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 351,
-      "scopeCoverageRatioPct": 93.0,
+      "scopeCoverageRatioPct": 93,
       "scopeQuality": "aligned"
     },
     {
@@ -2309,7 +2289,7 @@
       "averageSubscriberCount": 47.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 55,
-      "scopeCoverageRatioPct": 91.0,
+      "scopeCoverageRatioPct": 91,
       "scopeQuality": "aligned"
     },
     {
@@ -2329,7 +2309,7 @@
       "averageSubscriberCount": 465.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 466,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -2349,7 +2329,7 @@
       "averageSubscriberCount": 3253.9,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 3388,
-      "scopeCoverageRatioPct": 94.0,
+      "scopeCoverageRatioPct": 94,
       "scopeQuality": "aligned"
     },
     {
@@ -2365,11 +2345,11 @@
       "subscriberChange": 158,
       "subscriberChangePct": 10.4,
       "newAcquisitionRateEstimatePct": 27.4,
-      "lossRateProxyPct": 18.0,
+      "lossRateProxyPct": 18,
       "averageSubscriberCount": 1616.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1623,
-      "scopeCoverageRatioPct": 103.0,
+      "scopeCoverageRatioPct": 103,
       "scopeQuality": "aligned"
     },
     {
@@ -2389,7 +2369,7 @@
       "averageSubscriberCount": 73.3,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 67,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -2403,13 +2383,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 304,
       "subscriberChange": 0,
-      "subscriberChangePct": 0.0,
+      "subscriberChangePct": 0,
       "newAcquisitionRateEstimatePct": 24.1,
       "lossRateProxyPct": 25.1,
       "averageSubscriberCount": 303.3,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 356,
-      "scopeCoverageRatioPct": 85.0,
+      "scopeCoverageRatioPct": 85,
       "scopeQuality": "aligned"
     },
     {
@@ -2429,7 +2409,7 @@
       "averageSubscriberCount": 1345.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1532,
-      "scopeCoverageRatioPct": 84.0,
+      "scopeCoverageRatioPct": 84,
       "scopeQuality": "aligned"
     },
     {
@@ -2444,12 +2424,12 @@
       "latestSubscriberCount": 156,
       "subscriberChange": -21,
       "subscriberChangePct": -11.9,
-      "newAcquisitionRateEstimatePct": 26.0,
+      "newAcquisitionRateEstimatePct": 26,
       "lossRateProxyPct": 39.3,
       "averageSubscriberCount": 173.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 179,
-      "scopeCoverageRatioPct": 87.0,
+      "scopeCoverageRatioPct": 87,
       "scopeQuality": "aligned"
     },
     {
@@ -2469,7 +2449,7 @@
       "averageSubscriberCount": 199.6,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 261,
-      "scopeCoverageRatioPct": 73.0,
+      "scopeCoverageRatioPct": 73,
       "scopeQuality": "aligned"
     },
     {
@@ -2489,7 +2469,7 @@
       "averageSubscriberCount": 234.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 248,
-      "scopeCoverageRatioPct": 93.0,
+      "scopeCoverageRatioPct": 93,
       "scopeQuality": "aligned"
     },
     {
@@ -2509,7 +2489,7 @@
       "averageSubscriberCount": 1026.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1001,
-      "scopeCoverageRatioPct": 103.0,
+      "scopeCoverageRatioPct": 103,
       "scopeQuality": "aligned"
     },
     {
@@ -2529,7 +2509,7 @@
       "averageSubscriberCount": 24525.8,
       "workplaceCountLatest": 2,
       "referenceEmployeeCount": 23075,
-      "scopeCoverageRatioPct": 105.0,
+      "scopeCoverageRatioPct": 105,
       "scopeQuality": "aligned"
     },
     {
@@ -2549,7 +2529,7 @@
       "averageSubscriberCount": 218.3,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 234,
-      "scopeCoverageRatioPct": 81.0,
+      "scopeCoverageRatioPct": 81,
       "scopeQuality": "aligned"
     },
     {
@@ -2563,13 +2543,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 44,
       "subscriberChange": 0,
-      "subscriberChangePct": 0.0,
-      "newAcquisitionRateEstimatePct": 7.0,
+      "subscriberChangePct": 0,
+      "newAcquisitionRateEstimatePct": 7,
       "lossRateProxyPct": 11.7,
       "averageSubscriberCount": 42.6,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 90,
-      "scopeCoverageRatioPct": 49.0,
+      "scopeCoverageRatioPct": 49,
       "scopeQuality": "warning"
     },
     {
@@ -2589,7 +2569,7 @@
       "averageSubscriberCount": 165.6,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 172,
-      "scopeCoverageRatioPct": 92.0,
+      "scopeCoverageRatioPct": 92,
       "scopeQuality": "aligned"
     },
     {
@@ -2609,7 +2589,7 @@
       "averageSubscriberCount": 1470.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1511,
-      "scopeCoverageRatioPct": 98.0,
+      "scopeCoverageRatioPct": 98,
       "scopeQuality": "aligned"
     },
     {
@@ -2625,11 +2605,11 @@
       "subscriberChange": -101,
       "subscriberChangePct": -3.7,
       "newAcquisitionRateEstimatePct": 18.6,
-      "lossRateProxyPct": 23.0,
+      "lossRateProxyPct": 23,
       "averageSubscriberCount": 2748.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 3233,
-      "scopeCoverageRatioPct": 82.0,
+      "scopeCoverageRatioPct": 82,
       "scopeQuality": "aligned"
     },
     {
@@ -2649,7 +2629,7 @@
       "averageSubscriberCount": 151.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 154,
-      "scopeCoverageRatioPct": 94.0,
+      "scopeCoverageRatioPct": 94,
       "scopeQuality": "aligned"
     },
     {
@@ -2669,7 +2649,7 @@
       "averageSubscriberCount": 220.5,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 230,
-      "scopeCoverageRatioPct": 95.0,
+      "scopeCoverageRatioPct": 95,
       "scopeQuality": "aligned"
     },
     {
@@ -2683,13 +2663,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 66,
       "subscriberChange": -22,
-      "subscriberChangePct": -25.0,
+      "subscriberChangePct": -25,
       "newAcquisitionRateEstimatePct": 21.6,
-      "lossRateProxyPct": 47.0,
+      "lossRateProxyPct": 47,
       "averageSubscriberCount": 78.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 123,
-      "scopeCoverageRatioPct": 54.0,
+      "scopeCoverageRatioPct": 54,
       "scopeQuality": "aligned"
     },
     {
@@ -2729,7 +2709,7 @@
       "averageSubscriberCount": 257.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 275,
-      "scopeCoverageRatioPct": 87.0,
+      "scopeCoverageRatioPct": 87,
       "scopeQuality": "aligned"
     },
     {
@@ -2743,13 +2723,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 334,
       "subscriberChange": -29,
-      "subscriberChangePct": -8.0,
-      "newAcquisitionRateEstimatePct": 17.0,
+      "subscriberChangePct": -8,
+      "newAcquisitionRateEstimatePct": 17,
       "lossRateProxyPct": 26.7,
-      "averageSubscriberCount": 352.0,
+      "averageSubscriberCount": 352,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 363,
-      "scopeCoverageRatioPct": 92.0,
+      "scopeCoverageRatioPct": 92,
       "scopeQuality": "aligned"
     },
     {
@@ -2763,13 +2743,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 49,
       "subscriberChange": 6,
-      "subscriberChangePct": 14.0,
+      "subscriberChangePct": 14,
       "newAcquisitionRateEstimatePct": 30.1,
-      "lossRateProxyPct": 15.0,
+      "lossRateProxyPct": 15,
       "averageSubscriberCount": 46.6,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 43,
-      "scopeCoverageRatioPct": 114.0,
+      "scopeCoverageRatioPct": 114,
       "scopeQuality": "aligned"
     },
     {
@@ -2789,7 +2769,7 @@
       "averageSubscriberCount": 3853.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 3922,
-      "scopeCoverageRatioPct": 97.0,
+      "scopeCoverageRatioPct": 97,
       "scopeQuality": "aligned"
     },
     {
@@ -2843,13 +2823,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 1110,
       "subscriberChange": 22,
-      "subscriberChangePct": 2.0,
+      "subscriberChangePct": 2,
       "newAcquisitionRateEstimatePct": 14.3,
       "lossRateProxyPct": 12.7,
       "averageSubscriberCount": 1102.3,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1135,
-      "scopeCoverageRatioPct": 98.0,
+      "scopeCoverageRatioPct": 98,
       "scopeQuality": "aligned"
     },
     {
@@ -2869,7 +2849,7 @@
       "averageSubscriberCount": 1555.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1565,
-      "scopeCoverageRatioPct": 107.0,
+      "scopeCoverageRatioPct": 107,
       "scopeQuality": "aligned"
     },
     {
@@ -2885,11 +2865,11 @@
       "subscriberChange": 141,
       "subscriberChangePct": 18.1,
       "newAcquisitionRateEstimatePct": 31.5,
-      "lossRateProxyPct": 15.0,
+      "lossRateProxyPct": 15,
       "averageSubscriberCount": 822.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 4260,
-      "scopeCoverageRatioPct": 22.0,
+      "scopeCoverageRatioPct": 22,
       "scopeQuality": "warning"
     },
     {
@@ -2909,7 +2889,7 @@
       "averageSubscriberCount": 6057.3,
       "workplaceCountLatest": 2,
       "referenceEmployeeCount": 6352,
-      "scopeCoverageRatioPct": 95.0,
+      "scopeCoverageRatioPct": 95,
       "scopeQuality": "aligned"
     },
     {
@@ -2926,10 +2906,10 @@
       "subscriberChangePct": 0.7,
       "newAcquisitionRateEstimatePct": 13.1,
       "lossRateProxyPct": 13.9,
-      "averageSubscriberCount": 137.0,
+      "averageSubscriberCount": 137,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 140,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -2949,7 +2929,7 @@
       "averageSubscriberCount": 965.5,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 987,
-      "scopeCoverageRatioPct": 101.0,
+      "scopeCoverageRatioPct": 101,
       "scopeQuality": "aligned"
     },
     {
@@ -2990,7 +2970,7 @@
       "averageSubscriberCount": 245.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 954,
-      "scopeCoverageRatioPct": 25.0,
+      "scopeCoverageRatioPct": 25,
       "scopeQuality": "warning"
     },
     {
@@ -3010,7 +2990,7 @@
       "averageSubscriberCount": 120.9,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 122,
-      "scopeCoverageRatioPct": 104.0,
+      "scopeCoverageRatioPct": 104,
       "scopeQuality": "aligned"
     },
     {
@@ -3047,7 +3027,7 @@
       "subscriberChange": 139,
       "subscriberChangePct": 4.7,
       "newAcquisitionRateEstimatePct": 26.2,
-      "lossRateProxyPct": 21.0,
+      "lossRateProxyPct": 21,
       "averageSubscriberCount": 3027.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": null,
@@ -3071,7 +3051,7 @@
       "averageSubscriberCount": 261.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 263,
-      "scopeCoverageRatioPct": 98.0,
+      "scopeCoverageRatioPct": 98,
       "scopeQuality": "aligned"
     },
     {
@@ -3091,7 +3071,7 @@
       "averageSubscriberCount": 158.3,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1497,
-      "scopeCoverageRatioPct": 12.0,
+      "scopeCoverageRatioPct": 12,
       "scopeQuality": "warning"
     },
     {
@@ -3108,10 +3088,10 @@
       "subscriberChangePct": 23.7,
       "newAcquisitionRateEstimatePct": 46.3,
       "lossRateProxyPct": 24.9,
-      "averageSubscriberCount": 518.0,
+      "averageSubscriberCount": 518,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 526,
-      "scopeCoverageRatioPct": 108.0,
+      "scopeCoverageRatioPct": 108,
       "scopeQuality": "aligned"
     },
     {
@@ -3131,7 +3111,7 @@
       "averageSubscriberCount": 22.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 24,
-      "scopeCoverageRatioPct": 92.0,
+      "scopeCoverageRatioPct": 92,
       "scopeQuality": "aligned"
     },
     {
@@ -3151,7 +3131,7 @@
       "averageSubscriberCount": 258.1,
       "workplaceCountLatest": 5,
       "referenceEmployeeCount": 259,
-      "scopeCoverageRatioPct": 101.0,
+      "scopeCoverageRatioPct": 101,
       "scopeQuality": "aligned"
     },
     {
@@ -3165,13 +3145,13 @@
       "lastMonth": "2026-07",
       "latestSubscriberCount": 170,
       "subscriberChange": 5,
-      "subscriberChangePct": 3.0,
+      "subscriberChangePct": 3,
       "newAcquisitionRateEstimatePct": 17.1,
       "lossRateProxyPct": 14.8,
       "averageSubscriberCount": 169.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 166,
-      "scopeCoverageRatioPct": 102.0,
+      "scopeCoverageRatioPct": 102,
       "scopeQuality": "aligned"
     },
     {
@@ -3191,7 +3171,7 @@
       "averageSubscriberCount": 534.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 546,
-      "scopeCoverageRatioPct": 98.0,
+      "scopeCoverageRatioPct": 98,
       "scopeQuality": "aligned"
     },
     {
@@ -3232,7 +3212,7 @@
       "averageSubscriberCount": 1291.5,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1337,
-      "scopeCoverageRatioPct": 93.0,
+      "scopeCoverageRatioPct": 93,
       "scopeQuality": "aligned"
     },
     {
@@ -3291,10 +3271,10 @@
       "subscriberChangePct": -2.5,
       "newAcquisitionRateEstimatePct": 5.5,
       "lossRateProxyPct": 7.7,
-      "averageSubscriberCount": 2750.0,
+      "averageSubscriberCount": 2750,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 2935,
-      "scopeCoverageRatioPct": 92.0,
+      "scopeCoverageRatioPct": 92,
       "scopeQuality": "aligned"
     },
     {
@@ -3314,7 +3294,7 @@
       "averageSubscriberCount": 244.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 244,
-      "scopeCoverageRatioPct": 100.0,
+      "scopeCoverageRatioPct": 100,
       "scopeQuality": "aligned"
     },
     {
@@ -3334,7 +3314,7 @@
       "averageSubscriberCount": 61.9,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 105,
-      "scopeCoverageRatioPct": 59.0,
+      "scopeCoverageRatioPct": 59,
       "scopeQuality": "aligned"
     },
     {
@@ -3349,12 +3329,12 @@
       "latestSubscriberCount": 1501,
       "subscriberChange": 185,
       "subscriberChangePct": 14.1,
-      "newAcquisitionRateEstimatePct": 28.0,
-      "lossRateProxyPct": 17.0,
+      "newAcquisitionRateEstimatePct": 28,
+      "lossRateProxyPct": 17,
       "averageSubscriberCount": 1383.7,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1542,
-      "scopeCoverageRatioPct": 97.0,
+      "scopeCoverageRatioPct": 97,
       "scopeQuality": "aligned"
     },
     {
@@ -3374,7 +3354,7 @@
       "averageSubscriberCount": 428.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 420,
-      "scopeCoverageRatioPct": 104.0,
+      "scopeCoverageRatioPct": 104,
       "scopeQuality": "aligned"
     },
     {
@@ -3394,7 +3374,7 @@
       "averageSubscriberCount": 2062.2,
       "workplaceCountLatest": 2,
       "referenceEmployeeCount": 2212,
-      "scopeCoverageRatioPct": 90.0,
+      "scopeCoverageRatioPct": 90,
       "scopeQuality": "aligned"
     },
     {
@@ -3414,7 +3394,7 @@
       "averageSubscriberCount": 1458.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1563,
-      "scopeCoverageRatioPct": 93.0,
+      "scopeCoverageRatioPct": 93,
       "scopeQuality": "aligned"
     },
     {
@@ -3434,7 +3414,7 @@
       "averageSubscriberCount": 1652.4,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1732,
-      "scopeCoverageRatioPct": 96.0,
+      "scopeCoverageRatioPct": 96,
       "scopeQuality": "aligned"
     },
     {
@@ -3454,7 +3434,7 @@
       "averageSubscriberCount": 363.1,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1533,
-      "scopeCoverageRatioPct": 23.0,
+      "scopeCoverageRatioPct": 23,
       "scopeQuality": "warning"
     },
     {
@@ -3474,7 +3454,7 @@
       "averageSubscriberCount": 768.5,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 769,
-      "scopeCoverageRatioPct": 99.0,
+      "scopeCoverageRatioPct": 99,
       "scopeQuality": "aligned"
     },
     {
@@ -3514,7 +3494,7 @@
       "averageSubscriberCount": 2772.2,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 2867,
-      "scopeCoverageRatioPct": 97.0,
+      "scopeCoverageRatioPct": 97,
       "scopeQuality": "aligned"
     },
     {
@@ -3534,7 +3514,7 @@
       "averageSubscriberCount": 67527.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 72598,
-      "scopeCoverageRatioPct": 91.0,
+      "scopeCoverageRatioPct": 91,
       "scopeQuality": "aligned"
     },
     {
@@ -3554,7 +3534,7 @@
       "averageSubscriberCount": 1933.8,
       "workplaceCountLatest": 1,
       "referenceEmployeeCount": 1910,
-      "scopeCoverageRatioPct": 101.0,
+      "scopeCoverageRatioPct": 101,
       "scopeQuality": "aligned"
     }
   ],
@@ -28310,198 +28290,6 @@
       "matchConfidence": "high",
       "publicId": "mbt_c8855d7c4e9eecf2",
       "displayName": "스튜디오드래곤",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2025-08",
-      "subscriberCount": 33146,
-      "monthlyNoticeAmountKrw": 18705379080,
-      "newAcquirerCount": 128,
-      "lostSubscriberCount": 103,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2025-09",
-      "subscriberCount": 33533,
-      "monthlyNoticeAmountKrw": 18870949860,
-      "newAcquirerCount": 490,
-      "lostSubscriberCount": 78,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2025-10",
-      "subscriberCount": 33631,
-      "monthlyNoticeAmountKrw": 18926247260,
-      "newAcquirerCount": 176,
-      "lostSubscriberCount": 114,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2025-11",
-      "subscriberCount": 33836,
-      "monthlyNoticeAmountKrw": 19006159260,
-      "newAcquirerCount": 319,
-      "lostSubscriberCount": 96,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2025-12",
-      "subscriberCount": 33826,
-      "monthlyNoticeAmountKrw": 19000473000,
-      "newAcquirerCount": 86,
-      "lostSubscriberCount": 104,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2026-01",
-      "subscriberCount": 33865,
-      "monthlyNoticeAmountKrw": 20079090840,
-      "newAcquirerCount": 143,
-      "lostSubscriberCount": 74,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2026-02",
-      "subscriberCount": 34902,
-      "monthlyNoticeAmountKrw": 20530362720,
-      "newAcquirerCount": 1111,
-      "lostSubscriberCount": 160,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2026-03",
-      "subscriberCount": 34921,
-      "monthlyNoticeAmountKrw": 20541958340,
-      "newAcquirerCount": 179,
-      "lostSubscriberCount": 127,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2026-04",
-      "subscriberCount": 35312,
-      "monthlyNoticeAmountKrw": 20708158720,
-      "newAcquirerCount": 518,
-      "lostSubscriberCount": 83,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2026-05",
-      "subscriberCount": 35408,
-      "monthlyNoticeAmountKrw": 20766174980,
-      "newAcquirerCount": 179,
-      "lostSubscriberCount": 75,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2026-06",
-      "subscriberCount": 35544,
-      "monthlyNoticeAmountKrw": 20847108360,
-      "newAcquirerCount": 211,
-      "lostSubscriberCount": 107,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
-      "sharedLegalEntityPublicMappings": 1
-    },
-    {
-      "corpCode": "00164779",
-      "dataMonth": "2026-07",
-      "subscriberCount": 36777,
-      "monthlyNoticeAmountKrw": 22333343700,
-      "newAcquirerCount": 1340,
-      "lostSubscriberCount": 67,
-      "workplaceCount": 1,
-      "workplaceNames": [
-        "에스케이하이닉스 주식회사"
-      ],
-      "matchConfidence": "high",
-      "publicId": "mbt_cb54ef18b5883a50",
-      "displayName": "SK하이닉스",
       "sharedLegalEntityPublicMappings": 1
     },
     {
