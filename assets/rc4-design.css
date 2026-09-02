@@ -765,3 +765,104 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .mbt-career-loading {
   min-height: 52px;
 }
+
+
+/* RC4.5 · National Pension Service workforce reference */
+.mbt-detail-kpis article.is-nps-reference {
+  position: relative;
+  background: #f4f7f6;
+  box-shadow: inset 3px 0 0 #1a6b5a;
+}
+
+.mbt-detail-kpis article.is-nps-reference > span,
+.mbt-career-metric-row.is-nps-reference .mbt-career-metric-label > strong {
+  color: #1a6b5a;
+}
+
+.mbt-detail-kpis article.is-nps-reference small em {
+  display: inline-flex;
+  min-height: 22px;
+  align-items: center;
+  margin-left: 6px;
+  padding: 2px 7px;
+  border: 1px solid #a9c8bd;
+  border-radius: 999px;
+  background: #fff;
+  color: #155a4b;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+.mbt-nps-reference-note,
+.mbt-nps-reference-policy {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0;
+  padding: 13px 16px;
+  border: 1px solid #c9dcd5;
+  background: #f4f7f6;
+  color: #4d5d58;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.mbt-nps-reference-note {
+  margin-top: -1px;
+}
+
+.mbt-nps-reference-note b,
+.mbt-nps-reference-policy b {
+  flex: 0 0 auto;
+  color: #155a4b;
+}
+
+.mbt-career-metric-row.is-nps-reference {
+  border-top-color: #c9dcd5;
+}
+
+.mbt-career-metric-row.is-nps-reference > div {
+  background: #f8faf9;
+}
+
+.mbt-career-metric-row.is-nps-reference > div:not(.mbt-career-metric-label) small {
+  color: #1a6b5a;
+  font-weight: 800;
+}
+
+.mbt-nps-reference-policy {
+  border-width: 1px 0 0;
+}
+
+@media (max-width: 760px) {
+  .mbt-nps-reference-note,
+  .mbt-nps-reference-policy {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+  }
+}
+
+
+/* RC4.6 · usability, accessibility and data trust */
+.mbt-bubble-link { cursor: pointer; outline: none; }
+.mbt-bubble-link .mbt-bubble-hit-area { pointer-events: all; }
+.mbt-bubble-link .mbt-bubble-focus-ring { opacity: 0; pointer-events: none; }
+.mbt-bubble-link:focus-visible .mbt-bubble-focus-ring { opacity: 1; stroke: #111; stroke-width: 3; }
+
+.mbt-compare-check.is-disabled { opacity: .48; cursor: not-allowed; background: #f4f4f2; }
+.mbt-compare-check.is-disabled input { cursor: not-allowed; }
+.mbt-compare-limit-note { margin: 7px 0 0; color: #b5321a; font-size: 12px; font-weight: 650; }
+
+.mbt-home-loading-shell { min-height: 70vh; padding-top: clamp(80px, 11vw, 150px); }
+.mbt-skeleton-home .mbt-skeleton-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mbt-skeleton-home .mbt-skeleton-grid i { min-height: 150px; }
+
+.mbt-no-stock-aggregate { margin-left: auto; align-self: center; color: #77736d; font-size: 12px; }
+.mbt-editorial-basis { margin-left: 10px; font-family: "Pretendard Variable", sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: #6b6964; vertical-align: middle; }
+
+@media (max-width: 760px) {
+  .mbt-skeleton-home .mbt-skeleton-grid { grid-template-columns: 1fr; }
+  .mbt-bubble-link text { font-size: 18px; }
+}
