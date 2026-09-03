@@ -1,1048 +1,883 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>산업 살펴보기 | Money Behind Taste</title>
-  <meta name="description" content="12개 소비산업의 매출 규모, 영업이익률과 539개 기업 분포를 단계적으로 탐색합니다.">
-  <link rel="canonical" href="https://moneybehindtaste.com/distribution/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Money Behind Taste">
-  <meta property="og:title" content="산업 살펴보기 | Money Behind Taste">
-  <meta property="og:description" content="12개 소비산업의 매출 규모, 영업이익률과 539개 기업 분포를 단계적으로 탐색합니다.">
-  <meta property="og:url" content="https://moneybehindtaste.com/distribution/">
-  <meta property="og:image" content="https://moneybehindtaste.com/assets/og-money-behind-taste.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json" id="mbt-structured-data">{"@context":"https://schema.org","@type":"CollectionPage","name":"Money Behind Taste 산업 살펴보기","url":"https://moneybehindtaste.com/distribution/"}</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=Nanum+Myeongjo:wght@700;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
-  <link href="/assets/company-explorer-integration.css?v=rc50-mobile-ux7" rel="stylesheet">
-  <link href="/assets/rc4-design.css?v=rc50-mobile-ux7" rel="stylesheet">
-  <link href="/assets/rc50-mobile-ux.css?v=rc50-mobile-ux7" rel="stylesheet">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="dns-prefetch" href="//mbt-public-api.ryw1220.workers.dev">
-  <link rel="preconnect" href="https://mbt-public-api.ryw1220.workers.dev" crossorigin>
-  <link rel="preload" href="/assets/vendor/react.production.min.js" as="script">
-  <link rel="preload" href="/assets/vendor/react-dom.production.min.js" as="script">
-  <link rel="preload" href="/assets/company-explorer-integration.js?v=rc50-mobile-ux7" as="script">
-  <style>
-  :root {
-    --font-sans: "Pretendard Variable", "Pretendard", system-ui, sans-serif;
-    --font-serif: "Fraunces", serif;
-  }
-:root {
-  /* Brand override — editorial palette per PRD */
-  --mbt-brick: #B5321A;
-  --mbt-brick-dark: #8B1A0A;
-  --mbt-brick-soft: #F5E6E0;
-  --mbt-green: #1A6B5A;
-  --mbt-green-soft: #E3EFEB;
-  --mbt-gold: #B89249;
-  --mbt-ink: #111111;
-  --mbt-ink-2: #2A2A28;
-  --mbt-paper: #F8F7F5;
-  --mbt-paper-2: #F1EFEA;
-  --mbt-line: #E5E2DA;
-  --mbt-line-2: #D9D5CB;
-  --mbt-gray-1: #6B6B68;
-  --mbt-gray-2: #9A988F;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="산업의 크기와 수익성, 기업이 모이는 지역과 개별 회사의 위치를 따라가며 회사의 조건이 보상과 기회를 어떻게 결정하는지 살펴봅니다.">
+<meta name="theme-color" content="#FAF9F7">
+<title>산업 살펴보기 | Money Behind Taste</title>
+<link rel="canonical" href="https://moneybehindtaste.com/distribution/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="산업의 천장, 회사의 위치 | Money Behind Taste">
+<meta property="og:description" content="산업의 크기와 수익성, 기업이 모이는 지역과 개별 회사의 위치를 네 장의 그래픽으로 살펴봅니다.">
+<meta property="og:url" content="https://moneybehindtaste.com/distribution/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@kfonts/ridi-batang@0.2.0/index.css" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF9F7; --panel:#FFFFFF; --ink:#141413; --ink2:#33322F;
+  --muted:#6E6C66; --quiet:#9C9A91; --line:#E4E1D9; --line2:#EFEDE7;
+  --brick:#B5321A; --brick-dark:#8B1A0A; --brick-soft:#F7E8E3;
+  --green:#1A6B5A; --lit:#FFC61A; --lit-hi:#FFD84D; --unlit:#E6E2D8;
+  --sans:"Pretendard Variable","Pretendard",system-ui,-apple-system,sans-serif;
+  --serif:"Fraunces",Georgia,serif;
+  --title:"리디바탕","RIDIBatang","Fraunces",serif;
+  --page:1280px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none} button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+.page{max-width:var(--page);margin:0 auto;padding:0 26px 110px}
 
-  /* Industry colors */
-  --ind-food: #B5321A;
-  --ind-fashion: #1A1A1A;
-  --ind-beauty: #7A2541;
-  --ind-living: #2C5F4A;
-  --ind-content: #DC6B2F;
-  --ind-media: #2D3E68;
-  --ind-pub: #5A3825;
-  --ind-edu: #4A6FA5;
-  --ind-commerce: #C97A3F;
-  --ind-leisure: #2E8B7A;
-  --ind-tech: #2D2D8C;
-  --ind-mobility: #3A3A3A;
+/* ── 헤더 ── */
+.topbar{position:sticky;top:0;z-index:60;border-bottom:1px solid var(--line);
+  background:rgba(250,249,247,.93);backdrop-filter:saturate(180%) blur(12px)}
+.topbar-in{max-width:var(--page);margin:0 auto;padding:0 26px;min-height:58px;display:flex;align-items:center;gap:34px}
+.brand{display:flex;align-items:center;gap:9px}
+.brand i{width:11px;height:11px;border-radius:50%;background:var(--brick);display:block}
+.brand b{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:-.01em}
+.brand span{color:var(--quiet);font-size:11px}
+.nav{display:flex;gap:26px;margin-left:auto;align-self:stretch}
+.nav a{display:flex;align-items:center;font-size:13.5px;font-weight:700;color:var(--muted);
+  border-bottom:2px solid transparent}
+.nav a[aria-current]{color:var(--brick);border-bottom-color:var(--brick)}
 
-  --font-serif: "Fraunces", "Pretendard", serif;
-  --font-num: "Pretendard", system-ui, sans-serif;
-}
+/* ── 히어로 ── */
+.hero{padding:62px 0 42px;border-bottom:2px solid var(--ink)}
+.eyebrow{display:flex;align-items:center;gap:13px;color:var(--muted);font-size:10px;
+  font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+.eyebrow::before{content:"";width:64px;border-top:2px solid var(--ink)}
+.hero h1{max-width:15ch;margin:22px 0 18px;font-family:var(--title);font-weight:400;
+  font-size:clamp(40px,6vw,74px);line-height:1.12;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,rgba(255,232,74,.55) 62%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,320px);gap:40px;align-items:end}
+.hero-lead{margin:0;color:var(--ink2);font-size:16px;line-height:1.8;max-width:60ch}
+.fresh{margin:0;padding:13px 15px;border:1px solid var(--line);background:var(--panel);
+  color:var(--muted);font-size:11.5px;line-height:1.7}
+.fresh b{color:var(--ink)}
+.chapters{display:grid;grid-template-columns:repeat(4,1fr);margin-top:26px;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.chapters a{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;
+  min-height:74px;padding:15px 16px;border-right:1px solid var(--line);transition:background .18s}
+.chapters a:last-child{border-right:0}
+.chapters a:hover{background:var(--panel)}
+.chapters small{color:var(--brick);font-family:var(--serif);font-weight:700;font-size:13px}
+.chapters strong{font-size:13px;font-weight:750;line-height:1.4}
+.chapters em{display:block;font-style:normal;color:var(--quiet);font-size:11px;font-weight:400;margin-top:3px}
 
-* { box-sizing: border-box; }
+/* ── 섹션 ── */
+.section{margin-top:96px;scroll-margin-top:78px}
+.sec-head{display:grid;grid-template-columns:52px minmax(280px,1fr) minmax(280px,430px);
+  gap:0 22px;align-items:end;padding-bottom:16px;border-bottom:2px solid var(--ink)}
+.sec-no{color:var(--brick);font-family:var(--serif);font-size:25px;font-weight:700}
+.sec-kicker{display:block;color:var(--muted);font-size:10px;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase}
+.sec-head h2{margin:6px 0 0;font-family:var(--title);font-weight:400;font-size:33px;
+  line-height:1.18;letter-spacing:-.025em}
+.sec-deck{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-sans);
-  background: var(--mbt-paper);
-  color: var(--mbt-ink);
-  font-feature-settings: "tnum" 1, "ss01" 1;
-  -webkit-font-smoothing: antialiased;
-}
+/* ── 툴바 / 리드아웃 ── */
+.toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px;align-items:center;
+  border-bottom:1px solid var(--line)}
+.readout{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;padding:16px 0 14px;min-width:0}
+.ro-rank{color:var(--act,var(--brick));font-family:var(--serif);font-size:13px;font-weight:700;letter-spacing:.06em}
+.ro-name{font-family:var(--title);font-weight:400;font-size:23px;letter-spacing:-.01em;
+  padding:.08em .2em .04em;background:var(--act-wash,rgba(255,232,74,.5))}
+.ro-big{margin-left:auto;font-family:var(--serif);font-weight:700;font-size:34px;line-height:1;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ro-big i{font-family:var(--sans);font-style:normal;font-size:15px;font-weight:800;margin-left:3px}
+.ro-sub{width:100%;color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
+.seg{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;
+  background:var(--panel);flex-wrap:wrap}
+.seg button{min-height:35px;padding:0 15px;border:0;border-radius:999px;background:transparent;
+  color:var(--muted);font-size:12.5px;font-weight:750;cursor:pointer;transition:.18s}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.frame{margin-top:12px;border:1px solid var(--line);background:var(--panel);overflow:hidden}
+.scroll{overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin}
+.foot{display:flex;justify-content:space-between;gap:22px;margin:0;padding:11px 15px;
+  border-top:1px solid var(--line2);color:var(--quiet);font-size:10.5px;line-height:1.6}
+.legend{display:flex;gap:17px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;flex:none}
+.lg-roof{width:16px;height:9px;background:var(--ink);clip-path:polygon(0 100%,50% 0,100% 100%)}
+.lg-win{width:8px;height:9px;background:var(--lit);box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.lg-base{width:16px;height:5px;background:var(--quiet)}
 
-button { font-family: inherit; cursor: pointer; border: none; background: none; padding: 0; color: inherit; }
-a { color: inherit; text-decoration: none; }
+/* ── 01 스카이라인 ── */
+.sky-svg{display:block;width:100%;height:auto;min-width:1080px}
+.sky-svg .grid{stroke:var(--line2);stroke-width:1;stroke-dasharray:2 6}
+.sky-svg .ground{stroke:var(--ink);stroke-width:1.5}
+.sky-svg .tick{fill:var(--quiet);font:10px var(--sans);text-anchor:end}
+.sky-svg .axis-t{fill:var(--muted);font:800 10px var(--sans);letter-spacing:.1em}
+.sky-svg .hint{fill:var(--quiet);font:11px var(--sans)}
+.sky-svg .ceil{fill:none;stroke:var(--brick);stroke-width:1.4;stroke-dasharray:5 5;opacity:.6}
+.sky-svg .ceil-dot{fill:var(--panel);stroke:var(--brick);stroke-width:1.7}
+.sky-svg .ceil-cap{fill:var(--brick);font:800 10px var(--sans);letter-spacing:.13em}
+.sky-svg .avg{stroke:var(--brick);stroke-width:1.2;stroke-dasharray:3 4;opacity:.72}
+.sky-svg .avg-cap{fill:var(--brick);font:800 10px var(--sans)}
+.tw{cursor:pointer;outline:none}
+.tw .face{fill:var(--face)} .tw .side{fill:var(--side)} .tw .plinth{fill:var(--deep)}
+.tw .floor{stroke:var(--edge);stroke-width:1;opacity:.45}
+.tw .roof{fill:none;stroke:var(--deep);stroke-width:4;stroke-linejoin:miter;transition:stroke-width .18s}
+.tw .mast{stroke:var(--deep);stroke-width:1.7}
+.tw .win{fill:var(--unlit);opacity:.9}
+.tw .win.on{fill:var(--lit);opacity:1}
+.tw .roof,.tw .mast{stroke-linecap:round}
+.tw.is-sel .win.on{fill:var(--lit-hi)}
+.tw .nm{fill:var(--ink2);font:750 12px var(--sans);text-anchor:middle;letter-spacing:-.02em}
+.tw .val{fill:var(--ink);font:700 14px var(--serif);text-anchor:middle;font-variant-numeric:tabular-nums}
+.tw .val tspan{font-family:var(--sans);font-size:10.5px;font-weight:800}
+.tw .no{fill:var(--quiet);font:800 9.5px var(--sans);text-anchor:middle;letter-spacing:.09em}
+.tw:hover .roof,.tw:focus-visible .roof,.tw.is-sel .roof{stroke-width:5.6}
+.tw.is-sel .nm{fill:var(--ink);font-weight:800}
+.tw.is-sel .no{fill:var(--deep)}
+.tw.dim{opacity:.4}
 
-.tnum { font-variant-numeric: tabular-nums; }
-.serif { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.02em; }
-.mono-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--mbt-gray-1);
-}
+/* ── 02 지도 (도트 그리드) ── */
+.map-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;
+  padding:15px 0;border-bottom:1px solid var(--line)}
+.map-status{color:var(--muted);font-size:12.5px} .map-status b{color:var(--ink)}
+.map-wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,.9fr);gap:16px;margin-top:16px}
+.map-stage{position:relative;min-height:620px;border:1px solid var(--line);background:var(--panel)}
+.map-pop{position:absolute;z-index:20;width:288px;padding:12px 14px 11px;border:1px solid var(--line);
+  border-top:3px solid var(--rc,var(--brick));border-radius:3px;background:#fff;
+  box-shadow:0 14px 34px rgba(20,20,19,.13);pointer-events:none;
+  animation:popin .16s ease-out}
+.map-pop[hidden]{display:none}
+@keyframes popin{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.map-pop .pop-h{display:flex;align-items:center;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--line2)}
+.map-pop .pop-dot{width:9px;height:9px;border-radius:2px;background:var(--rc);flex:none}
+.map-pop .pop-h b{font-family:var(--title);font-weight:400;font-size:18px;letter-spacing:-.01em}
+.map-pop .pop-cnt{margin-left:auto;color:var(--rc);font:700 12px var(--serif)}
+.map-pop .pop-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:9px 0 9px;
+  border-bottom:1px solid var(--line2)}
+.map-pop .pop-kpi small{display:block;color:var(--muted);font-size:10.5px;font-weight:700}
+.map-pop .pop-kpi b{display:block;margin-top:2px;font-family:var(--serif);font-size:16.5px;font-weight:700;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.map-pop .pop-kpi b i{font-family:var(--sans);font-style:normal;font-size:10px;font-weight:800;margin-left:1px}
+.map-pop .pop-kpi em{display:block;margin-top:2px;color:var(--quiet);font-size:10px;font-style:normal}
+.map-pop .pop-top{padding-top:9px}
+.map-pop .pop-top small{display:block;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase}
+.map-pop .pop-top ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:4px}
+.map-pop .pop-top li{display:flex;align-items:baseline;gap:7px;min-width:0;font-size:12.5px}
+.map-pop .pop-top li b{font-weight:750;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.map-pop .pop-top li .ci{margin-left:auto;color:var(--quiet);font-size:10px;font-weight:500;white-space:nowrap}
+.map-pop .pop-note{display:block;margin-top:8px;color:var(--quiet);font-size:10px;font-style:normal}
+.map-svg{position:absolute;inset:0;width:100%;height:100%}
+.reg{cursor:pointer;outline:none}
+.reg .cell{fill:var(--rc);fill-opacity:var(--t,.4);
+  transition:fill-opacity .35s ease,transform .2s ease}
+.reg:hover .cell,.reg:focus-visible .cell{fill-opacity:calc(var(--t,.4) + .22)}
+.reg.on .cell{fill-opacity:1}
+.rlab .chip{fill:#fff;stroke:var(--rc);stroke-width:1.2;opacity:.94}
+.rlab.on .chip{fill:var(--rc);stroke:var(--rc)}
+.rlab .cv{fill:var(--rc);font:700 11.5px var(--serif);text-anchor:middle;font-variant-numeric:tabular-nums}
+.rlab.on .cv{fill:#fff}
+.rlab .cn{fill:var(--ink2);font:750 10.5px var(--sans);text-anchor:middle}
+.rlab .cn.halo{fill:none;stroke:#fff;stroke-width:3.2px;stroke-linejoin:round}
+.rlab.on .cn{fill:var(--rc);font-weight:800}
+.rank{border:1px solid var(--line);border-top:3px solid var(--ink);background:var(--panel);
+  min-height:620px;padding:0 14px 14px;display:flex;flex-direction:column}
+.rank-h{display:flex;justify-content:space-between;align-items:end;gap:12px;padding:15px 0 12px;
+  border-bottom:1px solid var(--line)}
+.rank-h h3{margin:0;font-family:var(--title);font-weight:400;font-size:21px}
+.rank-h b{color:var(--brick);font-family:var(--serif);font-size:20px;font-weight:700}
+.rank-list{position:relative;height:520px;margin-top:6px}
+.rank-row[hidden]{display:none}
+.rank-rest{margin:10px 0 0;padding-top:10px;border-top:1px dashed var(--line);
+  color:var(--quiet);font-size:11px;line-height:1.6}
+.rank-row{position:absolute;left:0;right:0;height:52px;display:grid;
+  grid-template-columns:26px 8px minmax(0,1fr) auto;gap:10px;align-items:center;
+  border:0;border-bottom:1px solid var(--line2);background:transparent;text-align:left;cursor:pointer;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),background .18s}
+.rank-row:hover,.rank-row[aria-pressed="true"]{background:#F6F4EF}
+.rank-row[aria-pressed="true"] .nm{color:var(--rc,var(--brick))}
+.rank-row .no{color:var(--quiet);font:500 11px var(--serif)}
+.rank-row .blk{width:8px;height:30px;background:var(--rc,var(--brick));opacity:var(--t,.4);border-radius:1px}
+.rank-row .nm{display:block;font-size:13px;font-weight:750}
+.rank-row .sub{display:block;color:var(--quiet);font-size:10.5px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.rank-row .v{font:700 13px var(--serif);white-space:nowrap;font-variant-numeric:tabular-nums}
+.region-detail{display:grid;grid-template-columns:minmax(220px,1.3fr) repeat(3,minmax(120px,.7fr));
+  margin-top:18px;border:1px solid var(--line);border-top:3px solid var(--act,var(--brick));background:var(--panel)}
+.rd-main{padding:18px 20px;border-right:1px solid var(--line)}
+.rd-main small{display:block;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase}
+.rd-main h4{margin:7px 0 9px;font-family:var(--title);font-weight:400;font-size:27px}
+.rd-main p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+.rd-cell{padding:18px 18px;border-right:1px solid var(--line)}
+.rd-cell:last-child{border-right:0}
+.rd-cell small{display:block;color:var(--muted);font-size:11px;font-weight:700}
+.rd-cell b{display:block;margin-top:7px;font-family:var(--serif);font-size:26px;font-weight:700;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.rd-cell b i{font-family:var(--sans);font-style:normal;font-size:13px;font-weight:800;margin-left:2px}
+.rd-cell em{display:block;margin-top:5px;color:var(--quiet);font-size:10.5px;font-style:normal}
 
-/* ───── Top Nav ───── */
-.topnav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(248, 247, 245, 0.92);
-  backdrop-filter: saturate(180%) blur(12px);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
-  border-bottom: 1px solid var(--mbt-line);
-}
-.topnav-inner {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 14px 32px;
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-.brand-mark {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  cursor: pointer;
-}
-.brand-mark .dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--mbt-brick);
-  display: inline-block;
-  transform: translateY(-1px);
-}
-.brand-mark .name {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.02em;
-}
-.brand-mark .ko {
-  font-size: 12px;
-  color: var(--mbt-gray-1);
-  letter-spacing: -0.02em;
-}
-.nav-links {
-  display: flex;
-  gap: 28px;
-  margin-left: 24px;
-  flex: 1;
-}
-.nav-links a {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--mbt-ink-2);
-  letter-spacing: -0.01em;
-  position: relative;
-  padding: 4px 0;
-}
-.nav-links a.active { color: var(--mbt-brick); }
-.nav-links a.active::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: -6px;
-  height: 2px; background: var(--mbt-brick);
-}
-.nav-search {
-  display: flex; align-items: center; gap: 8px;
-  background: var(--mbt-paper-2);
-  border: 1px solid var(--mbt-line);
-  border-radius: 999px;
-  padding: 7px 14px;
-  font-size: 13px;
-  color: var(--mbt-gray-1);
-  min-width: 220px;
-}
-.nav-search input {
-  border: none; background: transparent; outline: none;
-  font-family: inherit; font-size: 13px; color: var(--mbt-ink);
-  flex: 1;
-}
+/* ── 03 / 04 포지션 맵 ── */
+.pos-svg{display:block;width:100%;height:auto;min-width:900px}
+.pos-svg .ax{stroke:var(--ink);stroke-width:1.2}
+.pos-svg .gl{stroke:var(--line2);stroke-width:1;stroke-dasharray:2 6}
+.pos-svg .qline{stroke:var(--brick);stroke-width:1.1;stroke-dasharray:4 4;opacity:.55}
+.pos-svg .qcap{fill:var(--quiet);font:700 10.5px var(--sans);letter-spacing:.02em}
+.pos-svg .tk{fill:var(--quiet);font:10px var(--sans)}
+.pos-svg .axt{fill:var(--muted);font:800 10px var(--sans);letter-spacing:.12em}
+.bub{cursor:pointer}
+.bub circle{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.8;transition:fill-opacity .2s}
+.bub:hover circle,.bub.on circle{fill-opacity:.55;stroke-width:2.8}
+.bub text{fill:var(--ink2);font:750 11.5px var(--sans);text-anchor:middle}
+.bub text.halo{fill:none;stroke:#fff;stroke-width:3.6px;stroke-linejoin:round}
+.bub.on text{fill:var(--ink);font-weight:800}
+.ind-legend{display:flex;flex-wrap:wrap;gap:6px;padding:13px 0 0}
+.ind-legend button{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--line);
+  border-radius:999px;background:var(--panel);font-size:11.5px;font-weight:700;color:var(--muted);cursor:pointer}
+.ind-legend button i{width:9px;height:9px;border-radius:50%;background:var(--c);display:block}
+.ind-legend button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:#fff}
+.co-detail{position:relative;display:grid;grid-template-columns:minmax(200px,1.2fr) repeat(3,minmax(110px,.7fr));
+  margin-top:16px;border:1px solid var(--line);border-top:3px solid var(--act,var(--brick));
+  background:var(--panel);color:inherit;text-decoration:none;cursor:pointer;
+  transition:box-shadow .2s ease,transform .2s ease}
+.co-detail:hover{box-shadow:0 10px 26px rgba(20,20,19,.10);transform:translateY(-1px)}
+.co-detail[hidden]{display:none}
+.co-detail .co-go{position:absolute;right:16px;bottom:10px;color:var(--act,var(--brick));
+  font-size:11.5px;font-weight:750;opacity:.85}
+.co-detail:hover .co-go{opacity:1}
+.co-hint{margin:16px 0 0;padding:16px 18px;border:1px dashed var(--line2);background:var(--panel);
+  color:var(--quiet);font-size:12.5px}
+.co-hint[hidden]{display:none}
 
-/* ───── Page container ───── */
-.page {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 56px 32px 96px;
+.cue{display:none;margin:0;padding:10px 14px 0;color:var(--quiet);font-size:11px}
+@media(max-width:1080px){
+  .hero-grid{grid-template-columns:1fr}
+  .chapters{grid-template-columns:repeat(2,1fr)}
+  .chapters a:nth-child(2){border-right:0}
+  .sec-head{grid-template-columns:44px 1fr;gap:0 16px}
+  .sec-deck{grid-column:2;margin-top:10px}
+  .map-wrap{grid-template-columns:1fr}
+  .map-stage{min-height:520px}
+  .rank,.rank-list{min-height:auto;height:auto}
+  .rank-list{height:530px}
+  .cue{display:block}
+  .region-detail,.co-detail{grid-template-columns:1fr 1fr}
+  .rd-main{grid-column:1/-1;border-right:0;border-bottom:1px solid var(--line)}
 }
+@media(max-width:620px){
+  .page{padding:0 16px 80px}
+  .toolbar{grid-template-columns:1fr}
+  .seg{width:100%} .seg button{flex:1}
+  .ro-big{margin-left:0;width:100%}
+  .region-detail,.co-detail{grid-template-columns:1fr}
+  .rd-cell{border-right:0;border-bottom:1px solid var(--line)}
+}
+footer.pf{margin-top:88px;padding-top:22px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  color:var(--quiet);font-size:11.5px}
+footer.pf b{font-family:var(--serif);color:var(--ink);font-size:14px}
 
-/* ───── Hero (Home) ───── */
-.hero-eyebrow {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 24px;
-}
-.hero-eyebrow .rule { flex: 0 0 60px; height: 1px; background: var(--mbt-ink); }
-.hero-title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: clamp(41px, 5.1vw, 71px);
-  line-height: 0.95;
-  letter-spacing: -0.035em;
-  margin: 0 0 28px;
-  max-width: 1100px;
-}
-.hero-title em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--mbt-brick);
-}
-.hero-sub {
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--mbt-ink-2);
-  max-width: 640px;
-  margin: 0 0 36px;
-  letter-spacing: -0.01em;
-}
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--mbt-ink);
-  border-bottom: 1px solid var(--mbt-line);
-  padding: 28px 0;
-  margin-bottom: 64px;
-}
-.hero-stats-compact {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--mbt-ink);
-  border-bottom: 1px solid var(--mbt-line);
-  padding: 20px 0 20px;
-  margin-bottom: 40px;
-}
-.hero-stat-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 0 20px;
-  border-right: 1px solid var(--mbt-line);
-}
-.hero-stat-row:last-of-type {
-  border-right: none;
-}
-.hero-stat-row .s-num {
-  font-family: var(--font-serif);
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  white-space: nowrap;
-}
-.hero-stat-row .s-num .u {
-  font-size: 14px;
-  color: var(--mbt-gray-1);
-  margin-left: 3px;
-}
-.hero-stat-row .s-desc {
-  font-size: 12px;
-  color: var(--mbt-gray-1);
-  letter-spacing: -0.01em;
-  line-height: 1.4;
-}
-.hero-dart-note {
-  font-size: 11px;
-  color: var(--mbt-gray-2);
-  margin: 8px 0 0;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.hero-stat { padding-right: 24px; padding-bottom: 20px; border-right: 1px solid var(--mbt-line); border-bottom: 1px solid var(--mbt-line); }
-.hero-stat:last-child { border-right: none; }
-.hero-stat .num {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: 31px;
-  line-height: 1;
-  letter-spacing: -0.025em;
-  margin-bottom: 6px;
-}
-.hero-stat .num .unit { font-size: 13px; color: var(--mbt-gray-1); margin-left: 3px; font-weight: 400; }
-.hero-stat .lbl { font-size: 13px; color: var(--mbt-gray-1); letter-spacing: -0.01em; }
-
-/* ───── Section header ───── */
-.section-head {
-  display: flex; align-items: end; justify-content: space-between;
-  margin: 64px 0 28px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--mbt-ink);
-}
-.section-head h2 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: 36px;
-  margin: 8px 0 0;
-  letter-spacing: -0.025em;
-  line-height: 1;
-}
-.section-head .meta { font-size: 13px; color: var(--mbt-gray-1); }
-
-/* ───── Industry cards ───── */
-.industry-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--mbt-line);
-  border: 1px solid var(--mbt-line);
-}
-.ind-card {
-  background: var(--mbt-paper);
-  padding: 18px 22px 16px;
-  cursor: pointer;
-  transition: background 160ms ease;
-  display: flex; flex-direction: column; gap: 10px;
-  min-height: 190px;
-}
-.ind-card:hover { background: #fff; }
-.ind-card .head { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
-.ind-card .num-badge {
-  font-family: var(--font-serif);
-  font-size: 12px;
-  color: var(--mbt-gray-1);
-  letter-spacing: 0.05em;
-}
-.ind-card .stripe {
-  width: 28px; height: 3px; background: var(--c); border-radius: 2px;
-}
-.ind-card .name {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-.ind-card .rev {
-  font-size: 13px; color: var(--mbt-gray-1);
-}
-.ind-card .rev .b {
-  font-family: var(--font-serif); font-size: 18px; font-weight: 500; color: var(--mbt-ink); margin-right: 4px;
-}
-.ind-card .top3 {
-  font-size: 12px; color: var(--mbt-ink-2); display: flex; flex-direction: column; gap: 3px;
-  border-top: 1px dashed var(--mbt-line);
-  padding-top: 12px;
-  margin-top: auto;
-}
-.ind-card .top3 li { display: flex; justify-content: space-between; }
-.ind-card .top3 li span:last-child { color: var(--mbt-gray-1); font-variant-numeric: tabular-nums; }
-.ind-card ul { list-style: none; padding: 0; margin: 0; }
-
-
-/* ───── Editorial features ───── */
-.features {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 24px;
-}
-.feature {
-  cursor: pointer;
-  border-top: 2px solid var(--mbt-ink);
-  padding-top: 20px;
-  display: flex; flex-direction: column;
-  min-height: 320px;
-}
-.feature.hero {
-  grid-row: span 2;
-  border-top: 4px solid var(--mbt-brick);
-}
-.feature .kicker { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mbt-brick); font-weight: 600; margin-bottom: 14px; }
-.feature h3 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: 28px;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
-  margin: 0 0 14px;
-}
-.feature.hero h3 { font-size: 32px; line-height: 1.1; }
-.feature p { font-size: 14px; color: var(--mbt-ink-2); line-height: 1.65; margin: 0 0 18px; }
-.feature .read { margin-top: auto; font-size: 13px; color: var(--mbt-brick); font-weight: 500; }
-.feature .stat-inline {
-  font-family: var(--font-serif);
-  font-size: 56px;
-  letter-spacing: -0.03em;
-  color: var(--mbt-brick);
-  line-height: 1;
-  margin: 8px 0 16px;
-}
-.feature .stat-inline .small { font-size: 18px; color: var(--mbt-gray-1); }
-.feature .visual {
-  height: 140px;
-  background: var(--mbt-paper-2);
-  margin-bottom: 16px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* ───── Bubble map ───── */
-.bubble-wrap {
-  background: #fff;
-  border: 1px solid var(--mbt-line);
-  padding: 32px 28px;
-  position: relative;
-}
-.bubble-wrap h3 {
-  font-family: var(--font-serif);
-  font-size: 24px; margin: 0 0 6px; font-weight: 500; letter-spacing: -0.02em;
-}
-.bubble-wrap .desc { font-size: 13px; color: var(--mbt-gray-1); margin-bottom: 18px; }
-
-/* ───── Industry View ───── */
-.ind-hero {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 48px;
-  border-bottom: 1px solid var(--mbt-ink);
-  padding-bottom: 36px;
-  margin-bottom: 32px;
-}
-.ind-hero .label { font-size: 13px; color: var(--c); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 18px; }
-.ind-hero h1 {
-  font-family: var(--font-serif);
-  font-size: 72px;
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 0.95;
-  margin: 0 0 20px;
-}
-.ind-hero .sum { font-size: 17px; color: var(--mbt-ink-2); line-height: 1.65; }
-.ind-hero .stats {
-  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
-  border-top: 1px solid var(--mbt-line);
-}
-.ind-hero .stats .s {
-  border-bottom: 1px solid var(--mbt-line);
-  border-right: 1px solid var(--mbt-line);
-  padding: 20px 16px;
-}
-.ind-hero .stats .s:nth-child(3n) { border-right: none; }
-.ind-hero .stats .num { font-family: var(--font-serif); font-size: 36px; letter-spacing: -0.025em; font-weight: 500; line-height: 1; }
-.ind-hero .stats .num .u { font-size: 14px; color: var(--mbt-gray-1); margin-left: 4px; }
-.ind-hero .stats .lbl { font-size: 12px; color: var(--mbt-gray-1); margin-top: 6px; }
-
-/* Industry dashboard layout */
-.dash-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 24px;
-  margin-bottom: 24px;
-}
-.dash-card {
-  background: #fff;
-  border: 1px solid var(--mbt-line);
-  padding: 28px 26px;
-}
-.dash-card h3 {
-  font-family: var(--font-serif);
-  font-size: 22px; font-weight: 500; letter-spacing: -0.02em;
-  margin: 0 0 4px;
-}
-.dash-card .sub { font-size: 12px; color: var(--mbt-gray-1); margin-bottom: 22px; }
-
-/* Insight box (editorial) */
-.insight-box {
-  border-left: 3px solid var(--mbt-brick);
-  padding: 4px 18px;
-  margin: 18px 0;
-}
-.insight-box .label { font-size: 10px; letter-spacing: 0.2em; color: var(--mbt-brick); font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
-.insight-box p { font-family: var(--font-serif); font-size: 17px; line-height: 1.5; margin: 0; letter-spacing: -0.01em; color: var(--mbt-ink); }
-
-/* Company list table */
-.co-table {
-  background: #fff;
-  border: 1px solid var(--mbt-line);
-  width: 100%;
-}
-.co-table .row {
-  display: grid;
-  grid-template-columns: 36px 2fr 1fr 1fr 1fr 1fr 80px;
-  align-items: center;
-  padding: 14px 22px;
-  border-bottom: 1px solid var(--mbt-line);
-  font-size: 13px;
-  cursor: pointer;
-  transition: background 120ms;
-}
-.co-table .row:last-child { border-bottom: none; }
-.co-table .row:hover { background: var(--mbt-paper-2); }
-.co-table .row.head {
-  background: var(--mbt-paper-2);
-  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--mbt-gray-1); font-weight: 600;
-  cursor: default;
-}
-.co-table .row.head:hover { background: var(--mbt-paper-2); }
-.co-table .rank { font-family: var(--font-serif); color: var(--mbt-gray-1); }
-.co-table .name { font-weight: 600; color: var(--mbt-ink); }
-.co-table .num { font-variant-numeric: tabular-nums; }
-.co-table .pos { color: var(--mbt-green); font-weight: 600; }
-.co-table .neg { color: var(--mbt-brick); font-weight: 600; }
-.co-table .arrow { color: var(--mbt-gray-2); text-align: right; }
-@media (max-width: 640px) {
-  .co-table .row {
-    grid-template-columns: 30px 1fr auto 24px;
-    padding: 12px 14px;
-    gap: 0 8px;
-  }
-  .co-table .row .col-margin,
-  .co-table .row .col-growth,
-  .co-table .row .col-emp { display: none; }
-  .co-table .row.head .col-margin,
-  .co-table .row.head .col-growth,
-  .co-table .row.head .col-emp { display: none; }
-  .co-table .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-}
-
-/* Revenue chart + table responsive grid */
-.rev-chart-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 20px;
-  align-items: start;
-  margin-bottom: 24px;
-}
-@media (max-width: 640px) {
-  .rev-chart-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .ind-hero { grid-template-columns: 1fr; gap: 24px; }
-  .dash-grid { grid-template-columns: 1fr; }
-  .ind-hero h1 { font-size: 48px; }
-}
-
-/* ───── Company detail ───── */
-.co-hero {
-  border-bottom: 1px solid var(--mbt-ink);
-  padding-bottom: 36px;
-  margin-bottom: 36px;
-}
-.co-breadcrumb {
-  display: flex; gap: 8px; align-items: center;
-  font-size: 12px; color: var(--mbt-gray-1);
-  margin-bottom: 24px;
-}
-.co-breadcrumb .crumb { cursor: pointer; }
-.co-breadcrumb .crumb:hover { color: var(--mbt-brick); }
-.co-breadcrumb .sep { color: var(--mbt-line-2); }
-.co-meta {
-  display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-  margin-bottom: 18px;
-}
-.co-tag {
-  font-size: 11px; padding: 4px 10px; border: 1px solid var(--c, var(--mbt-line)); color: var(--c, var(--mbt-ink-2));
-  border-radius: 999px; letter-spacing: 0.04em; font-weight: 500;
-}
-.co-tag.solid {
-  background: var(--c); color: #fff; border-color: var(--c);
-}
-.co-tag.listed { color: var(--mbt-green); border-color: var(--mbt-green); }
-.co-tag.unlisted { color: var(--mbt-gray-1); border-color: var(--mbt-line-2); }
-.co-name {
-  font-family: var(--font-serif);
-  font-size: clamp(56px, 6.5vw, 92px);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 0.95;
-  margin: 0 0 18px;
-}
-.co-desc {
-  font-size: 17px; color: var(--mbt-ink-2); line-height: 1.65; max-width: 720px;
-  margin: 0 0 28px;
-}
-.co-info-row {
-  display: flex; gap: 32px; flex-wrap: wrap;
-  font-size: 13px; color: var(--mbt-gray-1);
-}
-.co-info-row .item .l { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
-.co-info-row .item .v { color: var(--mbt-ink); font-weight: 500; }
-
-/* KPI block */
-.kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--mbt-ink);
-  border-bottom: 1px solid var(--mbt-line);
-  margin-bottom: 48px;
-}
-@media (max-width: 640px) {
-  .kpi-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-.kpi {
-  padding: 20px 12px 18px 16px;
-  border-right: 1px solid var(--mbt-line);
-}
-.kpi:first-child { padding-left: 0; }
-.kpi:last-child { border-right: none; }
-.kpi .lbl { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mbt-gray-1); margin-bottom: 14px; }
-.kpi .val {
-  font-family: var(--font-serif);
-  font-size: 36px;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.kpi .val .u { font-size: 16px; color: var(--mbt-gray-1); margin-left: 3px; font-weight: 400; }
-.kpi .delta {
-  margin-top: 10px;
-  font-size: 13px;
-  font-variant-numeric: tabular-nums;
-}
-.kpi .delta.pos { color: var(--mbt-green); }
-.kpi .delta.neg { color: var(--mbt-brick); }
-.kpi .delta .arrow { display: inline-block; margin-right: 4px; }
-
-/* Charts */
-.chart-card {
-  background: #fff;
-  border: 1px solid var(--mbt-line);
-  padding: 32px 32px 28px;
-  margin-bottom: 24px;
-}
-.chart-card .head {
-  display: flex; justify-content: space-between; align-items: end;
-  margin-bottom: 28px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--mbt-line);
-}
-.chart-card .head .left { display: flex; flex-direction: column; gap: 6px; }
-.chart-card .head .eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mbt-gray-1); font-weight: 600; }
-.chart-card .head h3 {
-  font-family: var(--font-serif);
-  font-size: 28px; font-weight: 500; letter-spacing: -0.025em;
-  margin: 0;
-}
-.chart-card .legend { display: flex; gap: 20px; font-size: 12px; color: var(--mbt-gray-1); }
-.chart-card .legend .item { display: flex; align-items: center; gap: 6px; }
-.chart-card .legend .sw { width: 14px; height: 8px; border-radius: 2px; }
-
-/* Two-up grid */
-.two-up { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; margin-bottom: 24px; }
-@media (max-width: 640px) {
-  .two-up { grid-template-columns: 1fr; }
-  .chart-card { padding: 22px 18px 20px; }
-  .chart-card .head h3 { font-size: 22px; }
-}
-
-/* Brand cards */
-.brand-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-  background: var(--mbt-line);
-  border: 1px solid var(--mbt-line);
-}
-.brand-card {
-  background: #fff;
-  padding: 22px 20px;
-  display: flex; flex-direction: column; gap: 8px;
-  min-height: 130px;
-  cursor: pointer;
-  transition: background 120ms;
-}
-.brand-card:hover { background: var(--mbt-paper-2); }
-.brand-card .b-cat {
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--c); font-weight: 600;
-}
-.brand-card .b-name {
-  font-family: var(--font-serif); font-size: 22px; font-weight: 500;
-  letter-spacing: -0.02em; line-height: 1.1;
-}
-.brand-card .b-note { font-size: 12px; color: var(--mbt-gray-1); margin-top: auto; }
-
-/* Investment points */
-.invest-points { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.invest-col h4 {
-  font-family: var(--font-serif);
-  font-size: 20px; font-weight: 500; letter-spacing: -0.02em;
-  margin: 0 0 18px;
-  display: flex; align-items: center; gap: 10px;
-}
-.invest-col h4 .badge {
-  width: 24px; height: 24px; border-radius: 50%;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700;
-  color: #fff;
-}
-.invest-col.pos h4 .badge { background: var(--mbt-green); }
-.invest-col.neg h4 .badge { background: var(--mbt-brick); }
-.invest-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
-.invest-col li {
-  border-top: 1px solid var(--mbt-line);
-  padding-top: 14px;
-}
-.invest-col li .h { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
-.invest-col li .d { font-size: 13px; color: var(--mbt-gray-1); line-height: 1.5; }
-
-/* ───── Story Mode ───── */
-html.story-snap { scroll-snap-type: y mandatory; }
-.story-stage {
-  background: var(--mbt-paper);
-}
-.story-stage .close { display: none; }
-.story-progress {
-  position: fixed; right: 32px; top: 50%; transform: translateY(-50%);
-  z-index: 210;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.story-progress .dot {
-  width: 6px; height: 24px; background: var(--mbt-line-2); border-radius: 3px;
-  transition: background 200ms;
-}
-.story-progress .dot.active { background: var(--mbt-brick); }
-.story-chapter {
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 80px 80px;
-  position: relative;
-}
-.story-chapter .ch-num { font-family: var(--font-serif); font-size: 14px; letter-spacing: 0.18em; color: var(--mbt-brick); font-weight: 600; margin-bottom: 24px; }
-.story-chapter .ch-title {
-  font-family: var(--font-serif);
-  font-size: clamp(38px, 4.8vw, 72px);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  max-width: 1100px;
-  margin: 0 0 32px;
-}
-.story-chapter .ch-bignum {
-  font-family: var(--font-serif);
-  font-size: clamp(160px, 22vw, 360px);
-  font-weight: 500;
-  letter-spacing: -0.05em;
-  line-height: 0.85;
-  color: var(--mbt-brick);
-  margin: 0 0 24px;
-}
-.story-chapter .ch-bignum .small { font-size: 0.25em; color: var(--mbt-gray-1); display: block; letter-spacing: 0; line-height: 1.5; margin-top: 16px; font-weight: 400; }
-.story-chapter .ch-body { font-size: 20px; line-height: 1.6; color: var(--mbt-ink-2); max-width: 700px; }
-.story-chapter.dark { background: var(--mbt-ink); color: #FAFAFA; }
-.story-chapter.dark .ch-num { color: #E8A077; }
-.story-chapter.dark .ch-bignum { color: #E8A077; }
-.story-chapter.dark .ch-bignum .small { color: rgba(255,255,255,0.55); }
-.story-chapter.dark .ch-body { color: #D4D2CC; }
-.story-cta {
-  display: inline-flex; align-items: center; gap: 10px;
-  margin-top: 32px;
-  padding: 16px 28px;
-  background: var(--mbt-brick); color: #fff;
-  border-radius: 999px; font-weight: 600; font-size: 15px;
-  width: max-content;
-  cursor: pointer;
-}
-
-/* Buttons */
-.btn-primary {
-  background: var(--mbt-ink); color: #fff;
-  padding: 14px 24px; font-size: 14px; font-weight: 500;
-  display: inline-flex; align-items: center; gap: 10px;
-  cursor: pointer;
-}
-.btn-primary:hover { background: var(--mbt-brick); }
-.btn-ghost {
-  border: 1px solid var(--mbt-line);
-  padding: 10px 18px; font-size: 13px;
-  background: #fff;
-}
-
-/* Toggle pill */
-.toggle-pill {
-  display: inline-flex;
-  background: var(--mbt-paper-2);
-  border-radius: 999px;
-  padding: 3px;
-  font-size: 12px;
-}
-.toggle-pill button {
-  padding: 6px 14px; border-radius: 999px;
-  font-weight: 500; color: var(--mbt-gray-1);
-}
-.toggle-pill button.active { background: var(--mbt-ink); color: #fff; }
-
-.book-teaser-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  padding: 20px 0 40px;
-  align-items: start;
-}
-/* Footer */
-.footer {
-  border-top: 1px solid var(--mbt-ink);
-  margin-top: 96px;
-  padding: 40px 32px;
-  font-size: 12px;
-  color: var(--mbt-gray-1);
-  display: flex; justify-content: space-between;
-  max-width: 1320px; margin-left: auto; margin-right: auto;
-}
-
-/* Responsive */
-@media (max-width: 980px) {
-  .industry-grid { grid-template-columns: repeat(2, 1fr); }
-  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-  .kpi:nth-child(2) { border-right: none; }
-  .kpi:nth-child(3), .kpi:nth-child(4) { border-top: 1px solid var(--mbt-line); }
-  .features { grid-template-columns: 1fr; }
-  .feature.hero { grid-row: auto; }
-  .two-up, .ind-hero, .dash-grid { grid-template-columns: 1fr; }
-  .brand-grid { grid-template-columns: repeat(2, 1fr); }
-  .invest-points { grid-template-columns: 1fr; }
-  .hero-stats { grid-template-columns: repeat(2, 1fr); }
-  .hero-stats .hero-stat:nth-child(2) { border-right: none; }
-}
-
-  :root { --mbt-paper: #FFFFFF; --mbt-paper-2: #F7F7F7; }
-  html, body { background: #FFFFFF; }
-  .topnav { background: rgba(255,255,255,0.95); }
-  .story-stage { background: #FFFFFF; }
-  .hero-stat { padding: 0 32px !important; }
-  .hero-stat:first-child { padding-left: 0 !important; }
-  .hero-stat:last-child { padding-right: 0 !important; border-right: none !important; }
-
-
-/* ── Mobile tab navigation ── */
-.mobile-tabs { display: none; }
-.mobile-tab-btn {
-  flex-shrink: 0;
-  padding: 11px 14px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--mbt-gray-1);
-  border-bottom: 2px solid transparent;
-  border-top: none; border-left: none; border-right: none;
-  white-space: nowrap;
-  font-family: inherit;
-  background: none;
-  cursor: pointer;
-  letter-spacing: -0.01em;
-  transition: color 120ms;
-}
-.mobile-tab-btn.active {
-  color: var(--mbt-ink);
-  border-bottom-color: var(--mbt-brick);
-  font-weight: 700;
-}
-
-/* ── Mobile hamburger ── */
-.mobile-menu-btn { display: none; }
-.mobile-nav-overlay { display: none; }
-.hb-line { display: block; width: 22px; height: 2px; background: #111; border-radius: 1px; transition: transform 200ms ease, opacity 200ms; }
-.hb-line + .hb-line { margin-top: 5px; }
-.hb-top-open { transform: rotate(45deg) translate(5px, 5px); }
-.hb-bot-open { transform: rotate(-45deg) translate(5px, -5px); }
-
-@media (max-width: 900px) {
-  .page { padding: 24px 16px 48px !important; }
-  .topnav-inner { padding: 12px 16px !important; gap: 8px !important; flex-wrap: nowrap; }
-  .nav-links { display: none !important; }
-  .nav-search { display: none !important; }
-  .mobile-tabs {
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    border-top: 1px solid var(--mbt-line);
-    padding: 0 4px;
-  }
-  .mobile-tabs::-webkit-scrollbar { display: none; }
-  .brand-mark .ko { display: none; }
-  .mobile-menu-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px 4px;
-    margin-left: auto;
-    flex-shrink: 0;
-  }
-  .mobile-nav-overlay {
-    display: block;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: 290;
-  }
-  .mobile-nav-menu {
-    position: absolute;
-    top: 52px; left: 0; right: 0;
-    background: #fff;
-    border-bottom: 2px solid #111;
-    padding: 4px 0 8px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
-  }
-  .mobile-nav-item {
-    display: block;
-    width: 100%;
-    text-align: left;
-    padding: 16px 24px;
-    font-size: 16px;
-    font-family: inherit;
-    background: none;
-    border: none;
-    border-bottom: 1px solid #F1EFEA;
-    cursor: pointer;
-    color: #111;
-    letter-spacing: -0.01em;
-  }
-  .mobile-nav-item.active { color: #B5321A; font-weight: 700; }
-  .mobile-nav-item:active { background: #F9F8F6; }
-
-  .hero-title { font-size: clamp(31px, 8.5vw, 48px) !important; }
-  /* hero-stats: 900px 이하는 위 1열 규칙 적용 */
-  .industry-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .features { grid-template-columns: 1fr !important; }
-  .feature.hero { grid-row: auto !important; }
-  .kpi-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .kpi:nth-child(2) { border-right: none !important; }
-  .kpi:nth-child(3), .kpi:nth-child(4) { border-top: 1px solid var(--mbt-line) !important; }
-  .kpi:nth-child(odd) { padding-left: 0 !important; }
-  .kpi:nth-child(even) { padding-left: 16px !important; }
-  .two-up { grid-template-columns: 1fr !important; }
-  .brand-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .invest-points { grid-template-columns: 1fr !important; }
-  .co-name { font-size: clamp(40px, 12vw, 72px) !important; }
-  .ind-hero { grid-template-columns: 1fr !important; }
-  .dash-grid { grid-template-columns: 1fr !important; }
-  .footer { flex-direction: column; gap: 8px; padding: 28px 16px; }
-  /* Hero stats 모바일 — 1열 + 항목별 하단 라인 */
-  .hero-stats { grid-template-columns: 1fr !important; gap: 0 !important; }
-  .hero-stat { padding: 16px 0 !important; border-right: none !important; border-left: none !important; border-bottom: 1px solid var(--mbt-line) !important; }
-  .hero-stat:last-child { border-bottom: none !important; }
-  /* Book teaser 모바일 */
-  .book-teaser-grid { grid-template-columns: 1fr !important; gap: 24px !important; padding: 16px 0 28px !important; }
-  .book-quote-text { font-size: 20px !important; line-height: 1.35 !important; }
-  /* Story chapter 모바일 */
-  .story-chapter { padding: 60px 24px !important; }
-  .story-chapter .ch-body { font-size: 16px !important; }
-  /* 피처카드 여백 제거 */
-  .feature { min-height: 0 !important; }
-  .feature.hero { min-height: 0 !important; }
-  /* hero-stats 하단 여백 축소 */
-  .hero-stats { margin-bottom: 28px !important; }
-  .dist-scatter-wrap { overflow-x: auto; }
-  .localmap-two-col { grid-template-columns: 1fr !important; }
-  .localmap-specialty { grid-template-columns: repeat(2, 1fr) !important; }
-  .localmap-region-grid { grid-template-columns: 1fr !important; }
-  .ind-table-grid { grid-template-columns: 32px 1fr 1fr 1fr !important; }
-  .ind-table-hide { display: none !important; }
-}
-@media (max-width: 600px) {
-  .industry-grid { grid-template-columns: 1fr !important; }
-  .hero-stats { grid-template-columns: 1fr !important; }
-  .hero-stat { border-right: none !important; border-bottom: 1px solid var(--mbt-line) !important; }
-  .localmap-specialty { grid-template-columns: 1fr !important; }
-  .kpi-grid { grid-template-columns: 1fr !important; }
-  .kpi { border-right: none !important; border-bottom: 1px solid var(--mbt-line) !important; padding-left: 0 !important; }
-}
-
-  /* Mobile improvements V27 */
-  @media (max-width: 640px) {
-    .page { padding: 28px 16px 64px; }
-    .topnav-inner { padding: 12px 16px; gap: 12px; }
-    .co-name { font-size: clamp(36px, 10vw, 56px); }
-    .hero-title { font-size: clamp(30px, 8vw, 48px) !important; }
-    .invest-points { grid-template-columns: 1fr; }
-    .brand-grid { grid-template-columns: repeat(2, 1fr); }
-    .brand-card { min-height: 100px; padding: 16px 14px; }
-    .story-chapter { padding: 48px 20px; }
-    .story-progress { right: 12px; }
-    .chart-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  }
-  @media (max-width: 900px) {
-    [role="button"], button { min-height: 44px; }
-    .crumb { padding: 6px 4px; }
-  }
-  [role="button"]:focus-visible, button:focus-visible {
-    outline: 2px solid var(--mbt-brick); outline-offset: 2px; border-radius: 2px;
-  }
-  </style>
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <script>(function(){var u=new URL(location.href),r=u.searchParams.get("__mbt_route");if(r){history.replaceState(null,"",r);}})();</script>
-
+@media(max-width:700px){
+  .topbar-in{display:grid;grid-template-columns:1fr;gap:0;padding:0 16px;min-height:88px}
+  .brand{min-height:46px;white-space:nowrap}
+  .brand b{font-size:19px}
+  .brand span{display:none}
+  .nav{width:100%;min-height:42px;margin-left:0;align-self:auto;justify-content:space-between;gap:12px;overflow-x:auto;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{min-height:42px;flex:none;white-space:nowrap;font-size:12px}
+  .hero{padding-top:44px}
+}
+</style>
 </head>
-<body>
-  <div id="root">
-    <div class="mbt-static-boot" role="status" aria-live="polite" aria-label="공개 데이터를 준비하고 있습니다">
-      <div class="mbt-static-boot__brand">Money Behind Taste</div>
-      <div class="mbt-static-boot__panel">
-        <p class="mbt-static-boot__label">PUBLIC DATA · LOADING</p>
-        <div class="mbt-static-boot__title"></div>
-        <div class="mbt-static-boot__line"></div>
-        <div class="mbt-static-boot__line"></div>
+<body data-release-id="MBT-WEB-2026-RC5.3-INDUSTRY-INFOGRAPHIC">
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="/"><i></i><b>Money Behind Taste</b><span>돈의 지도</span></a>
+  <nav class="nav">
+    <a href="/">홈</a><a href="/distribution/" aria-current="page">산업 살펴보기</a>
+    <a href="/companies/">기업 비교 분석</a><a href="/stories/">인사이트 읽기</a>
+  </nav>
+</div></header>
+
+<main class="page">
+  <section class="hero">
+    <p class="eyebrow">Work &amp; Money Map · Industry, Company, Career</p>
+    <h1>산업의 천장,<br><em>회사의 위치</em></h1>
+    <div class="hero-grid">
+      <p class="hero-lead">산업의 크기와 기업이 모이는 지역, 그리고 개별 회사의 산업 내 위치를 차례로 따라갑니다.
+        산업에 따라 닿을 수 있는 높이가 달라지는 이유를 네 장의 그래픽으로 확인해 보세요.</p>
+      <p class="fresh"><b>Data updated · 2026.09</b><br>537개사 · 최근 공개 연결/별도 재무<br>A 확정 / E 추정 구분 · DART 전자공시 기반</p>
+    </div>
+    <nav class="chapters">
+      <a href="#c01"><small>01</small><strong>산업의 천장<em>산업에 따라 매출·연봉·근속의 상한이 어떻게 달라지는가</em></strong></a><a href="#c02"><small>02</small><strong>대한민국 기업 지도<em>좋은 기업과 일자리는 어느 지역에 집중되어 있는가</em></strong></a><a href="#c03"><small>03</small><strong>산업 포지션 맵<em>산업별 규모와 수익성은 어떻게 다른가</em></strong></a><a href="#c04"><small>04</small><strong>기업 포지션 맵<em>같은 산업 안에서도 어떤 회사가 더 크고 수익성이 높은가</em></strong></a>
+    </nav>
+  </section>
+
+  <!-- ══ 01 ══ -->
+  <section class="section" id="c01">
+    <div id="sec-ceiling">
+  <header class="sec-head">
+    <span class="sec-no">01</span>
+    <div><span class="sec-kicker">Industry Ceiling · 매출 · 연봉 · 생산성 · 근속</span><h2>산업의 천장</h2></div>
+    <p class="sec-deck">산업이 만든 돈의 크기와 그 안에서 형성된 보상을 하나의 스카이라인에서 비교합니다. 건물의 꺾쇠 지붕이 각 산업의 현재 천장이고, 점선은 12개 산업의 천장을 이은 선입니다.</p>
+  </header>
+      <div class="toolbar">
+        <div class="readout">
+          <span class="ro-rank" id="sky-rank">01 / 12</span>
+          <strong class="ro-name" id="sky-name">모빌리티</strong>
+          <span class="ro-big" id="sky-big">342.7<i>조</i></span>
+          <span class="ro-sub" id="sky-sub"></span>
+        </div>
+        <div class="seg" id="sky-seg" role="group" aria-label="지표 선택">
+          <button type="button" data-m="rev" aria-pressed="true">총매출</button>
+          <button type="button" data-m="salary" aria-pressed="false">평균 연봉</button>
+          <button type="button" data-m="rpe" aria-pressed="false">1인당 매출</button>
+          <button type="button" data-m="tenure" aria-pressed="false">평균 근속</button>
+        </div>
+      </div>
+      <div class="frame">
+        <p class="cue">좌우로 밀어 12개 산업을 살펴보세요.</p>
+        <div class="scroll"><svg class="sky-svg" id="sky-svg" viewBox="0 0 1200 648" role="img"
+          aria-label="12개 산업의 스카이라인"></svg></div>
+        <p class="foot">
+          <span class="legend">
+            <span><i class="lg-roof"></i>꺾쇠 지붕 = 산업의 천장</span>
+            <span><i class="lg-win"></i>불 켜진 창 = 영업이익률</span>
+            <span><i class="lg-base"></i>기단 폭 = 기업 수</span>
+          </span>
+          <span id="sky-note"></span>
+        </p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <script src="/assets/vendor/react.production.min.js"></script>
-  <script src="/assets/vendor/react-dom.production.min.js"></script>
+  <!-- ══ 02 ══ -->
+  <section class="section" id="c02">
+  <header class="sec-head">
+    <span class="sec-no">02</span>
+    <div><span class="sec-kicker">Company Geography · Where Opportunity Gathers</span><h2>대한민국 기업 지도</h2></div>
+    <p class="sec-deck">본사 주소가 확인된 기업을 시·도로 묶었습니다. 원의 크기가 곧 그 지역의 값이고, 지역을 고르면 오른쪽 순위와 아래 상세가 함께 움직입니다.</p>
+  </header>
+    <div class="map-bar">
+      <p class="map-status"><b>534 / 537개사</b> 본사 주소 확인 · 지역에 마우스를 올리거나 터치하면 대표 기업 카드가 열립니다.</p>
+      <div class="seg" id="map-seg" role="group" aria-label="지도 지표 선택">
+        <button type="button" data-m="count" aria-pressed="true">기업 수</button>
+        <button type="button" data-m="revenue" aria-pressed="false">총매출</button>
+        <button type="button" data-m="employees" aria-pressed="false">총종업원</button>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <div class="map-stage" id="map-stage">
+        <svg class="map-svg" id="map-svg" viewBox="150 100 300 560" role="img"
+          aria-label="시·도별 기업 분포 도트 지도"></svg>
+        <div class="map-pop" id="map-pop" role="tooltip" hidden></div>
+      </div>
+      <div class="rank">
+        <div class="rank-h"><h3 id="rank-title">기업 수 순위</h3><b id="rank-total">429개사</b></div>
+        <div class="rank-list" id="rank-list"></div>
+        <p class="rank-rest" id="rank-rest"></p>
+      </div>
+    </div>
+    <div class="region-detail">
+      <div class="rd-main"><small>Selected Region</small><h4 id="rd-name">서울</h4><p id="rd-top"></p></div>
+      <div class="rd-cell"><small>기업 수</small><b id="rd-count"></b><em>본사 주소 기준</em></div>
+      <div class="rd-cell"><small>총매출</small><b id="rd-rev"></b><em>최근 공개 재무 합계</em></div>
+      <div class="rd-cell"><small>총종업원</small><b id="rd-emp"></b><em id="rd-emp-note"></em></div>
+    </div>
+    <p class="foot" style="border:1px solid var(--line);border-top:0;background:var(--panel)">
+      <span>기업·재무·고용: MBT 2026 공개 스냅샷 · 본사 주소 보유 534개사</span>
+      <span>색은 시·도 구분, 진하기는 선택한 지표의 크기 · 지도는 위치 이해를 위한 도식입니다</span>
+    </p>
+  </section>
 
-  <script>
-  (function(){
-  // === SUBCATEGORY DATA (V24) ===
-  window.TASTE_SUBCAT = {};
-  window.TASTE_SUBCAT_COLORS= {"food": {"식품 제조": "#8B1A0A", "외식 프랜차이즈": "#B5321A", "카페·음료·주류": "#D4634F"}, "fashion": {"패션 브랜드·의류": "#1A1A1A", "유통·명품·플랫폼": "#3A3A3A", "잡화·신발·라이프스타일": "#5A5A5A", "아웃도어·스포츠": "#7A7A7A"}, "beauty": {"화장품 브랜드": "#7A2541", "기타": "#A05870"}, "living": {"가구·인테리어": "#2C5F4A", "가전·렌탈": "#4A8270", "생활용품·문구": "#6FA890", "캐릭터·라이프스타일": "#94CFB7"}, "content": {"영상·웹툰·디지털콘텐츠": "#DC6B2F", "엔터·음악": "#E89255", "게임": "#F5BA88"}, "media": {"언론·미디어": "#2D3E68", "방송·영상콘텐츠": "#5066A0", "기타": "#8B9CC0"}, "pub": {"출판사": "#5A3825", "서점·유통": "#8B5E3C"}, "edu": {"교육출판·교재": "#4A6FA5", "학원·입시·성인교육": "#7090C0"}, "commerce": {"대형유통·백화점": "#C97A3F", "편의점·전문점": "#DDA070", "온라인커머스": "#E8B894", "기타": "#F1D2B8"}, "leisure": {"호텔·리조트": "#2E8B7A", "여행·OTA": "#4FAA98", "항공·운송": "#7AC4B5", "레저·전시·스포츠": "#A8DDD0"}, "tech": {"IT서비스·소프트웨어": "#2D2D8C", "통신·포털플랫폼": "#5050B5", "핀테크·결제": "#7878DD", "플랫폼서비스": "#A0A0F0"}, "mobility": {"완성차": "#3A3A3A", "기타": "#7A7A7A"}};
-  window.TASTE_IND_SUBCATS  = {"food": ["식품 제조", "외식 프랜차이즈", "카페·음료·주류"], "fashion": ["패션 브랜드·의류", "유통·명품·플랫폼", "잡화·신발·라이프스타일", "아웃도어·스포츠"], "beauty": ["화장품 브랜드", "기타"], "living": ["가구·인테리어", "캐릭터·라이프스타일", "가전·렌탈", "생활용품·문구"], "content": ["영상·웹툰·디지털콘텐츠", "엔터·음악", "게임"], "media": ["언론·미디어", "방송·영상콘텐츠", "기타"], "pub": ["출판사", "서점·유통"], "edu": ["교육출판·교재", "학원·입시·성인교육"], "commerce": ["대형유통·백화점", "편의점·전문점", "온라인커머스", "기타"], "leisure": ["여행·OTA", "호텔·리조트", "레저·전시·스포츠", "항공·운송"], "tech": ["IT서비스·소프트웨어", "플랫폼서비스", "통신·포털플랫폼", "핀테크·결제"], "mobility": ["완성차", "기타"]};
-})();
-  (function() {
-    window.TASTE_INDUSTRIES = [{"id": "food", "name": "식품·외식·음료", "color": "#B5321A", "revenue": 461562, "count": 69, "growth": 11.5, "desc": "한국인의 식탁과 카페에 스며든 외식·음료 브랜드들. 커피 전쟁의 승자는 누구인가."}, {"id": "fashion", "name": "패션", "color": "#1A1A1A", "revenue": 198671, "count": 36, "growth": 11.7, "desc": "글로벌 SPA부터 K-패션까지. 옷 한 벌에 담긴 마진과 브랜드 전략."}, {"id": "beauty", "name": "뷰티", "color": "#7A2541", "revenue": 157510, "count": 18, "growth": 9.8, "desc": "K-뷰티의 세계화. 편의점 화장품이 백화점 브랜드를 위협하는 구조."}, {"id": "living", "name": "라이프스타일·리빙", "color": "#2C5F4A", "revenue": 136632, "count": 26, "growth": 3.9, "desc": "집 꾸미기 열풍 뒤의 재무제표. 인테리어·가전·리빙 브랜드의 수익성."}, {"id": "content", "name": "콘텐츠·엔터", "color": "#DC6B2F", "revenue": 164263, "count": 35, "growth": 9.9, "desc": "한 번 만들고 계속 판다. 게임·드라마·웹툰의 한계비용 0의 마법."}, {"id": "media", "name": "미디어·언론", "color": "#2D3E68", "revenue": 97682, "count": 34, "growth": 7.1, "desc": "광고 시장의 구조 변화. 레거시 미디어와 디지털 미디어의 격차."}, {"id": "pub", "name": "출판·단행본", "color": "#5A3825", "revenue": 32783, "count": 40, "growth": 2.2, "desc": "책이 팔리는 방식이 바뀌었다. 출판사의 매출 구조와 생존 전략."}, {"id": "edu", "name": "교육", "color": "#4A6FA5", "revenue": 67170, "count": 57, "growth": 0.2, "desc": "교육열이 시장을 만든다. 사교육·EdTech의 수익 모델 해부."}, {"id": "commerce", "name": "유통·커머스", "color": "#C97A3F", "revenue": 737565, "count": 15, "growth": 3.6, "desc": "쿠팡은 왜 적자여도 괜찮은가. 커머스 플랫폼의 GMV vs 영업이익."}, {"id": "leisure", "name": "레저·여행", "color": "#2E8B7A", "revenue": 392936, "count": 25, "growth": 23.6, "desc": "여행 재개의 수혜자는 누구인가. 항공·호텔·OTA의 회복 속도."}, {"id": "tech", "name": "테크·플랫폼·IT", "color": "#2D2D8C", "revenue": 880192, "count": 27, "growth": 4.2, "desc": "플랫폼 독점의 재무적 증거. 네이버·카카오·게임사의 마진 구조."}, {"id": "mobility", "name": "모빌리티", "color": "#3A3A3A", "revenue": 3186653, "count": 14, "growth": 14.5, "desc": "전기차 시대의 자동차 산업. 규모의 경제가 만드는 이익의 비밀."}];
-    window.TASTE_TOP3       = {"food": [["대상", "4.3조"], ["오뚜기", "3.5조"], ["농심", "3.4조"]], "fashion": [["영원무역", "4.3조"], ["LF", "2.0조"], ["샤넬코리아", "1.8조"]], "beauty": [["올리브영", "4.1조"], ["아모레퍼시픽", "3.9조"], ["한국콜마", "2.5조"]], "living": [["코웨이", "4.3조"], ["현대리바트", "1.9조"], ["유한킴벌리", "1.4조"]], "content": [["CJ ENM", "5.2조"], ["하이브", "2.3조"], ["엔씨소프트", "1.6조"]], "media": [["CJ CGV", "2.0조"], ["MBC", "1.3조"], ["SBS", "1.0조"]], "pub": [["교보문고", "9,770억"], ["예스24", "6,558억"], ["알라딘", "4,555억"]], "edu": [["메가스터디교육", "9,422억"], ["웅진씽크빅", "8,671억"], ["대교", "5,636억"]], "commerce": [["이마트", "29.0조"], ["롯데쇼핑", "14.0조"], ["GS 리테일", "11.6조"]], "leisure": [["대한항공", "17.9조"], ["아시아나항공", "8.3조"], ["호텔신라", "3.9조"]], "tech": [["KT", "26.4조"], ["SK텔레콤", "17.9조"], ["LG유플러스", "14.6조"]], "mobility": [["현대차", "175.2조"], ["기아차", "107.4조"], ["쉐보레", "14.4조"]]};
-    window.TASTE_WOWS       = {"food": {"stat": "6,490만원", "co": ""}, "fashion": {"stat": "7,436만원", "co": ""}, "beauty": {"stat": "8,720만원", "co": ""}, "living": {"stat": "5,912만원", "co": ""}, "content": {"stat": "7,331만원", "co": ""}, "media": {"stat": "7,300만원", "co": ""}, "pub": {"stat": "5,753만원", "co": ""}, "edu": {"stat": "4,762만원", "co": ""}, "commerce": {"stat": "5,546만원", "co": ""}, "leisure": {"stat": "7,036만원", "co": ""}, "tech": {"stat": "9,564만원", "co": ""}, "mobility": {"stat": "9,510만원", "co": ""}};
-    window.REGION_SALARY      = {"강원":6790,"경기":6368,"경남":3730,"경북":5728,"대전":4725,"부산":6056,"서울":5702,"인천":4807,"전남":5424,"전북":4754,"제주":6008,"충남":3350,"충북":6989};
-    window.TASTE_IND_SALARY   = {"food":{"all":5176,"listed":6215,"unlisted":4592},"fashion":{"all":5048,"listed":6359,"unlisted":4682},"beauty":{"all":6971,"listed":8560,"unlisted":4587},"living":{"all":5326,"listed":5651,"unlisted":5070},"content":{"all":6288,"listed":6831,"unlisted":5536},"media":{"all":6450,"listed":7612,"unlisted":6208},"pub":{"all":4820,"listed":5895,"unlisted":4725},"edu":{"all":4775,"listed":5118,"unlisted":4658},"commerce":{"all":6007,"listed":6043,"unlisted":5988},"leisure":{"all":6386,"listed":6546,"unlisted":6107},"tech":{"all":8620,"listed":8455,"unlisted":8911},"mobility":{"all":6905,"listed":9510,"unlisted":4300}};
-    window.TASTE_COMPANIES = {};
-    window.TASTE_STOCK = {};
-    window.TASTE_DEFAULT_COMPANY = "네오플";
-  })();
-  </script>
-  <script>
-  window.TASTE_PER = {"쏘카":null,"롯데쇼핑":7.2,"롯데하이마트":5.1,"신세계인터내셔날":11.4,"SK디앤디":8.3,"HS애드":12.1,"제일기획":13.4,"이노션":11.2,"참좋은여행":15.6,"사람인":13.8,"하이트진로":15.9,"호텔신라":27.4,"코웨이":16.8,"한솔제지":7.4,"샘표":14.7,"삼천리자전거":12.3,"농심":21.2,"LG유플러스":10.1,"지누스":19.8,"예스24":14.1,"오리온":16.2,"강원랜드":13.5,"카카오":32.1,"네이버":18.7};
-  window.TASTE_REGION_DATA = {"서울": {"count": 308, "topIndustries": ["edu", "food", "media"], "colors": ["#4A6FA5", "#B5321A", "#2D3E68"], "companies": ["오리온", "하이트진로", "해태제과", "국순당", "스타벅스"]}, "충남": {"count": 2, "topIndustries": ["food"], "colors": ["#B5321A"], "companies": ["한국맥널티", "대천김"]}, "전남": {"count": 1, "topIndustries": ["food"], "colors": ["#B5321A"], "companies": ["보해양조"]}, "전북": {"count": 4, "topIndustries": ["food"], "colors": ["#B5321A"], "companies": ["세븐브로이맥주", "이성당 (군산 빵집)", "이성당", "하림"]}, "경기": {"count": 52, "topIndustries": ["pub", "tech", "food"], "colors": ["#5A3825", "#2D2D8C", "#B5321A"], "companies": ["한국 코카콜라", "교촌치킨", "깐부", "오뚜기", "SPC삼립"]}, "부산": {"count": 6, "topIndustries": ["food", "leisure", "commerce"], "colors": ["#B5321A", "#2E8B7A", "#C97A3F"], "companies": ["골든블루", "더벤티", "컴포즈커피", "화승네트웍스", "토요코인호텔"]}, "대전": {"count": 4, "topIndustries": ["food"], "colors": ["#B5321A"], "companies": ["로쏘", "이삭 토스트", "장충동왕족발", "한국인삼공사"]}, "강원": {"count": 3, "topIndustries": ["food", "leisure", "tech"], "colors": ["#B5321A", "#2E8B7A", "#2D2D8C"], "companies": ["테라로사", "강원랜드", "더 존 비즈온"]}, "제주": {"count": 6, "topIndustries": ["leisure", "food", "content"], "colors": ["#2E8B7A", "#B5321A", "#DC6B2F"], "companies": ["제주맥주", "네오플", "제주항공", "제주 신화월드", "아쿠아플라넷 (한화)"]}, "인천": {"count": 6, "topIndustries": ["food", "living", "edu"], "colors": ["#B5321A", "#2C5F4A", "#4A6FA5"], "companies": ["선샤인푸드", "동서식품", "듀오백", "한국몬테소리", "신세계야구단"]}, "충북": {"count": 2, "topIndustries": ["food"], "colors": ["#B5321A"], "companies": ["정식품(베지밀)", "롯데네슬레코리아"]}, "경북": {"count": 1, "topIndustries": ["food"], "colors": ["#B5321A"], "companies": ["해태아이스크림"]}, "경남": {"count": 1, "topIndustries": ["food"], "colors": ["#B5321A"], "companies": ["미스터 아빠"]}};
-window.TASTE_RELATIONS = {};
-  </script>
+  <!-- ══ 03 ══ -->
+  <section class="section" id="c03">
+    <div id="sec-pos">
+  <header class="sec-head">
+    <span class="sec-no">03</span>
+    <div><span class="sec-kicker">Industry Position · Revenue × Margin</span><h2>산업 포지션 맵</h2></div>
+    <p class="sec-deck">가로축은 산업의 매출 규모, 세로축은 영업이익률, 원의 크기는 기업 수입니다. 크기와 수익성이 같은 방향으로 움직이지 않는다는 것이 이 그래프의 요점입니다.</p>
+  </header>
+      <div class="toolbar">
+        <div class="readout">
+          <span class="ro-rank" id="pos-rank">영업이익률</span>
+          <strong class="ro-name" id="pos-name">모빌리티</strong>
+          <span class="ro-big" id="pos-big">6.3<i>%</i></span>
+          <span class="ro-sub" id="pos-sub"></span>
+        </div>
+      </div>
+      <div class="frame">
+        <p class="cue">좌우로 밀어 산업 포지션을 살펴보세요.</p>
+        <div class="scroll"><svg class="pos-svg" id="pos-svg" viewBox="0 0 1160 560" role="img"
+          aria-label="산업별 매출과 영업이익률 포지션 맵"></svg></div>
+        <p class="foot">
+          <span>원의 크기 = 기업 수 · 점선은 12개 산업 평균 영업이익률과 매출 중앙값</span>
+          <span>2026.09 공개 DB 최근 재무 기준 · 투자 판단 목적 아님</span>
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <script defer src="/assets/mbt-inline-1.js?v=rc50-mobile-ux7"></script>
+  <!-- ══ 04 ══ -->
+  <section class="section" id="c04">
+    <div id="sec-co">
+  <header class="sec-head">
+    <span class="sec-no">04</span>
+    <div><span class="sec-kicker">Company Position · Top Companies</span><h2>기업 포지션 맵</h2></div>
+    <p class="sec-deck">산업을 고르면 매출 상위 기업들의 규모와 수익성 차이가 드러납니다. 같은 산업 안에서도 이익률은 20%p 넘게 벌어집니다.</p>
+  </header>
+      <div class="ind-legend" id="co-legend" role="group" aria-label="산업 필터"></div>
+      <div class="frame">
+        <p class="cue">좌우로 밀어 기업 포지션을 살펴보세요.</p>
+        <div class="scroll"><svg class="pos-svg" id="co-svg" viewBox="0 0 1160 560" role="img"
+          aria-label="기업별 매출과 영업이익률 포지션 맵"></svg></div>
+        <p class="foot">
+          <span>원의 크기 = 공개 종업원 수 · 미공개는 최소 크기</span>
+          <span>산업별 최근 매출 상위 3개사 · 값이 확인되지 않은 항목은 임의로 채우지 않습니다</span>
+        </p>
+      </div>
+      <p class="co-hint" id="co-hint">원을 선택하면 해당 기업의 요약 카드가 열리고, 카드를 누르면 기업 상세 페이지로 이동합니다.</p>
+      <a class="co-detail" id="co-detail" href="#" hidden>
+        <div class="rd-main"><small>Selected Company</small><h4 id="co-name"></h4><p id="co-ind"></p></div>
+        <div class="rd-cell"><small>매출</small><b id="co-rev"></b><em>최근 공개 재무</em></div>
+        <div class="rd-cell"><small>영업이익률</small><b id="co-margin"></b><em>매출 대비</em></div>
+        <div class="rd-cell"><small>종업원</small><b id="co-emp"></b><em id="co-emp-note"></em></div>
+        <span class="co-go" aria-hidden="true">기업 상세 보기 →</span>
+      </a>
+    </div>
+  </section>
 
-  <script defer src="/assets/mbt-inline-2.js?v=rc50-mobile-ux7"></script>
-  <script defer src="/assets/rc46-bubble-links.js?v=rc50-mobile-ux7"></script>
+  <footer class="pf">
+    <span><b>Money Behind Taste</b> · 공개 정보 기반 산업·기업 탐색 도구</span>
+    <span>DART 전자공시 기반 · 본 페이지는 투자 판단을 위한 권유가 아닙니다 · © 2026</span>
+  </footer>
+</main>
 
-  <script defer src="/assets/company-explorer-integration.js?v=rc50-mobile-ux7"></script>
-
-  <script defer src="/assets/mbt-inline-3.js?v=rc50-mobile-ux7"></script>
-
-  <!-- Google Analytics GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-88KY7GWFXK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-88KY7GWFXK");
-  </script>
-  <script>
-  if ("addEventListener" in document) {
-    document.addEventListener("touchstart", function(){}, {passive: true});
+<script>
+(async function(){
+var IND=[{"id": "mobility", "no": "12", "name": "모빌리티", "short": "모빌리티", "rev": 342.7, "op": 21.67, "margin": 6.3, "count": 19, "salary": 6905, "rpe": 26.64, "rpeN": 7, "tenure": 12.8, "tenN": 6, "color": "#3A3A3A", "bright": "#5B6470"}, {"id": "tech", "no": "11", "name": "테크·플랫폼·IT", "short": "테크·IT", "rev": 94.4, "op": 9.12, "margin": 9.7, "count": 33, "salary": 8620, "rpe": 19.18, "rpeN": 18, "tenure": 6.9, "tenN": 18, "color": "#2D2D8C", "bright": "#3D4FD6"}, {"id": "food", "no": "01", "name": "식품·외식·음료", "short": "식품", "rev": 92.9, "op": 5.61, "margin": 6.0, "count": 90, "salary": 5176, "rpe": 12.95, "rpeN": 26, "tenure": 9.1, "tenN": 25, "color": "#B5321A", "bright": "#E04A26"}, {"id": "commerce", "no": "09", "name": "유통·커머스", "short": "유통", "rev": 83.1, "op": 2.89, "margin": 3.5, "count": 27, "salary": 6007, "rpe": 11.65, "rpeN": 8, "tenure": 7.1, "tenN": 8, "color": "#C97A3F", "bright": "#E39A4A"}, {"id": "leisure", "no": "10", "name": "레저·여행", "short": "레저", "rev": 62.7, "op": 1.72, "margin": 2.7, "count": 34, "salary": 6386, "rpe": 10.23, "rpeN": 18, "tenure": 9.0, "tenN": 19, "color": "#2E8B7A", "bright": "#23AE96"}, {"id": "fashion", "no": "02", "name": "패션", "short": "패션", "rev": 37.6, "op": 3.84, "margin": 10.2, "count": 47, "salary": 5048, "rpe": 13.7, "rpeN": 13, "tenure": 6.5, "tenN": 15, "color": "#1A1A1A", "bright": "#6E63A6"}, {"id": "living", "no": "04", "name": "라이프스타일·리빙", "short": "리빙", "rev": 32.1, "op": 2.42, "margin": 7.5, "count": 65, "salary": 5326, "rpe": 9.89, "rpeN": 30, "tenure": 7.9, "tenN": 31, "color": "#2C5F4A", "bright": "#2E9E72"}, {"id": "beauty", "no": "03", "name": "뷰티", "short": "뷰티", "rev": 30.6, "op": 2.89, "margin": 9.4, "count": 42, "salary": 6971, "rpe": 12.77, "rpeN": 19, "tenure": 5.2, "tenN": 19, "color": "#7A2541", "bright": "#C2436B"}, {"id": "content", "no": "05", "name": "콘텐츠·엔터", "short": "콘텐츠", "rev": 19.2, "op": 1.78, "margin": 9.3, "count": 42, "salary": 6288, "rpe": 13.77, "rpeN": 23, "tenure": 4.7, "tenN": 23, "color": "#DC6B2F", "bright": "#F4863C"}, {"id": "media", "no": "06", "name": "미디어·언론", "short": "미디어", "rev": 18.4, "op": 0.62, "margin": 3.4, "count": 41, "salary": 6450, "rpe": 10.7, "rpeN": 15, "tenure": 9.8, "tenN": 15, "color": "#2D3E68", "bright": "#4463B0"}, {"id": "edu", "no": "08", "name": "교육", "short": "교육", "rev": 7.3, "op": 0.2, "margin": 2.7, "count": 58, "salary": 4775, "rpe": 4.09, "rpeN": 14, "tenure": 7.4, "tenN": 14, "color": "#4A6FA5", "bright": "#5B8FD6"}, {"id": "pub", "no": "07", "name": "출판·단행본", "short": "출판", "rev": 3.3, "op": 0.09, "margin": 2.8, "count": 41, "salary": 4820, "rpe": 9.29, "rpeN": 5, "tenure": 4.9, "tenN": 5, "color": "#5A3825", "bright": "#9A6A45"}], REG=[{"name": "서울", "x": 231, "y": 199, "count": 331, "revenue": 6009432.7, "employees": 302323, "coverage": 124, "top": ["현대차", "기아차", "이마트", "대한항공"]}, {"name": "경기", "x": 282, "y": 254, "count": 56, "revenue": 838498.8, "employees": 49341, "coverage": 29, "top": ["KT", "네이버", "카카오", "KGM모빌리티"]}, {"name": "인천", "x": 191, "y": 231, "count": 6, "revenue": 145748, "employees": 106, "coverage": 2, "top": ["쉐보레", "동서식품", "신세계야구단", "선샤인푸드"]}, {"name": "강원", "x": 345, "y": 202, "count": 4, "revenue": 26701, "employees": 7373, "coverage": 3, "top": ["강원랜드", "삼표시멘트", "더 존 비즈온", "테라로사"]}, {"name": "충북", "x": 298, "y": 285, "count": 5, "revenue": 64320, "employees": 3661, "coverage": 3, "top": ["풀무원", "현대엘레베이터", "정식품(베지밀)", "롯데네슬레코리아"]}, {"name": "충남", "x": 217, "y": 314, "count": 2, "revenue": 2534, "employees": 105, "coverage": 1, "top": ["대천김", "한국맥널티"]}, {"name": "세종", "x": 259, "y": 306, "count": 1, "revenue": 27224, "employees": 1542, "coverage": 1, "top": ["한국콜마"]}, {"name": "대전", "x": 281, "y": 348, "count": 4, "revenue": 13886, "employees": 0, "coverage": 0, "top": ["한국인삼공사", "로쏘", "이삭 토스트", "장충동왕족발"]}, {"name": "전북", "x": 242, "y": 393, "count": 4, "revenue": 15064, "employees": 2609, "coverage": 2, "top": ["하림", "이성당", "이성당 (군산 빵집)", "세븐브로이맥주"]}, {"name": "전남", "x": 224, "y": 472, "count": 1, "revenue": 899, "employees": 227, "coverage": 1, "top": ["보해양조"]}, {"name": "경북", "x": 377, "y": 340, "count": 1, "revenue": 1876, "employees": 0, "coverage": 0, "top": ["해태아이스크림"]}, {"name": "경남", "x": 332, "y": 436, "count": 1, "revenue": 1011, "employees": 0, "coverage": 0, "top": ["미스터 아빠"]}, {"name": "부산", "x": 396, "y": 447, "count": 7, "revenue": 13666, "employees": 224, "coverage": 1, "top": ["화승네트웍스", "컴포즈커피", "아정당", "골든블루"]}, {"name": "제주", "x": 204, "y": 617, "count": 6, "revenue": 33535, "employees": 3739, "coverage": 3, "top": ["제주항공", "네오플", "쏘카", "제주 신화월드"]}], GRP=[["beauty", "뷰티", [["LG생활건강", 63554.9, 2.69, 4013], ["올리브영", 58539, 12.52, null], ["아모레퍼시픽", 42528, 7.9, 4748]]], ["commerce", "유통·커머스", [["이마트", 289704, 1.11, 23075], ["롯데쇼핑", 137384, 3.98, 17712], ["GS 리테일", 119574, 2.44, 7304]]], ["content", "콘텐츠·엔터", [["CJ ENM", 51345, 2.59, 3105], ["하이브", 26499, 1.86, 893], ["엔씨소프트", 15069, 1.07, 3262]]], ["edu", "교육", [["미래엔", 9659, 4.51, 779], ["메가스터디교육", 8849, 13.67, 2002], ["웅진씽크빅", 7974, -1.32, 1532]]], ["fashion", "패션", [["뉴발란스코리아", 55433.8, 6.01, 2802], ["코오롱FnC", 48734, 2.23, null], ["영원무역", 40636, 12.66, 351]]], ["food", "식품·외식·음료", [["CJ제일제당", 273425.9, 4.51, 8232], ["동원F&B", 48777.3, 3.97, null], ["대상", 44013, 3.85, 5106]]], ["leisure", "레저·여행", [["대한항공", 252255, 4.41, 18318], ["아시아나항공", 72668, -4.75, 7479], ["롯데월드", 47262.1, 4.85, 4626]]], ["living", "라이프스타일·리빙", [["코웨이", 43156, 17.6, null], ["현대엘레베이터", 25320, 5.9, null], ["현대리바트", 18684, 1.9, null]]], ["media", "미디어·언론", [["제일기획", 45182, 10.6, null], ["CJ CGV", 23169, 3.1, null], ["이노션", 21456, 8.2, null]]], ["mobility", "모빌리티", [["현대차", 1862995, 6.2, 72598], ["기아차", 1141033, 11.2, 34482], ["쉐보레", 126234, -2.1, null]]], ["pub", "출판·단행본", [["교보문고", 9770, -1.2, 1351], ["예스24", 6265, 0.6, null], ["알라딘", 4291, 2.8, null]]], ["tech", "테크·플랫폼·IT", [["KT", 264251, 4.1, 20603], ["SK텔레콤", 178622, 6.1, 5721], ["LG유플러스", 154937, 3.9, 10578]]]], RCOL={"서울": "#C6553A", "경기": "#E0973F", "인천": "#8C6FC4", "강원": "#6E5A47", "충북": "#E9C33C", "충남": "#5FA96A", "세종": "#D9739B", "대전": "#3FB3A6", "전북": "#2E9E58", "전남": "#2F86C9", "경북": "#7E6BC9", "경남": "#45BEE0", "부산": "#E06A8F", "제주": "#B99A6B"}, CELLS=[[181.5, 281.0, 5], [181.5, 291.5, 5], [181.5, 480.5, 9], [181.5, 491.0, 9], [192.0, 239.0, 2], [192.0, 281.0, 5], [192.0, 291.5, 5], [192.0, 438.5, 9], [192.0, 449.0, 9], [192.0, 459.5, 9], [192.0, 470.0, 9], [192.0, 480.5, 9], [192.0, 491.0, 9], [192.0, 501.5, 9], [192.0, 512.0, 9], [202.5, 197.0, 0], [202.5, 228.5, 2], [202.5, 239.0, 2], [202.5, 249.5, 2], [202.5, 260.0, 5], [202.5, 270.5, 5], [202.5, 281.0, 5], [202.5, 291.5, 5], [202.5, 302.0, 5], [202.5, 312.5, 5], [202.5, 323.0, 5], [202.5, 333.5, 5], [202.5, 344.0, 5], [202.5, 396.5, 8], [202.5, 407.0, 8], [202.5, 417.5, 8], [202.5, 428.0, 9], [202.5, 438.5, 9], [202.5, 449.0, 9], [202.5, 459.5, 9], [202.5, 470.0, 9], [202.5, 480.5, 9], [202.5, 491.0, 9], [202.5, 501.5, 9], [202.5, 512.0, 9], [213.0, 176.0, 0], [213.0, 186.5, 0], [213.0, 197.0, 0], [213.0, 207.5, 0], [213.0, 218.0, 0], [213.0, 228.5, 2], [213.0, 239.0, 2], [213.0, 249.5, 1], [213.0, 260.0, 5], [213.0, 270.5, 5], [213.0, 281.0, 5], [213.0, 291.5, 5], [213.0, 302.0, 5], [213.0, 312.5, 5], [213.0, 323.0, 5], [213.0, 333.5, 5], [213.0, 344.0, 5], [213.0, 354.5, 8], [213.0, 365.0, 8], [213.0, 375.5, 8], [213.0, 386.0, 8], [213.0, 396.5, 8], [213.0, 407.0, 8], [213.0, 417.5, 8], [213.0, 428.0, 9], [213.0, 438.5, 9], [213.0, 449.0, 9], [213.0, 459.5, 9], [213.0, 470.0, 9], [213.0, 480.5, 9], [213.0, 491.0, 9], [213.0, 501.5, 9], [213.0, 512.0, 9], [223.5, 176.0, 0], [223.5, 186.5, 0], [223.5, 197.0, 0], [223.5, 207.5, 0], [223.5, 218.0, 0], [223.5, 228.5, 1], [223.5, 239.0, 1], [223.5, 249.5, 1], [223.5, 260.0, 1], [223.5, 270.5, 5], [223.5, 281.0, 5], [223.5, 291.5, 5], [223.5, 302.0, 5], [223.5, 312.5, 5], [223.5, 323.0, 5], [223.5, 333.5, 5], [223.5, 344.0, 5], [223.5, 354.5, 8], [223.5, 365.0, 8], [223.5, 375.5, 8], [223.5, 386.0, 8], [223.5, 396.5, 8], [223.5, 407.0, 8], [223.5, 417.5, 8], [223.5, 428.0, 9], [223.5, 438.5, 9], [223.5, 449.0, 9], [223.5, 459.5, 9], [223.5, 470.0, 9], [223.5, 480.5, 9], [223.5, 491.0, 9], [223.5, 501.5, 9], [223.5, 512.0, 9], [234.0, 165.5, 0], [234.0, 176.0, 0], [234.0, 186.5, 0], [234.0, 197.0, 0], [234.0, 207.5, 0], [234.0, 218.0, 1], [234.0, 228.5, 1], [234.0, 239.0, 1], [234.0, 249.5, 1], [234.0, 260.0, 1], [234.0, 270.5, 1], [234.0, 281.0, 5], [234.0, 291.5, 5], [234.0, 302.0, 5], [234.0, 312.5, 5], [234.0, 323.0, 5], [234.0, 333.5, 5], [234.0, 344.0, 5], [234.0, 354.5, 8], [234.0, 365.0, 8], [234.0, 375.5, 8], [234.0, 386.0, 8], [234.0, 396.5, 8], [234.0, 407.0, 8], [234.0, 417.5, 8], [234.0, 428.0, 9], [234.0, 438.5, 9], [234.0, 449.0, 9], [234.0, 459.5, 9], [234.0, 470.0, 9], [234.0, 480.5, 9], [234.0, 491.0, 9], [234.0, 501.5, 9], [234.0, 512.0, 9], [244.5, 165.5, 0], [244.5, 176.0, 0], [244.5, 186.5, 0], [244.5, 197.0, 0], [244.5, 207.5, 1], [244.5, 218.0, 1], [244.5, 228.5, 1], [244.5, 239.0, 1], [244.5, 249.5, 1], [244.5, 260.0, 1], [244.5, 270.5, 1], [244.5, 281.0, 1], [244.5, 291.5, 5], [244.5, 302.0, 5], [244.5, 312.5, 5], [244.5, 323.0, 5], [244.5, 333.5, 5], [244.5, 344.0, 8], [244.5, 354.5, 8], [244.5, 365.0, 8], [244.5, 375.5, 8], [244.5, 386.0, 8], [244.5, 396.5, 8], [244.5, 407.0, 8], [244.5, 417.5, 8], [244.5, 428.0, 8], [244.5, 438.5, 9], [244.5, 449.0, 9], [244.5, 459.5, 9], [244.5, 470.0, 9], [244.5, 480.5, 9], [244.5, 491.0, 9], [244.5, 501.5, 9], [244.5, 512.0, 9], [255.0, 155.0, 0], [255.0, 165.5, 0], [255.0, 176.0, 0], [255.0, 186.5, 0], [255.0, 197.0, 1], [255.0, 207.5, 1], [255.0, 218.0, 1], [255.0, 228.5, 1], [255.0, 239.0, 1], [255.0, 249.5, 1], [255.0, 260.0, 1], [255.0, 270.5, 1], [255.0, 281.0, 1], [255.0, 291.5, 1], [255.0, 302.0, 6], [255.0, 312.5, 6], [255.0, 323.0, 5], [255.0, 333.5, 5], [255.0, 344.0, 8], [255.0, 354.5, 8], [255.0, 365.0, 8], [255.0, 375.5, 8], [255.0, 386.0, 8], [255.0, 396.5, 8], [255.0, 407.0, 8], [255.0, 417.5, 8], [255.0, 428.0, 8], [255.0, 438.5, 9], [255.0, 449.0, 9], [255.0, 459.5, 9], [255.0, 470.0, 9], [255.0, 480.5, 9], [255.0, 491.0, 9], [255.0, 501.5, 9], [265.5, 144.5, 3], [265.5, 155.0, 3], [265.5, 165.5, 3], [265.5, 176.0, 3], [265.5, 186.5, 1], [265.5, 197.0, 1], [265.5, 207.5, 1], [265.5, 218.0, 1], [265.5, 228.5, 1], [265.5, 239.0, 1], [265.5, 249.5, 1], [265.5, 260.0, 1], [265.5, 270.5, 1], [265.5, 281.0, 1], [265.5, 291.5, 4], [265.5, 302.0, 4], [265.5, 312.5, 4], [265.5, 323.0, 4], [265.5, 333.5, 7], [265.5, 344.0, 7], [265.5, 354.5, 8], [265.5, 365.0, 8], [265.5, 375.5, 8], [265.5, 386.0, 8], [265.5, 396.5, 8], [265.5, 407.0, 8], [265.5, 417.5, 8], [265.5, 428.0, 8], [265.5, 438.5, 9], [265.5, 449.0, 9], [265.5, 459.5, 9], [265.5, 470.0, 9], [265.5, 480.5, 9], [265.5, 491.0, 9], [276.0, 144.5, 3], [276.0, 155.0, 3], [276.0, 165.5, 3], [276.0, 176.0, 3], [276.0, 186.5, 3], [276.0, 197.0, 1], [276.0, 207.5, 1], [276.0, 218.0, 1], [276.0, 228.5, 1], [276.0, 239.0, 1], [276.0, 249.5, 1], [276.0, 260.0, 1], [276.0, 270.5, 1], [276.0, 281.0, 4], [276.0, 291.5, 4], [276.0, 302.0, 4], [276.0, 312.5, 4], [276.0, 323.0, 4], [276.0, 333.5, 7], [276.0, 344.0, 7], [276.0, 354.5, 7], [276.0, 365.0, 8], [276.0, 375.5, 8], [276.0, 386.0, 8], [276.0, 396.5, 8], [276.0, 407.0, 8], [276.0, 417.5, 8], [276.0, 428.0, 11], [276.0, 438.5, 11], [276.0, 449.0, 11], [276.0, 459.5, 9], [276.0, 470.0, 9], [276.0, 480.5, 9], [276.0, 491.0, 9], [286.5, 134.0, 3], [286.5, 144.5, 3], [286.5, 155.0, 3], [286.5, 165.5, 3], [286.5, 176.0, 3], [286.5, 186.5, 3], [286.5, 197.0, 3], [286.5, 207.5, 1], [286.5, 218.0, 1], [286.5, 228.5, 1], [286.5, 239.0, 1], [286.5, 249.5, 1], [286.5, 260.0, 1], [286.5, 270.5, 1], [286.5, 281.0, 4], [286.5, 291.5, 4], [286.5, 302.0, 4], [286.5, 312.5, 4], [286.5, 323.0, 4], [286.5, 333.5, 7], [286.5, 344.0, 7], [286.5, 354.5, 7], [286.5, 365.0, 7], [286.5, 375.5, 8], [286.5, 386.0, 8], [286.5, 396.5, 8], [286.5, 407.0, 11], [286.5, 417.5, 11], [286.5, 428.0, 11], [286.5, 438.5, 11], [286.5, 449.0, 11], [286.5, 459.5, 11], [286.5, 470.0, 11], [286.5, 480.5, 11], [297.0, 134.0, 3], [297.0, 144.5, 3], [297.0, 155.0, 3], [297.0, 165.5, 3], [297.0, 176.0, 3], [297.0, 186.5, 3], [297.0, 197.0, 3], [297.0, 207.5, 3], [297.0, 218.0, 1], [297.0, 228.5, 1], [297.0, 239.0, 1], [297.0, 249.5, 1], [297.0, 260.0, 1], [297.0, 270.5, 4], [297.0, 281.0, 4], [297.0, 291.5, 4], [297.0, 302.0, 4], [297.0, 312.5, 4], [297.0, 323.0, 4], [297.0, 333.5, 7], [297.0, 344.0, 7], [297.0, 354.5, 7], [297.0, 365.0, 7], [297.0, 375.5, 11], [297.0, 386.0, 11], [297.0, 396.5, 11], [297.0, 407.0, 11], [297.0, 417.5, 11], [297.0, 428.0, 11], [297.0, 438.5, 11], [297.0, 449.0, 11], [297.0, 459.5, 11], [297.0, 470.0, 11], [297.0, 480.5, 11], [307.5, 134.0, 3], [307.5, 144.5, 3], [307.5, 155.0, 3], [307.5, 165.5, 3], [307.5, 176.0, 3], [307.5, 186.5, 3], [307.5, 197.0, 3], [307.5, 207.5, 3], [307.5, 218.0, 3], [307.5, 228.5, 1], [307.5, 239.0, 1], [307.5, 249.5, 1], [307.5, 260.0, 1], [307.5, 270.5, 4], [307.5, 281.0, 4], [307.5, 291.5, 4], [307.5, 302.0, 4], [307.5, 312.5, 4], [307.5, 323.0, 4], [307.5, 333.5, 10], [307.5, 344.0, 10], [307.5, 354.5, 10], [307.5, 365.0, 10], [307.5, 375.5, 11], [307.5, 386.0, 11], [307.5, 396.5, 11], [307.5, 407.0, 11], [307.5, 417.5, 11], [307.5, 428.0, 11], [307.5, 438.5, 11], [307.5, 449.0, 11], [307.5, 459.5, 11], [307.5, 470.0, 11], [318.0, 123.5, 3], [318.0, 134.0, 3], [318.0, 144.5, 3], [318.0, 155.0, 3], [318.0, 165.5, 3], [318.0, 176.0, 3], [318.0, 186.5, 3], [318.0, 197.0, 3], [318.0, 207.5, 3], [318.0, 218.0, 3], [318.0, 228.5, 3], [318.0, 239.0, 3], [318.0, 249.5, 1], [318.0, 260.0, 1], [318.0, 270.5, 4], [318.0, 281.0, 4], [318.0, 291.5, 4], [318.0, 302.0, 4], [318.0, 312.5, 4], [318.0, 323.0, 10], [318.0, 333.5, 10], [318.0, 344.0, 10], [318.0, 354.5, 10], [318.0, 365.0, 10], [318.0, 375.5, 10], [318.0, 386.0, 11], [318.0, 396.5, 11], [318.0, 407.0, 11], [318.0, 417.5, 11], [318.0, 428.0, 11], [318.0, 438.5, 11], [318.0, 449.0, 11], [318.0, 459.5, 11], [318.0, 470.0, 11], [328.5, 123.5, 3], [328.5, 134.0, 3], [328.5, 144.5, 3], [328.5, 155.0, 3], [328.5, 165.5, 3], [328.5, 176.0, 3], [328.5, 186.5, 3], [328.5, 197.0, 3], [328.5, 207.5, 3], [328.5, 218.0, 3], [328.5, 228.5, 3], [328.5, 239.0, 3], [328.5, 249.5, 3], [328.5, 260.0, 1], [328.5, 270.5, 4], [328.5, 281.0, 4], [328.5, 291.5, 4], [328.5, 302.0, 10], [328.5, 312.5, 10], [328.5, 323.0, 10], [328.5, 333.5, 10], [328.5, 344.0, 10], [328.5, 354.5, 10], [328.5, 365.0, 10], [328.5, 375.5, 10], [328.5, 386.0, 11], [328.5, 396.5, 11], [328.5, 407.0, 11], [328.5, 417.5, 11], [328.5, 428.0, 11], [328.5, 438.5, 11], [328.5, 449.0, 11], [328.5, 459.5, 11], [328.5, 470.0, 11], [339.0, 123.5, 3], [339.0, 134.0, 3], [339.0, 144.5, 3], [339.0, 155.0, 3], [339.0, 165.5, 3], [339.0, 176.0, 3], [339.0, 186.5, 3], [339.0, 197.0, 3], [339.0, 207.5, 3], [339.0, 218.0, 3], [339.0, 228.5, 3], [339.0, 239.0, 3], [339.0, 249.5, 3], [339.0, 260.0, 3], [339.0, 270.5, 4], [339.0, 281.0, 4], [339.0, 291.5, 10], [339.0, 302.0, 10], [339.0, 312.5, 10], [339.0, 323.0, 10], [339.0, 333.5, 10], [339.0, 344.0, 10], [339.0, 354.5, 10], [339.0, 365.0, 10], [339.0, 375.5, 10], [339.0, 386.0, 11], [339.0, 396.5, 11], [339.0, 407.0, 11], [339.0, 417.5, 11], [339.0, 428.0, 11], [339.0, 438.5, 11], [339.0, 449.0, 11], [339.0, 459.5, 11], [339.0, 470.0, 11], [349.5, 134.0, 3], [349.5, 144.5, 3], [349.5, 155.0, 3], [349.5, 165.5, 3], [349.5, 176.0, 3], [349.5, 186.5, 3], [349.5, 197.0, 3], [349.5, 207.5, 3], [349.5, 218.0, 3], [349.5, 228.5, 3], [349.5, 239.0, 3], [349.5, 249.5, 3], [349.5, 260.0, 3], [349.5, 270.5, 10], [349.5, 281.0, 10], [349.5, 291.5, 10], [349.5, 302.0, 10], [349.5, 312.5, 10], [349.5, 323.0, 10], [349.5, 333.5, 10], [349.5, 344.0, 10], [349.5, 354.5, 10], [349.5, 365.0, 10], [349.5, 375.5, 10], [349.5, 386.0, 10], [349.5, 396.5, 11], [349.5, 407.0, 11], [349.5, 417.5, 11], [349.5, 428.0, 11], [349.5, 438.5, 11], [349.5, 449.0, 11], [349.5, 459.5, 11], [349.5, 470.0, 11], [360.0, 144.5, 3], [360.0, 155.0, 3], [360.0, 165.5, 3], [360.0, 176.0, 3], [360.0, 186.5, 3], [360.0, 197.0, 3], [360.0, 207.5, 3], [360.0, 218.0, 3], [360.0, 228.5, 3], [360.0, 239.0, 3], [360.0, 249.5, 3], [360.0, 260.0, 3], [360.0, 270.5, 10], [360.0, 281.0, 10], [360.0, 291.5, 10], [360.0, 302.0, 10], [360.0, 312.5, 10], [360.0, 323.0, 10], [360.0, 333.5, 10], [360.0, 344.0, 10], [360.0, 354.5, 10], [360.0, 365.0, 10], [360.0, 375.5, 10], [360.0, 386.0, 10], [360.0, 396.5, 11], [360.0, 407.0, 11], [360.0, 417.5, 11], [360.0, 428.0, 11], [360.0, 438.5, 11], [360.0, 449.0, 11], [360.0, 459.5, 11], [370.5, 165.5, 3], [370.5, 176.0, 3], [370.5, 186.5, 3], [370.5, 197.0, 3], [370.5, 207.5, 3], [370.5, 218.0, 3], [370.5, 228.5, 3], [370.5, 239.0, 3], [370.5, 249.5, 3], [370.5, 260.0, 3], [370.5, 270.5, 10], [370.5, 281.0, 10], [370.5, 291.5, 10], [370.5, 302.0, 10], [370.5, 312.5, 10], [370.5, 323.0, 10], [370.5, 333.5, 10], [370.5, 344.0, 10], [370.5, 354.5, 10], [370.5, 365.0, 10], [370.5, 375.5, 10], [370.5, 386.0, 10], [370.5, 396.5, 10], [370.5, 407.0, 11], [370.5, 417.5, 11], [370.5, 428.0, 11], [370.5, 438.5, 11], [370.5, 449.0, 11], [370.5, 459.5, 11], [381.0, 197.0, 3], [381.0, 207.5, 3], [381.0, 218.0, 3], [381.0, 228.5, 3], [381.0, 239.0, 3], [381.0, 249.5, 3], [381.0, 260.0, 3], [381.0, 270.5, 10], [381.0, 281.0, 10], [381.0, 291.5, 10], [381.0, 302.0, 10], [381.0, 312.5, 10], [381.0, 323.0, 10], [381.0, 333.5, 10], [381.0, 344.0, 10], [381.0, 354.5, 10], [381.0, 365.0, 10], [381.0, 375.5, 10], [381.0, 386.0, 10], [381.0, 396.5, 10], [381.0, 407.0, 11], [381.0, 417.5, 11], [381.0, 428.0, 12], [381.0, 438.5, 12], [381.0, 449.0, 12], [391.5, 228.5, 3], [391.5, 239.0, 3], [391.5, 249.5, 3], [391.5, 260.0, 10], [391.5, 270.5, 10], [391.5, 281.0, 10], [391.5, 291.5, 10], [391.5, 302.0, 10], [391.5, 312.5, 10], [391.5, 323.0, 10], [391.5, 333.5, 10], [391.5, 344.0, 10], [391.5, 354.5, 10], [391.5, 365.0, 10], [391.5, 375.5, 10], [391.5, 386.0, 10], [391.5, 396.5, 10], [391.5, 407.0, 10], [391.5, 417.5, 12], [391.5, 428.0, 12], [391.5, 438.5, 12], [402.0, 249.5, 3], [402.0, 260.0, 10], [402.0, 270.5, 10], [402.0, 281.0, 10], [402.0, 291.5, 10], [402.0, 302.0, 10], [402.0, 312.5, 10], [402.0, 323.0, 10], [402.0, 333.5, 10], [402.0, 344.0, 10], [402.0, 354.5, 10], [402.0, 365.0, 10], [402.0, 375.5, 10], [402.0, 386.0, 10], [402.0, 396.5, 10], [402.0, 407.0, 10], [402.0, 417.5, 12], [402.0, 428.0, 12], [412.5, 260.0, 10], [412.5, 270.5, 10], [412.5, 281.0, 10], [412.5, 291.5, 10], [412.5, 302.0, 10], [412.5, 312.5, 10], [412.5, 323.0, 10], [412.5, 333.5, 10], [412.5, 344.0, 10], [412.5, 354.5, 10], [412.5, 365.0, 10], [412.5, 375.5, 10], [412.5, 386.0, 10], [412.5, 396.5, 10], [412.5, 407.0, 10], [412.5, 417.5, 12], [423.0, 312.5, 10], [423.0, 323.0, 10], [423.0, 333.5, 10], [423.0, 344.0, 10], [423.0, 354.5, 10], [423.0, 365.0, 10], [423.0, 375.5, 10], [423.0, 386.0, 10], [168.0, 617.0, 13], [178.5, 606.5, 13], [178.5, 617.0, 13], [178.5, 627.5, 13], [189.0, 606.5, 13], [189.0, 617.0, 13], [189.0, 627.5, 13], [199.5, 596.0, 13], [199.5, 606.5, 13], [199.5, 617.0, 13], [199.5, 627.5, 13], [210.0, 596.0, 13], [210.0, 606.5, 13], [210.0, 617.0, 13], [210.0, 627.5, 13], [220.5, 606.5, 13], [220.5, 617.0, 13], [231.0, 606.5, 13]], CENT={"서울": [235.4, 191.8], "경기": [270.1, 245.1], "인천": [208.2, 241.2], "강원": [336.5, 195.0], "충북": [302.8, 300.2], "충남": [223.2, 309.6], "세종": [259.0, 311.2], "대전": [288.1, 350.4], "전북": [248.7, 392.3], "전남": [232.1, 475.5], "경북": [377.6, 339.0], "경남": [328.8, 433.8], "부산": [396.7, 433.2], "제주": [202.9, 617.5]}, CSTEP=10.5, CSIZE=8.2, TOPCO={"KGM모빌리티": [43036, 4126, "모빌리티"], "KT": [282442, 14701, "테크·플랫폼·IT"], "강원랜드": [14767, 4906, "레저·여행"], "골든블루": [1443, 224, "식품·외식·음료"], "기아차": [1141409, 36566, "모빌리티"], "네오플": [10727, null, "콘텐츠·엔터"], "네이버": [120350, 5047, "테크·플랫폼·IT"], "대천김": [1571, null, "식품·외식·음료"], "대한항공": [252255, 18318, "레저·여행"], "더 존 비즈온": [4463, 1818, "테크·플랫폼·IT"], "동서식품": [18105, null, "식품·외식·음료"], "로쏘": [2629, null, "식품·외식·음료"], "롯데네슬레코리아": [1571, null, "식품·외식·음료"], "미스터 아빠": [1011, null, "식품·외식·음료"], "보해양조": [899, 227, "식품·외식·음료"], "삼표시멘트": [6769, 649, "라이프스타일·리빙"], "선샤인푸드": [351, 21, "식품·외식·음료"], "세븐브로이맥주": [68, 45, "식품·외식·음료"], "쉐보레": [126129, null, "모빌리티"], "신세계야구단": [722, null, "레저·여행"], "쏘카": [4707, 437, "모빌리티"], "아정당": [2196, null, "유통·커머스"], "이마트": [289704, 23075, "유통·커머스"], "이삭 토스트": [608, null, "식품·외식·음료"], "이성당": [298, null, "식품·외식·음료"], "이성당 (군산 빵집)": [298, null, "식품·외식·음료"], "장충동왕족발": [348, null, "식품·외식·음료"], "정식품(베지밀)": [2864, null, "식품·외식·음료"], "제주 신화월드": [1696, null, "레저·여행"], "제주항공": [15799, 3233, "레저·여행"], "카카오": [80991, 3922, "테크·플랫폼·IT"], "컴포즈커피": [3003, null, "식품·외식·음료"], "테라로사": [702, null, "식품·외식·음료"], "풀무원": [33802, 546, "식품·외식·음료"], "하림": [14400, 2564, "식품·외식·음료"], "한국맥널티": [963, 105, "식품·외식·음료"], "한국인삼공사": [10301, null, "식품·외식·음료"], "한국콜마": [27224, 1542, "뷰티"], "해태아이스크림": [1876, null, "식품·외식·음료"], "현대엘레베이터": [24674, 2867, "라이프스타일·리빙"], "현대차": [1862545, 72598, "모빌리티"], "화승네트웍스": [4403, null, "유통·커머스"]};
+var MBT_SNAPSHOT={"releaseId":"MBT-WEB-2026-RC5.3-INDUSTRY-INFOGRAPHIC","dataReleaseId":"MBT-WEB-2026-RC5.2-ENTITY-TRUTH","generatedAt":"2026-09-03T13:20:01.310Z","companyCount":537,"addressCount":534,"tenureCount":198,"industries":[{"id":"mobility","no":"12","name":"모빌리티","short":"모빌리티","rev":342.7,"op":21.67,"margin":6.3,"count":19,"salary":7937,"salaryN":9,"rpe":17.82,"rpeN":7,"tenure":12.8,"tenN":6,"color":"#3A3A3A","bright":"#5B6470"},{"id":"tech","no":"11","name":"테크·플랫폼·IT","short":"테크·IT","rev":94.4,"op":9.13,"margin":9.7,"count":33,"salary":9135,"salaryN":21,"rpe":14.5,"rpeN":18,"tenure":6.9,"tenN":18,"color":"#2D2D8C","bright":"#3D4FD6"},{"id":"food","no":"01","name":"식품·외식·음료","short":"식품","rev":89.6,"op":5.58,"margin":6.2,"count":90,"salary":5857,"salaryN":33,"rpe":92.73,"rpeN":25,"tenure":9.1,"tenN":25,"color":"#B5321A","bright":"#E04A26"},{"id":"commerce","no":"09","name":"유통·커머스","short":"유통","rev":83.1,"op":2.89,"margin":3.5,"count":27,"salary":5983,"salaryN":10,"rpe":11.3,"rpeN":8,"tenure":7.1,"tenN":8,"color":"#C97A3F","bright":"#E39A4A"},{"id":"leisure","no":"10","name":"레저·여행","short":"레저","rev":62.7,"op":1.73,"margin":2.8,"count":34,"salary":6653,"salaryN":18,"rpe":9.96,"rpeN":18,"tenure":9,"tenN":19,"color":"#2E8B7A","bright":"#23AE96"},{"id":"fashion","no":"02","name":"패션","short":"패션","rev":38,"op":3.73,"margin":9.8,"count":47,"salary":5949,"salaryN":18,"rpe":23.54,"rpeN":13,"tenure":6.5,"tenN":15,"color":"#1A1A1A","bright":"#6E63A6"},{"id":"living","no":"04","name":"라이프스타일·리빙","short":"리빙","rev":32.1,"op":2.42,"margin":7.5,"count":65,"salary":6378,"salaryN":33,"rpe":13.55,"rpeN":30,"tenure":7.9,"tenN":31,"color":"#2C5F4A","bright":"#2E9E72"},{"id":"beauty","no":"03","name":"뷰티","short":"뷰티","rev":30.6,"op":2.89,"margin":9.4,"count":42,"salary":7192,"salaryN":17,"rpe":13.37,"rpeN":19,"tenure":5.2,"tenN":19,"color":"#7A2541","bright":"#C2436B"},{"id":"content","no":"05","name":"콘텐츠·엔터","short":"콘텐츠","rev":19.2,"op":1.78,"margin":9.3,"count":41,"salary":7239,"salaryN":20,"rpe":18.69,"rpeN":22,"tenure":4.7,"tenN":22,"color":"#DC6B2F","bright":"#F4863C"},{"id":"media","no":"06","name":"미디어·언론","short":"미디어","rev":18.4,"op":0.66,"margin":3.6,"count":41,"salary":6956,"salaryN":24,"rpe":9.76,"rpeN":15,"tenure":9.8,"tenN":15,"color":"#2D3E68","bright":"#4463B0"},{"id":"edu","no":"08","name":"교육","short":"교육","rev":7.2,"op":0.2,"margin":2.7,"count":57,"salary":4928,"salaryN":26,"rpe":3.93,"rpeN":13,"tenure":7.3,"tenN":13,"color":"#4A6FA5","bright":"#5B8FD6"},{"id":"pub","no":"07","name":"출판·단행본","short":"출판","rev":3.3,"op":0.09,"margin":2.8,"count":41,"salary":4991,"salaryN":6,"rpe":6.63,"rpeN":5,"tenure":4.9,"tenN":5,"color":"#5A3825","bright":"#9A6A45"}],"regions":[{"name":"서울","x":231,"y":199,"count":400,"revenue":6842115.4,"employees":332575,"coverage":135,"top":["현대차","기아차","이마트","CJ제일제당"]},{"name":"경기","x":282,"y":254,"count":69,"revenue":792269.7,"employees":49913,"coverage":35,"top":["KT","네이버","KGM모빌리티","오뚜기"]},{"name":"인천","x":191,"y":231,"count":7,"revenue":151433,"employees":106,"coverage":2,"top":["쉐보레","동서식품","이랜드 이츠","신세계야구단"]},{"name":"강원","x":345,"y":202,"count":6,"revenue":32594,"employees":8151,"coverage":5,"top":["강원랜드","삼표시멘트","파마리서치","더 존 비즈온"]},{"name":"충북","x":298,"y":285,"count":7,"revenue":66901,"employees":4361,"coverage":4,"top":["풀무원","현대엘레베이터","정식품(베지밀)","아난티"]},{"name":"충남","x":217,"y":314,"count":10,"revenue":85564.3,"employees":7990,"coverage":3,"top":["코웨이","크라운","애터미","해태제과"]},{"name":"세종","x":259,"y":306,"count":1,"revenue":27224,"employees":1542,"coverage":1,"top":["한국콜마"]},{"name":"대전","x":281,"y":348,"count":4,"revenue":13886,"employees":0,"coverage":0,"top":["한국인삼공사","로쏘","이삭 토스트","장충동왕족발"]},{"name":"전북","x":242,"y":393,"count":5,"revenue":15151.3,"employees":2609,"coverage":2,"top":["하림","이성당","이성당 (군산 빵집)","풍년제과(PNB)"]},{"name":"전남","x":224,"y":472,"count":1,"revenue":899,"employees":227,"coverage":1,"top":["보해양조"]},{"name":"경북","x":377,"y":340,"count":1,"revenue":1876,"employees":0,"coverage":0,"top":["해태아이스크림"]},{"name":"경남","x":332,"y":436,"count":3,"revenue":20125.3,"employees":0,"coverage":0,"top":["볼보그룹코리아","무학","미스터 아빠"]},{"name":"부산","x":396,"y":447,"count":10,"revenue":22301.5,"employees":224,"coverage":1,"top":["에어부산","화승네트웍스","컴포즈커피","아정당"]},{"name":"제주","x":204,"y":617,"count":7,"revenue":115168,"employees":7661,"coverage":4,"top":["카카오","제주항공","네오플","쏘카"]},{"name":"대구","x":370,"y":386,"count":3,"revenue":18488.2,"employees":0,"coverage":0,"top":["티웨이항공","장원교육","삼송빵집"]}],"companyGroups":[["beauty","뷰티",[["LG생활건강",63554.9,2.69,4013],["올리브영",58539,12.52,null],["아모레퍼시픽",42528,7.9,4748]]],["commerce","유통·커머스",[["이마트",289704,1.11,23075],["롯데쇼핑",137384,3.98,17712],["GS 리테일",119574,2.44,7304]]],["content","콘텐츠·엔터",[["CJ ENM",51345,2.59,3105],["하이브",26499,1.86,893],["엔씨소프트",15069,1.07,3262]]],["edu","교육",[["미래엔",9659,4.51,779],["메가스터디교육",8849,13.67,2002],["웅진씽크빅",7974,-1.32,1532]]],["fashion","패션",[["뉴발란스코리아",55433.8,6.01,2802],["코오롱 인더스트리",48734,2.23,4260],["영원무역",40635.8,12.66,351]]],["food","식품·외식·음료",[["CJ제일제당",273425.9,4.51,8232],["동원F&B",48777.3,3.97,null],["대상",44013,3.85,5106]]],["leisure","레저·여행",[["대한항공",252255,4.41,18318],["아시아나항공",72668,-4.75,7479],["롯데월드",47262.1,4.85,4626]]],["living","라이프스타일·리빙",[["코웨이",49636,17.7,6352],["현대엘레베이터",24674,8.48,2867],["한솔제지",22900,2.18,1732]]],["media","미디어·언론",[["제일기획",45469,7.41,1511],["CJ CGV",22754,4.23,4096],["이노션",21460,7.59,1001]]],["mobility","모빌리티",[["현대차",1862545,6.16,72598],["기아차",1141409,7.95,36566],["쉐보레",126129,3.88,null]]],["pub","출판·단행본",[["교보문고",9835,0.61,null],["예스24",6265,0.46,466],["알라딘",4291,1.68,null]]],["tech","테크·플랫폼·IT",[["KT",282442,8.74,14701],["SK텔레콤",170992,6.28,5316],["LG유플러스",154517,5.77,9765]]]],"topCompanies":{"(주)엔에이치엔벅스":[449,56,"콘텐츠·엔터"],"11번가(SK스퀘어)":[0,null,"유통·커머스"],"ABC마트 코리아":[6124,null,"패션"],"APR":[15273,657,"뷰티"],"AT커니":[922,null,"테크·플랫폼·IT"],"BBQ":[5250,null,"식품·외식·음료"],"BGF리테일":[90612,3130,"유통·커머스"],"BKR":[8922,null,"식품·외식·음료"],"BMW 코리아":[60955,null,"모빌리티"],"BYD":[75,null,"모빌리티"],"CJ 4D플렉스":[1331,null,"미디어·언론"],"CJ CGV":[22754,4096,"미디어·언론"],"CJ ENM":[51345,3105,"콘텐츠·엔터"],"CJ제일제당":[273425.9,8232,"식품·외식·음료"],"CJ푸드빌":[10208,null,"식품·외식·음료"],"F&F(MLB·디스커버리)":[19340,646,"패션"],"GS 리테일":[119574,7304,"유통·커머스"],"HS애드":[4839,763,"미디어·언론"],"JYP엔터테인먼트":[8218.5,496,"콘텐츠·엔터"],"KBS 미디어":[2220,null,"미디어·언론"],"KGM모빌리티":[43036,4126,"모빌리티"],"KT":[282442,14701,"테크·플랫폼·IT"],"LF":[18824,910,"패션"],"LG생활건강":[63554.9,4013,"뷰티"],"LG유플러스":[154517,9765,"테크·플랫폼·IT"],"MBC":[12354,null,"미디어·언론"],"MGRV (맹그로브)":[241,null,"라이프스타일·리빙"],"NEW":[1427,36,"콘텐츠·엔터"],"SBS":[10085,832,"미디어·언론"],"SK디앤디":[4458,151,"라이프스타일·리빙"],"SK매직":[7891,1188,"라이프스타일·리빙"],"SK텔레콤":[170992,5316,"테크·플랫폼·IT"],"SM엔터테인먼트":[11749.3,765,"콘텐츠·엔터"],"SPC삼립":[180,null,"식품·외식·음료"],"SSL중앙":[6721,170,"미디어·언론"],"ST유니타스":[688,null,"교육"],"VT(브이티)":[4371.8,277,"뷰티"],"YBM":[518.3,356,"교육"],"YG엔터테인먼트":[5454,438,"콘텐츠·엔터"],"YG플러스":[2360,153,"콘텐츠·엔터"],"YTN":[1342,733,"미디어·언론"],"가나문화콘텐츠":[42,null,"출판·단행본"],"가비아":[3357,423,"테크·플랫폼·IT"],"가히":[808,null,"뷰티"],"감성코퍼레이션":[2502,99,"패션"],"강남대성학원":[253,null,"교육"],"강원랜드":[14767,4906,"레저·여행"],"개념원리":[256,null,"교육"],"게티이미지코리아":[163,null,"미디어·언론"],"경동나비엔":[15022,1734,"라이프스타일·리빙"],"경향신문사":[774,452,"미디어·언론"],"골든블루":[1443,224,"식품·외식·음료"],"골프존":[4833,526,"콘텐츠·엔터"],"공차코리아":[2401,null,"식품·외식·음료"],"교보문고":[9835,null,"출판·단행본"],"교원":[2717,null,"교육"],"교원구몬":[5105,null,"교육"],"교촌치킨":[5174,453,"식품·외식·음료"],"구구스":[644.4,null,"유통·커머스"],"구다이글로벌":[0,null,"뷰티"],"국민일보":[525,null,"미디어·언론"],"국보디자인":[4389,321,"라이프스타일·리빙"],"국순당":[675,252,"식품·외식·음료"],"그랑핸드":[316,null,"뷰티"],"그랜드하얏트호텔":[0,null,"레저·여행"],"그레이트북스":[313,null,"교육"],"그립컴퍼니":[189,null,"유통·커머스"],"글로우서울":[503,null,"라이프스타일·리빙"],"금성출판사":[631,null,"교육"],"기아차":[1141409,36566,"모빌리티"],"김영사":[322,null,"출판·단행본"],"까사미아":[0,null,"라이프스타일·리빙"],"깐부":[333,null,"식품·외식·음료"],"나이키코리아":[0,null,"패션"],"남양유업":[9141.5,1649,"식품·외식·음료"],"네오플":[10727,null,"콘텐츠·엔터"],"네이버":[120350,5047,"테크·플랫폼·IT"],"네이버 파이낸셜":[18612,null,"테크·플랫폼·IT"],"네이버웹툰":[8610,null,"콘텐츠·엔터"],"넥슨코리아":[0,null,"콘텐츠·엔터"],"넬슨스포츠":[1526,null,"패션"],"넵튠":[302,125,"콘텐츠·엔터"],"넷플릭스":[10542,null,"미디어·언론"],"노랑풍선":[1197,454,"레저·여행"],"노머스":[757,84,"레저·여행"],"노브랜드":[6022,258,"패션"],"논픽션":[536,null,"뷰티"],"농심":[35143,5501,"식품·외식·음료"],"농심 켈로그":[2094,null,"식품·외식·음료"],"누리미디어 (DBpia)":[182,null,"출판·단행본"],"뉴발란스코리아":[55433.8,2802,"패션"],"뉴시스":[424,null,"미디어·언론"],"닐슨코리아":[437,null,"미디어·언론"],"다날":[2254,273,"테크·플랫폼·IT"],"다락원":[212,null,"교육"],"다산북스":[350,null,"출판·단행본"],"다이소":[45363,null,"유통·커머스"],"다이슨코리아":[5277,null,"라이프스타일·리빙"],"단군소프트":[1126,null,"테크·플랫폼·IT"],"달바글로벌":[5197,203,"뷰티"],"당근마켓":[2706.9,609,"유통·커머스"],"대교":[6500,2359,"교육"],"대상":[44013,5106,"식품·외식·음료"],"대원미디어":[3428,272,"콘텐츠·엔터"],"대원씨아이":[557,null,"출판·단행본"],"대천김":[1571,null,"식품·외식·음료"],"대학내일":[903,null,"교육"],"대한항공":[252255,18318,"레저·여행"],"대한항공씨앤디서비스":[7212,null,"레저·여행"],"대홍기획":[2743,null,"미디어·언론"],"더 존 비즈온":[4463,1818,"테크·플랫폼·IT"],"더네이처홀딩스":[4775,399,"패션"],"더벤티":[992,null,"식품·외식·음료"],"더벨":[422,null,"미디어·언론"],"더본코리아":[3612,715,"식품·외식·음료"],"더스윙":[947,null,"모빌리티"],"데이원컴퍼니":[1239,501,"교육"],"도루코 코리아":[5032,null,"라이프스타일·리빙"],"도미노피자":[2109,null,"식품·외식·음료"],"도서출판 한국헤르만헤세":[41,null,"교육"],"도서출판길벗":[251,null,"출판·단행본"],"도이치모터스":[25491,1351,"모빌리티"],"동서식품":[18105,null,"식품·외식·음료"],"동아오츠카":[3824,null,"식품·외식·음료"],"동아일보":[2798,null,"미디어·언론"],"동아출판":[1313,null,"교육"],"동원F&B":[48777.3,null,"식품·외식·음료"],"두나무":[15578,696,"테크·플랫폼·IT"],"듀오":[484,null,"테크·플랫폼·IT"],"듀오백":[201,85,"라이프스타일·리빙"],"드림어스컴퍼니":[2250,189,"콘텐츠·엔터"],"디딤돌교육":[247,null,"교육"],"디시인사이드":[275,null,"테크·플랫폼·IT"],"디앤씨미디어":[855,103,"출판·단행본"],"디올":[7739,null,"패션"],"디자인하우스":[259,null,"출판·단행본"],"디지털조선":[399,140,"미디어·언론"],"디지털타임스":[150,66,"미디어·언론"],"뚜쥬루":[315.3,null,"식품·외식·음료"],"라엘 코리아":[432,null,"뷰티"],"라포랩스":[856,null,"패션"],"라프텔":[391,null,"콘텐츠·엔터"],"락앤락":[4546,279,"라이프스타일·리빙"],"래드캡투어":[3656,344,"레저·여행"],"런던베이글뮤지엄":[938,null,"식품·외식·음료"],"런드리고":[538,null,"라이프스타일·리빙"],"로보락(팅크웨어)":[5365.9,null,"라이프스타일·리빙"],"로쏘":[2629,null,"식품·외식·음료"],"로에베 코리아":[520,null,"패션"],"로크미디어":[97,null,"출판·단행본"],"롯데GRS":[11189,null,"식품·외식·음료"],"롯데네슬레코리아":[1571,null,"식품·외식·음료"],"롯데쇼핑":[137384,17712,"유통·커머스"],"롯데월드":[47262.1,4626,"레저·여행"],"롯데웰푸드":[42159.5,5825,"식품·외식·음료"],"롯데자이언츠":[811,null,"레저·여행"],"롯데컬처웍스":[4345,null,"미디어·언론"],"롯데하이마트":[23001,3776,"유통·커머스"],"롯데호텔":[47262.1,4626,"레저·여행"],"롱샴 코리아":[676,null,"패션"],"루메나":[0,null,"라이프스타일·리빙"],"루이비통코리아":[18543,null,"패션"],"룩옵틱스":[835,null,"패션"],"리디":[2516,null,"콘텐츠·엔터"],"리모와 코리아":[767,null,"패션"],"리브로":[145,null,"출판·단행본"],"마녀공장":[1130,108,"뷰티"],"마더텅":[312,null,"교육"],"마뗑킴":[1357,null,"패션"],"마이리얼트립":[1120,null,"레저·여행"],"매머드커피랩":[849,null,"식품·외식·음료"],"매일경제TV":[306,null,"미디어·언론"],"매일유업":[18435,1921,"식품·외식·음료"],"맥도날드 코리아":[0,null,"식품·외식·음료"],"메가박스 중앙":[3238,null,"미디어·언론"],"메가스터디교육":[8849,2002,"교육"],"메가커피":[6469,null,"식품·외식·음료"],"메쎄이상":[728,160,"레저·여행"],"명동교자":[352,null,"식품·외식·음료"],"명륜진사갈비":[4493,null,"식품·외식·음료"],"모나미":[1310,221,"라이프스타일·리빙"],"모두투어":[2104.1,591,"레저·여행"],"무신사":[14679,1870,"패션"],"무학":[1438.3,null,"식품·외식·음료"],"문피아":[855,null,"콘텐츠·엔터"],"문학동네":[368,null,"출판·단행본"],"문화일보":[724,null,"미디어·언론"],"미디어앤아트":[124,null,"콘텐츠·엔터"],"미래엔":[9659,779,"교육"],"미미박스":[352,100,"뷰티"],"미스터 아빠":[1011,null,"식품·외식·음료"],"미트박스":[1356,80,"식품·외식·음료"],"민음사":[206,null,"출판·단행본"],"밀리의 서재":[882,221,"출판·단행본"],"바나프레소":[542,null,"식품·외식·음료"],"바디프랜드":[4226,899,"라이프스타일·리빙"],"바디프렌드":[4225.8,899,"라이프스타일·리빙"],"바운스":[365,null,"라이프스타일·리빙"],"바이브컴퍼니":[190,132,"콘텐츠·엔터"],"바이포엠스튜디오":[2124,null,"콘텐츠·엔터"],"박영사":[119,null,"교육"],"발뮤다 코리아(한국리모텍)":[0,null,"라이프스타일·리빙"],"배럴":[592,79,"패션"],"뱅크샐러드":[260,null,"테크·플랫폼·IT"],"버킷플레이스":[3216,null,"라이프스타일·리빙"],"번개장터":[582,null,"유통·커머스"],"베네통 코리아":[1686,null,"패션"],"벤츠코리아":[61883,null,"모빌리티"],"보령":[10174,1645,"뷰티"],"보해양조":[899,227,"식품·외식·음료"],"볼보그룹코리아":[17676,null,"모빌리티"],"부루구루":[424,null,"식품·외식·음료"],"북이십일":[293,null,"출판·단행본"],"불스원":[1587,251,"모빌리티"],"블루 엘리펀트":[506,null,"패션"],"블루래빗":[161,null,"교육"],"블루보틀코리아":[386,null,"식품·외식·음료"],"블룸버그 코리아":[1563,null,"미디어·언론"],"비룡소":[121,null,"출판·단행본"],"비상교육":[2688,1056,"교육"],"비케이브":[2743,null,"패션"],"빙그레":[14895.9,1998,"식품·외식·음료"],"사람인":[1212,385,"테크·플랫폼·IT"],"사회평론":[193,null,"출판·단행본"],"산리오 코리아":[397,null,"라이프스타일·리빙"],"살로몬":[2217,null,"패션"],"삼성물산 패션부문":[20196.2,null,"패션"],"삼성전자 서비스":[20632,null,"테크·플랫폼·IT"],"삼성출판사":[403,219,"교육"],"삼송빵집":[174.4,null,"식품·외식·음료"],"삼양식품":[23518,3025,"식품·외식·음료"],"삼천리자전거":[1756,107,"라이프스타일·리빙"],"삼표시멘트":[6769,649,"라이프스타일·리빙"],"삼프로":[549,null,"콘텐츠·엔터"],"상미당홀딩스(구 파리크라상,SPC)":[0,null,"식품·외식·음료"],"샌드박스 네트워크":[731,null,"콘텐츠·엔터"],"샘표":[4090,2,"식품·외식·음료"],"생활공작소":[295,null,"라이프스타일·리빙"],"샤넬코리아":[20126,null,"패션"],"서울신문사":[870,438,"미디어·언론"],"서울옥션":[213,105,"콘텐츠·엔터"],"서울우유협동조합":[0,null,"식품·외식·음료"],"선샤인푸드":[351,21,"식품·외식·음료"],"성안당":[172,null,"출판·단행본"],"세라젬":[5498,null,"라이프스타일·리빙"],"세븐브로이맥주":[68,45,"식품·외식·음료"],"센드버드코리아":[226,null,"테크·플랫폼·IT"],"소크라에이아이(구 뤼이드)":[239.8,null,"교육"],"손오공":[970,48,"라이프스타일·리빙"],"송월타올":[1268,null,"라이프스타일·리빙"],"송지오 인터내셔널":[486,null,"패션"],"수경출판사":[231,null,"교육"],"쉐보레":[126129,null,"모빌리티"],"슈피겐코리아":[4637,403,"라이프스타일·리빙"],"스와치 코리아":[3481,null,"패션"],"스케쳐스 코리아":[3709,null,"패션"],"스타벅스":[32380,null,"식품·외식·음료"],"스타쉽엔터테인먼트":[2253,null,"콘텐츠·엔터"],"스타필드 수원":[1078,null,"유통·커머스"],"스타필드 안성":[774,null,"유통·커머스"],"스타필드 하남":[1394,null,"유통·커머스"],"스튜디오드래곤":[5307,179,"콘텐츠·엔터"],"스파크플러스":[766,null,"라이프스타일·리빙"],"스포츠 조선":[184,null,"미디어·언론"],"스포티비":[1362,null,"미디어·언론"],"시공사":[123,null,"출판·단행본"],"시대고시기획 시대교육":[261,null,"교육"],"시디즈":[1957,170,"라이프스타일·리빙"],"시몬스":[3239,null,"라이프스타일·리빙"],"시프트업":[2945,332,"콘텐츠·엔터"],"신동와인":[361,null,"식품·외식·음료"],"신세계 까사":[2470,null,"라이프스타일·리빙"],"신세계건설":[10876.2,null,"유통·커머스"],"신세계사이먼":[2354.5,null,"유통·커머스"],"신세계야구단":[722,null,"레저·여행"],"신세계인터내셔날":[11100,1084,"패션"],"신세계인터내셔날(딥디크)":[11099.7,null,"뷰티"],"신세계프라퍼티":[7663.8,null,"유통·커머스"],"실리콘투":[11163,309,"뷰티"],"심슨영어사":[23,null,"교육"],"쏘카":[4707,437,"모빌리티"],"씨앤씨인터내셔널":[2884.8,666,"뷰티"],"아난티":[2581,700,"레저·여행"],"아디다스 코리아":[0,null,"패션"],"아라리오":[873,null,"콘텐츠·엔터"],"아람북스":[227,null,"교육"],"아로마티카":[511.9,153,"뷰티"],"아모레퍼시픽":[42528,4748,"뷰티"],"아시아경제":[731,273,"미디어·언론"],"아시아나항공":[72668,7479,"레저·여행"],"아식스 코리아":[1866,null,"라이프스타일·리빙"],"아웃백":[4544,null,"식품·외식·음료"],"아이디헤어":[162.1,null,"뷰티"],"아이스크림 에듀":[916,263,"교육"],"아이아이컴바인드":[7723,null,"패션"],"아이에스동서":[12344,357,"라이프스타일·리빙"],"아이패밀리에스씨":[2241,247,"뷰티"],"아정당":[2196,null,"유통·커머스"],"아쿠아플라넷 (한화)":[467,null,"레저·여행"],"아크네 스튜디오 코리아":[230,null,"패션"],"아트박스":[2697,null,"라이프스타일·리빙"],"아티제(보나비)":[980,null,"식품·외식·음료"],"안테나뮤직":[330,null,"콘텐츠·엔터"],"알라딘":[4291,null,"출판·단행본"],"알에이치코리아":[140,null,"출판·단행본"],"애니플러스":[1503,51,"콘텐츠·엔터"],"애터미":[9065,null,"유통·커머스"],"야나두":[832,107,"교육"],"야놀자 (놀)":[10292,204,"레저·여행"],"어도어":[296,null,"콘텐츠·엔터"],"에넥스":[2152.4,184,"라이프스타일·리빙"],"에듀윌":[823,null,"교육"],"에뛰드":[1151,null,"뷰티"],"에르메스 코리아":[11251,null,"패션"],"에버랜드(삼성물산 리조트)":[7231.8,null,"레저·여행"],"에브리봇 (로봇청소기)":[344,98,"라이프스타일·리빙"],"에어부산":[8326,null,"레저·여행"],"에이랜드":[181,null,"패션"],"에이블리":[3697,null,"패션"],"에이블씨엔씨":[2420,155,"뷰티"],"에이스침대":[3172.7,559,"라이프스타일·리빙"],"에코마케팅":[4488,360,"미디어·언론"],"엔씨소프트":[15069,3262,"콘텐츠·엔터"],"엔이능률":[627,258,"교육"],"엘앤피코스메틱":[0,null,"뷰티"],"엠스토리허브":[157,null,"출판·단행본"],"엠즈씨드":[2136,null,"식품·외식·음료"],"엠피엠지":[190,null,"레저·여행"],"여기어때":[3072,null,"레저·여행"],"연합뉴스":[2514,null,"미디어·언론"],"영구크린":[209,null,"라이프스타일·리빙"],"영원무역":[40635.8,351,"패션"],"영풍문고":[1453,null,"출판·단행본"],"예림당":[103,55,"출판·단행본"],"예스24":[6265,466,"출판·단행본"],"오뚜기":[36745,3388,"식품·외식·음료"],"오리온":[33324,1623,"식품·외식·음료"],"오마이뉴스":[141,null,"미디어·언론"],"오메가포인트":[142,null,"교육"],"오비맥주":[17785.1,null,"식품·외식·음료"],"오설록":[1109,null,"식품·외식·음료"],"오아시스":[5645,928,"유통·커머스"],"오피스디포":[1741,null,"라이프스타일·리빙"],"올리브영":[58539,null,"뷰티"],"옵스":[309.5,null,"식품·외식·음료"],"와이랩":[371,67,"출판·단행본"],"와이엘씨":[104,null,"출판·단행본"],"웅진 북센":[2113,null,"출판·단행본"],"웅진식품":[3350.6,null,"식품·외식·음료"],"웅진씽크빅":[7974,1532,"교육"],"웅진컴퍼스":[309,null,"교육"],"웍스아웃":[826,null,"패션"],"원티드랩":[382,179,"테크·플랫폼·IT"],"위닉스":[3695.4,261,"라이프스타일·리빙"],"위워크코리아":[1102,null,"라이프스타일·리빙"],"위즈덤하우스":[359,null,"출판·단행본"],"윌라(웅진)":[0,null,"콘텐츠·엔터"],"유유제약":[1409,248,"뷰티"],"유한킴벌리":[14028,null,"라이프스타일·리빙"],"윤현상재":[351,null,"라이프스타일·리빙"],"은행나무":[17,null,"출판·단행본"],"이감":[228,null,"교육"],"이노션":[21460,1001,"미디어·언론"],"이니스프리":[2098,null,"뷰티"],"이디야":[2387,null,"식품·외식·음료"],"이랜드 이츠":[5685,null,"식품·외식·음료"],"이마트":[289704,23075,"유통·커머스"],"이미스":[1000,null,"패션"],"이삭 토스트":[608,null,"식품·외식·음료"],"이성당":[298,null,"식품·외식·음료"],"이성당 (군산 빵집)":[298,null,"식품·외식·음료"],"이솝 코리아":[1306,null,"뷰티"],"이스트소프트":[1068,234,"테크·플랫폼·IT"],"이앤미래":[11,null,"교육"],"이엘씨에이한국(르라보)":[0,null,"뷰티"],"이케아코리아":[0,null,"라이프스타일·리빙"],"이투스":[303,null,"교육"],"이퍼블릭코리아":[172,null,"출판·단행본"],"이퓨쳐":[111,90,"교육"],"인포뱅크":[1351,172,"테크·플랫폼·IT"],"일룸":[0,null,"라이프스타일·리빙"],"잉글리시에그":[161,null,"교육"],"장원교육":[332,null,"교육"],"장충동왕족발":[348,null,"식품·외식·음료"],"재능교육":[1148,null,"교육"],"저스트코":[251,null,"라이프스타일·리빙"],"정식품(베지밀)":[2864,null,"식품·외식·음료"],"제때":[7333,null,"유통·커머스"],"제이스튜디오":[106,null,"출판·단행본"],"제이플미디어":[140,null,"출판·단행본"],"제일기획":[45469,1511,"미디어·언론"],"제주 신화월드":[1696,null,"레저·여행"],"제주맥주":[139,69,"식품·외식·음료"],"제주항공":[15799,3233,"레저·여행"],"젝시믹스(구 브랜드엑스코퍼레이션)":[2741,215,"패션"],"조선일보":[3109,null,"미디어·언론"],"조선호텔 리조트":[7772,null,"레저·여행"],"조이웍스":[1065,null,"패션"],"좋은책신사고":[495,null,"교육"],"준오":[119.8,null,"뷰티"],"준오디포":[8.7,null,"뷰티"],"준오뷰티":[256.3,null,"뷰티"],"준오센트로드":[54.4,null,"뷰티"],"준오아카데미":[86.8,null,"뷰티"],"중고나라":[114.6,null,"유통·커머스"],"지그재그(카카오스타일)":[2191.9,null,"패션"],"지누스":[9132,154,"라이프스타일·리빙"],"지니뮤직":[3029,230,"콘텐츠·엔터"],"지앤비 패럴랙스교육㈜":[72,null,"출판·단행본"],"지어소프트":[5871,123,"테크·플랫폼·IT"],"지오다노":[1320,null,"패션"],"지학사":[542,null,"교육"],"직방":[922,null,"테크·플랫폼·IT"],"진에어":[13811,null,"레저·여행"],"차이커뮤니케이션":[665,275,"미디어·언론"],"참좋은여행":[921,363,"레저·여행"],"창비":[360,null,"출판·단행본"],"창의와탐구":[200,null,"교육"],"천재교과서":[3751,null,"교육"],"천재교육":[905,null,"교육"],"청호나이스":[0,null,"라이프스타일·리빙"],"초록뱀미디어":[1722,43,"콘텐츠·엔터"],"충남고속":[530,null,"모빌리티"],"카카오":[80991,3922,"테크·플랫폼·IT"],"카카오 엔터":[0,null,"콘텐츠·엔터"],"카카오페이":[9584,null,"테크·플랫폼·IT"],"카페꼼마":[74,null,"식품·외식·음료"],"카페마마스":[110,null,"식품·외식·음료"],"캐논":[7272,null,"라이프스타일·리빙"],"커피빈":[1435,null,"식품·외식·음료"],"컬리":[23671,2902,"유통·커머스"],"컴포즈커피":[3003,null,"식품·외식·음료"],"케이뱅크":[10796,null,"테크·플랫폼·IT"],"케이카":[24388.4,1135,"모빌리티"],"코니바이에린":[823,null,"라이프스타일·리빙"],"코드스테이츠":[39,null,"교육"],"코롬방제과":[62.6,null,"식품·외식·음료"],"코스맥스":[23988,1565,"뷰티"],"코스알엑스(COSRX)":[0,null,"뷰티"],"코오롱 인더스트리":[48734,4260,"패션"],"코오롱FnC":[11647,null,"패션"],"코웨이":[49636,6352,"라이프스타일·리빙"],"콘텐츠웨이브":[2677,null,"미디어·언론"],"콘텐츠퍼스트":[304,null,"출판·단행본"],"콘텐트리중앙":[10833,140,"콘텐츠·엔터"],"쿠쿠 홈시스":[11213,987,"라이프스타일·리빙"],"쿠팡":[0,null,"유통·커머스"],"크라운":[10699,null,"식품·외식·음료"],"크린토피아":[2825,null,"라이프스타일·리빙"],"크림":[2025.3,null,"유통·커머스"],"크몽":[540,null,"테크·플랫폼·IT"],"클래스101":[282,null,"교육"],"클리오":[3289,363,"뷰티"],"키즈엠":[200,null,"교육"],"태림포장":[7539,954,"라이프스타일·리빙"],"테라로사":[557.1,null,"식품·외식·음료"],"테슬라코리아":[33066,null,"모빌리티"],"템버린즈":[0,null,"뷰티"],"토니모리":[2203,122,"뷰티"],"토스":[26983,1986,"테크·플랫폼·IT"],"토요코인호텔":[818,null,"레저·여행"],"토이트론":[219,null,"라이프스타일·리빙"],"톰포드코리아":[207,null,"뷰티"],"투썸플레이스":[5824,null,"식품·외식·음료"],"튼튼영어":[102,null,"교육"],"티니핑":[1413,352,"라이프스타일·리빙"],"티르티르":[3053,null,"뷰티"],"티맵모빌리티":[2835,null,"모빌리티"],"티빙":[4060,null,"미디어·언론"],"티오더":[418,null,"테크·플랫폼·IT"],"티웨이항공":[17981.8,null,"레저·여행"],"팅크웨어":[5366,263,"라이프스타일·리빙"],"파라다이스":[11499,1497,"레저·여행"],"파마리서치":[5362.9,526,"뷰티"],"파이낸셜뉴스신문":[406,null,"미디어·언론"],"팔도":[11811.3,null,"식품·외식·음료"],"팬엔터테인먼트":[352,24,"콘텐츠·엔터"],"퍼스트맨스튜디오":[842,null,"콘텐츠·엔터"],"퍼시스":[3582,259,"라이프스타일·리빙"],"페이스북 코리아":[720,null,"테크·플랫폼·IT"],"페이지2북스":[59,null,"출판·단행본"],"포레스트북스":[93,null,"출판·단행본"],"포스타입":[82,null,"콘텐츠·엔터"],"포켓몬코리아":[733,null,"콘텐츠·엔터"],"포터리":[242,null,"패션"],"폴라리스 오피스":[3242,166,"테크·플랫폼·IT"],"폴스타":[1858,null,"모빌리티"],"풀무원":[33802,546,"식품·외식·음료"],"풍년제과(PNB)":[87.3,null,"식품·외식·음료"],"프릳츠 커피":[179,null,"식품·외식·음료"],"플리토":[360,191,"테크·플랫폼·IT"],"핀다":[240,null,"테크·플랫폼·IT"],"필립스 코리아":[0,null,"라이프스타일·리빙"],"하나투어":[5869,1337,"레저·여행"],"하림":[14400,2564,"식품·외식·음료"],"하이디라오":[1177,null,"식품·외식·음료"],"하이브":[26499,893,"콘텐츠·엔터"],"하이컨시":[4646,null,"교육"],"하이트진로":[24986,2935,"식품·외식·음료"],"학산문화사":[514,null,"출판·단행본"],"학지사":[121,null,"출판·단행본"],"한국 코카콜라":[2975,null,"식품·외식·음료"],"한국경제TV":[759,244,"미디어·언론"],"한국경제신문":[2970,null,"미디어·언론"],"한국맥널티":[963,105,"식품·외식·음료"],"한국몬테소리":[240,null,"교육"],"한국야쿠르트(에치와이)":[0,null,"식품·외식·음료"],"한국인삼공사":[10301,null,"식품·외식·음료"],"한국콜마":[27224,1542,"뷰티"],"한국후지필름":[807,null,"라이프스타일·리빙"],"한글과 컴퓨터":[3267,420,"테크·플랫폼·IT"],"한독모터스":[14812,null,"모빌리티"],"한빛미디어":[133,null,"출판·단행본"],"한샘":[17445.4,2212,"라이프스타일·리빙"],"한섬":[14917.6,1563,"패션"],"한솔교육":[1163,384,"교육"],"한솔제지":[22900,1732,"라이프스타일·리빙"],"한솥도시락":[1475,null,"식품·외식·음료"],"한화리조트":[23760.4,3350,"레저·여행"],"할리스":[2016,null,"식품·외식·음료"],"해커스 어학연구소":[279,null,"교육"],"해커스 어학원":[201,null,"교육"],"해태아이스크림":[1876,null,"식품·외식·음료"],"해태제과":[6414,1533,"식품·외식·음료"],"허스트 중앙":[600,null,"미디어·언론"],"헤이딜러":[2997,null,"모빌리티"],"현대리바트":[15462,769,"라이프스타일·리빙"],"현대백화점":[42303.2,null,"유통·커머스"],"현대엘레베이터":[24674,2867,"라이프스타일·리빙"],"현대영어사":[178,null,"교육"],"현대차":[1862545,72598,"모빌리티"],"호텔신라":[40683.1,1910,"레저·여행"],"화승네트웍스":[4403,null,"유통·커머스"],"화해(버드뷰)":[214.6,null,"뷰티"],"휘닉스 중앙":[1246,null,"레저·여행"],"휠라 코리아":[3863,null,"패션"],"휴넷":[827,null,"교육"]},"extraRegionColors":{"대구":"#C56A32"},"extraRegionCenters":{"대구":[370,386]}};
+IND=MBT_SNAPSHOT.industries;
+REG=MBT_SNAPSHOT.regions;
+GRP=MBT_SNAPSHOT.companyGroups;
+TOPCO=MBT_SNAPSHOT.topCompanies;
+Object.assign(RCOL,MBT_SNAPSHOT.extraRegionColors||{});
+Object.assign(CENT,MBT_SNAPSHOT.extraRegionCenters||{});
+var mbtLiveConnected=false;
+try{
+  var mbtController=new AbortController();
+  var mbtTimer=setTimeout(function(){mbtController.abort();},2200);
+  var mbtBase=typeof window.__MBT_API_BASE__==='string'?window.__MBT_API_BASE__:'https://mbt-public-api.ryw1220.workers.dev';
+  var mbtResponse=await fetch(mbtBase+'/api/v1/site-summary',{headers:{Accept:'application/json'},signal:mbtController.signal});
+  clearTimeout(mbtTimer);
+  if(mbtResponse.ok){
+    var mbtLive=await mbtResponse.json();
+    if(mbtLive.releaseId===MBT_SNAPSHOT.dataReleaseId&&Number(mbtLive.companyCount)===MBT_SNAPSHOT.companyCount){
+      var mbtLiveIndustries={};
+      (mbtLive.industries||[]).forEach(function(item){mbtLiveIndustries[item.id]=item;});
+      IND.forEach(function(ind){
+        var live=mbtLiveIndustries[ind.id];
+        if(!live)return;
+        ind.rev=Math.round(Number(live.latestRevenueEok||0)/1000)/10;
+        ind.count=Number(live.companyCount||ind.count);
+        var group=GRP.find(function(item){return item[0]===ind.id;});
+        if(group&&Array.isArray(live.topCompanies)&&live.topCompanies.length){
+          group[2]=live.topCompanies.slice(0,3).map(function(company){
+            var f=company.latestFinancials||{};
+            TOPCO[company.name]=[f.revenueEok||0,company.workforce&&company.workforce.employees||null,ind.name];
+            return [company.name,f.revenueEok||0,f.operatingMarginPct,company.workforce&&company.workforce.employees||null];
+          }).filter(function(company){return Number.isFinite(Number(company[2]));});
+        }
+      });
+      mbtLiveConnected=true;
+    }
   }
-  window.addEventListener("unhandledrejection", function(e) {
-    if (e.reason && String(e.reason).includes("topo")) window.__mapFetchFailed = true;
+}catch(error){mbtLiveConnected=false;}
+var mbtFresh=document.querySelector('.fresh');
+if(mbtFresh)mbtFresh.innerHTML='<b>Data updated · 2026.09</b><br>'+MBT_SNAPSHOT.companyCount+'개사 · '+(mbtLiveConnected?'DB API 연결 확인':'검증 스냅샷 사용')+'<br>A 확정 / E 추정 구분 · DART 전자공시 기반';
+var mbtMapStatus=document.querySelector('.map-status');
+if(mbtMapStatus)mbtMapStatus.innerHTML='<b>'+MBT_SNAPSHOT.addressCount+' / '+MBT_SNAPSHOT.companyCount+'개사</b> 공식 본사 주소 확인 · 지역에 마우스를 올리거나 터치하면 대표 기업 카드가 열립니다.';
+var mbtMapSource=document.querySelector('#c02 .foot span:first-child');
+if(mbtMapSource)mbtMapSource.textContent='기업·재무·고용: 데이터 릴리스 '+MBT_SNAPSHOT.dataReleaseId+' · 공식 본사 주소 보유 '+MBT_SNAPSHOT.addressCount+'개사';
+
+var NS='http://www.w3.org/2000/svg';
+function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+function q(s,r){return (r||document).querySelector(s);}
+function mix(hex,t){var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  var f=function(v){return Math.round(255+(v-255)*t)};return 'rgb('+f(r)+','+f(g)+','+f(b)+')';}
+function shade(hex,t){var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  var f=function(v){return Math.round(v*(1-t))};return 'rgb('+f(r)+','+f(g)+','+f(b)+')';}
+var fmt=function(n){return Number(n).toLocaleString('ko-KR')};
+var f1=function(n){return Number(n).toFixed(1)};
+function eok(v){return v>=10000? f1(v/10000)+'조' : fmt(Math.round(v))+'억';}
+function routeSlug(v){return String(v||'').normalize('NFKC').trim().replace(/[<>:"/\\|?*]+/g,'-').replace(/\s+/g,'-').replace(/-+/g,'-');}
+function place(boxes,cx,cy,rr,w,bounds){
+  var cand=[[cx,cy-rr-8],[cx,cy+rr+16],[cx+rr+w/2+7,cy+4],[cx-rr-w/2-7,cy+4]];
+  for(var i=0;i<cand.length;i++){
+    var x=cand[i][0],y=cand[i][1];
+    if(x-w/2<bounds[0]||x+w/2>bounds[2]||y-11<bounds[1]||y+4>bounds[3]) continue;
+    var hit=false;
+    for(var j=0;j<boxes.length;j++){var b=boxes[j];
+      if(Math.abs(b[0]-x)<(b[2]+w)/2+5 && Math.abs(b[1]-y)<14){hit=true;break;}}
+    if(!hit){boxes.push([x,y,w]);return [x,y];}
+  }
+  return null;
+}
+
+/* 01 skyline */
+var METRICS={
+  rev:{label:'총매출',unit:'조',pick:function(d){return d.rev},dec:1,
+    axis:'산업 총매출 (조원) — 높이는 제곱근 비례',kind:'sqrt',lo:3,hi:360,
+    ticks:[5,30,100,300],tf:function(v){return v+'조'},avg:false,
+    note:'공개 DB 537개사 최근 재무 합계 · 불 켜진 창의 비율 = 영업이익률(최고 패션 10.2% 기준)'},
+  salary:{label:'평균 연봉',unit:'만원',pick:function(d){return d.salary},dec:0,
+    axis:'산업 평균 연봉 (만원)',kind:'lin',lo:4200,hi:9000,
+    ticks:[4500,6000,7500,9000],tf:function(v){return (v/1000)+'천'},avg:true,
+    note:'상장·비상장 포함 산업 평균 · 가로 순서는 매출 순 그대로라 높이만 재배치됩니다'},
+  rpe:{label:'1인당 매출',unit:'억',pick:function(d){return d.rpe},dec:1,
+    axis:'직원 1인당 매출 (억원)',kind:'lin',lo:2,hi:28,
+    ticks:[5,10,20,26],tf:function(v){return v+'억'},avg:true,
+    note:'인원이 공개된 기업만으로 산출 — 산업별 표본 수가 다르므로 추세로만 읽어 주세요'},
+  tenure:{label:'평균 근속',unit:'년',pick:function(d){return d.tenure},dec:1,
+    axis:'평균 근속연수 (년)',kind:'lin',lo:3.5,hi:13.5,
+    ticks:[5,8,11,13],tf:function(v){return v+'년'},avg:true,
+    note:'DART 사업보고서 평균근속 공시 기업만 집계 · 표본 수는 산업마다 다릅니다'}
+};
+var mKey='rev', selI=0;
+var skySvg=q('#sky-svg'), maxMargin=Math.max.apply(null,IND.map(function(d){return d.margin}));
+var W=1200,H=648,M={t:96,r:22,b:96,l:60};
+var plotW=W-M.l-M.r, baseY=H-M.b, plotH=baseY-M.t;
+var band=plotW/IND.length, bw=Math.min(72,band*0.80), ROOFMAX=30, MINH=34, maxH=plotH-ROOFMAX-18;
+function ratio(v,m){if(m.kind==='sqrt'){var lo=Math.sqrt(m.lo),hi=Math.sqrt(m.hi);
+    return Math.max(0,Math.min(1,(Math.sqrt(v)-lo)/(hi-lo)));}
+  return Math.max(0,Math.min(1,(v-m.lo)/(m.hi-m.lo)));}
+function hOf(v,m){return MINH+ratio(v,m)*(maxH-MINH);}
+function rankOf(d,m){var s=IND.slice().sort(function(a,b){return m.pick(b)-m.pick(a)});return s.indexOf(d)+1;}
+function drawSky(){
+  var m=METRICS[mKey];
+  while(skySvg.firstChild) skySvg.removeChild(skySvg.firstChild);
+  m.ticks.forEach(function(v){
+    var y=baseY-hOf(v,m);
+    skySvg.appendChild(el('line',{'class':'grid',x1:M.l-8,y1:y,x2:W-M.r,y2:y}));
+    var t=el('text',{'class':'tick',x:M.l-14,y:y+3.5});t.textContent=m.tf(v);skySvg.appendChild(t);});
+  var at=el('text',{'class':'axis-t',x:M.l-14,y:M.t-46});at.textContent=m.axis;skySvg.appendChild(at);
+  if(mKey!=='rev'){var hn=el('text',{'class':'hint',x:M.l-14,y:M.t-28});
+    hn.textContent='가로 순서는 매출 순 그대로 — 높이만 '+m.label+'으로 바뀝니다';
+    skySvg.appendChild(hn);}
+  if(m.avg){var vals=IND.map(m.pick),av=vals.reduce(function(a,b){return a+b},0)/vals.length;
+    var ay=baseY-hOf(av,m);
+    skySvg.appendChild(el('line',{'class':'avg',x1:M.l-8,y1:ay,x2:W-M.r,y2:ay}));
+    var ac=el('text',{'class':'avg-cap',x:W-M.r,y:ay-7,'text-anchor':'end'});
+    ac.textContent='12개 산업 평균 '+(m.dec?f1(av):fmt(Math.round(av)))+m.unit;
+    skySvg.appendChild(ac);}
+  var apex=[];
+  IND.forEach(function(d,i){
+    var v=m.pick(d),cx=M.l+band*i+band/2,x=cx-bw/2,h=hOf(v,m),top=baseY-h;
+    var ROOF=Math.max(13,Math.min(ROOFMAX,12+h*0.05));
+    apex.push([cx,top-ROOF]);
+    var g=el('g',{'class':'tw'+(i===selI?' is-sel':''),tabindex:0,role:'button',
+      'aria-label':d.name+' '+(m.dec?f1(v):fmt(v))+m.unit});
+    var bc=d.bright||d.color;
+    g.style.setProperty('--face',mix(bc,.32));
+    g.style.setProperty('--side',mix(bc,.56));
+    g.style.setProperty('--deep',bc);
+    g.style.setProperty('--edge',mix(bc,.60));
+    var dep=Math.max(7,bw*.16);
+    g.appendChild(el('rect',{'class':'face',x:x,y:top,width:bw-dep,height:h}));
+    g.appendChild(el('polygon',{'class':'side',points:(x+bw-dep)+','+top+' '+(x+bw)+','+(top+dep*.7)+' '+(x+bw)+','+baseY+' '+(x+bw-dep)+','+baseY}));
+    var rows=Math.max(0,Math.floor((h-34)/13));
+    for(var r=1;r<=rows;r++){var fy=top+16+(r-1)*13;if(fy>baseY-12)break;
+      g.appendChild(el('line',{'class':'floor',x1:x,y1:fy,x2:x+bw-dep,y2:fy}));}
+    var cols=Math.max(2,Math.floor((bw-dep-10)/11)),total=cols*rows;
+    var lit=Math.round(total*(d.margin/maxMargin)),wi=0;
+    for(var r2=0;r2<rows;r2++)for(var c=0;c<cols;c++){
+      var wx=x+7+c*11,wy=top+19+r2*13;if(wy>baseY-14)continue;
+      var on=mKey==='rev'&&(total-1-wi)<lit;
+      g.appendChild(el('rect',{'class':'win'+(on?' on':''),x:wx,y:wy,width:5,height:7}));wi++;}
+    var pw=Math.min(bw+30,bw+10+(d.count/90)*34);
+    g.appendChild(el('rect',{'class':'plinth',x:cx-pw/2,y:baseY+1,width:pw,height:7}));
+    g.appendChild(el('polyline',{'class':'roof',points:(x-9)+','+top+' '+cx+','+(top-ROOF)+' '+(x+bw+9)+','+top}));
+    g.appendChild(el('line',{'class':'mast',x1:cx,y1:top-ROOF,x2:cx,y2:top-ROOF-8}));
+    var no=el('text',{'class':'no',x:cx,y:baseY+22});no.textContent=d.no;
+    var nm=el('text',{'class':'nm',x:cx,y:baseY+40});nm.textContent=d.short;
+    var vl=el('text',{'class':'val',x:cx,y:baseY+60});
+    var vn=el('tspan',{});vn.textContent=m.dec?f1(v):fmt(v);
+    var vu=el('tspan',{dx:'1.5','class':'u'});vu.textContent=m.unit;
+    vl.appendChild(vn);vl.appendChild(vu);
+    g.appendChild(no);g.appendChild(nm);g.appendChild(vl);
+    g.addEventListener('click',function(){selI=i;drawSky();});
+    g.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();selI=i;drawSky();}
+      if(e.key==='ArrowRight'){e.preventDefault();selI=(i+1)%IND.length;drawSky();}
+      if(e.key==='ArrowLeft'){e.preventDefault();selI=(i+IND.length-1)%IND.length;drawSky();}});
+    skySvg.appendChild(g);});
+  skySvg.appendChild(el('polyline',{'class':'ceil',points:apex.map(function(p){return p[0]+','+p[1]}).join(' ')}));
+  apex.forEach(function(p,i){skySvg.appendChild(el('circle',{'class':'ceil-dot',cx:p[0],cy:p[1],r:i===selI?4.8:3}));});
+  var caps={rev:'산업의 천장',salary:'연봉의 천장',rpe:'생산성의 천장',tenure:'근속의 천장'};
+  var cc=el('text',{'class':'ceil-cap',x:M.l-14,y:M.t-68});cc.textContent='— — '+caps[mKey];skySvg.appendChild(cc);
+  skySvg.appendChild(el('line',{'class':'ground',x1:M.l-14,y1:baseY,x2:W-M.r,y2:baseY}));
+  skyReadout();}
+function skyReadout(){
+  var m=METRICS[mKey],d=IND[selI],v=m.pick(d),root=q('#sec-ceiling');
+  root.style.setProperty('--act',d.bright||d.color);root.style.setProperty('--act-wash',mix(d.bright||d.color,.20));
+  q('#sky-rank').textContent=('0'+rankOf(d,m)).slice(-2)+' / 12';
+  q('#sky-name').textContent=d.name;
+  q('#sky-big').innerHTML=(m.dec?f1(v):fmt(v))+'<i>'+m.unit+'</i>';
+  var sub;
+  if(mKey==='rev')sub='영업이익 '+d.op.toFixed(2)+'조 · 영업이익률 '+f1(d.margin)+'% · 기업 '+d.count+'개사 · 평균 연봉 '+fmt(d.salary)+'만원';
+  else if(mKey==='salary')sub='총매출 '+f1(d.rev)+'조 · 영업이익률 '+f1(d.margin)+'% · 평균 근속 '+f1(d.tenure)+'년 · 기업 '+d.count+'개사';
+  else if(mKey==='rpe')sub='총매출 '+f1(d.rev)+'조 · 평균 연봉 '+fmt(d.salary)+'만원 · 표본 '+d.rpeN+'개사 / '+d.count+'개사';
+  else sub='평균 연봉 '+fmt(d.salary)+'만원 · 영업이익률 '+f1(d.margin)+'% · 표본 '+d.tenN+'개사 / '+d.count+'개사';
+  q('#sky-sub').textContent=sub;
+  q('#sky-note').textContent=m.note;}
+Array.prototype.forEach.call(document.querySelectorAll('#sky-seg button'),function(b){
+  b.addEventListener('click',function(){mKey=b.getAttribute('data-m');
+    Array.prototype.forEach.call(document.querySelectorAll('#sky-seg button'),function(x){
+      x.setAttribute('aria-pressed',String(x===b));});drawSky();});});
+drawSky();
+
+/* 02 map */
+var RM={count:{label:'기업 수',pick:function(r){return r.count},fmt:function(v){return fmt(v)+'개사'}},
+  revenue:{label:'총매출',pick:function(r){return r.revenue},fmt:function(v){return eok(v)}},
+  employees:{label:'총종업원',pick:function(r){return r.employees},fmt:function(v){return fmt(v)+'명'}}};
+var rKey='count',selR=0,mapSvg=q('#map-svg'),rankList=q('#rank-list');
+var pop=q('#map-pop'),stage=q('#map-stage'),popTimer=null;
+function hidePop(){ if(popTimer)clearTimeout(popTimer);
+  popTimer=setTimeout(function(){ if(pop) pop.hidden=true; },90); }
+function showPop(i,g){
+  if(!pop||!stage) return;
+  if(popTimer)clearTimeout(popTimer);
+  var r=REG[i], col=RCOL[r.name]||'#B5321A';
+  var rows=r.top.slice(0,3).map(function(n){
+    var c=TOPCO[n];
+    return '<li><b>'+n+'</b><span class="ci">'+(c?(c[2]||''):'')+'</span></li>';
+  }).join('');
+  pop.style.setProperty('--rc',col);
+  pop.innerHTML='<div class="pop-h"><span class="pop-dot"></span><b>'+r.name+'</b></div>'+
+    '<div class="pop-kpi">'+
+    '<div><small>기업 수</small><b>'+fmt(r.count)+'<i>개사</i></b></div>'+
+    '<div><small>총매출</small><b>'+eok(r.revenue)+'</b></div>'+
+    '<div><small>총임직원</small><b>'+(r.employees?fmt(r.employees)+'<i>명</i>':'—')+'</b></div>'+
+    '</div>'+
+    '<div class="pop-top"><small>대표 기업 TOP 3</small><ul>'+rows+'</ul>'+
+    '<em class="pop-note">'+(r.coverage?('임직원은 인원 공개 '+r.coverage+'개사 합계'):'인원 공개 기업 없음')+'</em></div>';
+  pop.hidden=false;
+  var gb=g.getBoundingClientRect(), sb=stage.getBoundingClientRect();
+  var pw=pop.offsetWidth, ph=pop.offsetHeight;
+  var x=gb.left-sb.left+gb.width/2-pw/2;
+  var y=gb.top-sb.top-ph-12;
+  if(y<6) y=gb.top-sb.top+gb.height+12;
+  x=Math.max(8,Math.min(sb.width-pw-8,x));
+  y=Math.max(8,Math.min(sb.height-ph-8,y));
+  pop.style.left=x+'px'; pop.style.top=y+'px';
+}
+if(document.addEventListener) document.addEventListener('click',function(e){
+  if(pop && !pop.hidden && !e.target.closest('.reg') && !e.target.closest('#map-pop')) pop.hidden=true;
+});
+function drawMap(){
+  var m=RM[rKey],vals=REG.map(m.pick),mx=Math.max.apply(null,vals);
+  while(mapSvg.firstChild) mapSvg.removeChild(mapSvg.firstChild);
+  var byReg={};REG.forEach(function(r,i){byReg[r.name]=i;});
+  var groups={};
+  CELLS.forEach(function(c){ (groups[c[2]]=groups[c[2]]||[]).push(c); });
+  REG.forEach(function(r,i){
+    var v=m.pick(r),t=mx?Math.sqrt(v/mx):0;
+    var g=el('g',{'class':'reg'+(i===selR?' on':''),tabindex:0,role:'button',
+      'aria-label':r.name+' '+m.fmt(v)});
+    g.style.setProperty('--rc',RCOL[r.name]||'#B5321A');
+    g.style.setProperty('--t',(0.26+t*0.72).toFixed(2));
+    var regionCells=groups[i]||[];
+    if(!regionCells.length&&CENT[r.name]){g.appendChild(el('rect',{'class':'cell',x:CENT[r.name][0]-6,y:CENT[r.name][1]-6,width:12,height:12,rx:2}));}
+    regionCells.forEach(function(c){
+      g.appendChild(el('rect',{'class':'cell',x:c[0],y:c[1],width:CSIZE,height:CSIZE,rx:1.2}));
+    });
+    g.addEventListener('click',function(){selR=i;drawMap();showPop(i,g);});
+    g.addEventListener('mouseenter',function(){showPop(i,g);});
+    g.addEventListener('mouseleave',hidePop);
+    g.addEventListener('focus',function(){showPop(i,g);});
+    g.addEventListener('blur',hidePop);
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();selR=i;drawMap();showPop(i,g);}});
+    mapSvg.appendChild(g);
   });
-  </script>
+  REG.forEach(function(r,i){
+    var v=m.pick(r),c=CENT[r.name];if(!c)return;
+    var g=el('g',{'class':'rlab'+(i===selR?' on':''),'pointer-events':'none'});
+    g.style.setProperty('--rc',RCOL[r.name]||'#B5321A');
+    var big=r.count>=40||i===selR;
+    var txt = rKey==='count'? String(r.count) : (v>=10000? f1(v/10000) : (v>=1000? Math.round(v/1000)+'k' : fmt(v)));
+    var pad=txt.length*5+13, w=Math.max(30,pad);
+    g.appendChild(el('rect',{'class':'chip',x:c[0]-w/2,y:c[1]-21,width:w,height:19,rx:9.5}));
+    var vt=el('text',{'class':'cv',x:c[0],y:c[1]-7});vt.textContent=txt;g.appendChild(vt);
+    var nh=el('text',{'class':'cn halo',x:c[0],y:c[1]+11});nh.textContent=r.name;g.appendChild(nh);
+    var nt=el('text',{'class':'cn',x:c[0],y:c[1]+11});nt.textContent=r.name;g.appendChild(nt);
+    mapSvg.appendChild(g);
+  });
+  var order=REG.map(function(r,i){return i}).sort(function(a,b){return m.pick(REG[b])-m.pick(REG[a])});
+  if(!rankList.childElementCount){
+    REG.forEach(function(r,i){
+      var b=document.createElement('button');b.type='button';b.className='rank-row';b.setAttribute('data-i',i);
+      b.innerHTML='<span class="no"></span><span class="blk"></span><span class="ci">'+
+        '<span class="nm">'+r.name+'</span><span class="sub"></span></span><span class="v"></span>';
+      b.addEventListener('click',function(){selR=i;drawMap();});
+      rankList.appendChild(b);});}
+  var LIMIT=10;
+  order.forEach(function(idx,pos){
+    var row=rankList.querySelector('[data-i="'+idx+'"]'),r=REG[idx],v=m.pick(r);
+    var t=mx?Math.sqrt(v/mx):0;
+    if(pos>=LIMIT){row.hidden=true;row.style.transform='translateY('+((LIMIT-1)*52)+'px)';return;}
+    row.hidden=false;
+    row.style.transform='translateY('+(pos*52)+'px)';
+    row.style.setProperty('--rc',RCOL[r.name]||'#B5321A');
+    row.style.setProperty('--t',(0.3+t*0.7).toFixed(2));
+    row.setAttribute('aria-pressed',String(idx===selR));
+    row.querySelector('.no').textContent=('0'+(pos+1)).slice(-2);
+    row.querySelector('.sub').textContent=r.top.slice(0,3).join(' · ');
+    row.querySelector('.v').textContent=m.fmt(v);});
+  var restIdx=order.slice(LIMIT), restSum=restIdx.reduce(function(s,i){return s+m.pick(REG[i])},0);
+  q('#rank-title').textContent=m.label+' TOP 10';
+  q('#rank-total').textContent=m.fmt(REG.reduce(function(s,r){return s+m.pick(r)},0));
+  var rest=q('#rank-rest');
+  if(rest) rest.textContent='그 외 '+restIdx.length+'개 시·도 합계 '+m.fmt(restSum)+' · '
+    +restIdx.map(function(i){return REG[i].name}).join(' · ');
+  var r=REG[selR];
+  var rd=q('.region-detail');
+  if(rd) rd.style.setProperty('--act',RCOL[r.name]||'#B5321A');
+  q('#rd-name').textContent=r.name;
+  q('#rd-top').textContent=r.top.join(' · ');
+  q('#rd-count').innerHTML=fmt(r.count)+'<i>개사</i>';
+  q('#rd-rev').innerHTML=eok(r.revenue).replace(/(조|억)/,'<i>$1</i>');
+  q('#rd-emp').innerHTML=(r.employees?fmt(r.employees)+'<i>명</i>':'—');
+  q('#rd-emp-note').textContent=r.coverage?('인원 공개 '+r.coverage+'개사 합계'):'인원 공개 기업 없음';}
+Array.prototype.forEach.call(document.querySelectorAll('#map-seg button'),function(b){
+  b.addEventListener('click',function(){rKey=b.getAttribute('data-m');
+    Array.prototype.forEach.call(document.querySelectorAll('#map-seg button'),function(x){
+      x.setAttribute('aria-pressed',String(x===b));});drawMap();});});
+drawMap();
+
+/* 03 industry position */
+var posSvg=q('#pos-svg'),selP=IND[0].id;
+var PW=1160,PH=560,PM={t:44,r:150,b:64,l:66};
+function drawPos(){
+  while(posSvg.firstChild)posSvg.removeChild(posSvg.firstChild);
+  var x0=PM.l,x1=PW-PM.r,y0=PM.t,y1=PH-PM.b;
+  var lo=Math.log10(2.5),hi=Math.log10(420);
+  var X=function(v){return x0+(Math.log10(v)-lo)/(hi-lo)*(x1-x0)};
+  var mmax=11.5,Y=function(v){return y1-(v/mmax)*(y1-y0)};
+  [3,10,30,100,300].forEach(function(v){
+    posSvg.appendChild(el('line',{'class':'gl',x1:X(v),y1:y0,x2:X(v),y2:y1}));
+    var t=el('text',{'class':'tk',x:X(v),y:y1+20,'text-anchor':'middle'});t.textContent=v+'조';posSvg.appendChild(t);});
+  [0,3,6,9].forEach(function(v){
+    posSvg.appendChild(el('line',{'class':'gl',x1:x0,y1:Y(v),x2:x1,y2:Y(v)}));
+    var t=el('text',{'class':'tk',x:x0-10,y:Y(v)+3.5,'text-anchor':'end'});t.textContent=v+'%';posSvg.appendChild(t);});
+  var avgM=IND.reduce(function(s,d){return s+d.margin},0)/IND.length,medR=30.6;
+  posSvg.appendChild(el('line',{'class':'qline',x1:x0,y1:Y(avgM),x2:x1,y2:Y(avgM)}));
+  posSvg.appendChild(el('line',{'class':'qline',x1:X(medR),y1:y0,x2:X(medR),y2:y1}));
+  var caps=[['크고 · 두껍게 남긴다',x1-6,y0+16,'end'],
+    ['작지만 · 두껍게 남긴다',x0+6,y0+16,'start'],
+    ['크지만 · 얇게 남긴다',x1-6,y1-10,'end'],
+    ['작고 · 얇게 남긴다',x0+6,y1-10,'start']];
+  caps.forEach(function(c){var t=el('text',{'class':'qcap',x:c[1],y:c[2],'text-anchor':c[3]});t.textContent=c[0];posSvg.appendChild(t);});
+  var am=el('text',{'class':'qcap',x:x1+8,y:Y(avgM)+3.5,fill:'#B5321A'});
+  am.textContent='평균 '+f1(avgM)+'%';posSvg.appendChild(am);
+  posSvg.appendChild(el('line',{'class':'ax',x1:x0,y1:y1,x2:x1,y2:y1}));
+  posSvg.appendChild(el('line',{'class':'ax',x1:x0,y1:y0,x2:x0,y2:y1}));
+  var xt=el('text',{'class':'axt',x:x1,y:y1+42,'text-anchor':'end'});xt.textContent='산업 총매출 (로그 스케일)';posSvg.appendChild(xt);
+  var yt=el('text',{'class':'axt',x:x0-10,y:y0-14});yt.textContent='영업이익률';posSvg.appendChild(yt);
+  var boxes=[],bnd=[x0-52,y0-22,x1+140,y1+8];
+  IND.slice().sort(function(a,b){return b.count-a.count}).forEach(function(d){
+    var g=el('g',{'class':'bub'+(selP===d.id?' on':''),tabindex:0,role:'button','aria-label':d.name});
+    g.style.setProperty('--c',d.bright||d.color);
+    var rr=9+Math.sqrt(d.count/90)*26, cx=X(d.rev), cy=Y(d.margin);
+    g.appendChild(el('circle',{cx:cx,cy:cy,r:rr}));
+    var pos2=place(boxes,cx,cy,rr,d.short.length*12+6,bnd);
+    if(pos2){
+      var th=el('text',{'class':'halo',x:pos2[0],y:pos2[1]});th.textContent=d.short;g.appendChild(th);
+      var t=el('text',{x:pos2[0],y:pos2[1]});t.textContent=d.short;g.appendChild(t);
+    }
+    g.addEventListener('click',function(){selP=d.id;drawPos();});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();selP=d.id;drawPos();}});
+    posSvg.appendChild(g);});
+  var d=IND.filter(function(x){return x.id===selP})[0],root=q('#sec-pos');
+  root.style.setProperty('--act',d.bright||d.color);root.style.setProperty('--act-wash',mix(d.bright||d.color,.20));
+  q('#pos-name').textContent=d.name;
+  q('#pos-big').innerHTML=f1(d.margin)+'<i>%</i>';
+  q('#pos-sub').textContent='총매출 '+f1(d.rev)+'조 · 영업이익 '+d.op.toFixed(2)+'조 · 기업 '+d.count+'개사 · 평균 연봉 '+fmt(d.salary)+'만원';}
+drawPos();
+
+/* 04 company position */
+var ALL=[];GRP.forEach(function(g){var ind=IND.filter(function(x){return x.id===g[0]})[0];
+  g[2].forEach(function(c){ALL.push({name:c[0],rev:c[1],margin:c[2],emp:c[3],ind:g[0],indName:g[1],color:ind.bright||ind.color});});});
+var coSvg=q('#co-svg'),coFilter='all',selC=-1,lg=q('#co-legend');
+[['all','전체','#141413']].concat(GRP.map(function(g){
+  var ind=IND.filter(function(x){return x.id===g[0]})[0];return [g[0],ind.short,ind.bright||ind.color];})).forEach(function(o,i){
+  var b=document.createElement('button');b.type='button';b.setAttribute('data-f',o[0]);
+  b.setAttribute('aria-pressed',String(i===0));b.style.setProperty('--c',o[2]);
+  b.innerHTML='<i></i>'+o[1];
+  b.addEventListener('click',function(){coFilter=o[0];
+    Array.prototype.forEach.call(lg.children,function(x){x.setAttribute('aria-pressed',String(x===b))});
+    selC=-1;drawCo();});
+  lg.appendChild(b);});
+function coData(){return coFilter==='all'?ALL:ALL.filter(function(c){return c.ind===coFilter});}
+function drawCo(){
+  var data=coData();
+  while(coSvg.firstChild)coSvg.removeChild(coSvg.firstChild);
+  var x0=PM.l,x1=PW-PM.r,y0=PM.t,y1=PH-PM.b;
+  var lo=Math.log10(3000),hi=Math.log10(2200000);
+  var X=function(v){return x0+(Math.log10(Math.max(v,3000))-lo)/(hi-lo)*(x1-x0)};
+  var mn=-6,mx=20,Y=function(v){return y1-((Math.max(mn,Math.min(mx,v))-mn)/(mx-mn))*(y1-y0)};
+  [5000,20000,100000,500000,2000000].forEach(function(v){
+    coSvg.appendChild(el('line',{'class':'gl',x1:X(v),y1:y0,x2:X(v),y2:y1}));
+    var t=el('text',{'class':'tk',x:X(v),y:y1+20,'text-anchor':'middle'});t.textContent=eok(v);coSvg.appendChild(t);});
+  [-5,0,5,10,15,20].forEach(function(v){
+    coSvg.appendChild(el('line',{'class':'gl',x1:x0,y1:Y(v),x2:x1,y2:Y(v)}));
+    var t=el('text',{'class':'tk',x:x0-10,y:Y(v)+3.5,'text-anchor':'end'});t.textContent=v+'%';coSvg.appendChild(t);});
+  coSvg.appendChild(el('line',{'class':'qline',x1:x0,y1:Y(0),x2:x1,y2:Y(0)}));
+  var zc=el('text',{'class':'qcap',x:x1-6,y:Y(0)-9,'text-anchor':'end'});
+  zc.textContent='영업이익률 0% — 아래는 적자';coSvg.appendChild(zc);
+  coSvg.appendChild(el('line',{'class':'ax',x1:x0,y1:y1,x2:x1,y2:y1}));
+  coSvg.appendChild(el('line',{'class':'ax',x1:x0,y1:y0,x2:x0,y2:y1}));
+  var xt=el('text',{'class':'axt',x:x1,y:y1+42,'text-anchor':'end'});xt.textContent='기업 매출 (로그 스케일)';coSvg.appendChild(xt);
+  var yt=el('text',{'class':'axt',x:x0-10,y:y0-14});yt.textContent='영업이익률';coSvg.appendChild(yt);
+  var boxes=[],bnd=[x0-46,y0-22,x1+140,y1+8];
+  var order=data.map(function(c,i){return i}).sort(function(a,b){
+    if(a===selC)return -1; if(b===selC)return 1; return data[b].rev-data[a].rev;});
+  var labelPos={};
+  order.forEach(function(i){var c=data[i];
+    var rr=c.emp?8+Math.sqrt(c.emp/72598)*22:7;
+    labelPos[i]=place(boxes,X(c.rev),Y(c.margin),rr,c.name.length*12+6,bnd);});
+  data.forEach(function(c,i){
+    var g=el('g',{'class':'bub'+(i===selC?' on':''),tabindex:0,role:'button','aria-label':c.name});
+    g.style.setProperty('--c',c.color);
+    var rr=c.emp?8+Math.sqrt(c.emp/72598)*22:7;
+    g.appendChild(el('circle',{cx:X(c.rev),cy:Y(c.margin),r:rr}));
+    var pp=labelPos[i];
+    if(pp){
+      var th=el('text',{'class':'halo',x:pp[0],y:pp[1]});th.textContent=c.name;g.appendChild(th);
+      var t=el('text',{x:pp[0],y:pp[1]});t.textContent=c.name;g.appendChild(t);
+    }
+    g.addEventListener('click',function(){selC=i;drawCo();});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();selC=i;drawCo();}});
+    coSvg.appendChild(g);});
+  var det=q('#co-detail'), hint=q('#co-hint');
+  var c=data[selC];
+  if(!c){ if(det)det.hidden=true; if(hint)hint.hidden=false; return; }
+  if(det)det.hidden=false; if(hint)hint.hidden=true;
+  var root=q('#sec-co');
+  root.style.setProperty('--act',c.color);root.style.setProperty('--act-wash',mix(c.color,.20));
+  q('#co-name').textContent=c.name;
+  q('#co-ind').textContent=c.indName;
+  q('#co-rev').innerHTML=eok(c.rev).replace(/(조|억)/,'<i>$1</i>');
+  q('#co-margin').innerHTML=f1(c.margin)+'<i>%</i>';
+  q('#co-emp').innerHTML=(c.emp?fmt(c.emp)+'<i>명</i>':'—');
+  q('#co-emp-note').textContent=c.emp?'공개 종업원 수':'인원 미공개';
+  if(det){
+    det.setAttribute('href','/company/'+encodeURIComponent(routeSlug(c.name))+'/');
+    det.setAttribute('aria-label',c.name+' 기업 상세 페이지로 이동');
+  }}
+drawCo();
+})().catch(function(error){console.error('MBT industry infographic init failed',error);});
+</script>
 </body>
 </html>

@@ -3,9 +3,9 @@
     "generatedAt": "2026-08-30T03:21:05.880Z",
     "purpose": "Career comparison prototype only",
     "sourceDatabase": "outputs/company_financial_database/money_behind_taste.sqlite3",
-    "publicRosterCompanies": 539,
-    "sourceCompaniesWithConfirmedTenure": 198,
-    "matchedPublicCompanies": 198,
+    "publicRosterCompanies": 537,
+    "sourceCompaniesWithConfirmedTenure": 196,
+    "matchedPublicCompanies": 196,
     "unit": "years"
   },
   "rows": [
@@ -1252,15 +1252,6 @@
       "sourceNote": "OpenDART empSttus 11011"
     },
     {
-      "publicId": "mbt_3b27cea20993f615",
-      "displayName": "와이비엠",
-      "fiscalYear": 2025,
-      "averageTenureYears": 8.474606741573034,
-      "confidence": "confirmed",
-      "sourceKind": "opendart_api",
-      "sourceNote": "OpenDART empSttus 11011"
-    },
-    {
       "publicId": "mbt_4433f174ed63a952",
       "displayName": "웅진씽크빅",
       "fiscalYear": 2025,
@@ -1436,15 +1427,6 @@
       "displayName": "카카오",
       "fiscalYear": 2025,
       "averageTenureYears": 6.296447390787013,
-      "confidence": "confirmed",
-      "sourceKind": "opendart_api",
-      "sourceNote": "OpenDART empSttus 11011"
-    },
-    {
-      "publicId": "mbt_635f00af2175f817",
-      "displayName": "캐리 소프트",
-      "fiscalYear": 2025,
-      "averageTenureYears": 3.219298245614035,
       "confidence": "confirmed",
       "sourceKind": "opendart_api",
       "sourceNote": "OpenDART empSttus 11011"
