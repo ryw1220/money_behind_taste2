@@ -1,0 +1,459 @@
+/* MBT RC5.0 · mobile company, comparison and atlas refinement */
+
+/* Company hero: labels describe the company; share remains a distinct action. */
+.co-hero,
+.mbt-detail-hero {
+  position: relative;
+}
+
+.co-hero-share-action {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.co-hero-share-action .mbt-share-trigger,
+.mbt-detail-hero-aside .mbt-share-trigger {
+  min-height: 44px;
+  padding: 0 17px;
+  border: 1px solid #111;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.co-meta {
+  padding-right: 190px;
+}
+
+.co-tag,
+.mbt-detail-tags span {
+  cursor: default;
+  user-select: none;
+}
+
+/* A balanced quick-facts grid replaces the loose left-aligned metadata row. */
+.co-info-row {
+  display: grid !important;
+  grid-template-columns: repeat(20, minmax(0, 1fr)) !important;
+  width: 100%;
+  column-gap: 0 !important;
+  row-gap: 0 !important;
+  align-items: stretch;
+  border-top: 1px solid var(--mbt-line);
+  border-bottom: 1px solid var(--mbt-line);
+  color: var(--mbt-gray-1);
+  font-size: 14px;
+}
+
+.co-info-row .item {
+  grid-column: span 6;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 17px 18px 16px;
+  border-right: 1px solid var(--mbt-line) !important;
+  border-bottom: 0 !important;
+}
+
+.co-info-row .item:nth-child(3),
+.co-info-row .item:nth-child(5) {
+  border-right: 0 !important;
+}
+
+.co-info-row .item:nth-child(2) {
+  grid-column: span 4;
+}
+
+.co-info-row .item:nth-child(3) {
+  grid-column: span 10;
+}
+
+.co-info-row .item:nth-child(-n + 3) {
+  border-bottom: 1px solid var(--mbt-line) !important;
+}
+
+.co-info-row .item:nth-child(n + 4) {
+  grid-column: span 10;
+}
+
+.co-info-row .item:nth-child(4):last-child {
+  grid-column: span 20;
+  border-right: 0 !important;
+}
+
+.co-info-row .item .l {
+  margin-bottom: 7px;
+  color: var(--mbt-readable-muted);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .08em;
+}
+
+.co-info-row .item .v {
+  display: block;
+  overflow-wrap: anywhere;
+  color: var(--mbt-ink);
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.42;
+}
+
+.co-info-source,
+.mbt-detail-info-source {
+  margin: 9px 0 0;
+  border: 0;
+  color: var(--mbt-readable-muted);
+  font-size: 10.5px;
+  font-weight: 450;
+  line-height: 1.55;
+  letter-spacing: .01em;
+}
+
+.mbt-detail-info dt {
+  font-size: 13px;
+}
+
+.mbt-detail-info dd {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Negative operating profit is drawn as a diverging bar around the zero line. */
+.mbt-profit-bar-positive {
+  fill: #1a6b5a;
+}
+
+.mbt-profit-bar-negative {
+  fill: #b5321a;
+}
+
+.mbt-profit-bar-value {
+  fill: var(--mbt-ink-2);
+  font: 700 10px var(--font-sans);
+}
+
+.mbt-profit-bar-helper {
+  fill: var(--mbt-readable-muted);
+  font: 10px var(--font-sans);
+}
+
+/* Mobile comparison dialog. */
+.mbt-mobile-comparison-modal {
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  background: rgba(12, 12, 12, .48);
+}
+
+.mbt-comparison.is-mobile-dialog {
+  width: min(100%, 760px);
+  height: 100dvh;
+  margin: 0;
+  padding: 0 16px max(38px, env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 0;
+  background: #fff;
+  box-shadow: 0 0 42px rgba(0, 0, 0, .24);
+}
+
+.mbt-comparison-close {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.mbt-career-scroll-sync-note {
+  margin: 0 0 9px;
+  color: var(--mbt-readable-muted);
+  font-size: 11px;
+}
+
+@media (max-width: 700px) {
+  .co-breadcrumb {
+    display: flex !important;
+    gap: 7px !important;
+    align-items: center !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    line-height: 1.2;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .co-breadcrumb::-webkit-scrollbar {
+    display: none;
+  }
+
+  .co-breadcrumb > .crumb,
+  .co-breadcrumb > .sep,
+  .co-breadcrumb > span:last-child {
+    display: inline-flex !important;
+    min-height: 44px;
+    align-items: center;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+    vertical-align: middle;
+  }
+
+  .co-hero {
+    padding-bottom: 28px;
+    margin-bottom: 26px;
+  }
+
+  .co-meta {
+    gap: 7px;
+    padding-right: 0;
+    margin-bottom: 22px;
+  }
+
+  .co-tag {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .co-name {
+    margin-bottom: 18px;
+    font-size: clamp(42px, 13vw, 58px) !important;
+    line-height: 1;
+  }
+
+  .co-desc {
+    margin-bottom: 0;
+    font-size: 16.5px;
+    line-height: 1.68;
+  }
+
+  .co-hero-share-action {
+    position: static;
+    justify-content: flex-start;
+    margin: 20px 0 24px;
+  }
+
+  .co-hero-share-action .mbt-share-trigger {
+    width: auto;
+    min-width: 148px;
+    margin: 0;
+  }
+
+  .co-info-row .item {
+    padding: 15px 12px 14px;
+  }
+
+  .co-info-row .item .l {
+    font-size: 11.5px;
+  }
+
+  .co-info-row .item .v {
+    font-size: 15px;
+  }
+
+  .co-info-source {
+    margin-top: 8px;
+    font-size: 10px;
+  }
+
+  .mbt-detail-hero {
+    display: block;
+    padding: 18px 0 28px;
+  }
+
+  .mbt-detail-hero h1 {
+    font-size: clamp(42px, 13vw, 58px);
+  }
+
+  .mbt-detail-legal {
+    font-size: 16px;
+  }
+
+  .mbt-detail-hero-aside {
+    display: block;
+    margin-top: 21px;
+  }
+
+  .mbt-detail-hero-aside .mbt-detail-mark {
+    display: none;
+  }
+
+  .mbt-detail-hero-aside .mbt-share-trigger {
+    margin: 0;
+  }
+
+  .mbt-detail-info dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-bottom: 1px solid var(--mbt-line);
+  }
+
+  .mbt-detail-info dl > div {
+    display: block;
+    min-width: 0;
+    padding: 15px 12px;
+    border-right: 1px solid var(--mbt-line);
+  }
+
+  .mbt-detail-info dl > div:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .mbt-detail-info dt {
+    margin-bottom: 7px;
+    font-size: 11.5px;
+  }
+
+  .mbt-detail-info dd {
+    overflow-wrap: anywhere;
+    font-size: 15px;
+  }
+
+  .mbt-compare-tray {
+    gap: 9px;
+    padding: 11px 12px calc(11px + env(safe-area-inset-bottom));
+  }
+
+  .mbt-compare-tray > div:first-child > div {
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .mbt-compare-tray > div:first-child > div b {
+    overflow: hidden;
+    max-width: 31%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mbt-comparison.is-mobile-dialog .mbt-comparison-head {
+    position: sticky;
+    z-index: 240;
+    top: 0;
+    display: flex;
+    min-height: 72px;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 -16px 14px;
+    padding: max(12px, env(safe-area-inset-top)) 16px 12px;
+    border-bottom: 1px solid var(--mbt-line);
+    background: rgba(255, 255, 255, .98);
+  }
+
+  .mbt-comparison.is-mobile-dialog .mbt-comparison-head h2 {
+    margin-top: 4px;
+    font-size: 25px;
+  }
+
+  .mbt-comparison.is-mobile-dialog .mbt-comparison-close {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--mbt-line-2);
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    font-size: 25px;
+    line-height: 1;
+  }
+
+  .mbt-comparison.is-mobile-dialog .mbt-comparison-modes {
+    position: relative;
+    z-index: 10;
+  }
+
+  .mbt-comparison.is-mobile-dialog .mbt-comparison-modes button {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .mbt-comparison.is-mobile-dialog .mbt-career-sticky-wrap {
+    top: 71px;
+  }
+
+  .mbt-career-sticky-wrap,
+  .mbt-career-board {
+    scrollbar-width: thin;
+  }
+
+  /* Keep all treemap values inside their own cell on small screens. */
+  .mbt-distribution-atlas .mbt-atlas-grid {
+    grid-auto-rows: 112px;
+  }
+
+  .mbt-distribution-atlas .mbt-atlas-base,
+  .mbt-distribution-atlas .mbt-atlas-preview {
+    min-width: 0;
+    padding: 12px 39px 11px 12px;
+  }
+
+  .mbt-distribution-atlas .mbt-atlas-base > strong,
+  .mbt-distribution-atlas .mbt-atlas-preview > strong {
+    min-height: 32px;
+    font-size: clamp(13px, 3.8vw, 15px);
+    line-height: 1.14;
+  }
+
+  .mbt-distribution-atlas .mbt-atlas-metric {
+    min-width: 0;
+  }
+
+  .mbt-distribution-atlas .mbt-atlas-metric > b,
+  .mbt-distribution-atlas .mbt-atlas-cell.is-compact .mbt-atlas-metric > b {
+    overflow: hidden;
+    max-width: 100%;
+    font-size: clamp(16px, 5.1vw, 20px);
+    line-height: 1.02;
+    letter-spacing: -.035em;
+    text-overflow: clip;
+    white-space: nowrap;
+  }
+
+  .mbt-distribution-atlas .mbt-atlas-metric > em {
+    margin-top: 4px;
+    font-size: 9px;
+  }
+
+  .mbt-distribution-atlas .mbt-atlas-arrow {
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .mbt-line-chart-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 380px) {
+  .co-info-row,
+  .mbt-detail-info dl {
+    grid-template-columns: 1fr;
+  }
+
+  .co-info-row .item,
+  .co-info-row .item:nth-child(2n),
+  .co-info-row .item:nth-child(3n),
+  .mbt-detail-info dl > div,
+  .mbt-detail-info dl > div:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .mbt-distribution-atlas .mbt-atlas-metric > b,
+  .mbt-distribution-atlas .mbt-atlas-cell.is-compact .mbt-atlas-metric > b {
+    font-size: 16px;
+  }
+}
