@@ -36,17 +36,17 @@ a{color:inherit;text-decoration:none} button{font:inherit;color:inherit}
 .page{max-width:var(--page);margin:0 auto;padding:0 26px 110px}
 
 /* ── 헤더 ── */
-.topbar{position:sticky;top:0;z-index:60;border-bottom:1px solid var(--line);
-  background:rgba(250,249,247,.93);backdrop-filter:saturate(180%) blur(12px)}
-.topbar-in{max-width:var(--page);margin:0 auto;padding:0 26px;min-height:58px;display:flex;align-items:center;gap:34px}
-.brand{display:flex;align-items:center;gap:9px}
-.brand i{width:11px;height:11px;border-radius:50%;background:var(--brick);display:block}
-.brand b{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:-.01em}
-.brand span{color:var(--quiet);font-size:11px}
-.nav{display:flex;gap:26px;margin-left:auto;align-self:stretch}
-.nav a{display:flex;align-items:center;font-size:13.5px;font-weight:700;color:var(--muted);
-  border-bottom:2px solid transparent}
-.nav a[aria-current]{color:var(--brick);border-bottom-color:var(--brick)}
+.topbar{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);line-height:normal;
+  background:rgba(255,255,255,.95);backdrop-filter:saturate(180%) blur(12px)}
+.topbar-in{max-width:1320px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:32px}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--brick);display:block;transform:translateY(-1px)}
+.brand b{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:-.02em}
+.brand span{color:var(--quiet);font-size:12px;letter-spacing:-.02em}
+.nav{display:flex;gap:28px;margin-left:24px;align-self:auto;flex:1}
+.nav a{display:flex;align-items:center;position:relative;padding:4px 0;font-size:14px;font-weight:500;color:var(--ink2);letter-spacing:-.01em}
+.nav a[aria-current]{color:var(--brick)}
+.nav a[aria-current]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--brick)}
 
 /* ── 히어로 ── */
 .hero{padding:62px 0 42px;border-bottom:2px solid var(--ink)}
@@ -281,18 +281,19 @@ footer.pf{margin-top:88px;padding-top:22px;border-top:1px solid var(--line);
 footer.pf b{font-family:var(--serif);color:var(--ink);font-size:14px}
 
 @media(max-width:700px){
-  .topbar-in{display:grid;grid-template-columns:1fr;gap:0;padding:0 16px;min-height:88px}
-  .brand{min-height:46px;white-space:nowrap}
+  .topbar-in{display:grid;grid-template-columns:1fr;gap:0;padding:0;min-height:89px}
+  .brand{min-height:48px;padding:0 16px;white-space:nowrap}
   .brand b{font-size:19px}
   .brand span{display:none}
-  .nav{width:100%;min-height:42px;margin-left:0;align-self:auto;justify-content:space-between;gap:12px;overflow-x:auto;scrollbar-width:none}
+  .nav{width:100%;min-height:40px;margin-left:0;padding:0 4px;align-self:auto;justify-content:flex-start;gap:0;overflow-x:auto;scrollbar-width:none;border-top:1px solid var(--line)}
   .nav::-webkit-scrollbar{display:none}
-  .nav a{min-height:42px;flex:none;white-space:nowrap;font-size:12px}
+  .nav a{min-height:40px;padding:11px 14px;flex:none;white-space:nowrap;font-size:14px}
+  .nav a[aria-current]::after{bottom:0}
   .hero{padding-top:44px}
 }
 </style>
 </head>
-<body data-release-id="MBT-WEB-2026-RC5.3-INDUSTRY-INFOGRAPHIC">
+<body data-release-id="MBT-WEB-2026-RC5.3.2-HEADER-ALIGNMENT">
 <header class="topbar"><div class="topbar-in">
   <a class="brand" href="/"><i></i><b>Money Behind Taste</b><span>돈의 지도</span></a>
   <nav class="nav">
